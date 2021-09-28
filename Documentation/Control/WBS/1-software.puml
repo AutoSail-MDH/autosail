@@ -1,55 +1,44 @@
-@startwbs ABSWBS
-' !include style.puml
-<style>
-  wbsDiagram {
-    Linecolor DimGray
-    BackgroundColor White
-    RoundCorner 10
-    Margin 10
-    Shadowing 0
-    LineThickness 3
-    MaximumWidth 250
-    MinimumWidth 250
-    HorizontalAlignment center
-    .done{
-      BackgroundColor LawnGreen
-    }
-    .to_do{
-      BackgroundColor Salmon
-    }
-    legend {
-      FontSize 16
-      Margin 10
-      BackGroundColor White
-      LineThickness 0
-    }
-  }
-</style>
-
-+ **Software** 
-' ++  Prestudies <<to_do>>
-' +++ Robot Operating System
-' +++ Wireless communication
-' +++ Wired communication
-' +++ Modularity
-' +++ Data-logging
-' +++ Simulation
-' +++ Coding standards
-
-++  Development <<to_do>>
-+++ Micro-controller [Boat]
-++++ Position
+++ Software
++++ Microcontroller
+++++ Motor data <<TBD>>
 ++++ Orientation
-++++ Velocity
+++++ Position
 ++++ Wind speed
+++++ Wind direction
+++++ Rudder control
+++++ Rudder position
+++++ Velocity
+++++ Sail control
+++++ Sail position
+
++++ SBC Boat
+++++ Path planning <<TBD>>
+++++ Object avoidance <<TBD>>
+++++ Angular motor control
+++++ Data-logging
+++++ Fail-safe sensor malfunction
+++++ Fail-safe battery temperature
+++++ Reliable data transceiver
+++++ Data steam transceiver
+
++++ SBC Vision 
+++++ Path planning <<TBD>>
+++++ Vision feed <<TBD>>
+++++ Object detection <<TBD>>
+
++++ BMS
 ++++ Power consumption
 ++++ Battery temperature
+++++ State of Charge
 
-+++ Single-Board Computer [Boat]
++++ SBC Land
 ++++ Data-logging
-++++ Overheat fail-safe
-+++ Battery management [Boat]
-+++ Manual land control 
-+++ Simulation
+++++ Reliable data transceiver
+++++ Data stream transceiver
+++++ Fail-safe signal control
+++++ Data visualisation
 
-@endwbs
++++ Simulation
+++++ Object avoidance <<TBD>>
+++++ Path planning <<TBD>>
+++++ Sensor network <<TBD>>
