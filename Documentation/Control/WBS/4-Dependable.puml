@@ -1,0 +1,35 @@
+@startwbs ABSWBS
+' !include style.puml
+<style>
+  wbsDiagram {
+    Linecolor DimGray
+    BackgroundColor White
+    RoundCorner 10
+    Margin 10
+    Shadowing 0
+    LineThickness 3
+    MaximumWidth 250
+    MinimumWidth 250
+    HorizontalAlignment center
+    .done{
+      BackgroundColor LawnGreen
+    }
+    .to_do{
+      BackgroundColor Salmon
+    }
+    .TBD{
+      BackgroundColor Yellow
+    }
+    legend {
+      FontSize 16
+      Margin 10
+      BackGroundColor White
+      LineThickness 0
+    }
+  }
+</style>
+
+
++ Dependable
+++ Hazop 
+@endwbs
