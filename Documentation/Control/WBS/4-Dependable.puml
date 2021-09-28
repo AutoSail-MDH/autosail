@@ -31,5 +31,13 @@
 
 
 + Dependable
-++ Hazop 
+++ Safety analysis <<done>>
+++ HAZOP <<done>>
+++ Requirements table <<done>>
+++ Requirements document <<done>>
+++ Requirements management plan <<done>>
+++ Document management plan <<done>>
+++ State Flow diagram <<done>>
+++ Test cases document <<TBD>>
+++ V&V document <<TBD>>
 @endwbs
