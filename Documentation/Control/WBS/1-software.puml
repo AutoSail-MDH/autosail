@@ -1,0 +1,55 @@
+@startwbs ABSWBS
+' !include style.puml
+<style>
+  wbsDiagram {
+    Linecolor DimGray
+    BackgroundColor White
+    RoundCorner 10
+    Margin 10
+    Shadowing 0
+    LineThickness 3
+    MaximumWidth 250
+    MinimumWidth 250
+    HorizontalAlignment center
+    .done{
+      BackgroundColor LawnGreen
+    }
+    .to_do{
+      BackgroundColor Salmon
+    }
+    legend {
+      FontSize 16
+      Margin 10
+      BackGroundColor White
+      LineThickness 0
+    }
+  }
+</style>
+
++ **Software** 
+' ++  Prestudies <<to_do>>
+' +++ Robot Operating System
+' +++ Wireless communication
+' +++ Wired communication
+' +++ Modularity
+' +++ Data-logging
+' +++ Simulation
+' +++ Coding standards
+
+++  Development <<to_do>>
++++ Micro-controller [Boat]
+++++ Position
+++++ Orientation
+++++ Velocity
+++++ Wind speed
+++++ Power consumption
+++++ Battery temperature
+
++++ Single-Board Computer [Boat]
+++++ Data-logging
+++++ Overheat fail-safe
++++ Battery management [Boat]
++++ Manual land control 
++++ Simulation
+
+@endwbs
