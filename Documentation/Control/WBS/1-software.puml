@@ -13,33 +13,28 @@
 ++++ Sail position
 
 +++ SBC Boat
-++++ Path planning <<TBD>>
-++++ Object avoidance <<TBD>>
+
 ++++ Angular motor control
 ++++ Data-logging
 ++++ Fail-safe sensor malfunction
 ++++ Fail-safe battery temperature
 ++++ Reliable data transceiver
 ++++ Data steam transceiver
-
-+++ SBC Vision 
-++++ Path planning <<TBD>>
-++++ Vision feed <<TBD>>
-++++ Object detection <<TBD>>
+++++ Future SBC for VISION/AI 
 
 +++ BMS
-++++ Power consumption
-++++ Battery temperature
-++++ State of Charge
+++++ Power consumption <<TBD>>
+++++ Battery temperature <<TBD>>
+++++ State of Charge <<TBD>>
 
 +++ SBC Land
 ++++ Data-logging
-++++ Reliable data transceiver
 ++++ Data stream transceiver
 ++++ Fail-safe signal control
 ++++ Data visualisation
 
 +++ Simulation
-++++ Object avoidance <<TBD>>
 ++++ Path planning <<TBD>>
-++++ Sensor network <<TBD>>
+++++ Orientation
+++++ Position
+++++ Wind direction
