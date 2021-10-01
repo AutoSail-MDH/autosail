@@ -13,14 +13,13 @@
 ++++ Sail position
 
 +++ SBC Boat
-
 ++++ Angular motor control
 ++++ Data-logging
 ++++ Fail-safe sensor malfunction
 ++++ Fail-safe battery temperature
 ++++ Reliable data transceiver
 ++++ Data steam transceiver
-++++ Future SBC for VISION/AI 
+++++ Future SBC Support - VISION/AI 
 
 +++ BMS
 ++++ Power consumption <<TBD>>
@@ -34,7 +33,7 @@
 ++++ Data visualisation
 
 +++ Simulation
-++++ Path planning <<TBD>>
+++++ Wind->Sail adjustive 
 ++++ Orientation
 ++++ Position
 ++++ Wind direction
