@@ -10,15 +10,16 @@
     Shadowing 0
     FontName Arial black
     LineThickness 3
-    MaximumWidth 250
-    MinimumWidth 250
-    HorizontalAlignment center
-
+    MaximumWidth 260
+    MinimumWidth 260
 
     :depth(0) {
       padding 10
       FontSize 20
-      ' BackGroundColor lightblue
+      HorizontalAlignment center
+    }
+    :depth(1) {
+      HorizontalAlignment center
     }
     .done{
       BackgroundColor LawnGreen
@@ -67,7 +68,7 @@
 footer Designer: Simon Svensson
 
 legend
-|  <#LawnGreen> Completed  | <#Yellow> TBD   | <#Salmon> Started   |
+|  <#LawnGreen>   Completed   |  <#Yellow>  TBD   |  <#Salmon>   Started   |
 endlegend
 
 @endwbs
