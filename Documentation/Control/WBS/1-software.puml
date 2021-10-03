@@ -5,23 +5,22 @@
 ++++ 1.1.1.2 - Vessel Orientation
 ++++ 1.1.1.3 - Vessel Global Position
 ++++ 1.1.1.4 - Vessel Velocity
-++++ 1.1.1.5 - Wind speed 
+++++ 1.1.1.5 - Wind speed
 ++++ 1.1.1.6 - Wind direction
-++++ 1.1.1.7 - Rudder control 
+++++ 1.1.1.7 - Rudder motor control
 ++++ 1.1.1.8 - Rudder position feedback 
-++++ 1.1.1.9 - Sail control
+++++ 1.1.1.9 - Sail motor control
 ++++ 1.1.1.10 - Sail position feedback
 ++++ 1.1.1.11 - Sail position PID
-++++ 1.1.1.12 - Wind to Sail PID
 
 +++ 1.1.2 - SBC Boat
 ++++ 1.1.2.1 - Angular motor control
 ++++ 1.1.2.2 - Data-logging
-++++ 1.1.2.3 - Fail-safe sensor malfunction
-++++ 1.1.2.4 - Fail-safe battery temperature
-++++ 1.1.2.5 - Reliable data transceiver
+++++ 1.1.2.3 - [FS] Sensor malfunction
+++++ 1.1.2.4 - [FS] Battery temperature
+++++ 1.1.2.5 - [FS] State sequence
 ++++ 1.1.2.6 - Data steam transceiver
-++++ 1.1.2.7 - Future SBC Support 
+++++ 1.1.2.7 - Future vision support 
 
 +++ 1.1.3 - SBC Land
 ++++ 1.1.3.1 - Data-logging
