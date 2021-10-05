@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Software" company="" webLink="http://" view-date="2021-09-16" view-index="0" gantt-divider-location="887" resource-divider-location="300" version="3.1.3102" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="Software" company="" webLink="http://" view-date="2021-09-08" view-index="0" gantt-divider-location="887" resource-divider-location="300" version="3.1.3102" locale="en_US">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd11" name="Outline number" width="118" order="0"/>
@@ -146,8 +146,8 @@
                 </task>
             </task>
         </task>
-        <task id="66" name="Hardware" meeting="false" start="2021-09-16" duration="1" complete="0" expand="true">
-            <task id="71" name="Construction" meeting="false" start="2021-09-16" duration="1" complete="0" expand="true">
+        <task id="66" name="Hardware" color="#000000" meeting="false" start="2021-09-16" duration="1" complete="0" thirdDate="2021-09-16" thirdDate-constraint="0" expand="true">
+            <task id="71" name="Construction" color="#000000" meeting="false" start="2021-09-16" duration="1" complete="0" thirdDate="2021-09-16" thirdDate-constraint="0" expand="true">
                 <task id="75" name="Waterproof Containers" meeting="false" start="2021-09-16" duration="1" complete="0" expand="true">
                     <task id="76" name="Modify regarding cabling" meeting="false" start="2021-09-16" duration="1" complete="0" expand="true"/>
                 </task>
