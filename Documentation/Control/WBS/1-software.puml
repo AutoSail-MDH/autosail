@@ -1,17 +1,15 @@
 ++ 1.1 - Software
 
 +++ 1.1.1 Micro-controller
-++++ 1.1.1.1 - Motor data <<TBD>>
-++++ 1.1.1.2 - Vessel Orientation
-++++ 1.1.1.3 - Vessel Global Position
-++++ 1.1.1.4 - Vessel Velocity
-++++ 1.1.1.5 - Wind speed
-++++ 1.1.1.6 - Wind direction
-++++ 1.1.1.7 - Rudder motor control
-++++ 1.1.1.8 - Rudder position feedback 
-++++ 1.1.1.9 - Sail motor control
-++++ 1.1.1.10 - Sail position feedback
-++++ 1.1.1.11 - Sail position PID
+++++ 1.1.1.1 - Vessel Orientation
+++++ 1.1.1.2 - Vessel Global Position
+++++ 1.1.1.3 - Vessel Velocity
+++++ 1.1.1.4 - Wind direction
+++++ 1.1.1.5 - Rudder motor control
+++++ 1.1.1.6 - Rudder path PID 
+++++ 1.1.1.7 - Sail motor control
+++++ 1.1.1.8 - Wind to sail PID
+++++ 1.1.1.9 - Communication network
 
 +++ 1.1.2 - SBC Boat
 ++++ 1.1.2.1 - Angular motor control
