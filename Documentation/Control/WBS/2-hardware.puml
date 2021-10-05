@@ -1,14 +1,20 @@
-++ Hardware
+++ 1.2 Hardware
 
-+++ Construction
-++++ Find waterproof containers
-++++ Modify Containers for outgoing cables
-++++ Install hardware in boxes
-+++ Power
-+++ Communication
-+++ Testing
-++++ Test Communication (RC and 4G)
-++++ Test Battery System
-++++ Test Sensors
++++ 1.2.1 Construction
+++++ 1.2.1.1 Waterproof containers
+
++++ 1.2.2 Power
+++++ 1.2.2.1 PDB
+++++ 1.2.2.2 Battery pack
+
++++ 1.2.3 Communication
+++++ 1.2.3.1 4G
+++++ 1.2.3.2 RC
+
++++ 1.2.4 Sensors
+++++ 1.2.4.1 GNSS
+++++ 1.2.4.2 IMU
+++++ 1.2.4.3 Wind direction
+
 
 
