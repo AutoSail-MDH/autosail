@@ -1,14 +1,21 @@
 ++ Hardware
 
-+++ Construction
-++++ Find waterproof containers
-++++ Modify Containers for outgoing cables
-++++ Install hardware in boxes
-+++ Power
-+++ Communication
-+++ Testing
-++++ Test Communication (RC and 4G)
-++++ Test Battery System
-++++ Test Sensors
++++ Sensor System
+++++ Battery System
+++++ RC Control
+++++ Assembly
++++++ Modify Boxes
++++++ Build Wind Sensor and Mounts
++++++ Install and Connect
 
++++ Test Boat
+++++ Battery System
+++++ Fail Safe System
+++++ Motor Control System
+++++ Assembly and Mounts
 
++++ Large Boat
+++++ Battery System
+++++ Fail Safe System
+++++ Motor Control System
+++++ Assembly and Mounts
