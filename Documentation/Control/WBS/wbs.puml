@@ -8,8 +8,8 @@
     Margin 15
     Shadowing 0
     LineThickness 3
-    MaximumWidth 260
-    MinimumWidth 260
+    MaximumWidth 200
+    MinimumWidth 100
 
     :depth(0) {
       padding 10
@@ -18,6 +18,10 @@
     }
     :depth(1) {
       HorizontalAlignment center
+    }
+    :depth(2) {
+      MaximumWidth 200
+      MinimumWidth 100
     }
     .done{
       BackgroundColor LawnGreen
