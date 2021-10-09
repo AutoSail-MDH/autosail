@@ -1,0 +1,75 @@
+\documentclass[times, 10pt]{thesisMDH}
+\usepackage[british,style=iso]{datetime2}  
+\usepackage[pdfusetitle, allcolors=black, hidelinks, pdftex]{hyperref} 
+\addbibresource{references.bib}
+
+\fancyHeader{Short title of the thesis}{Authors}
+
+\university{Mälardalen University}
+
+\department{School of Innovation Design and Engineering\\ Västerås, Sweden}
+
+\subject{Thesis for the Degree of Master of Science in Engineering - Robotics 30.0 credits}
+\thesisTitle{Master Thesis Title}
+\authorOne{Student Name1}{studentEmail@student.mdh.se}
+\authorTwo{Student Name2}{studentEmail@student.mdh.se}
+
+\examiner{Examiner-Name}{Mälardalen University, Västerås, Sweden}
+\supervisors{Supervisor-Name}{Mälardalen University, Västerås, Sweden}
+\companySupervisors{Supervisor-Name}{Company name, location}
+
+\theDate{\today} 
+
+\begin{document}
+\titlePage
+% Begin actual text
+\frontmatter
+\input{sections/000-guideline} % Remove 000-guideline section
+\input{sections/abstract}
+\newpage
+%========= Tables ==========
+{\hypersetup{linkcolor=black}\tableofcontents}
+\clearpage
+{\hypersetup{linkcolor=black}\listoffigures}
+\clearpage
+{\hypersetup{linkcolor=black}\listoftables}
+ 
+\mainmatter
+% ===== Content: Modify the structure according to your needs =======
+\input{sections/introduction}
+\newpage
+\input{sections/background} %SOTA
+\newpage
+\input{sections/relatedWork}
+\newpage
+\input{sections/method}
+\newpage
+\input{sections/etics}
+\newpage
+\input{sections/contribs}
+\newpage
+\input{sections/results}
+\newpage
+\input{sections/discussion}
+\newpage
+\input{sections/conclusions}
+\newpage
+%\input{sections/Acknowledgments}
+% ============================= References ============================
+% \newpage
+\printbibliography
+\addcontentsline{toc}{section}{References}
+
+% ============================ Appendices =============================
+%\newpage
+%\begin{appendices}
+
+	%\input{appendices/appendices1}
+	%\clearpage
+	
+	%\input{appendices/appendices2}
+	%\clearpage
+	
+%\end{appendices}
+
+\end{document}
