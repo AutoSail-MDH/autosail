@@ -1,37 +1,34 @@
 ++ 1.1 - **Software**
 
 +++ 1.1.1 Micro-controller
-++++ 1.1.1.1 - Vessel Orientation
-++++ 1.1.1.2 - Vessel Global Position
-++++ 1.1.1.3 - Vessel Velocity
-++++ 1.1.1.4 - Wind direction
-++++ 1.1.1.5 - Rudder motor control
-++++ 1.1.1.6 - Rudder path PID 
-++++ 1.1.1.7 - Sail motor control
-++++ 1.1.1.8 - Wind to sail PID
-++++ 1.1.1.9 - Communication network
+++++ 1.1.1.1 - Vessel Orientation: 3,5,10: 6
+++++ 1.1.1.2 - Vessel Global Position: 5,10,15: 10
+++++ 1.1.1.3 - Vessel Velocity: 2,4,6: 4
+++++ 1.1.1.4 - Wind direction: 2,3,4?: 3
+++++ 1.1.1.5 - Rudder motor control: 2,4,6: 4
+++++ 1.1.1.6 - Rudder path PID: 4,8,12: 8
+++++ 1.1.1.7 - Sail motor control: 2,4,6: 4
+++++ 1.1.1.8 - Wind to sail PID: 6,10,14: 10
+++++ 1.1.1.9 - Communication network: 4,8,12: 8
 
 +++ 1.1.2 - SBC Boat
-++++ 1.1.2.1 - Angular motor control
-++++ 1.1.2.2 - Data-logging
-++++ 1.1.2.3 - [FS] Sensor malfunction
-++++ 1.1.2.4 - [FS] Battery temperature
-++++ 1.1.2.5 - [FS] State sequence
-++++ 1.1.2.6 - Data steam transceiver
-++++ 1.1.2.7 - Future vision support 
+++++ 1.1.2.1 - Angular motor control: 2,3,4: 3
+++++ 1.1.2.2 - Data-logging: 2,3,4: 3
+++++ 1.1.2.3 - [FS] Sensor malfunction: 2,4,6?: 4
+++++ 1.1.2.4 - [FS] Battery temperature: 2,4,6?: 4
+++++ 1.1.2.5 - [FS] State sequence: 2,4,6?: 4
+++++ 1.1.2.6 - Data steam transceiver: 4,8,12: 8
 
 +++ 1.1.3 - SBC Land
-++++ 1.1.3.1 - Data-logging
-++++ 1.1.3.2 - Data stream transceiver
-++++ 1.1.3.3 - Fail-safe signal control
-++++ 1.1.3.4 - Data visualisation
+++++ 1.1.3.1 - Fail-safe signal control: 2,3,4: 3
+++++ 1.1.3.2 - Data visualisation: 5, 10,15? : 10
 
 +++ 1.1.4 - Simulation
-++++ 1.1.4.1 - Wind to Sail PID
-++++ 1.1.4.2 - Vessel Orientation
-++++ 1.1.4.3 - Vessel Position
-++++ 1.1.4.4 - Wind direction
-++++ 1.1.4.5 - Wind speed
+++++ 1.1.4.1 - Wind to Sail PID: 3
+++++ 1.1.4.2 - Vessel Orientation: 3
+++++ 1.1.4.3 - Vessel Position: 3
+++++ 1.1.4.4 - Wind direction: 3
+++++ 1.1.4.5 - Wind speed: 3
 
 +++ 1.1.5 - BMS
 ++++ 1.1.5.1 - Power consumption <<TBD>>
