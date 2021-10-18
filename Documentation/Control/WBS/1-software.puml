@@ -1,36 +1,30 @@
 ++ 1.1 - **Software**
 
 +++ 1.1.1 Micro-controller
-++++ 1.1.1.1 - Vessel Orientation:  6
-++++ 1.1.1.2 - Vessel Global Position: 10
-++++ 1.1.1.3 - Vessel Velocity: 4
-++++ 1.1.1.4 - Wind direction: 3
-++++ 1.1.1.5 - Rudder motor control: 4
-++++ 1.1.1.6 - Rudder path PID: 8
-++++ 1.1.1.7 - Sail motor control: 4
-++++ 1.1.1.8 - Wind to sail PID: 10
-++++ 1.1.1.9 - Communication network: 8
+++++ 1.1.1.1 - Vessel Orientationg
+++++ 1.1.1.2 - Vessel Global Positiong
+++++ 1.1.1.3 - Vessel Velocityg
+++++ 1.1.1.4 - Wind directiong
+++++ 1.1.1.5 - Rudder motor controlg
+++++ 1.1.1.6 - Rudder path PIDg
+++++ 1.1.1.7 - Sail motor controlg
+++++ 1.1.1.8 - Wind to sail PIDg
+++++ 1.1.1.9 - Communication networkg
 
 +++ 1.1.2 - SBC Boat
-++++ 1.1.2.1 - Angular motor control: 3
-++++ 1.1.2.2 - Data-logging: 3
-++++ 1.1.2.3 - [FS] Sensor malfunction: 4
-++++ 1.1.2.4 - [FS] Battery temperature: 4
-++++ 1.1.2.5 - [FS] State sequence: 4
-++++ 1.1.2.6 - Data steam transceiver: 8
+++++ 1.1.2.1 - Angular motor controlg
+++++ 1.1.2.2 - Data-loggingg
+++++ 1.1.2.3 - [FS] Sensor malfunctiong
+++++ 1.1.2.4 - [FS] State sequenceg
+++++ 1.1.2.5 - Data steam transceiverg
 
 +++ 1.1.3 - SBC Land
-++++ 1.1.3.1 - Fail-safe signal control: 3
-++++ 1.1.3.2 - Data visualisation: 10
+++++ 1.1.3.1 - Fail-safe signal controlg
+++++ 1.1.3.2 - Data visualisationg
 
 +++ 1.1.4 - Simulation
-++++ 1.1.4.1 - Wind to Sail PID: 3
-++++ 1.1.4.2 - Vessel Orientation: 3
-++++ 1.1.4.3 - Vessel Position: 3
-++++ 1.1.4.4 - Wind direction: 3
-++++ 1.1.4.5 - Wind speed: 3
-
-+++ 1.1.5 - BMS
-++++ 1.1.5.1 - Power consumption <<TBD>>
-++++ 1.1.5.2 - Battery temperature <<TBD>>
-++++ 1.1.5.3 - State of Charge <<TBD>>
+++++ 1.1.4.1 - Wind to Sail PIDg
+++++ 1.1.4.2 - Vessel Orientationg
+++++ 1.1.4.3 - Vessel Positiong
+++++ 1.1.4.4 - Wind directiong
+++++ 1.1.4.5 - Wind speedg
