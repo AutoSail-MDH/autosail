@@ -6,16 +6,14 @@
 ++++ 1.1.1.3 - Vessel Velocity
 ++++ 1.1.1.4 - Wind direction
 ++++ 1.1.1.5 - Rudder motor control
-++++ 1.1.1.6 - Rudder path PID
-++++ 1.1.1.7 - Sail motor control
-++++ 1.1.1.8 - Wind to sail 
-++++ 1.1.1.9 - Communication network
+++++ 1.1.1.6 - Sail motor control
+++++ 1.1.1.7 - Communication network
 
 +++ 1.1.2 - SBC Boat
-++++ 1.1.2.1 - Angular motor control
-++++ 1.1.2.2 - Data-logging
-++++ 1.1.2.3 - [FS] Sensor malfunction
-++++ 1.1.2.4 - [FS] State sequence
+++++ 1.1.2.1 - [FS] Sensor malfunction
+++++ 1.1.1.2 - Wind to sail 
+++++ 1.1.1.3 - Rudder path PID
+++++ 1.1.2.4 - Data-logging
 ++++ 1.1.2.5 - Data steam transceiver
 
 +++ 1.1.3 - SBC Land
