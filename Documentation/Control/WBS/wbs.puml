@@ -45,9 +45,10 @@
 
 !include 2-hardware.puml
 
-!include 3-administrative.puml
+!include 3-dependable.puml
 
-!include 4-dependable.puml
+!include 4-administrative.puml
+
 
 
 footer Designer: Simon Svensson
