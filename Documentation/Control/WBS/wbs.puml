@@ -26,11 +26,8 @@
     .done{
       BackgroundColor LawnGreen
     }
-    .started{
+    .failed{
       BackgroundColor Salmon
-    }
-    .TBD{
-      BackgroundColor Yellow
     }
     legend {
       FontSize 16
@@ -56,7 +53,7 @@
 footer Designer: Simon Svensson
 
 legend
-|  <#LawnGreen>   Completed   |  <#Yellow>  TBD   |  <#Salmon>   Started   |
+|  <#LawnGreen>   Completed   |  <#Salmon>   Failed   |
 endlegend
 
 @endwbs
