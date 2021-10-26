@@ -6,12 +6,10 @@
         <field id="tpd4" name="Begin date" width="17" order="2"/>
         <field id="tpd5" name="End date" width="25" order="3"/>
         <field id="tpd10" name="ID" width="36" order="4"/>
-        <field id="tpd9" name="Predecessors" width="36" order="5"/>
-        <field id="tpd13" name="Resources" width="269" order="6"/>
+        <field id="tpd9" name="Predecessors" width="164" order="5"/>
+        <field id="tpd13" name="Resources" width="141" order="6"/>
         <field id="tpd6" name="Duration" width="66" order="7"/>
-        <option id="taskLabelUp" value=""/>
         <option id="taskLabelLeft" value="name"/>
-        <option id="taskLabelRight" value=""/>
         <option id="color.recent">
             <![CDATA[#66ffcc #ed6af5 #ff3366 #003399 #33ff99 #00ccff #66ff33 #f7f021 #f6f5f4 #24e933]]>
         </option>
@@ -47,18 +45,12 @@
         <task id="373" name="AutoSail 2021" meeting="false" start="2021-10-25" duration="30" complete="0" expand="true">
             <task id="0" name="Software" color="#8cb6ce" meeting="false" start="2021-11-01" duration="25" complete="0" expand="true">
                 <task id="19" name="SBC Land" color="#24e933" meeting="false" start="2021-11-22" duration="7" complete="0" thirdDate="2021-10-08" thirdDate-constraint="0" expand="true">
-                    <task id="22" name="Fail-safe signal control" color="#24e933" meeting="false" start="2021-11-26" duration="3" complete="0" thirdDate="2021-10-13" thirdDate-constraint="0" expand="true"/>
                     <task id="23" name="Data visualisation" color="#24e933" meeting="false" start="2021-11-22" duration="5" complete="0" thirdDate="2021-10-11" thirdDate-constraint="0" expand="true"/>
+                    <task id="22" name="Fail-safe signal control" color="#24e933" meeting="false" start="2021-11-26" duration="3" complete="0" thirdDate="2021-10-13" thirdDate-constraint="0" expand="true"/>
                 </task>
                 <task id="45" name="SBC Boat" color="#ed6af5" meeting="false" start="2021-11-05" duration="21" complete="0" thirdDate="2021-10-08" thirdDate-constraint="0" expand="true">
                     <task id="55" name="[FS] Sensor malfunction" color="#ed6af5" meeting="false" start="2021-11-22" duration="4" complete="0" thirdDate="2021-10-13" thirdDate-constraint="0" expand="true">
                         <depend id="22" type="2" difference="0" hardness="Strong"/>
-                    </task>
-                    <task id="350" name="Wind to sail" color="#ed6af5" meeting="false" start="2021-11-22" duration="10" complete="0" thirdDate="2021-11-22" thirdDate-constraint="1" expand="true">
-                        <depend id="42" type="3" difference="0" hardness="Strong"/>
-                    </task>
-                    <task id="357" name="Rudder path PID" color="#ed6af5" meeting="false" start="2021-11-22" duration="8" complete="0" thirdDate="2021-11-22" thirdDate-constraint="1" expand="true">
-                        <depend id="40" type="3" difference="0" hardness="Strong"/>
                     </task>
                     <task id="54" name="Data-logging" color="#ed6af5" meeting="false" start="2021-11-17" duration="3" complete="0" thirdDate="2021-10-12" thirdDate-constraint="0" expand="true">
                         <depend id="55" type="2" difference="0" hardness="Strong"/>
@@ -66,10 +58,16 @@
                     <task id="58" name="Data steam transceiver" color="#ed6af5" meeting="false" start="2021-11-05" duration="8" complete="0" thirdDate="2021-11-01" thirdDate-constraint="1" expand="true">
                         <depend id="54" type="2" difference="0" hardness="Strong"/>
                     </task>
+                    <task id="350" name="Wind to sail" color="#ed6af5" meeting="false" start="2021-11-22" duration="10" complete="0" thirdDate="2021-11-22" thirdDate-constraint="1" expand="true">
+                        <depend id="42" type="3" difference="0" hardness="Strong"/>
+                    </task>
+                    <task id="357" name="Rudder path PID" color="#ed6af5" meeting="false" start="2021-11-22" duration="8" complete="0" thirdDate="2021-11-22" thirdDate-constraint="1" expand="true">
+                        <depend id="40" type="3" difference="0" hardness="Strong"/>
+                    </task>
                 </task>
                 <task id="35" name="Micro-controller" color="#f7f021" meeting="false" start="2021-11-01" duration="25" complete="0" thirdDate="2021-10-04" thirdDate-constraint="0" expand="true">
-                    <task id="42" name="Sail motor control" color="#f7f021" meeting="false" start="2021-11-30" duration="4" complete="0" thirdDate="2021-10-04" thirdDate-constraint="0" expand="true"/>
                     <task id="40" name="Rudder motor control" color="#f7f021" meeting="false" start="2021-11-29" duration="4" complete="0" thirdDate="2021-11-29" thirdDate-constraint="1" expand="true"/>
+                    <task id="42" name="Sail motor control" color="#f7f021" meeting="false" start="2021-11-30" duration="4" complete="0" thirdDate="2021-10-04" thirdDate-constraint="0" expand="true"/>
                     <task id="38" name="Vessel Velocity" color="#f7f021" meeting="false" start="2021-11-15" duration="4" complete="0" thirdDate="2021-10-11" thirdDate-constraint="0" expand="true"/>
                     <task id="39" name="Wind direction" color="#f7f021" meeting="false" start="2021-11-15" duration="3" complete="0" thirdDate="2021-10-04" thirdDate-constraint="0" expand="true"/>
                     <task id="36" name="Vessel Orientation" color="#f7f021" meeting="false" start="2021-11-05" duration="6" complete="0" thirdDate="2021-10-08" thirdDate-constraint="0" expand="true">
@@ -83,21 +81,21 @@
                         <depend id="58" type="2" difference="0" hardness="Strong"/>
                     </task>
                 </task>
-                <task id="24" name="Simulation" color="#f49f49" meeting="false" start="2021-11-04" duration="18" complete="0" thirdDate="2021-10-05" thirdDate-constraint="0" expand="true">
-                    <task id="29" name="Realistic sensor data" color="#efa050" meeting="false" start="2021-11-25" duration="3" complete="0" thirdDate="2021-10-05" thirdDate-constraint="0" expand="true"/>
-                    <task id="371" name="Rudder path PID" color="#efa050" meeting="false" start="2021-11-22" duration="3" complete="0" thirdDate="2021-10-06" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true">
+                <task id="24" name="Simulation" color="#f49f49" meeting="false" start="2021-11-01" duration="18" complete="0" thirdDate="2021-10-05" thirdDate-constraint="0" expand="true">
+                    <task id="29" name="Realistic sensor data" color="#efa050" meeting="false" start="2021-11-22" duration="3" complete="0" thirdDate="2021-10-05" thirdDate-constraint="0" expand="true"/>
+                    <task id="371" name="Rudder path PID" color="#efa050" meeting="false" start="2021-11-17" duration="3" complete="0" thirdDate="2021-10-06" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true">
                         <depend id="29" type="2" difference="0" hardness="Strong"/>
                     </task>
-                    <task id="25" name="Wind to Sail" color="#efa050" meeting="false" start="2021-11-17" duration="3" complete="0" thirdDate="2021-10-06" thirdDate-constraint="0" expand="true">
+                    <task id="25" name="Wind to Sail" color="#efa050" meeting="false" start="2021-11-12" duration="3" complete="0" thirdDate="2021-10-06" thirdDate-constraint="0" expand="true">
                         <depend id="371" type="2" difference="0" hardness="Strong"/>
                     </task>
-                    <task id="26" name="Vessel Orientation" color="#efa050" meeting="false" start="2021-11-12" duration="3" complete="0" thirdDate="2021-10-06" thirdDate-constraint="0" expand="true">
+                    <task id="26" name="Vessel Orientation" color="#efa050" meeting="false" start="2021-11-09" duration="3" complete="0" thirdDate="2021-10-06" thirdDate-constraint="0" expand="true">
                         <depend id="25" type="2" difference="0" hardness="Strong"/>
                     </task>
-                    <task id="27" name="Vessel Position" color="#efa050" meeting="false" start="2021-11-09" duration="3" complete="0" thirdDate="2021-10-06" thirdDate-constraint="0" expand="true">
+                    <task id="27" name="Vessel Position" color="#efa050" meeting="false" start="2021-11-04" duration="3" complete="0" thirdDate="2021-10-06" thirdDate-constraint="0" expand="true">
                         <depend id="26" type="2" difference="0" hardness="Strong"/>
                     </task>
-                    <task id="28" name="Wind direction" color="#f1a150" meeting="false" start="2021-11-04" duration="3" complete="0" thirdDate="2021-10-05" thirdDate-constraint="0" expand="true">
+                    <task id="28" name="Wind direction" color="#f1a150" meeting="false" start="2021-11-01" duration="3" complete="0" thirdDate="2021-10-05" thirdDate-constraint="0" expand="true">
                         <depend id="27" type="2" difference="0" hardness="Strong"/>
                     </task>
                 </task>
@@ -133,7 +131,6 @@
                     <task id="171" name="IMU" color="#ff3366" meeting="false" start="2021-10-25" duration="3" complete="0" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true">
                         <depend id="36" type="2" difference="0" hardness="Strong"/>
                         <depend id="159" type="2" difference="0" hardness="Strong"/>
-                        <depend id="190" type="2" difference="0" hardness="Strong"/>
                     </task>
                     <task id="191" name="MCU and SBC" color="#ff3366" meeting="false" start="2021-10-25" duration="5" complete="0" thirdDate="2021-10-18" thirdDate-constraint="0" expand="true"/>
                     <task id="161" name="Wind" color="#ff3366" meeting="false" start="2021-10-25" duration="5" complete="0" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true">
