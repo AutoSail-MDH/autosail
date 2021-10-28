@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "~/microros_ws/firmware/toolchain/esp-idf/components/freertos/include",
+                "~/Projects/MPU6050_serial/components/MPU6050",
+                "~/microros_ws/firmware/toolchain/esp-idf/components/esp_common/include",
+                "~/microros_ws/firmware/toolchain/esp-idf/components/driver/include",
+                "~/microros_ws/firmware/toolchain/esp-idf/components/log/include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-clang-x64"
+        }
+    ],
+    "version": 4
+}
