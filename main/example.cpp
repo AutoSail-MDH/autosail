@@ -24,7 +24,7 @@ Modified by Peter Nguyen
 
 #include <rcl/rcl.h>
 #include <rcl/error_handling.h>
-#include <std_msgs/msg/float64.h>
+#include <std_msgs/msg/float32_multi_array.h>
 #include <rclc/rclc.h>
 #include <rclc/executor.h>
 
@@ -44,7 +44,7 @@ uint8_t mpuIntStatus;   // holds actual interrupt status byte from MPU
 MPU6050 mpu;
 
 rcl_publisher_t publisher;
-std_msgs__msg__Float64 msg;
+std_msgs__msg__Float32MultiArray msg;
 
 void task_init(void *ignore) {
 
@@ -112,12 +112,22 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 
 		//micro-ROS to publish to topic
 
+		for(int32_t i = 0; i < 3; i++){
+			msg.data.data = &ypr[i];
+			msg.data.size++;
+		}
+
+		RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
+
+		msg.data.size = 0;
+		/*
 		msg.data = ypr[0] * 180/M_PI;
 		RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
 		msg.data = ypr[1] * 180/M_PI;
 		RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
 		msg.data = ypr[2] * 180/M_PI;
 		RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
+		*/
 		//msg.data++;
 	}
 }
@@ -140,7 +150,7 @@ void micro_ros_task(void * arg)
 	RCCHECK(rclc_publisher_init_default(
 		&publisher,
 		&node,
-		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float64),
+		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray),
 		"topic"));
 
 	// create timer,
@@ -163,7 +173,16 @@ void micro_ros_task(void * arg)
 	RCCHECK(rclc_executor_init(&executor, &support.context, 1, &allocator));
 	RCCHECK(rclc_executor_add_timer(&executor, &timer));
 
-	msg.data = 0;
+	//Assign memory to sequence
+	/*
+	msg.data.capacity = 100;
+	msg.data.data = (float64_t*) malloc(msg.data.capacity * sizeof(float64_t));
+	msg.data.size = 0;
+	*/
+	static float_t memory[2];
+	msg.data.capacity = 2;
+	msg.data.data = memory;
+	msg.data.size = 0;
 
 	while(1){
 		rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
