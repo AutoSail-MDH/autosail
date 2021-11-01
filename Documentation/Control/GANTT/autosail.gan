@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Software" company="" webLink="http://" view-date="2021-10-17" view-index="0" gantt-divider-location="751" resource-divider-location="300" version="3.1.3102" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="Software" company="" webLink="http://" view-date="2021-10-04" view-index="0" gantt-divider-location="751" resource-divider-location="300" version="3.1.3102" locale="sv_SE">
     <description/>
     <view zooming-state="default:6" id="gantt-chart">
-        <field id="tpd11" name="Outline number" width="53" order="0"/>
-        <field id="tpd3" name="Name" width="245" order="1"/>
-        <field id="tpd4" name="Begin date" width="17" order="2"/>
-        <field id="tpd5" name="End date" width="25" order="3"/>
+        <field id="tpd11" name="Dispositionsnummer" width="53" order="0"/>
+        <field id="tpd3" name="Namn" width="245" order="1"/>
+        <field id="tpd4" name="Startdatum" width="17" order="2"/>
+        <field id="tpd5" name="Slutdatum" width="25" order="3"/>
         <field id="tpd10" name="ID" width="36" order="4"/>
-        <field id="tpd9" name="Predecessors" width="164" order="5"/>
-        <field id="tpd13" name="Resources" width="141" order="6"/>
-        <field id="tpd6" name="Duration" width="66" order="7"/>
+        <field id="tpd9" name="Relationer" width="164" order="5"/>
+        <field id="tpd13" name="Resurser" width="141" order="6"/>
+        <field id="tpd6" name="Varaktighet" width="66" order="7"/>
         <option id="taskLabelLeft" value="name"/>
         <option id="color.recent">
             <![CDATA[#66ffcc #ed6af5 #ff3366 #003399 #33ff99 #00ccff #66ff33 #f7f021 #f6f5f4 #24e933]]>
         </option>
     </view>
     <view id="resource-table">
-        <field id="0" name="Name" width="210" order="0"/>
-        <field id="1" name="Default role" width="86" order="1"/>
+        <field id="0" name="Namn" width="210" order="0"/>
+        <field id="1" name="Standard roll" width="86" order="1"/>
     </view>
     <!-- -->
     <calendars>
