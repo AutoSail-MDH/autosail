@@ -19,7 +19,17 @@
 #ifndef HEADER_PROT
 #define HEADER_PROT
 
+/**
+ * @brief Configures the adc for initializations and normal usage
+ * 
+ */
+
 void configure_adc(void);
+
+/**
+ * @brief Configures i2c for master mode
+ * 
+ */
 void configure_i2c_master(void);
 
 #endif
