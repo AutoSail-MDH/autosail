@@ -336,6 +336,8 @@ util/rosthread/build
 !.vscode/extensions.json
 *.code-workspace
 build/
+.vscode/
+*.old
 
 # Local History for Visual Studio Code
 .history/
