@@ -1,0 +1,41 @@
+[1.704s] Invoking command in '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/src/ament_lint/ament_uncrustify': PYTHONPATH=/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/lib/python3.8/site-packages:${PYTHONPATH} /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python setup.py egg_info --egg-base ../../../build/ament_uncrustify build --build-base /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/build install --prefix /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify --record /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/install.log --single-version-externally-managed
+[2.099s] running egg_info
+[2.100s] creating ../../../build/ament_uncrustify/ament_uncrustify.egg-info
+[2.100s] writing ../../../build/ament_uncrustify/ament_uncrustify.egg-info/PKG-INFO
+[2.102s] writing dependency_links to ../../../build/ament_uncrustify/ament_uncrustify.egg-info/dependency_links.txt
+[2.102s] writing entry points to ../../../build/ament_uncrustify/ament_uncrustify.egg-info/entry_points.txt
+[2.102s] writing requirements to ../../../build/ament_uncrustify/ament_uncrustify.egg-info/requires.txt
+[2.102s] writing top-level names to ../../../build/ament_uncrustify/ament_uncrustify.egg-info/top_level.txt
+[2.102s] writing manifest file '../../../build/ament_uncrustify/ament_uncrustify.egg-info/SOURCES.txt'
+[2.102s] reading manifest file '../../../build/ament_uncrustify/ament_uncrustify.egg-info/SOURCES.txt'
+[2.112s] writing manifest file '../../../build/ament_uncrustify/ament_uncrustify.egg-info/SOURCES.txt'
+[2.121s] running build
+[2.122s] running build_py
+[2.122s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/build
+[2.122s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/build/lib
+[2.122s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/build/lib/ament_uncrustify
+[2.122s] copying ament_uncrustify/__init__.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/build/lib/ament_uncrustify
+[2.123s] copying ament_uncrustify/main.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/build/lib/ament_uncrustify
+[2.123s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/build/lib/ament_uncrustify/configuration
+[2.123s] copying ament_uncrustify/configuration/ament_code_style.cfg -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/build/lib/ament_uncrustify/configuration
+[2.123s] running install
+[2.125s] running install_lib
+[2.126s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/lib/python3.8/site-packages/ament_uncrustify
+[2.126s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/lib/python3.8/site-packages/ament_uncrustify/configuration
+[2.127s] copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/build/lib/ament_uncrustify/configuration/ament_code_style.cfg -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/lib/python3.8/site-packages/ament_uncrustify/configuration
+[2.129s] copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/build/lib/ament_uncrustify/__init__.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/lib/python3.8/site-packages/ament_uncrustify
+[2.129s] copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/build/lib/ament_uncrustify/main.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/lib/python3.8/site-packages/ament_uncrustify
+[2.129s] byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/lib/python3.8/site-packages/ament_uncrustify/__init__.py to __init__.cpython-38.pyc
+[2.129s] byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/lib/python3.8/site-packages/ament_uncrustify/main.py to main.cpython-38.pyc
+[2.157s] running install_data
+[2.158s] copying package.xml -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/share/ament_uncrustify
+[2.158s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/share/ament_index
+[2.158s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/share/ament_index/resource_index
+[2.158s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/share/ament_index/resource_index/packages
+[2.158s] copying resource/ament_uncrustify -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/share/ament_index/resource_index/packages
+[2.158s] running install_egg_info
+[2.159s] Copying ../../../build/ament_uncrustify/ament_uncrustify.egg-info to /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/lib/python3.8/site-packages/ament_uncrustify-0.10.6-py3.8.egg-info
+[2.159s] running install_scripts
+[2.237s] Installing ament_uncrustify script to /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/bin
+[2.237s] writing list of installed files to '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/install.log'
+[2.857s] Invoked command in '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/src/ament_lint/ament_uncrustify' returned '0': PYTHONPATH=/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify/lib/python3.8/site-packages:${PYTHONPATH} /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python setup.py egg_info --egg-base ../../../build/ament_uncrustify build --build-base /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/build install --prefix /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_uncrustify --record /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_uncrustify/install.log --single-version-externally-managed

@@ -1,0 +1,47 @@
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    BUILD_TESTING
+
+
+-- Build files have been written to: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/gmock_vendor
+-- Install configuration: ""
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/share/gmock_vendor/cmake/gmock_vendorConfig.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/share/gmock_vendor/package.xml
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/CMakeLists.txt
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock-generated-matchers.h.pump
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock-function-mocker.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock-generated-actions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock-more-actions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/internal
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/internal/gmock-port.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/internal/gmock-internal-utils.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/internal/gmock-pp.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/internal/custom
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/internal/custom/gmock-port.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/internal/custom/gmock-generated-actions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/internal/custom/README.md
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/internal/custom/gmock-generated-actions.h.pump
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/internal/custom/gmock-matchers.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock-generated-function-mockers.h.pump
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock-generated-actions.h.pump
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock-generated-function-mockers.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock-actions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock-matchers.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock-cardinalities.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock-spec-builders.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock-more-matchers.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock-generated-matchers.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/include/gmock/gmock-nice-strict.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/src
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/src/gmock-cardinalities.cc
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/src/gmock_main.cc
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/src/gmock-all.cc
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/src/gmock.cc
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/src/gmock-matchers.cc
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/src/gmock-internal-utils.cc
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/gmock_vendor/src/gmock_vendor/src/gmock-spec-builders.cc

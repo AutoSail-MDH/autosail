@@ -1,0 +1,64 @@
+-- The C compiler identification is GNU 9.3.0
+-- The CXX compiler identification is GNU 9.3.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.1.4 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cmake/share/ament_cmake/cmake)
+-- Found PythonInterp: /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python3
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_index_cpp
+[35m[1mScanning dependencies of target ament_index_cpp[0m
+[ 12%] [32mBuilding CXX object CMakeFiles/ament_index_cpp.dir/src/get_package_prefix.cpp.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/ament_index_cpp.dir/src/get_package_share_directory.cpp.o[0m
+[ 37%] [32mBuilding CXX object CMakeFiles/ament_index_cpp.dir/src/get_search_paths.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/ament_index_cpp.dir/src/get_packages_with_prefixes.cpp.o[0m
+[ 62%] [32mBuilding CXX object CMakeFiles/ament_index_cpp.dir/src/get_resources.cpp.o[0m
+[ 75%] [32mBuilding CXX object CMakeFiles/ament_index_cpp.dir/src/get_resource.cpp.o[0m
+[ 87%] [32mBuilding CXX object CMakeFiles/ament_index_cpp.dir/src/has_resource.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library libament_index_cpp.so[0m
+[100%] Built target ament_index_cpp
+-- Install configuration: ""
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/environment/library_path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/environment/library_path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index/resource_index/package_run_dependencies/ament_index_cpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index/resource_index/parent_prefix_path/ament_index_cpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/environment/ament_prefix_path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/environment/ament_prefix_path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/environment/path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/environment/path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/local_setup.bash
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/local_setup.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/local_setup.zsh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/local_setup.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/package.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index/resource_index/packages/ament_index_cpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/cmake/export_ament_index_cppExport.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/cmake/export_ament_index_cppExport-noconfig.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/cmake/ament_cmake_export_libraries-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/cmake/ament_cmake_export_targets-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/cmake/ament_index_cppConfig.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/cmake/ament_index_cppConfig-version.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/share/ament_index_cpp/package.xml
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/include
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/include/ament_index_cpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/include/ament_index_cpp/has_resource.hpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/include/ament_index_cpp/get_resource.hpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/include/ament_index_cpp/get_packages_with_prefixes.hpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/include/ament_index_cpp/get_search_paths.hpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/include/ament_index_cpp/visibility_control.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/include/ament_index_cpp/get_resources.hpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/include/ament_index_cpp/get_package_share_directory.hpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/include/ament_index_cpp/get_package_prefix.hpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_index_cpp/lib/libament_index_cpp.so

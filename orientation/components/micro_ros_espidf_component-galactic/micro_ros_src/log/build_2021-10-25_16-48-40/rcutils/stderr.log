@@ -1,0 +1,152 @@
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/array_list.c:23[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/char_array.c:16[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/env.c:20[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/error_handling.c:22[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/allocator.c:20[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/env.c:24[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/filesystem.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+In function '[01m[Krcutils_char_array_strncat[m[K',
+    inlined from '[01m[Krcutils_char_array_strcat[m[K' at [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/char_array.c:239:10[m[K:
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/char_array.c:224:3:[m[K [01;35m[Kwarning: [m[K'[01m[Kstrncat[m[K' output truncated before terminating nul copying as many bytes from a string as its length [[01;35m[K-Wstringop-truncation[m[K]
+   [01;35m[Kstrncat(char_array->buffer, src, n)[m[K;
+   [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/char_array.c:[m[K In function '[01m[Krcutils_char_array_strcat[m[K':
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/char_array.c:239:10:[m[K [01;36m[Knote: [m[Klength computed here
+   return [01;36m[Krcutils_char_array_strncat(char_array, src, strlen(src))[m[K;
+          [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/types/string_array.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/types.h:26[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/find.h:25[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/find.c:25[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/filesystem.c:49[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/logging.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/logging.c:46[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/hash_map.c:24[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/logging.c:[m[K In function '[01m[Krcutils_get_env_var_zero_or_one[m[K':
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/logging.c:130:35:[m[K [01;35m[Kwarning: [m[Kunused parameter '[01m[Kzero_semantic[m[K' [[01;35m[K-Wunused-parameter[m[K]
+   const char * name, [01;35m[Kconst char * zero_semantic[m[K,
+                      [01;35m[K~~~~~~~~~~~~~^~~~~~~~~~~~~[m[K
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/logging.c:131:16:[m[K [01;35m[Kwarning: [m[Kunused parameter '[01m[Kone_semantic[m[K' [[01;35m[K-Wunused-parameter[m[K]
+   [01;35m[Kconst char * one_semantic[m[K)
+   [01;35m[K~~~~~~~~~~~~~^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/process.c:20[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/qsort.c:22[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/process.c:43[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/shared_library.c:57[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/snprintf.c:22[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/strcasecmp.c:20[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/strerror.c:20[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/split.c:24[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/./common.h:23[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/strdup.c:25[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/string_array.c:24[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/string_map.c:22[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/types/string_array.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/types.h:26[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/time.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/time_unix.c:24[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/types/string_array.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/types.h:26[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/time.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/time.c:20[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/time_unix.c:31[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/time.h:22:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <time.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/uint8_array.c:15[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K

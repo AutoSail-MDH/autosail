@@ -1,0 +1,94 @@
+Not searching for unused variables given on the command line.
+-- The C compiler identification is GNU 8.2.0
+-- The CXX compiler identification is GNU 8.2.0
+-- Check for working C compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc
+-- Check for working C compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++
+-- Check for working CXX compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake_ros: 0.9.2 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cmake_ros/share/ament_cmake_ros/cmake)
+-- Found PythonInterp: /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python3
+-- Found lifecycle_msgs: 1.0.3 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/lifecycle_msgs/cmake)
+CMake Warning at /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/cmake/ament_cmake_export_libraries-extras.cmake:116 (message):
+  Package 'rcutils' exports library 'dl' which couldn't be found
+Call Stack (most recent call first):
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/cmake/rcutilsConfig.cmake:41 (include)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_runtime_c/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_runtime_c/cmake/rosidl_runtime_cConfig.cmake:41 (include)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/lifecycle_msgs/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/lifecycle_msgs/cmake/lifecycle_msgsConfig.cmake:41 (include)
+  CMakeLists.txt:7 (find_package)
+
+
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_introspection_c;rosidl_typesupport_microxrcedds_c
+-- Found rosidl_adapter: 2.2.1 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_adapter/cmake)
+-- Found rcl: 3.1.2 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl/cmake)
+-- Found rmw_implementation_cmake: 3.3.1 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rmw_implementation_cmake/cmake)
+-- Found rmw_microxrcedds: 0.0.1 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rmw_microxrcedds/cmake)
+-- Using RMW implementation 'rmw_microxrcedds'
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rcl_lifecycle
+[35m[1mScanning dependencies of target rcl_lifecycle[0m
+[ 20%] [32mBuilding C object CMakeFiles/rcl_lifecycle.dir/src/com_interface.c.obj[0m
+[ 40%] [32mBuilding C object CMakeFiles/rcl_lifecycle.dir/src/default_state_machine.c.obj[0m
+[ 60%] [32mBuilding C object CMakeFiles/rcl_lifecycle.dir/src/rcl_lifecycle.c.obj[0m
+[ 80%] [32mBuilding C object CMakeFiles/rcl_lifecycle.dir/src/transition_map.c.obj[0m
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcl/rcl_lifecycle/src/rcl_lifecycle.c:[m[K In function '[01m[Krcl_lifecycle_state_machine_fini[m[K':
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcl/rcl_lifecycle/src/rcl_lifecycle.c:265:24:[m[K [01;35m[Kwarning: [m[Kunused variable '[01m[Kerror_string[m[K' [[01;35m[K-Wunused-variable[m[K]
+     rcl_error_string_t [01;35m[Kerror_string[m[K = rcl_get_error_string();
+                        [01;35m[K^~~~~~~~~~~~[m[K
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcl/rcl_lifecycle/src/rcl_lifecycle.c:275:24:[m[K [01;35m[Kwarning: [m[Kunused variable '[01m[Kerror_string[m[K' [[01;35m[K-Wunused-variable[m[K]
+     rcl_error_string_t [01;35m[Kerror_string[m[K = rcl_get_error_string();
+                        [01;35m[K^~~~~~~~~~~~[m[K
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcl/rcl_lifecycle/src/rcl_lifecycle.c:[m[K In function '[01m[K_trigger_transition[m[K':
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcl/rcl_lifecycle/src/rcl_lifecycle.c:366:26:[m[K [01;35m[Kwarning: [m[Kunused variable '[01m[Kerror_string[m[K' [[01;35m[K-Wunused-variable[m[K]
+       rcl_error_string_t [01;35m[Kerror_string[m[K = rcl_get_error_string();
+                          [01;35m[K^~~~~~~~~~~~[m[K
+[100%] [32m[1mLinking CXX static library librcl_lifecycle.a[0m
+[100%] Built target rcl_lifecycle
+-- Install configuration: "Release"
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/librcl_lifecycle.a
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/environment/library_path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/environment/library_path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/package_run_dependencies/rcl_lifecycle
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/parent_prefix_path/rcl_lifecycle
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/environment/ament_prefix_path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/environment/ament_prefix_path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/environment/path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/environment/path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/local_setup.bash
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/local_setup.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/local_setup.zsh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/local_setup.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/package.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/packages/rcl_lifecycle
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/cmake/rcl_lifecycleExport.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/cmake/rcl_lifecycleExport-release.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/cmake/ament_cmake_export_libraries-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/cmake/ament_cmake_export_targets-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/cmake/rcl_lifecycleConfig.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/cmake/rcl_lifecycleConfig-version.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_lifecycle/package.xml
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcl_lifecycle
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcl_lifecycle/data_types.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcl_lifecycle/rcl_lifecycle.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcl_lifecycle/default_state_machine.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcl_lifecycle/transition_map.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcl_lifecycle/visibility_control.h

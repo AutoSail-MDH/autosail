@@ -1,0 +1,501 @@
+Not searching for unused variables given on the command line.
+-- The C compiler identification is GNU 8.2.0
+-- The CXX compiler identification is GNU 8.2.0
+-- Check for working C compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc
+-- Check for working C compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++
+-- Check for working CXX compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.1.4 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cmake/share/ament_cmake/cmake)
+-- Found PythonInterp: /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python3
+-- Found rosidl_default_generators: 1.1.1 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_generators/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_introspection_c;rosidl_typesupport_microxrcedds_c
+-- Found rosidl_adapter: 2.2.1 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_adapter/cmake)
+-- Found std_msgs: 2.2.3 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/std_msgs/cmake)
+-- Found PythonInterp: /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python3 (found version "3.8.10") 
+-- Found ament_cmake_ros: 0.9.2 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cmake_ros/share/ament_cmake_ros/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_introspection_c;rosidl_typesupport_microxrcedds_c
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/geometry_msgs
+[  0%] [34m[1mGenerating C code for ROS interfaces[0m
+[35m[1mScanning dependencies of target geometry_msgs__rosidl_generator_c[0m
+[  3%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/accel_with_covariance__functions.c.obj[0m
+[  3%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/accel_stamped__functions.c.obj[0m
+[  3%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/inertia__functions.c.obj[0m
+[  3%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/accel__functions.c.obj[0m
+[  4%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/inertia_stamped__functions.c.obj[0m
+[  5%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/accel_with_covariance_stamped__functions.c.obj[0m
+[  6%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/point__functions.c.obj[0m
+[  7%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/point32__functions.c.obj[0m
+[  8%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/point_stamped__functions.c.obj[0m
+[  8%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/polygon__functions.c.obj[0m
+[  9%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/polygon_stamped__functions.c.obj[0m
+[ 10%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/pose__functions.c.obj[0m
+[ 11%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/pose_array__functions.c.obj[0m
+[ 12%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/pose2_d__functions.c.obj[0m
+[ 13%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/pose_with_covariance__functions.c.obj[0m
+[ 13%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/pose_stamped__functions.c.obj[0m
+[ 14%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/pose_with_covariance_stamped__functions.c.obj[0m
+[ 15%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/transform_stamped__functions.c.obj[0m
+[ 15%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/transform__functions.c.obj[0m
+[ 16%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/quaternion_stamped__functions.c.obj[0m
+[ 17%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/twist__functions.c.obj[0m
+[ 18%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/twist_stamped__functions.c.obj[0m
+[ 19%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/quaternion__functions.c.obj[0m
+[ 20%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/twist_with_covariance__functions.c.obj[0m
+[ 20%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/twist_with_covariance_stamped__functions.c.obj[0m
+[ 21%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/vector3_stamped__functions.c.obj[0m
+[ 22%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/wrench__functions.c.obj[0m
+[ 23%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/vector3__functions.c.obj[0m
+[ 24%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_generator_c.dir/rosidl_generator_c/geometry_msgs/msg/detail/wrench_stamped__functions.c.obj[0m
+[ 25%] [32m[1mLinking CXX static library libgeometry_msgs__rosidl_generator_c.a[0m
+[ 25%] Built target geometry_msgs__rosidl_generator_c
+[ 25%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[ 25%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[ 25%] [34m[1mGenerating C type support for eProsima Micro XRCE-DDS[0m
+[35m[1mScanning dependencies of target geometry_msgs__rosidl_typesupport_c[0m
+[ 26%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/accel__type_support.cpp.obj[0m
+[ 27%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/accel_stamped__type_support.cpp.obj[0m
+[ 28%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/point__type_support.cpp.obj[0m
+[ 29%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/accel_with_covariance__type_support.cpp.obj[0m
+[ 30%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/point_stamped__type_support.cpp.obj[0m
+[ 31%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/point32__type_support.cpp.obj[0m
+[ 32%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/accel_with_covariance_stamped__type_support.cpp.obj[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/inertia_stamped__type_support.cpp.obj[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/inertia__type_support.cpp.obj[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/polygon__type_support.cpp.obj[0m
+[ 34%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/polygon_stamped__type_support.cpp.obj[0m
+[ 35%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/pose2_d__type_support.cpp.obj[0m
+[ 36%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/pose_array__type_support.cpp.obj[0m
+[ 37%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/pose__type_support.cpp.obj[0m
+[ 38%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/pose_with_covariance__type_support.cpp.obj[0m
+[ 38%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/pose_stamped__type_support.cpp.obj[0m
+[ 39%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/quaternion__type_support.cpp.obj[0m
+[ 40%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/pose_with_covariance_stamped__type_support.cpp.obj[0m
+[ 41%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/quaternion_stamped__type_support.cpp.obj[0m
+[ 41%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/transform__type_support.cpp.obj[0m
+[ 42%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/transform_stamped__type_support.cpp.obj[0m
+[ 43%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/twist__type_support.cpp.obj[0m
+[ 44%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/twist_stamped__type_support.cpp.obj[0m
+[ 45%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/twist_with_covariance__type_support.cpp.obj[0m
+[ 45%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/twist_with_covariance_stamped__type_support.cpp.obj[0m
+[ 46%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/vector3__type_support.cpp.obj[0m
+[ 47%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/wrench__type_support.cpp.obj[0m
+[ 48%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/vector3_stamped__type_support.cpp.obj[0m
+[ 49%] [32mBuilding CXX object CMakeFiles/geometry_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/geometry_msgs/msg/wrench_stamped__type_support.cpp.obj[0m
+[ 50%] [32m[1mLinking CXX static library libgeometry_msgs__rosidl_typesupport_c.a[0m
+[ 50%] Built target geometry_msgs__rosidl_typesupport_c
+[35m[1mScanning dependencies of target geometry_msgs__rosidl_typesupport_introspection_c[0m
+[35m[1mScanning dependencies of target geometry_msgs__rosidl_typesupport_microxrcedds_c[0m
+[ 51%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/accel__type_support.c.obj[0m
+[ 52%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/accel_stamped__type_support.c.obj[0m
+[ 53%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/accel_with_covariance_stamped__type_support.c.obj[0m
+[ 54%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/inertia_stamped__type_support.c.obj[0m
+[ 55%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/point__type_support.c.obj[0m
+[ 56%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/accel_with_covariance__type_support.c.obj[0m
+[ 56%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/inertia__type_support.c.obj[0m
+[ 57%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/point32__type_support.c.obj[0m
+[ 58%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/point_stamped__type_support.c.obj[0m
+[ 58%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/polygon__type_support.c.obj[0m
+[ 59%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/pose__type_support.c.obj[0m
+[ 60%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/polygon_stamped__type_support.c.obj[0m
+[ 61%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/pose2_d__type_support.c.obj[0m
+[ 62%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/pose_array__type_support.c.obj[0m
+[ 63%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/accel__type_support_c.c.obj[0m
+[ 63%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/pose_stamped__type_support.c.obj[0m
+[ 64%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/accel_with_covariance__type_support_c.c.obj[0m
+[ 65%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/accel_with_covariance_stamped__type_support_c.c.obj[0m
+[ 65%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/inertia__type_support_c.c.obj[0m
+[ 66%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/accel_stamped__type_support_c.c.obj[0m
+[ 67%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/pose_with_covariance_stamped__type_support.c.obj[0m
+[ 68%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/pose_with_covariance__type_support.c.obj[0m
+[ 70%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/quaternion_stamped__type_support.c.obj[0m
+[ 70%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/inertia_stamped__type_support_c.c.obj[0m
+[ 70%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/transform__type_support.c.obj[0m
+[ 71%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/quaternion__type_support.c.obj[0m
+[ 72%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/point__type_support_c.c.obj[0m
+[ 73%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/transform_stamped__type_support.c.obj[0m
+[ 74%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/twist__type_support.c.obj[0m
+[ 75%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/twist_stamped__type_support.c.obj[0m
+[ 76%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/point32__type_support_c.c.obj[0m
+[ 76%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/polygon__type_support_c.c.obj[0m
+[ 77%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/polygon_stamped__type_support_c.c.obj[0m
+[ 78%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/point_stamped__type_support_c.c.obj[0m
+[ 79%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/pose__type_support_c.c.obj[0m
+[ 80%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/twist_with_covariance__type_support.c.obj[0m
+[ 80%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/twist_with_covariance_stamped__type_support.c.obj[0m
+[ 81%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/pose2_d__type_support_c.c.obj[0m
+[ 82%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/vector3__type_support.c.obj[0m
+[ 83%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/vector3_stamped__type_support.c.obj[0m
+[ 84%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/wrench__type_support.c.obj[0m
+[ 85%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/geometry_msgs/msg/detail/wrench_stamped__type_support.c.obj[0m
+[ 86%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/pose_array__type_support_c.c.obj[0m
+[ 87%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/quaternion_stamped__type_support_c.c.obj[0m
+[ 88%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/quaternion__type_support_c.c.obj[0m
+[ 89%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/pose_with_covariance__type_support_c.c.obj[0m
+[ 90%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/transform_stamped__type_support_c.c.obj[0m
+[ 90%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/pose_stamped__type_support_c.c.obj[0m
+[ 91%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/pose_with_covariance_stamped__type_support_c.c.obj[0m
+[ 92%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/twist_stamped__type_support_c.c.obj[0m
+[ 93%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/twist__type_support_c.c.obj[0m
+[ 93%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/transform__type_support_c.c.obj[0m
+[ 94%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/twist_with_covariance__type_support_c.c.obj[0m
+[ 94%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/twist_with_covariance_stamped__type_support_c.c.obj[0m
+[ 95%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/vector3__type_support_c.c.obj[0m
+[ 96%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/vector3_stamped__type_support_c.c.obj[0m
+[ 97%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/wrench__type_support_c.c.obj[0m
+[ 98%] [32mBuilding C object CMakeFiles/geometry_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/geometry_msgs/msg/detail/microxrcedds/wrench_stamped__type_support_c.c.obj[0m
+[ 99%] [32m[1mLinking CXX static library libgeometry_msgs__rosidl_typesupport_introspection_c.a[0m
+[ 99%] Built target geometry_msgs__rosidl_typesupport_introspection_c
+[100%] [32m[1mLinking CXX static library libgeometry_msgs__rosidl_typesupport_microxrcedds_c.a[0m
+[100%] Built target geometry_msgs__rosidl_typesupport_microxrcedds_c
+[35m[1mScanning dependencies of target geometry_msgs[0m
+[100%] Built target geometry_msgs
+-- Install configuration: "Release"
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/rosidl_interfaces/geometry_msgs
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/vector3_stamped.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/pose_with_covariance_stamped.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/wrench_stamped.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/twist_with_covariance.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/pose_array.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/rosidl_generator_c__visibility_control.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/polygon.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/quaternion.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/accel_with_covariance.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/twist.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/accel_stamped.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/point.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/inertia.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/polygon_stamped.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/pose_with_covariance.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/vector3.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/pose.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/twist_stamped.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/twist_with_covariance_stamped.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/point_stamped.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_with_covariance__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_with_covariance_stamped__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_with_covariance_stamped__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_with_covariance__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/polygon__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/inertia__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/polygon_stamped__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/vector3__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/quaternion__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_stamped__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/polygon_stamped__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/polygon__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/quaternion_stamped__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/vector3_stamped__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/transform__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/inertia__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point_stamped__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_with_covariance_stamped__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/transform_stamped__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_array__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/polygon__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/polygon__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose2_d__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_with_covariance_stamped__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point32__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point_stamped__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_with_covariance__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_array__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/inertia__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point_stamped__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/inertia_stamped__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/inertia__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/wrench_stamped__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_with_covariance_stamped__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/wrench__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_with_covariance_stamped__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_with_covariance__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point32__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/inertia_stamped__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/wrench_stamped__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/vector3__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_stamped__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/transform_stamped__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/transform__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point32__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/wrench__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_with_covariance__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/transform__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/vector3_stamped__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/polygon_stamped__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/inertia_stamped__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/quaternion_stamped__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/vector3__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/transform_stamped__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_stamped__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose2_d__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_stamped__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/inertia_stamped__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/quaternion_stamped__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_stamped__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/quaternion__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_with_covariance__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point_stamped__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/wrench__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/polygon_stamped__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_with_covariance_stamped__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/transform_stamped__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/quaternion__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_stamped__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_with_covariance__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_stamped__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_array__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/vector3_stamped__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_with_covariance_stamped__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_stamped__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point32__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_stamped__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_with_covariance__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/quaternion_stamped__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/vector3__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_array__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/wrench_stamped__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose2_d__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/quaternion__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_with_covariance__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_with_covariance_stamped__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_stamped__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_with_covariance__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_stamped__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/transform__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_with_covariance_stamped__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_with_covariance_stamped__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_stamped__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_with_covariance_stamped__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose2_d__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/vector3_stamped__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_with_covariance__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_with_covariance__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/wrench__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/wrench_stamped__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/wrench.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/accel.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/transform_stamped.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/pose2_d.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/transform.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/pose_stamped.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/accel_with_covariance_stamped.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/point32.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/quaternion_stamped.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/inertia_stamped.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/environment/library_path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/environment/library_path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/libgeometry_msgs__rosidl_generator_c.a
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/inertia_stamped__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_array__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_stamped__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/transform__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/transform_stamped__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/vector3_stamped__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/wrench__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/quaternion__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_array__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_stamped__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_with_covariance__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_with_covariance_stamped__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/wrench__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_with_covariance__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_with_covariance_stamped__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/vector3__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/inertia__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_with_covariance__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_stamped__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_stamped__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/transform__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/inertia__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/wrench_stamped__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_with_covariance_stamped__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/vector3_stamped__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/polygon__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/quaternion__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_with_covariance__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_stamped__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_with_covariance_stamped__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_with_covariance_stamped__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/polygon_stamped__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_stamped__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_with_covariance__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_with_covariance_stamped__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/polygon_stamped__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose2_d__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/polygon__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point_stamped__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point32__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_with_covariance__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose2_d__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/inertia_stamped__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/wrench_stamped__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/quaternion_stamped__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/vector3__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/quaternion_stamped__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point32__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point_stamped__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/transform_stamped__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/libgeometry_msgs__rosidl_typesupport_introspection_c.a
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point32__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/wrench_stamped__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_array__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/transform__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/wrench__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/quaternion__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_with_covariance_stamped__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/transform_stamped__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_stamped__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/vector3_stamped__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/quaternion_stamped__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_with_covariance__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/inertia_stamped__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_with_covariance_stamped__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/accel_stamped__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/inertia__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/microxrcedds
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/vector3__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_with_covariance_stamped__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/point_stamped__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_with_covariance__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose2_d__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/twist_with_covariance__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/pose_stamped__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/polygon__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/detail/polygon_stamped__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/geometry_msgs/msg/rosidl_typesupport_microxrcedds_c__visibility_control.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/libgeometry_msgs__rosidl_typesupport_microxrcedds_c.a
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/libgeometry_msgs__rosidl_typesupport_c.a
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Accel.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/AccelStamped.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/AccelWithCovariance.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/AccelWithCovarianceStamped.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Inertia.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/InertiaStamped.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Point.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Point32.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/PointStamped.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Polygon.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/PolygonStamped.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Pose.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Pose2D.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/PoseArray.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/PoseStamped.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/PoseWithCovariance.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/PoseWithCovarianceStamped.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Quaternion.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/QuaternionStamped.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Transform.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/TransformStamped.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Twist.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/TwistStamped.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/TwistWithCovariance.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/TwistWithCovarianceStamped.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Vector3.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Vector3Stamped.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Wrench.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/WrenchStamped.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Accel.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/AccelStamped.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/AccelWithCovariance.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/AccelWithCovarianceStamped.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Inertia.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/InertiaStamped.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Point.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Point32.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/PointStamped.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Polygon.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/PolygonStamped.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Pose.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Pose2D.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/PoseArray.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/PoseStamped.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/PoseWithCovariance.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/PoseWithCovarianceStamped.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Quaternion.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/QuaternionStamped.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Transform.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/TransformStamped.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Twist.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/TwistStamped.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/TwistWithCovariance.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/TwistWithCovarianceStamped.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Vector3.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Vector3Stamped.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/Wrench.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/msg/WrenchStamped.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/package_run_dependencies/geometry_msgs
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/parent_prefix_path/geometry_msgs
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/environment/ament_prefix_path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/environment/ament_prefix_path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/environment/path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/environment/path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/local_setup.bash
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/local_setup.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/local_setup.zsh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/local_setup.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/package.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/packages/geometry_msgs
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/geometry_msgs__rosidl_generator_cExport.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/geometry_msgs__rosidl_generator_cExport-release.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/geometry_msgs__rosidl_typesupport_introspection_cExport.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/geometry_msgs__rosidl_typesupport_introspection_cExport-release.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/geometry_msgs__rosidl_typesupport_cExport.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/geometry_msgs__rosidl_typesupport_cExport-release.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/rosidl_cmake-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/ament_cmake_export_targets-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/geometry_msgsConfig.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake/geometry_msgsConfig-version.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/package.xml

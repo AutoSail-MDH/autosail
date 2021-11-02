@@ -1,0 +1,24 @@
+Not searching for unused variables given on the command line.
+-- Found ament_cmake: 1.1.4 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cmake/share/ament_cmake/cmake)
+-- Found PythonInterp: /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python3
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_default_runtime
+-- Install configuration: "Release"
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/package_run_dependencies/rosidl_default_runtime
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/parent_prefix_path/rosidl_default_runtime
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_runtime/environment/ament_prefix_path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_runtime/environment/ament_prefix_path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_runtime/environment/path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_runtime/environment/path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_runtime/local_setup.bash
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_runtime/local_setup.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_runtime/local_setup.zsh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_runtime/local_setup.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_runtime/package.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/packages/rosidl_default_runtime
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_runtime/cmake/rosidl_default_runtime-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_runtime/cmake/rosidl_default_runtimeConfig.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_runtime/cmake/rosidl_default_runtimeConfig-version.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_runtime/package.xml

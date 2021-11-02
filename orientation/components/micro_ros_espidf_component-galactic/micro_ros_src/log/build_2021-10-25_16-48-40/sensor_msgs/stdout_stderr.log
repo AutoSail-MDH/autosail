@@ -1,0 +1,517 @@
+Not searching for unused variables given on the command line.
+-- The C compiler identification is GNU 8.2.0
+-- The CXX compiler identification is GNU 8.2.0
+-- Check for working C compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc
+-- Check for working C compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++
+-- Check for working CXX compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.1.4 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cmake/share/ament_cmake/cmake)
+-- Found PythonInterp: /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python3
+-- Found builtin_interfaces: 1.0.3 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/builtin_interfaces/cmake)
+CMake Warning at /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/cmake/ament_cmake_export_libraries-extras.cmake:116 (message):
+  Package 'rcutils' exports library 'dl' which couldn't be found
+Call Stack (most recent call first):
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/cmake/rcutilsConfig.cmake:41 (include)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_runtime_c/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_runtime_c/cmake/rosidl_runtime_cConfig.cmake:41 (include)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)
+  CMakeLists.txt:14 (find_package)
+
+
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_introspection_c;rosidl_typesupport_microxrcedds_c
+-- Found rosidl_adapter: 2.2.1 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_adapter/cmake)
+-- Found geometry_msgs: 2.2.3 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/geometry_msgs/cmake)
+-- Found rosidl_default_generators: 1.1.1 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_default_generators/cmake)
+-- Found PythonInterp: /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python3 (found version "3.8.10") 
+-- Found ament_cmake_ros: 0.9.2 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cmake_ros/share/ament_cmake_ros/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_introspection_c;rosidl_typesupport_microxrcedds_c
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/sensor_msgs
+[  0%] [34m[1mGenerating C code for ROS interfaces[0m
+[35m[1mScanning dependencies of target sensor_msgs__rosidl_generator_c[0m
+[  1%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/channel_float32__functions.c.obj[0m
+[  2%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/camera_info__functions.c.obj[0m
+[  3%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/battery_state__functions.c.obj[0m
+[  4%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/compressed_image__functions.c.obj[0m
+[  5%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/fluid_pressure__functions.c.obj[0m
+[  5%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/illuminance__functions.c.obj[0m
+[  6%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/image__functions.c.obj[0m
+[  7%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/imu__functions.c.obj[0m
+[  8%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/joint_state__functions.c.obj[0m
+[  9%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/joy__functions.c.obj[0m
+[  9%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/joy_feedback_array__functions.c.obj[0m
+[ 10%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/joy_feedback__functions.c.obj[0m
+[ 11%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/laser_echo__functions.c.obj[0m
+[ 12%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/laser_scan__functions.c.obj[0m
+[ 13%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/magnetic_field__functions.c.obj[0m
+[ 14%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/multi_dof_joint_state__functions.c.obj[0m
+[ 14%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/nav_sat_fix__functions.c.obj[0m
+[ 15%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/multi_echo_laser_scan__functions.c.obj[0m
+[ 16%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/nav_sat_status__functions.c.obj[0m
+[ 17%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/point_cloud2__functions.c.obj[0m
+[ 18%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/point_cloud__functions.c.obj[0m
+[ 19%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/point_field__functions.c.obj[0m
+[ 20%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/range__functions.c.obj[0m
+[ 20%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/region_of_interest__functions.c.obj[0m
+[ 21%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/relative_humidity__functions.c.obj[0m
+[ 22%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/time_reference__functions.c.obj[0m
+[ 23%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/msg/detail/temperature__functions.c.obj[0m
+[ 24%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_generator_c.dir/rosidl_generator_c/sensor_msgs/srv/detail/set_camera_info__functions.c.obj[0m
+[ 25%] [32m[1mLinking CXX static library libsensor_msgs__rosidl_generator_c.a[0m
+[ 25%] Built target sensor_msgs__rosidl_generator_c
+[ 25%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[ 25%] [34m[1mGenerating C type support for eProsima Micro XRCE-DDS[0m
+[ 25%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[35m[1mScanning dependencies of target sensor_msgs__rosidl_typesupport_c[0m
+[ 26%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/compressed_image__type_support.cpp.obj[0m
+[ 28%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/camera_info__type_support.cpp.obj[0m
+[ 28%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/channel_float32__type_support.cpp.obj[0m
+[ 29%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/battery_state__type_support.cpp.obj[0m
+[ 30%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/image__type_support.cpp.obj[0m
+[ 31%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/fluid_pressure__type_support.cpp.obj[0m
+[ 31%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/illuminance__type_support.cpp.obj[0m
+[ 32%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/joint_state__type_support.cpp.obj[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/imu__type_support.cpp.obj[0m
+[ 34%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/joy__type_support.cpp.obj[0m
+[ 35%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/joy_feedback__type_support.cpp.obj[0m
+[ 36%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/laser_echo__type_support.cpp.obj[0m
+[ 36%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/joy_feedback_array__type_support.cpp.obj[0m
+[ 37%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/laser_scan__type_support.cpp.obj[0m
+[ 38%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/magnetic_field__type_support.cpp.obj[0m
+[ 39%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/multi_dof_joint_state__type_support.cpp.obj[0m
+[ 40%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/multi_echo_laser_scan__type_support.cpp.obj[0m
+[ 40%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/nav_sat_fix__type_support.cpp.obj[0m
+[ 41%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/nav_sat_status__type_support.cpp.obj[0m
+[ 42%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/point_cloud__type_support.cpp.obj[0m
+[ 43%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/point_cloud2__type_support.cpp.obj[0m
+[ 44%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/point_field__type_support.cpp.obj[0m
+[ 45%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/range__type_support.cpp.obj[0m
+[ 45%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/region_of_interest__type_support.cpp.obj[0m
+[ 46%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/relative_humidity__type_support.cpp.obj[0m
+[ 47%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/temperature__type_support.cpp.obj[0m
+[ 48%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/msg/time_reference__type_support.cpp.obj[0m
+[ 49%] [32mBuilding CXX object CMakeFiles/sensor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensor_msgs/srv/set_camera_info__type_support.cpp.obj[0m
+[ 50%] [32m[1mLinking CXX static library libsensor_msgs__rosidl_typesupport_c.a[0m
+[ 50%] Built target sensor_msgs__rosidl_typesupport_c
+[35m[1mScanning dependencies of target sensor_msgs__rosidl_typesupport_introspection_c[0m
+[35m[1mScanning dependencies of target sensor_msgs__rosidl_typesupport_microxrcedds_c[0m
+[ 51%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/battery_state__type_support.c.obj[0m
+[ 52%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/fluid_pressure__type_support.c.obj[0m
+[ 53%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/camera_info__type_support.c.obj[0m
+[ 54%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/channel_float32__type_support.c.obj[0m
+[ 55%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/compressed_image__type_support.c.obj[0m
+[ 56%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/imu__type_support.c.obj[0m
+[ 57%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/image__type_support.c.obj[0m
+[ 57%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/illuminance__type_support.c.obj[0m
+[ 58%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/joint_state__type_support.c.obj[0m
+[ 59%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/joy__type_support.c.obj[0m
+[ 59%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/joy_feedback_array__type_support.c.obj[0m
+[ 60%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/joy_feedback__type_support.c.obj[0m
+[ 61%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/laser_echo__type_support.c.obj[0m
+[ 62%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/magnetic_field__type_support.c.obj[0m
+[ 63%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/laser_scan__type_support.c.obj[0m
+[ 64%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/battery_state__type_support_c.c.obj[0m
+[ 65%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/camera_info__type_support_c.c.obj[0m
+[ 66%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/channel_float32__type_support_c.c.obj[0m
+[ 67%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/compressed_image__type_support_c.c.obj[0m
+[ 68%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/fluid_pressure__type_support_c.c.obj[0m
+[ 68%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/illuminance__type_support_c.c.obj[0m
+[ 68%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/nav_sat_fix__type_support.c.obj[0m
+[ 69%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/multi_dof_joint_state__type_support.c.obj[0m
+[ 70%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/multi_echo_laser_scan__type_support.c.obj[0m
+[ 71%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/joint_state__type_support_c.c.obj[0m
+[ 72%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/nav_sat_status__type_support.c.obj[0m
+[ 73%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/imu__type_support_c.c.obj[0m
+[ 74%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/image__type_support_c.c.obj[0m
+[ 75%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/joy__type_support_c.c.obj[0m
+[ 76%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/point_cloud__type_support.c.obj[0m
+[ 77%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/joy_feedback__type_support_c.c.obj[0m
+[ 78%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/range__type_support.c.obj[0m
+[ 79%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/point_field__type_support.c.obj[0m
+[ 80%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/point_cloud2__type_support.c.obj[0m
+[ 81%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/temperature__type_support.c.obj[0m
+[ 82%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/relative_humidity__type_support.c.obj[0m
+[ 82%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/region_of_interest__type_support.c.obj[0m
+[ 83%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/srv/detail/set_camera_info__type_support.c.obj[0m
+[ 84%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/laser_echo__type_support_c.c.obj[0m
+[ 84%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/joy_feedback_array__type_support_c.c.obj[0m
+[ 85%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensor_msgs/msg/detail/time_reference__type_support.c.obj[0m
+[ 86%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/laser_scan__type_support_c.c.obj[0m
+[ 87%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/magnetic_field__type_support_c.c.obj[0m
+[ 88%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/multi_dof_joint_state__type_support_c.c.obj[0m
+[ 89%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/multi_echo_laser_scan__type_support_c.c.obj[0m
+[ 89%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/nav_sat_fix__type_support_c.c.obj[0m
+[ 90%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/point_cloud__type_support_c.c.obj[0m
+[ 91%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/point_cloud2__type_support_c.c.obj[0m
+[ 92%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/nav_sat_status__type_support_c.c.obj[0m
+[ 93%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/range__type_support_c.c.obj[0m
+[ 94%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/point_field__type_support_c.c.obj[0m
+[ 94%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/region_of_interest__type_support_c.c.obj[0m
+[ 95%] [32m[1mLinking CXX static library libsensor_msgs__rosidl_typesupport_introspection_c.a[0m
+[ 96%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/relative_humidity__type_support_c.c.obj[0m
+[ 97%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/time_reference__type_support_c.c.obj[0m
+[ 98%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/msg/detail/microxrcedds/temperature__type_support_c.c.obj[0m
+[ 99%] [32mBuilding C object CMakeFiles/sensor_msgs__rosidl_typesupport_microxrcedds_c.dir/rosidl_typesupport_microxrcedds_c/sensor_msgs/srv/detail/microxrcedds/set_camera_info__type_support_c.c.obj[0m
+[ 99%] Built target sensor_msgs__rosidl_typesupport_introspection_c
+[100%] [32m[1mLinking CXX static library libsensor_msgs__rosidl_typesupport_microxrcedds_c.a[0m
+[100%] Built target sensor_msgs__rosidl_typesupport_microxrcedds_c
+[35m[1mScanning dependencies of target sensor_msgs[0m
+[100%] Built target sensor_msgs
+-- Install configuration: "Release"
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/rosidl_interfaces/sensor_msgs
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv/set_camera_info.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv/detail
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv/detail/set_camera_info__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv/detail/set_camera_info__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv/detail/set_camera_info__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv/detail/set_camera_info__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/time_reference.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/joint_state.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/camera_info.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/temperature.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/rosidl_generator_c__visibility_control.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/nav_sat_status.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/point_cloud.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/point_field.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/laser_echo.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/point_cloud2.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/illuminance.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/region_of_interest.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/channel_float32.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/magnetic_field.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/joy_feedback_array.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/nav_sat_fix.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/battery_state.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/compressed_image.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/battery_state__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/temperature__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy_feedback_array__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/nav_sat_fix__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/imu__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joint_state__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/time_reference__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/laser_echo__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/compressed_image__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/laser_scan__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/compressed_image__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/nav_sat_fix__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_cloud__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/illuminance__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/nav_sat_status__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/nav_sat_fix__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/fluid_pressure__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/region_of_interest__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy_feedback__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/laser_echo__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy_feedback_array__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/camera_info__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy_feedback_array__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/magnetic_field__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/imu__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joint_state__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_cloud__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/channel_float32__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/fluid_pressure__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/battery_state__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/multi_dof_joint_state__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/time_reference__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/laser_echo__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/channel_float32__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/multi_echo_laser_scan__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/nav_sat_status__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/relative_humidity__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/camera_info__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joint_state__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/image__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/camera_info__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/channel_float32__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/nav_sat_status__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/multi_echo_laser_scan__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/relative_humidity__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/time_reference__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/laser_scan__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/multi_echo_laser_scan__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy_feedback_array__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/temperature__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy_feedback__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/laser_scan__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/imu__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_field__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy_feedback__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/compressed_image__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/magnetic_field__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/region_of_interest__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_cloud__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/multi_echo_laser_scan__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_field__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/fluid_pressure__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/relative_humidity__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/laser_scan__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/camera_info__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/range__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/battery_state__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_cloud2__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/illuminance__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/nav_sat_status__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/region_of_interest__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/battery_state__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/relative_humidity__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/channel_float32__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/image__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/illuminance__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/magnetic_field__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_cloud__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/range__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_cloud2__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_cloud2__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/magnetic_field__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/range__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/imu__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/time_reference__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/illuminance__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_field__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/region_of_interest__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/multi_dof_joint_state__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/compressed_image__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/image__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joint_state__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/image__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/laser_echo__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_cloud2__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/temperature__struct.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/range__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy_feedback__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_field__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/fluid_pressure__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/temperature__type_support.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/multi_dof_joint_state__functions.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/nav_sat_fix__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/multi_dof_joint_state__functions.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/fluid_pressure.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/joy_feedback.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/image.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/joy.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/range.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/imu.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/multi_echo_laser_scan.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/relative_humidity.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/laser_scan.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/multi_dof_joint_state.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/environment/library_path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/environment/library_path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/libsensor_msgs__rosidl_generator_c.a
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv/detail
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv/detail/set_camera_info__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv/detail/set_camera_info__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/temperature__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/imu__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/nav_sat_status__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_cloud__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/imu__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/region_of_interest__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/range__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/nav_sat_fix__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_cloud2__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/time_reference__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/multi_dof_joint_state__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/illuminance__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joint_state__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy_feedback__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/illuminance__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/battery_state__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/compressed_image__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/multi_dof_joint_state__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/laser_echo__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_field__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/channel_float32__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/magnetic_field__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/laser_scan__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy_feedback_array__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/channel_float32__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/camera_info__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy_feedback__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_cloud__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/temperature__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/time_reference__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/relative_humidity__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/compressed_image__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/battery_state__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/relative_humidity__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/camera_info__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/image__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy_feedback_array__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/image__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joint_state__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_cloud2__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/nav_sat_status__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/laser_echo__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/range__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/laser_scan__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_field__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/fluid_pressure__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/nav_sat_fix__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/multi_echo_laser_scan__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/multi_echo_laser_scan__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/magnetic_field__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/region_of_interest__type_support.c
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/fluid_pressure__rosidl_typesupport_introspection_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/libsensor_msgs__rosidl_typesupport_introspection_c.a
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv/detail
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv/detail/set_camera_info__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/srv/detail/microxrcedds
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/laser_scan__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/image__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/compressed_image__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy_feedback__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/multi_echo_laser_scan__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/channel_float32__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joint_state__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/imu__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/camera_info__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/fluid_pressure__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/multi_dof_joint_state__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/nav_sat_fix__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/temperature__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/relative_humidity__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/time_reference__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/laser_echo__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/magnetic_field__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/microxrcedds
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/battery_state__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_field__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/nav_sat_status__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/joy_feedback_array__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/illuminance__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/region_of_interest__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_cloud2__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/range__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/detail/point_cloud__rosidl_typesupport_microxrcedds_c.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/msg/rosidl_typesupport_microxrcedds_c__visibility_control.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/libsensor_msgs__rosidl_typesupport_microxrcedds_c.a
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/libsensor_msgs__rosidl_typesupport_c.a
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/BatteryState.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/CameraInfo.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/ChannelFloat32.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/CompressedImage.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/FluidPressure.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/Illuminance.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/Image.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/Imu.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/JointState.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/Joy.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/JoyFeedback.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/JoyFeedbackArray.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/LaserEcho.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/LaserScan.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/MagneticField.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/MultiDOFJointState.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/MultiEchoLaserScan.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/NavSatFix.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/NavSatStatus.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/PointCloud.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/PointCloud2.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/PointField.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/Range.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/RegionOfInterest.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/RelativeHumidity.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/Temperature.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/TimeReference.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/srv/SetCameraInfo.idl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/BatteryState.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/CameraInfo.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/ChannelFloat32.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/CompressedImage.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/FluidPressure.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/Illuminance.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/Image.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/Imu.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/JointState.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/Joy.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/JoyFeedback.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/JoyFeedbackArray.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/LaserEcho.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/LaserScan.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/MagneticField.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/MultiDOFJointState.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/MultiEchoLaserScan.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/NavSatFix.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/NavSatStatus.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/PointCloud.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/PointCloud2.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/PointField.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/Range.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/RegionOfInterest.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/RelativeHumidity.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/Temperature.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/msg/TimeReference.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/srv/SetCameraInfo.srv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/srv/SetCameraInfo_Request.msg
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/srv/SetCameraInfo_Response.msg
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/distortion_models.hpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/point_field_conversion.hpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/point_cloud2_iterator.hpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/fill_image.hpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/impl
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/impl/point_cloud2_iterator.hpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/image_encodings.hpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/sensor_msgs/point_cloud_conversion.hpp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/package_run_dependencies/sensor_msgs
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/parent_prefix_path/sensor_msgs
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/environment/ament_prefix_path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/environment/ament_prefix_path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/environment/path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/environment/path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/local_setup.bash
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/local_setup.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/local_setup.zsh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/local_setup.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/package.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/packages/sensor_msgs
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/sensor_msgs__rosidl_generator_cExport.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/sensor_msgs__rosidl_generator_cExport-release.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/sensor_msgs__rosidl_typesupport_introspection_cExport.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/sensor_msgs__rosidl_typesupport_introspection_cExport-release.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/sensor_msgs__rosidl_typesupport_cExport.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/sensor_msgs__rosidl_typesupport_cExport-release.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/rosidl_cmake-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/ament_cmake_export_targets-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/sensor_msgsConfig.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/cmake/sensor_msgsConfig-version.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/sensor_msgs/package.xml

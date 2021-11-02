@@ -1,0 +1,304 @@
+Not searching for unused variables given on the command line.
+-- The C compiler identification is GNU 8.2.0
+-- The CXX compiler identification is GNU 8.2.0
+-- Check for working C compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc
+-- Check for working C compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++
+-- Check for working CXX compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake_python: 1.1.4 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cmake_python/share/ament_cmake_python/cmake)
+-- Found ament_cmake_ros: 0.9.2 (/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cmake_ros/share/ament_cmake_ros/cmake)
+-- Found PythonInterp: /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python3
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rcutils
+[35m[1mScanning dependencies of target ament_cmake_python_copy_rcutils[0m
+[  3%] [34m[1mExpanding logging_macros.h.em[0m
+[  3%] Built target ament_cmake_python_copy_rcutils
+[35m[1mScanning dependencies of target ament_cmake_python_build_rcutils_egg[0m
+[35m[1mScanning dependencies of target rcutils[0m
+[  6%] [32mBuilding C object CMakeFiles/rcutils.dir/src/allocator.c.obj[0m
+[ 10%] [32mBuilding C object CMakeFiles/rcutils.dir/src/array_list.c.obj[0m
+[ 13%] [32mBuilding C object CMakeFiles/rcutils.dir/src/cmdline_parser.c.obj[0m
+running egg_info
+creating rcutils.egg-info
+writing rcutils.egg-info/PKG-INFO
+writing dependency_links to rcutils.egg-info/dependency_links.txt
+writing top-level names to rcutils.egg-info/top_level.txt
+writing manifest file 'rcutils.egg-info/SOURCES.txt'
+reading manifest file 'rcutils.egg-info/SOURCES.txt'
+writing manifest file 'rcutils.egg-info/SOURCES.txt'
+[ 16%] [32mBuilding C object CMakeFiles/rcutils.dir/src/char_array.c.obj[0m
+[ 20%] [32mBuilding C object CMakeFiles/rcutils.dir/src/env.c.obj[0m
+[ 23%] [32mBuilding C object CMakeFiles/rcutils.dir/src/error_handling.c.obj[0m
+[ 26%] [32mBuilding C object CMakeFiles/rcutils.dir/src/filesystem.c.obj[0m
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/array_list.c:23[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/char_array.c:16[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/env.c:20[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+[ 30%] [32mBuilding C object CMakeFiles/rcutils.dir/src/find.c.obj[0m
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/error_handling.c:22[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/allocator.c:20[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+[ 30%] Built target ament_cmake_python_build_rcutils_egg
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/env.c:24[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/filesystem.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+[ 33%] [32mBuilding C object CMakeFiles/rcutils.dir/src/format_string.c.obj[0m
+[ 36%] [32mBuilding C object CMakeFiles/rcutils.dir/src/get_env.c.obj[0m
+In function '[01m[Krcutils_char_array_strncat[m[K',
+    inlined from '[01m[Krcutils_char_array_strcat[m[K' at [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/char_array.c:239:10[m[K:
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/char_array.c:224:3:[m[K [01;35m[Kwarning: [m[K'[01m[Kstrncat[m[K' output truncated before terminating nul copying as many bytes from a string as its length [[01;35m[K-Wstringop-truncation[m[K]
+   [01;35m[Kstrncat(char_array->buffer, src, n)[m[K;
+   [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/char_array.c:[m[K In function '[01m[Krcutils_char_array_strcat[m[K':
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/char_array.c:239:10:[m[K [01;36m[Knote: [m[Klength computed here
+   return [01;36m[Krcutils_char_array_strncat(char_array, src, strlen(src))[m[K;
+          [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/types/string_array.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/types.h:26[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/find.h:25[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/find.c:25[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/filesystem.c:49[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+[ 40%] [32mBuilding C object CMakeFiles/rcutils.dir/src/hash_map.c.obj[0m
+[ 43%] [32mBuilding C object CMakeFiles/rcutils.dir/src/logging.c.obj[0m
+[ 46%] [32mBuilding C object CMakeFiles/rcutils.dir/src/process.c.obj[0m
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/logging.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+[ 50%] [32mBuilding C object CMakeFiles/rcutils.dir/src/qsort.c.obj[0m
+[ 53%] [32mBuilding C object CMakeFiles/rcutils.dir/src/repl_str.c.obj[0m
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/logging.c:46[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/hash_map.c:24[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/logging.c:[m[K In function '[01m[Krcutils_get_env_var_zero_or_one[m[K':
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/logging.c:130:35:[m[K [01;35m[Kwarning: [m[Kunused parameter '[01m[Kzero_semantic[m[K' [[01;35m[K-Wunused-parameter[m[K]
+   const char * name, [01;35m[Kconst char * zero_semantic[m[K,
+                      [01;35m[K~~~~~~~~~~~~~^~~~~~~~~~~~~[m[K
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/logging.c:131:16:[m[K [01;35m[Kwarning: [m[Kunused parameter '[01m[Kone_semantic[m[K' [[01;35m[K-Wunused-parameter[m[K]
+   [01;35m[Kconst char * one_semantic[m[K)
+   [01;35m[K~~~~~~~~~~~~~^~~~~~~~~~~~[m[K
+[ 56%] [32mBuilding C object CMakeFiles/rcutils.dir/src/shared_library.c.obj[0m
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/process.c:20[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/qsort.c:22[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/process.c:43[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+[ 60%] [32mBuilding C object CMakeFiles/rcutils.dir/src/snprintf.c.obj[0m
+[ 63%] [32mBuilding C object CMakeFiles/rcutils.dir/src/split.c.obj[0m
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/shared_library.c:57[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+[ 66%] [32mBuilding C object CMakeFiles/rcutils.dir/src/strcasecmp.c.obj[0m
+[ 70%] [32mBuilding C object CMakeFiles/rcutils.dir/src/strdup.c.obj[0m
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/snprintf.c:22[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+[ 73%] [32mBuilding C object CMakeFiles/rcutils.dir/src/strerror.c.obj[0m
+[ 76%] [32mBuilding C object CMakeFiles/rcutils.dir/src/string_array.c.obj[0m
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/strcasecmp.c:20[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/strerror.c:20[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/split.c:24[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/./common.h:23[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/strdup.c:25[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+[ 80%] [32mBuilding C object CMakeFiles/rcutils.dir/src/string_map.c.obj[0m
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/string_array.c:24[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+[ 83%] [32mBuilding C object CMakeFiles/rcutils.dir/src/testing/fault_injection.c.obj[0m
+[ 86%] [32mBuilding C object CMakeFiles/rcutils.dir/src/time.c.obj[0m
+[ 90%] [32mBuilding C object CMakeFiles/rcutils.dir/src/time_unix.c.obj[0m
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/string_map.c:22[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+[ 93%] [32mBuilding C object CMakeFiles/rcutils.dir/src/uint8_array.c.obj[0m
+[ 96%] [32mBuilding C object CMakeFiles/rcutils.dir/src/atomic_64bits.c.obj[0m
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/types/string_array.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/types.h:26[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/time.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/time_unix.c:24[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/types/string_array.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/types.h:26[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/time.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/time.c:20[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/time_unix.c:31[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/time.h:22:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <time.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/include/rcutils/error_handling.h:28[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rcutils/src/uint8_array.c:15[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+[100%] [32m[1mLinking C static library librcutils.a[0m
+[100%] Built target rcutils
+-- Install configuration: "Release"
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/environment/pythonpath.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/environment/pythonpath.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages//rcutils.egg-info
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages//rcutils.egg-info/top_level.txt
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages//rcutils.egg-info/PKG-INFO
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages//rcutils.egg-info/dependency_links.txt
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages//rcutils.egg-info/SOURCES.txt
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rcutils
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rcutils/logging.py
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rcutils/__init__.py
+Listing '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rcutils'...
+Compiling '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rcutils/__init__.py'...
+Compiling '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rcutils/logging.py'...
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/librcutils.a
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/environment/library_path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/environment/library_path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/package_run_dependencies/rcutils
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/parent_prefix_path/rcutils
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/environment/ament_prefix_path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/environment/ament_prefix_path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/environment/path.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/environment/path.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/local_setup.bash
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/local_setup.sh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/local_setup.zsh
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/local_setup.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/package.dsv
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/packages/rcutils
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/cmake/rcutilsExport.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/cmake/rcutilsExport-release.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/cmake/ament_cmake_export_libraries-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/cmake/ament_cmake_export_targets-extras.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/cmake/rcutilsConfig.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/cmake/rcutilsConfig-version.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/package.xml
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/isalnum_no_locale.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/format_string.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/filesystem.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/configuration_flags.h.in
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/error_handling.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/env.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/process.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/split.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/qsort.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/security_directory.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/stdatomic_helper
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/stdatomic_helper/win32
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/stdatomic_helper/win32/stdatomic.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/stdatomic_helper/gcc
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/stdatomic_helper/gcc/stdatomic.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/strcasecmp.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/shared_library.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/visibility_control_macros.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/strerror.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/time.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/repl_str.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/strdup.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/testing
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/testing/fault_injection.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/logging.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/cmdline_parser.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/visibility_control.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/find.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/types.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/get_env.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/macros.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/types
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/types/rcutils_ret.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/types/hash_map.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/types/string_array.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/types/uint8_array.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/types/string_map.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/types/array_list.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/types/char_array.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/allocator.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/snprintf.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/stdatomic_helper.h
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include
+-- Up-to-date: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/logging_macros.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/rcutils/configuration_flags.h

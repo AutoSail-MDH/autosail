@@ -1,0 +1,3 @@
+[console_scripts]
+rosidl = rosidl_cli.cli:main
+

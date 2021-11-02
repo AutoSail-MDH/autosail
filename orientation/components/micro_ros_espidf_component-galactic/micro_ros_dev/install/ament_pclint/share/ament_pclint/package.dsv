@@ -1,0 +1,9 @@
+source;share/ament_pclint/hook/path.ps1
+source;share/ament_pclint/hook/path.dsv
+source;share/ament_pclint/hook/path.sh
+source;share/ament_pclint/hook/pythonpath.ps1
+source;share/ament_pclint/hook/pythonpath.dsv
+source;share/ament_pclint/hook/pythonpath.sh
+source;share/ament_pclint/hook/ament_prefix_path.ps1
+source;share/ament_pclint/hook/ament_prefix_path.dsv
+source;share/ament_pclint/hook/ament_prefix_path.sh

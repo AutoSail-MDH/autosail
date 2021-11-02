@@ -1,0 +1,75 @@
+running egg_info
+creating ../../../build/rosidl_cli/rosidl_cli.egg-info
+writing ../../../build/rosidl_cli/rosidl_cli.egg-info/PKG-INFO
+writing dependency_links to ../../../build/rosidl_cli/rosidl_cli.egg-info/dependency_links.txt
+writing entry points to ../../../build/rosidl_cli/rosidl_cli.egg-info/entry_points.txt
+writing requirements to ../../../build/rosidl_cli/rosidl_cli.egg-info/requires.txt
+writing top-level names to ../../../build/rosidl_cli/rosidl_cli.egg-info/top_level.txt
+writing manifest file '../../../build/rosidl_cli/rosidl_cli.egg-info/SOURCES.txt'
+reading manifest file '../../../build/rosidl_cli/rosidl_cli.egg-info/SOURCES.txt'
+writing manifest file '../../../build/rosidl_cli/rosidl_cli.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build
+creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib
+creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli
+copying rosidl_cli/entry_points.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli
+copying rosidl_cli/extensions.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli
+copying rosidl_cli/cli.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli
+copying rosidl_cli/__init__.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli
+copying rosidl_cli/common.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli
+creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command
+copying rosidl_cli/command/helpers.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command
+copying rosidl_cli/command/__init__.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command
+creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/generate
+copying rosidl_cli/command/generate/api.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/generate
+copying rosidl_cli/command/generate/extensions.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/generate
+copying rosidl_cli/command/generate/__init__.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/generate
+creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/translate
+copying rosidl_cli/command/translate/api.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/translate
+copying rosidl_cli/command/translate/extensions.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/translate
+copying rosidl_cli/command/translate/__init__.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/translate
+running install
+running install_lib
+creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli
+copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/entry_points.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli
+copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/extensions.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli
+copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/cli.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli
+copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/__init__.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli
+creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command
+creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/generate
+copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/generate/api.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/generate
+copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/generate/extensions.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/generate
+copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/generate/__init__.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/generate
+creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/translate
+copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/translate/api.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/translate
+copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/translate/extensions.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/translate
+copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/translate/__init__.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/translate
+copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/helpers.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command
+copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/command/__init__.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command
+copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/build/lib/rosidl_cli/common.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli
+byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/entry_points.py to entry_points.cpython-38.pyc
+byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/extensions.py to extensions.cpython-38.pyc
+byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/cli.py to cli.cpython-38.pyc
+byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/__init__.py to __init__.cpython-38.pyc
+byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/generate/api.py to api.cpython-38.pyc
+byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/generate/extensions.py to extensions.cpython-38.pyc
+byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/generate/__init__.py to __init__.cpython-38.pyc
+byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/translate/api.py to api.cpython-38.pyc
+byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/translate/extensions.py to extensions.cpython-38.pyc
+byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/translate/__init__.py to __init__.cpython-38.pyc
+byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/helpers.py to helpers.cpython-38.pyc
+byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/command/__init__.py to __init__.cpython-38.pyc
+byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli/common.py to common.cpython-38.pyc
+running install_data
+copying resource/rosidl_cli -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/ament_index/resource_index/packages
+copying package.xml -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_cli
+copying resource/package.dsv -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_cli
+creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_cli/environment
+copying completion/rosidl-argcomplete.bash -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_cli/environment
+copying completion/rosidl-argcomplete.zsh -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_cli/environment
+running install_egg_info
+Copying ../../../build/rosidl_cli/rosidl_cli.egg-info to /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/python3.8/site-packages/rosidl_cli-2.2.1-py3.8.egg-info
+running install_scripts
+Installing rosidl script to /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/bin
+writing list of installed files to '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/rosidl_cli/install.log'

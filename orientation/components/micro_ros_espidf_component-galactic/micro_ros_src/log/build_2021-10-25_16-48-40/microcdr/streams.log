@@ -1,0 +1,56 @@
+[0.432s] Invoking command in '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/microcdr': /usr/bin/cmake /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/micro-CDR --no-warn-unused-cli -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=OFF -DTHIRDPARTY=ON -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/esp32_toolchain.cmake -DCMAKE_VERBOSE_MAKEFILE=OFF -DUCDR_ISOLATED_INSTALL=OFF -DCMAKE_INSTALL_PREFIX=/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install
+[0.796s] Not searching for unused variables given on the command line.
+[0.797s] -- The C compiler identification is GNU 8.2.0
+[0.797s] -- Check for working C compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc
+[0.797s] -- Check for working C compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc -- works
+[0.797s] -- Detecting C compiler ABI info
+[0.842s] -- Detecting C compiler ABI info - done
+[0.852s] -- Detecting C compile features
+[0.852s] -- Detecting C compile features - done
+[0.921s] -- The CXX compiler identification is GNU 8.2.0
+[0.930s] -- Check for working CXX compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++
+[1.073s] -- Check for working CXX compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++ -- works
+[1.075s] -- Detecting CXX compiler ABI info
+[1.259s] -- Detecting CXX compiler ABI info - done
+[1.259s] -- Detecting CXX compile features
+[1.260s] -- Detecting CXX compile features - done
+[1.277s] -- Configuring done
+[1.278s] -- Generating done
+[1.285s] -- Build files have been written to: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/microcdr
+[1.479s] Invoked command in '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/microcdr' returned '0': /usr/bin/cmake /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/micro-CDR --no-warn-unused-cli -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=OFF -DTHIRDPARTY=ON -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/esp32_toolchain.cmake -DCMAKE_VERBOSE_MAKEFILE=OFF -DUCDR_ISOLATED_INSTALL=OFF -DCMAKE_INSTALL_PREFIX=/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install
+[1.486s] Invoking command in '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/microcdr': /usr/bin/cmake --build /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/microcdr
+[1.575s] [35m[1mScanning dependencies of target ucdr[0m
+[1.592s] [ 12%] [34m[1mCreating directories for 'ucdr'[0m
+[1.762s] [ 25%] [34m[1mNo download step for 'ucdr'[0m
+[1.814s] [ 37%] [34m[1mNo patch step for 'ucdr'[0m
+[1.826s] [ 50%] [34m[1mNo update step for 'ucdr'[0m
+[1.868s] [ 62%] [34m[1mPerforming configure step for 'ucdr'[0m
+[1.883s] loading initial cache file /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/microcdr/ucdr-prefix/tmp/ucdr-cache-Release.cmake
+[1.950s] -- Configuring done
+[1.960s] -- Generating done
+[1.967s] -- Build files have been written to: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/microcdr
+[2.013s] [ 75%] [34m[1mPerforming build step for 'ucdr'[0m
+[2.130s] [35m[1mScanning dependencies of target microcdr[0m
+[2.178s] [ 16%] [32mBuilding C object CMakeFiles/microcdr.dir/src/c/common.c.obj[0m
+[2.184s] [ 33%] [32mBuilding C object CMakeFiles/microcdr.dir/src/c/types/basic.c.obj[0m
+[2.198s] [ 50%] [32mBuilding C object CMakeFiles/microcdr.dir/src/c/types/sequence.c.obj[0m
+[2.211s] [ 66%] [32mBuilding C object CMakeFiles/microcdr.dir/src/c/types/array.c.obj[0m
+[2.211s] [ 83%] [32mBuilding C object CMakeFiles/microcdr.dir/src/c/types/string.c.obj[0m
+[2.794s] [100%] [32m[1mLinking C static library libmicrocdr.a[0m
+[2.854s] [100%] Built target microcdr
+[2.901s] [34m[1mNo install step for 'ucdr'[0m
+[2.956s] [34m[1mCompleted 'ucdr'[0m
+[3.053s] Built target ucdr
+[3.495s] Invoked command in '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/microcdr' returned '0': /usr/bin/cmake --build /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/microcdr
+[3.746s] Invoking command in '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/microcdr': /usr/bin/cmake --install /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/microcdr
+[3.854s] -- Install configuration: "Release"
+[3.861s] -- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/libmicrocdr.a
+[3.861s] -- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/ucdr
+[3.862s] -- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/ucdr/microcdr.h
+[3.862s] -- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/ucdr/visibility.h
+[3.863s] -- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/ucdr/config.h
+[3.863s] -- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/microcdr/cmake/microcdrTargets.cmake
+[3.863s] -- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/microcdr/cmake/microcdrTargets-release.cmake
+[3.863s] -- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/microcdr/cmake/microcdrConfig.cmake
+[3.864s] -- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/microcdr/cmake/microcdrConfigVersion.cmake
+[3.960s] Invoked command in '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/microcdr' returned '0': /usr/bin/cmake --install /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/microcdr

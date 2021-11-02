@@ -1,0 +1,684 @@
+Not searching for unused variables given on the command line.
+-- The C compiler identification is GNU 8.2.0
+-- Check for working C compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc
+-- Check for working C compiler: /home/skola/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/build/microxrcedds_client
+[35m[1mScanning dependencies of target microxrcedds_client[0m
+[  3%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/stream/input_best_effort_stream.c.obj[0m
+[  6%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/stream/input_reliable_stream.c.obj[0m
+[ 10%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/stream/output_reliable_stream.c.obj[0m
+[ 13%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/stream/output_best_effort_stream.c.obj[0m
+[ 16%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/stream/stream_storage.c.obj[0m
+[ 20%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/stream/stream_id.c.obj[0m
+[ 23%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/stream/seq_num.c.obj[0m
+[ 26%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/session.c.obj[0m
+[ 30%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/submessage.c.obj[0m
+[ 33%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/session_info.c.obj[0m
+[ 40%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/serialization/xrce_types.c.obj[0m
+[ 40%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/object_id.c.obj[0m
+[ 43%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/util/time.c.obj[0m
+[ 46%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/serialization/xrce_header.c.obj[0m
+[ 50%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/util/ping.c.obj[0m
+[ 53%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/serialization/xrce_subheader.c.obj[0m
+[ 56%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/common_create_entities.c.obj[0m
+In file included from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/util/time.c:3[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/time.h:22:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <time.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+[ 60%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/create_entities_xml.c.obj[0m
+[ 63%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/create_entities_ref.c.obj[0m
+[ 66%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/write_access.c.obj[0m
+[ 70%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/create_entities_bin.c.obj[0m
+[ 73%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/core/session/read_access.c.obj[0m
+[ 76%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/profile/transport/stream_framing/stream_framing_protocol.c.obj[0m
+[ 80%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/profile/transport/ip/udp/udp_transport.c.obj[0m
+[ 83%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/profile/transport/ip/ip_posix.c.obj[0m
+[ 86%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c.obj[0m
+[ 90%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/profile/discovery/discovery.c.obj[0m
+[ 93%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c.obj[0m
+[ 96%] [32mBuilding C object CMakeFiles/microxrcedds_client.dir/src/c/profile/transport/custom/custom_transport.c.obj[0m
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/lwipopts.h:36[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:51[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/time.h:22:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <time.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/lwipopts.h:38[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:51[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/sys/time.h:16:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <sys/time.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/lwipopts.h:36[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:51[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/time.h:22:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <time.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/lwipopts.h:38[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:51[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/sys/time.h:16:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <sys/time.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/esp_common/include/esp_err.h:18[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/esp_common/include/esp_system.h:20[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/lwipopts.h:44[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:51[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/esp_common/include/esp_err.h:18[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/esp_common/include/esp_system.h:20[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/lwipopts.h:44[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:51[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:38[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/portable.h:89[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/FreeRTOS.h:107[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/sys_arch.h:36[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/soc/esp32/include/soc/cpu.h:[m[K In function '[01m[Kcpu_configure_region_protection[m[K':
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/soc/esp32/include/soc/cpu.h:77:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: '[01m[Kint[m[K' and '[01m[Kunsigned int[m[K' [[01;35m[K-Wsign-compare[m[K]
+     for (int i = 0; i [01;35m[K<[m[K sizeof(pages_to_protect)/sizeof(pages_to_protect[0]); ++i) {
+                       [01;35m[K^[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/portmacro.h:82[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/portable.h:96[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/FreeRTOS.h:107[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/sys_arch.h:36[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/xtensa/include/xtensa/xtruntime.h:[m[K In function '[01m[K_xtos_interrupt_enable[m[K':
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/xtensa/include/xtensa/xtruntime.h:161:21:[m[K [01;35m[Kwarning: [m[Kconversion to '[01m[Kunsigned int[m[K' from '[01m[Kint[m[K' may change the sign of the result [[01;35m[K-Wsign-conversion[m[K]
+     _xtos_ints_on([01;35m[K1 << intnum[m[K);
+                   [01;35m[K~~^~~~~~~~~[m[K
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/xtensa/include/xtensa/xtruntime.h:[m[K In function '[01m[K_xtos_interrupt_disable[m[K':
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/xtensa/include/xtensa/xtruntime.h:166:22:[m[K [01;35m[Kwarning: [m[Kconversion to '[01m[Kunsigned int[m[K' from '[01m[Kint[m[K' may change the sign of the result [[01;35m[K-Wsign-conversion[m[K]
+     _xtos_ints_off([01;35m[K1 << intnum[m[K);
+                    [01;35m[K~~^~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/task.h:80[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/sys_arch.h:37[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/list.h:[m[K At top level:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/list.h:194:1:[m[K [01;35m[Kwarning: [m[KISO C99 does not support '[01m[K_Static_assert[m[K' [[01;35m[K-Wpedantic[m[K]
+ [01;35m[K_Static_assert[m[K(sizeof(StaticListItem_t) == sizeof(ListItem_t), "StaticListItem_t != ListItem_t");
+ [01;35m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/list.h:207:1:[m[K [01;35m[Kwarning: [m[KISO C99 does not support '[01m[K_Static_assert[m[K' [[01;35m[K-Wpedantic[m[K]
+ [01;35m[K_Static_assert[m[K(sizeof(StaticMiniListItem_t) == sizeof(MiniListItem_t), "StaticMiniListItem_t != MiniListItem_t");
+ [01;35m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/list.h:224:1:[m[K [01;35m[Kwarning: [m[KISO C99 does not support '[01m[K_Static_assert[m[K' [[01;35m[K-Wpedantic[m[K]
+ [01;35m[K_Static_assert[m[K(sizeof(StaticList_t) == sizeof(List_t), "StaticList_t != List_t");
+ [01;35m[K^~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:38[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:125:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ku8_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef uint8_t   [01;35m[Ku8_t[m[K;
+                   [01;35m[K^~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:48:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ku8_t[m[K' was here
+ typedef uint8_t  [01;36m[Ku8_t[m[K;
+                  [01;36m[K^~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:126:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ks8_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef int8_t    [01;35m[Ks8_t[m[K;
+                   [01;35m[K^~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:49:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ks8_t[m[K' was here
+ typedef int8_t   [01;36m[Ks8_t[m[K;
+                  [01;36m[K^~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:127:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ku16_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef uint16_t  [01;35m[Ku16_t[m[K;
+                   [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:50:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ku16_t[m[K' was here
+ typedef uint16_t [01;36m[Ku16_t[m[K;
+                  [01;36m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:128:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ks16_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef int16_t   [01;35m[Ks16_t[m[K;
+                   [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:51:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ks16_t[m[K' was here
+ typedef int16_t  [01;36m[Ks16_t[m[K;
+                  [01;36m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:129:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ku32_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef uint32_t  [01;35m[Ku32_t[m[K;
+                   [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:52:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ku32_t[m[K' was here
+ typedef uint32_t [01;36m[Ku32_t[m[K;
+                  [01;36m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:130:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ks32_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef int32_t   [01;35m[Ks32_t[m[K;
+                   [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/ip_posix.c:21[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:53:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ks32_t[m[K' was here
+ typedef int32_t  [01;36m[Ks32_t[m[K;
+                  [01;36m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/lwipopts.h:36[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:51[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/time.h:22:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <time.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/portable.h:89[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/FreeRTOS.h:107[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/sys_arch.h:36[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/soc/esp32/include/soc/cpu.h:[m[K In function '[01m[Kcpu_configure_region_protection[m[K':
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/soc/esp32/include/soc/cpu.h:77:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: '[01m[Kint[m[K' and '[01m[Kunsigned int[m[K' [[01;35m[K-Wsign-compare[m[K]
+     for (int i = 0; i [01;35m[K<[m[K sizeof(pages_to_protect)/sizeof(pages_to_protect[0]); ++i) {
+                       [01;35m[K^[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/lwipopts.h:38[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:51[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/sys/time.h:16:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <sys/time.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/portmacro.h:82[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/portable.h:96[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/FreeRTOS.h:107[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/sys_arch.h:36[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/xtensa/include/xtensa/xtruntime.h:[m[K In function '[01m[K_xtos_interrupt_enable[m[K':
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/xtensa/include/xtensa/xtruntime.h:161:21:[m[K [01;35m[Kwarning: [m[Kconversion to '[01m[Kunsigned int[m[K' from '[01m[Kint[m[K' may change the sign of the result [[01;35m[K-Wsign-conversion[m[K]
+     _xtos_ints_on([01;35m[K1 << intnum[m[K);
+                   [01;35m[K~~^~~~~~~~~[m[K
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/xtensa/include/xtensa/xtruntime.h:[m[K In function '[01m[K_xtos_interrupt_disable[m[K':
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/xtensa/include/xtensa/xtruntime.h:166:22:[m[K [01;35m[Kwarning: [m[Kconversion to '[01m[Kunsigned int[m[K' from '[01m[Kint[m[K' may change the sign of the result [[01;35m[K-Wsign-conversion[m[K]
+     _xtos_ints_off([01;35m[K1 << intnum[m[K);
+                    [01;35m[K~~^~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/task.h:80[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/sys_arch.h:37[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/list.h:[m[K At top level:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/list.h:194:1:[m[K [01;35m[Kwarning: [m[KISO C99 does not support '[01m[K_Static_assert[m[K' [[01;35m[K-Wpedantic[m[K]
+ [01;35m[K_Static_assert[m[K(sizeof(StaticListItem_t) == sizeof(ListItem_t), "StaticListItem_t != ListItem_t");
+ [01;35m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/list.h:207:1:[m[K [01;35m[Kwarning: [m[KISO C99 does not support '[01m[K_Static_assert[m[K' [[01;35m[K-Wpedantic[m[K]
+ [01;35m[K_Static_assert[m[K(sizeof(StaticMiniListItem_t) == sizeof(MiniListItem_t), "StaticMiniListItem_t != MiniListItem_t");
+ [01;35m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/list.h:224:1:[m[K [01;35m[Kwarning: [m[KISO C99 does not support '[01m[K_Static_assert[m[K' [[01;35m[K-Wpedantic[m[K]
+ [01;35m[K_Static_assert[m[K(sizeof(StaticList_t) == sizeof(List_t), "StaticList_t != List_t");
+ [01;35m[K^~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:125:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ku8_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef uint8_t   [01;35m[Ku8_t[m[K;
+                   [01;35m[K^~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:48:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ku8_t[m[K' was here
+ typedef uint8_t  [01;36m[Ku8_t[m[K;
+                  [01;36m[K^~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:126:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ks8_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef int8_t    [01;35m[Ks8_t[m[K;
+                   [01;35m[K^~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:49:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ks8_t[m[K' was here
+ typedef int8_t   [01;36m[Ks8_t[m[K;
+                  [01;36m[K^~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:127:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ku16_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef uint16_t  [01;35m[Ku16_t[m[K;
+                   [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:50:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ku16_t[m[K' was here
+ typedef uint16_t [01;36m[Ku16_t[m[K;
+                  [01;36m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:128:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ks16_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef int16_t   [01;35m[Ks16_t[m[K;
+                   [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:51:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ks16_t[m[K' was here
+ typedef int16_t  [01;36m[Ks16_t[m[K;
+                  [01;36m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:129:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ku32_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef uint32_t  [01;35m[Ku32_t[m[K;
+                   [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:52:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ku32_t[m[K' was here
+ typedef uint32_t [01;36m[Ku32_t[m[K;
+                  [01;36m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:130:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ks32_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef int32_t   [01;35m[Ks32_t[m[K;
+                   [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/transport/ip/udp/udp_transport_posix_nopoll.c:5[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:53:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ks32_t[m[K' was here
+ typedef int32_t  [01;36m[Ks32_t[m[K;
+                  [01;36m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/esp_common/include/esp_err.h:18[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/esp_common/include/esp_system.h:20[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/lwipopts.h:44[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:51[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/assert.h:24:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K <assert.h>
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:38[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/newlib/platform_include/errno.h:18:2:[m[K [01;35m[Kwarning: [m[K#include_next is a GCC extension
+ #[01;35m[Kinclude_next[m[K "errno.h"
+  [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/portable.h:89[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/FreeRTOS.h:107[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/sys_arch.h:36[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/soc/esp32/include/soc/cpu.h:[m[K In function '[01m[Kcpu_configure_region_protection[m[K':
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/soc/esp32/include/soc/cpu.h:77:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: '[01m[Kint[m[K' and '[01m[Kunsigned int[m[K' [[01;35m[K-Wsign-compare[m[K]
+     for (int i = 0; i [01;35m[K<[m[K sizeof(pages_to_protect)/sizeof(pages_to_protect[0]); ++i) {
+                       [01;35m[K^[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/portmacro.h:82[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/portable.h:96[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/FreeRTOS.h:107[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/sys_arch.h:36[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/xtensa/include/xtensa/xtruntime.h:[m[K In function '[01m[K_xtos_interrupt_enable[m[K':
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/xtensa/include/xtensa/xtruntime.h:161:21:[m[K [01;35m[Kwarning: [m[Kconversion to '[01m[Kunsigned int[m[K' from '[01m[Kint[m[K' may change the sign of the result [[01;35m[K-Wsign-conversion[m[K]
+     _xtos_ints_on([01;35m[K1 << intnum[m[K);
+                   [01;35m[K~~^~~~~~~~~[m[K
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/xtensa/include/xtensa/xtruntime.h:[m[K In function '[01m[K_xtos_interrupt_disable[m[K':
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/xtensa/include/xtensa/xtruntime.h:166:22:[m[K [01;35m[Kwarning: [m[Kconversion to '[01m[Kunsigned int[m[K' from '[01m[Kint[m[K' may change the sign of the result [[01;35m[K-Wsign-conversion[m[K]
+     _xtos_ints_off([01;35m[K1 << intnum[m[K);
+                    [01;35m[K~~^~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/task.h:80[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/sys_arch.h:37[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/list.h:[m[K At top level:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/list.h:194:1:[m[K [01;35m[Kwarning: [m[KISO C99 does not support '[01m[K_Static_assert[m[K' [[01;35m[K-Wpedantic[m[K]
+ [01;35m[K_Static_assert[m[K(sizeof(StaticListItem_t) == sizeof(ListItem_t), "StaticListItem_t != ListItem_t");
+ [01;35m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/list.h:207:1:[m[K [01;35m[Kwarning: [m[KISO C99 does not support '[01m[K_Static_assert[m[K' [[01;35m[K-Wpedantic[m[K]
+ [01;35m[K_Static_assert[m[K(sizeof(StaticMiniListItem_t) == sizeof(MiniListItem_t), "StaticMiniListItem_t != MiniListItem_t");
+ [01;35m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/freertos/include/freertos/list.h:224:1:[m[K [01;35m[Kwarning: [m[KISO C99 does not support '[01m[K_Static_assert[m[K' [[01;35m[K-Wpedantic[m[K]
+ [01;35m[K_Static_assert[m[K(sizeof(StaticList_t) == sizeof(List_t), "StaticList_t != List_t");
+ [01;35m[K^~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:125:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ku8_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef uint8_t   [01;35m[Ku8_t[m[K;
+                   [01;35m[K^~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:48:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ku8_t[m[K' was here
+ typedef uint8_t  [01;36m[Ku8_t[m[K;
+                  [01;36m[K^~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:126:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ks8_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef int8_t    [01;35m[Ks8_t[m[K;
+                   [01;35m[K^~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:49:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ks8_t[m[K' was here
+ typedef int8_t   [01;36m[Ks8_t[m[K;
+                  [01;36m[K^~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:127:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ku16_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef uint16_t  [01;35m[Ku16_t[m[K;
+                   [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:50:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ku16_t[m[K' was here
+ typedef uint16_t [01;36m[Ku16_t[m[K;
+                  [01;36m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:128:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ks16_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef int16_t   [01;35m[Ks16_t[m[K;
+                   [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:51:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ks16_t[m[K' was here
+ typedef int16_t  [01;36m[Ks16_t[m[K;
+                  [01;36m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:129:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ku32_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef uint32_t  [01;35m[Ku32_t[m[K;
+                   [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:52:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ku32_t[m[K' was here
+ typedef uint32_t [01;36m[Ku32_t[m[K;
+                  [01;36m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:130:19:[m[K [01;35m[Kwarning: [m[Kredefinition of typedef '[01m[Ks32_t[m[K' [[01;35m[K-Wpedantic[m[K]
+ typedef int32_t   [01;35m[Ks32_t[m[K;
+                   [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/arch.h:48[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/debug.h:40[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:52[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:42[m[K,
+                 from [01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/sys/socket.h:33[m[K,
+                 from [01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/Micro-XRCE-DDS-Client/src/c/profile/discovery/transport/udp_transport_datagram_posix_nopoll.c:4[m[K:
+[01m[K/home/skola/microros_ws/firmware/toolchain/esp-idf/components/lwip/port/esp32/include/arch/cc.h:53:18:[m[K [01;36m[Knote: [m[Kprevious declaration of '[01m[Ks32_t[m[K' was here
+ typedef int32_t  [01;36m[Ks32_t[m[K;
+                  [01;36m[K^~~~~[m[K
+[100%] [32m[1mLinking C static library libmicroxrcedds_client.a[0m
+[100%] Built target microxrcedds_client
+-- Install configuration: "Release"
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/lib/libmicroxrcedds_client.a
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/util
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/util/ping.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/util/time.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/communication
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/communication/communication.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/type
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/type/xrce_types.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/write_access.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/session.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/common_create_entities.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/create_entities_ref.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/object_id.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/time_sync.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/read_access.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/stream
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/stream/stream_id.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/stream/output_best_effort_stream.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/stream/reliable_stream.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/stream/output_reliable_stream.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/stream/stream_storage.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/stream/input_reliable_stream.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/stream/input_best_effort_stream.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/stream/seq_num.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/session_info.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/create_entities_bin.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/core/session/create_entities_xml.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/client.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/transport.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/visibility.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/defines.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/discovery
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/discovery/discovery.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/multithread
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/multithread/multithread.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/stream_framing
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/stream_framing/stream_framing_protocol.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/serial
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/serial/serial_transport.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/serial/serial_transport_platform.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/serial/serial_transport_posix.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/custom
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/custom/custom_transport.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/ip
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/ip/udp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/ip/udp/udp_transport_posix_nopoll.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/ip/udp/udp_transport_windows.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/ip/udp/udp_transport.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/ip/udp/udp_transport_freertos_plus_tcp.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/ip/udp/udp_transport_posix.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/ip/tcp
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/ip/tcp/tcp_transport_posix.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/ip/tcp/tcp_transport.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/ip/tcp/tcp_transport_freertos_plus_tcp.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/ip/tcp/tcp_transport_windows.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/profile/transport/ip/ip.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/include/uxr/client/config.h
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/microxrcedds_client/cmake/microxrcedds_clientTargets.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/microxrcedds_client/cmake/microxrcedds_clientTargets-release.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/microxrcedds_client/cmake/microxrcedds_clientConfig.cmake
+-- Installing: /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/microxrcedds_client/cmake/microxrcedds_clientConfigVersion.cmake

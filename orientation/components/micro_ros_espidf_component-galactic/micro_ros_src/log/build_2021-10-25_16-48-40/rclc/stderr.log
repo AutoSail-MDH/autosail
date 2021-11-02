@@ -1,0 +1,19 @@
+CMake Warning at /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/cmake/ament_cmake_export_libraries-extras.cmake:116 (message):
+  Package 'rcutils' exports library 'dl' which couldn't be found
+Call Stack (most recent call first):
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcutils/cmake/rcutilsConfig.cmake:41 (include)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_runtime_c/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rosidl_runtime_c/cmake/rosidl_runtime_cConfig.cmake:41 (include)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl_interfaces/cmake/rcl_interfacesConfig.cmake:41 (include)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+  /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/install/share/rcl/cmake/rclConfig.cmake:41 (include)
+  CMakeLists.txt:31 (find_package)
+
+
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rclc/rclc/src/rclc/executor_handle.c:[m[K In function '[01m[Krclc_executor_handle_print[m[K':
+[01m[K/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_src/src/rclc/rclc/src/rclc/executor_handle.c:84:10:[m[K [01;35m[Kwarning: [m[Kvariable '[01m[KtypeName[m[K' set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+   char * [01;35m[KtypeName[m[K;
+          [01;35m[K^~~~~~~~[m[K

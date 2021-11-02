@@ -1,0 +1,37 @@
+[1.726s] Invoking command in '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/src/ament_lint/ament_cppcheck': PYTHONPATH=/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck/lib/python3.8/site-packages:${PYTHONPATH} /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python setup.py egg_info --egg-base ../../../build/ament_cppcheck build --build-base /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_cppcheck/build install --prefix /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck --record /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_cppcheck/install.log --single-version-externally-managed
+[2.059s] running egg_info
+[2.060s] creating ../../../build/ament_cppcheck/ament_cppcheck.egg-info
+[2.060s] writing ../../../build/ament_cppcheck/ament_cppcheck.egg-info/PKG-INFO
+[2.060s] writing dependency_links to ../../../build/ament_cppcheck/ament_cppcheck.egg-info/dependency_links.txt
+[2.061s] writing entry points to ../../../build/ament_cppcheck/ament_cppcheck.egg-info/entry_points.txt
+[2.061s] writing requirements to ../../../build/ament_cppcheck/ament_cppcheck.egg-info/requires.txt
+[2.062s] writing top-level names to ../../../build/ament_cppcheck/ament_cppcheck.egg-info/top_level.txt
+[2.063s] writing manifest file '../../../build/ament_cppcheck/ament_cppcheck.egg-info/SOURCES.txt'
+[2.064s] reading manifest file '../../../build/ament_cppcheck/ament_cppcheck.egg-info/SOURCES.txt'
+[2.066s] writing manifest file '../../../build/ament_cppcheck/ament_cppcheck.egg-info/SOURCES.txt'
+[2.066s] running build
+[2.066s] running build_py
+[2.067s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_cppcheck/build
+[2.067s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_cppcheck/build/lib
+[2.068s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_cppcheck/build/lib/ament_cppcheck
+[2.068s] copying ament_cppcheck/__init__.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_cppcheck/build/lib/ament_cppcheck
+[2.068s] copying ament_cppcheck/main.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_cppcheck/build/lib/ament_cppcheck
+[2.068s] running install
+[2.082s] running install_lib
+[2.082s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck/lib/python3.8/site-packages/ament_cppcheck
+[2.082s] copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_cppcheck/build/lib/ament_cppcheck/__init__.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck/lib/python3.8/site-packages/ament_cppcheck
+[2.082s] copying /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_cppcheck/build/lib/ament_cppcheck/main.py -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck/lib/python3.8/site-packages/ament_cppcheck
+[2.084s] byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck/lib/python3.8/site-packages/ament_cppcheck/__init__.py to __init__.cpython-38.pyc
+[2.084s] byte-compiling /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck/lib/python3.8/site-packages/ament_cppcheck/main.py to main.cpython-38.pyc
+[2.084s] running install_data
+[2.084s] copying package.xml -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck/share/ament_cppcheck
+[2.084s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck/share/ament_index
+[2.084s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck/share/ament_index/resource_index
+[2.084s] creating /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck/share/ament_index/resource_index/packages
+[2.084s] copying resource/ament_cppcheck -> /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck/share/ament_index/resource_index/packages
+[2.085s] running install_egg_info
+[2.086s] Copying ../../../build/ament_cppcheck/ament_cppcheck.egg-info to /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck/lib/python3.8/site-packages/ament_cppcheck-0.10.6-py3.8.egg-info
+[2.087s] running install_scripts
+[2.133s] Installing ament_cppcheck script to /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck/bin
+[2.133s] writing list of installed files to '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_cppcheck/install.log'
+[2.396s] Invoked command in '/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/src/ament_lint/ament_cppcheck' returned '0': PYTHONPATH=/home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck/lib/python3.8/site-packages:${PYTHONPATH} /home/skola/.espressif/python_env/idf4.1_py3.8_env/bin/python setup.py egg_info --egg-base ../../../build/ament_cppcheck build --build-base /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_cppcheck/build install --prefix /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/install/ament_cppcheck --record /home/skola/Projects/int32_publisher_custom_transport/components/micro_ros_espidf_component-galactic/micro_ros_dev/build/ament_cppcheck/install.log --single-version-externally-managed
