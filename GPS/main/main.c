@@ -9,6 +9,8 @@ int app_main(void)
         printf("Sensor reading: %d\n",data);
         vTaskDelay(100);
     }*/
+    
+    //variables
     int i = 0;
     int c = 0;
     float lon = 0;
@@ -16,17 +18,19 @@ int app_main(void)
     uint8_t reg_addr = 0xFF; //output register
     uint8_t * data = calloc(100,4);
     char * msg = calloc(100,1);
+
     if(msg == NULL){
         printf("Calloc failed\n");
     }
 
-    //i2c_driver_delete(I2C_MASTER_NUM);
+    //configure i2c
     configure_i2c_master();
 
     while(1){
         //read data from the sensor
         i2c_master_write_read_device(I2C_MASTER_NUM, SLAVE_ADDR, &reg_addr, 1, data, 400, I2C_MASTER_TIMEOUT_MS/portTICK_RATE_MS);
 
+        //convert the data to char
         i = 0;
         lon = 0;
         lat = 0;
@@ -35,6 +39,7 @@ int app_main(void)
             i++;
         }
 
+        //get the GPS position
         if(!getPos(msg, &lat, &lon)){
             c++;
             printf("No data avalible for %d samples\n", c);          
@@ -44,6 +49,7 @@ int app_main(void)
             printf("Lat: %.4f : Long: %.4f\n", lat, lon);
         }
         
+        //delay for easier to read prints
         vTaskDelay(50);
     }
     return 0;

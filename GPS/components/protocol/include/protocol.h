@@ -15,6 +15,8 @@
 #define I2C_MASTER_TX_BUF_DISABLE 0
 #define I2C_MASTER_RX_BUF_DISABLE 0
 #define I2C_MASTER_TIMEOUT_MS 1000
+#define I2C_SDA_PORT 21
+#define I2C_SCL_PORT 22
 //Address to the GPS module
 #define SLAVE_ADDR 0x42 
 

@@ -13,13 +13,14 @@ void configure_adc(void){
 void configure_i2c_master(void){
     i2c_config_t conf = { 
         .mode = I2C_MODE_MASTER,
-        .sda_io_num = 21,
-        .scl_io_num = 22,
+        .sda_io_num = I2C_SDA_PORT,
+        .scl_io_num = I2C_SCL_PORT,
         .sda_pullup_en = GPIO_PULLUP_ENABLE,
         .scl_pullup_en = GPIO_PULLUP_ENABLE,
         .master.clk_speed = I2C_MASTER_FREQ_HZ,
         .clk_flags = 0};
 
+    //configure and install the i2c driver
     i2c_param_config(I2C_MASTER_NUM,&conf);
     i2c_driver_install(I2C_MASTER_NUM, conf.mode, I2C_MASTER_RX_BUF_DISABLE, I2C_MASTER_TX_BUF_DISABLE, 0);
 }
