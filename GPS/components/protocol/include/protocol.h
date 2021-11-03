@@ -9,11 +9,13 @@
 #include "freertos/task.h"
 
 //I2C
+//Needed for the i2c config
 #define I2C_MASTER_FREQ_HZ 100000 
 #define I2C_MASTER_NUM 0
 #define I2C_MASTER_TX_BUF_DISABLE 0
 #define I2C_MASTER_RX_BUF_DISABLE 0
 #define I2C_MASTER_TIMEOUT_MS 1000
+//Address to the GPS module
 #define SLAVE_ADDR 0x42 
 
 #ifndef HEADER_PROT
