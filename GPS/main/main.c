@@ -2,25 +2,26 @@
 #include "protocol.h"
 #include "main.h"
 
-int app_main(void)
+int appMain(void)
 {
-    /*while(1){
-        data = adc1_get_raw(ADC1_CHANNEL_5);
-        printf("Sensor reading: %d\n",data);
-        vTaskDelay(100);
-    }*/
     
     //variables
     int i = 0;
     int c = 0;
+
     float lon = 0;
     float lat = 0;
+
     uint8_t reg_addr = 0xFF; //output register
+
     uint8_t * data = calloc(100,4);
     char * msg = calloc(100,1);
 
     if(msg == NULL){
-        printf("Calloc failed\n");
+        printf("Calloc for msg failed\n");
+    }
+    if(data == NULL){
+        printf("Calloc for data failed\n");
     }
 
     //configure i2c
@@ -34,6 +35,7 @@ int app_main(void)
         i = 0;
         lon = 0;
         lat = 0;
+        //Only convert up to the * sign, since that marks the end of a message
         while((data[i] != 42) && (i < 100)){
             msg[i] = (char)data[i];
             i++;
