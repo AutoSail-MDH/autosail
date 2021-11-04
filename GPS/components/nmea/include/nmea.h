@@ -29,8 +29,8 @@ int match(char * buf, char * pattern, regmatch_t * pmatch);
  * @brief Gets data from an NMEA message
  * 
  * @param buf A char pointer to a string containing the NMEA message
- * @param lon A pointer to the latitude value, as a float. Has the value 0 on failure
- * @param lat A pointer to the longitude value, as a float. Has the value 0 on failure
+ * @param lat A pointer to the latitude value, as a float. Has the value 0 on failure
+ * @param lon A pointer to the longitude value, as a float. Has the value 0 on failure
  * @return 
  *      - 1 on SUCCESS
  *      - 0 on FAILURE
