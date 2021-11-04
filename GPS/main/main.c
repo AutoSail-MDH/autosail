@@ -2,7 +2,7 @@
 #include "protocol.h"
 #include "main.h"
 
-int appMain(void)
+int app_main(void)
 {
     
     //variables
@@ -33,6 +33,7 @@ int appMain(void)
 
         //convert the data to char
         i = 0;
+
         lon = 0;
         lat = 0;
         //Only convert up to the * sign, since that marks the end of a message
@@ -44,7 +45,7 @@ int appMain(void)
         //get the GPS position
         if(!getPos(msg, &lat, &lon)){
             c++;
-            printf("No data avalible for %d samples\n", c);          
+            printf("No data avalible for %d readings\n", c);          
         }
         else{
             c = 0;

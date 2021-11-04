@@ -20,7 +20,7 @@ int match(char * buf, char * pattern, regmatch_t * pmatch){
     return 1;
 }
 
-int parse(char * buf, char * pattern, float * lon, float * lat){
+int parse(char * buf, char * pattern, float * lat, float * lon){
     regmatch_t pmatch[2];
 
     //Tries to match according to a pattern
@@ -28,7 +28,7 @@ int parse(char * buf, char * pattern, float * lon, float * lat){
         return 0;
     }
     //Converts the char value to a float
-    *lon = strtof(&buf[pmatch[0].rm_so], NULL)/100;
+    *lat = strtof(&buf[pmatch[0].rm_so], NULL)/100;
 
     int start = pmatch[0].rm_eo + 1;
 
@@ -37,12 +37,12 @@ int parse(char * buf, char * pattern, float * lon, float * lat){
         return 0;
     }
     //Converts the char value to a float
-    *lat = strtof(&buf[start + pmatch[0].rm_so], NULL)/100;
+    *lon = strtof(&buf[start + pmatch[0].rm_so], NULL)/100;
 
     return 1;
 }
 
-int getPos(char * buf, float * lon, float * lat){
+int getPos(char * buf, float * lat, float * lon){
     regmatch_t tmp[1];
 
     //Tries to find out if the message is either GGA, GLL or RMC, which measn they contain positions
@@ -50,7 +50,7 @@ int getPos(char * buf, float * lon, float * lat){
         return 0;
     }
     //Tries to find out where the long/lat values are and populate he lon/lat
-    if(!parse(buf, LONG_LAT, lon, lat)){
+    if(!parse(buf, LONG_LAT, lat, lon)){
         return 0;
     }
 
