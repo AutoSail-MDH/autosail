@@ -31,8 +31,18 @@
         }                                                                                  \
     }
 
+/*TO DO*/
+/*Check the includes so that we can find them*/
+/*Check so that the structure, folders and files, are correct*/
+/*Check that everything we need for micro ros is there*/
+/*Check the node and make sure that we have one we want*/
+/*Check the topic and where we publish*/
+/*Check the buffers, the buffer we publish, msg_pub, and that the right data is in it when we publish. Reset after?*/
+/*Test the code*/
+
 rcl_publisher_t publisher;
-std_msgs__msg__Int32 msg;
+// std_msgs__msg__Int32 msg;
+std_msgs__msg__Float32MultiArray msg_pub;  // kommer inte ihåg om peter ville ha float32 eller 64, gissade på 32
 
 void timer_callback(rcl_timer_t* timer, int64_t last_call_time) {
     RCLC_UNUSED(last_call_time);
@@ -60,8 +70,10 @@ void timer_callback(rcl_timer_t* timer, int64_t last_call_time) {
             printf("Lat: %.4f : Long: %.4f\n", lat, lon);
         }
 
-        RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
-        msg.data++;
+        // put position in array? in msg_pub
+
+        RCSOFTCHECK(rcl_publish(&publisher, &msg_pub, NULL));
+        msg_pub.data++;
     }
 }
 
@@ -77,7 +89,8 @@ void appMain(void* arg) {
     RCCHECK(rclc_node_init_default(&node, "freertos_int32_publisher", "", &support));
 
     // create publisher
-    RCCHECK(rclc_publisher_init_default(&publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
+    RCCHECK(rclc_publisher_init_default(&publisher, &node,
+                                        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg_pub, Float32),  // msg, Int32
                                         "freertos_int32_publisher"));
 
     // create timer,
@@ -90,7 +103,7 @@ void appMain(void* arg) {
     RCCHECK(rclc_executor_init(&executor, &support.context, 1, &allocator));
     RCCHECK(rclc_executor_add_timer(&executor, &timer));
 
-    msg.data = 0;
+    msg_pub.data = 0;  // msg.data
 
     int i = 0;
     int c = 0;
