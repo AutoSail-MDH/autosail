@@ -39,6 +39,14 @@ void configure_adc(void);
  */
 void configure_i2c_master(void);
 
+/**
+ * @brief Read from i2c port
+ *
+ * @param i2c_num i2c port to read from
+ * @param data_rd buffer to store the data
+ * @param size size of the buffer
+ * @return esp_err_t
+ */
 esp_err_t i2c_read(i2c_port_t i2c_num, uint8_t *data_rd, size_t size);
 
 #endif

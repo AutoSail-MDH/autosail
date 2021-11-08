@@ -40,5 +40,6 @@ esp_err_t i2c_read(i2c_port_t i2c_num, uint8_t *data_rd, size_t size) {
     i2c_master_stop(cmd);
     esp_err_t ret = i2c_master_cmd_begin(i2c_num, cmd, 1000 / portTICK_RATE_MS);
     i2c_cmd_link_delete(cmd);
+
     return ret;
 }
