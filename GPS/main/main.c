@@ -1,7 +1,5 @@
 #include "main.h"
 
-#include <rcl/rcl.h>
-
 #include "nmea.h"
 #include "protocol.h"
 
@@ -27,11 +25,12 @@ int app_main(void) {
 
     // configure i2c
     configure_i2c_master();
-    i2c_ack_type_t ack = 0;
+    // i2c_ack_type_t ack = 0;
     while (1) {
         // read data from the sensor
-        i2c_master_write_read_device(I2C_MASTER_NUM, SLAVE_ADDR, &reg_addr, 1, data, 400, I2C_MASTER_TIMEOUT_MS /
-        // portTICK_RATE_MS);
+        // i2c_master_write_read_device(I2C_MASTER_NUM, SLAVE_ADDR, &reg_addr, 1, data, 400,
+        //                             I2C_MASTER_TIMEOUT_MS / portTICK_RATE_MS);
+        i2c_read(I2C_MASTER_NUM, data, 400);
 
         // convert the data to char
         i = 0;
