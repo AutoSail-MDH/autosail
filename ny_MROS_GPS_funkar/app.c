@@ -1,30 +1,31 @@
-#include "main.h"
-
-#include <string.h>
 #include <stdio.h>
 #include <unistd.h>
 
+#include <rcl/rcl.h>
+#include <rcl/error_handling.h>
+#include <std_msgs/msg/float32.h>
+
+#include <rclc/rclc.h>
+#include <rclc/executor.h>
+
+#include "components/nmea/include/nmea.h"
+#include "components/protocol/include/protocol.h"
+
+#include "components/nmea/nmea.c"
+#include "components/protocol/protocol.c"
+
+#ifdef ESP_PLATFORM
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
 #include "esp_system.h"
 #include "driver/uart.h"
-
-#include <rcl/rcl.h>
-#include <rcl/error_handling.h>
-#include <std_msgs/msg/float32.h>
-#include <rclc/rclc.h>
-#include <rclc/executor.h>
-
-#include <rmw_microxrcedds_c/config.h>
-#include <rmw_microros/rmw_microros.h>
-#include "esp32_serial_transport.h"
-
-#include "nmea.h"
-#include "protocol.h"
+#endif
 
 #define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Aborting.\n",__LINE__,(int)temp_rc);vTaskDelete(NULL);}}
 #define RCSOFTCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Continuing.\n",__LINE__,(int)temp_rc);}}
+
+#define INIT 94
 
 rcl_publisher_t publisher;
 std_msgs__msg__Float32 message;
@@ -80,7 +81,7 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 	}
 }
 
-void micro_ros_task(void * arg)
+void appMain(void * arg)
 {
 	rcl_allocator_t allocator = rcl_get_default_allocator();
 	rclc_support_t support;
@@ -90,14 +91,16 @@ void micro_ros_task(void * arg)
 
 	// create node
 	rcl_node_t node;
-	RCCHECK(rclc_node_init_default(&node, "test_gps", "", &support));
+	RCCHECK(rclc_node_init_default(&node, "pub_node", "", &support));
+	//RCCHECK(rclc_node_init_default(&node, "topic", "", &support));
 
 	// create publisher
 	RCCHECK(rclc_publisher_init_default(
 		&publisher,
 		&node,
-		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32),
-		"topic"));
+		ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
+		"pub_topic"));
+	//RCCHECK(rclc_publisher_init_default(&publisher,	&node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32), "std_msgs_msg_Int32"));
 
 	// create timer,
 	rcl_timer_t timer;
@@ -112,10 +115,8 @@ void micro_ros_task(void * arg)
 	rclc_executor_t executor;
 	RCCHECK(rclc_executor_init(&executor, &support.context, 1, &allocator));
 	RCCHECK(rclc_executor_add_timer(&executor, &timer));
-
-	message.data = 0;
-
-    //Setup
+	
+	//Setup
 
     // variables
     i = 0;
@@ -143,37 +144,12 @@ void micro_ros_task(void * arg)
 
 	while(1){
 		rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
-		usleep(10000);
+		usleep(100000);
 	}
 
 	// free resources
-	RCCHECK(rcl_publisher_fini(&publisher, &node));
-	RCCHECK(rcl_node_fini(&node));
+	RCCHECK(rcl_publisher_fini(&publisher, &node))
+	RCCHECK(rcl_node_fini(&node))
 
   	vTaskDelete(NULL);
-}
-
-static size_t uart_port = UART_NUM_0;
-
-void app_main(void)
-{   
-#if defined(RMW_UXRCE_TRANSPORT_CUSTOM)
-	rmw_uros_set_custom_transport(
-		true,
-		(void *) &uart_port,
-		esp32_serial_open,
-		esp32_serial_close,
-		esp32_serial_write,
-		esp32_serial_read
-	);
-#else
-#error micro-ROS transports misconfigured
-#endif  // RMW_UXRCE_TRANSPORT_CUSTOM
-
-    xTaskCreate(micro_ros_task, 
-            "uros_task", 
-            CONFIG_MICRO_ROS_APP_STACK, 
-            NULL,
-            CONFIG_MICRO_ROS_APP_TASK_PRIO, 
-            NULL); 
 }

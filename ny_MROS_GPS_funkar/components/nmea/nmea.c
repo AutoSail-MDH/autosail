@@ -1,4 +1,4 @@
-#include "nmea.h"
+#include "include/nmea.h"
 
 int match(char * buf, char * pattern, regmatch_t * pmatch){
 
