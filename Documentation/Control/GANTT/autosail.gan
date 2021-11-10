@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Software" company="" webLink="http://" view-date="2021-10-11" view-index="0" gantt-divider-location="751" resource-divider-location="300" version="3.1.3102" locale="sv_SE">
+<?xml version="1.0" encoding="UTF-8"?><project name="Software" company="" webLink="http://" view-date="2021-10-21" view-index="0" gantt-divider-location="751" resource-divider-location="300" version="3.1.3102" locale="sv_SE">
     <description/>
-    <view zooming-state="default:6" id="gantt-chart">
+    <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd11" name="Dispositionsnummer" width="53" order="0"/>
         <field id="tpd3" name="Namn" width="245" order="1"/>
         <field id="tpd4" name="Startdatum" width="17" order="2"/>
@@ -42,7 +42,7 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="373" name="AutoSail 2021" meeting="false" start="2021-10-25" duration="30" complete="30" expand="true">
+        <task id="373" name="AutoSail 2021" meeting="false" start="2021-10-25" duration="30" complete="35" expand="true">
             <task id="0" name="Software" color="#8cb6ce" meeting="false" start="2021-11-01" duration="25" complete="41" expand="true">
                 <task id="19" name="SBC Land" color="#24e933" meeting="false" start="2021-11-22" duration="7" complete="0" thirdDate="2021-10-08" thirdDate-constraint="0" expand="true">
                     <task id="23" name="Data visualisation" color="#24e933" meeting="false" start="2021-11-22" duration="5" complete="0" thirdDate="2021-10-11" thirdDate-constraint="0" expand="true"/>
@@ -100,7 +100,7 @@
                     </task>
                 </task>
             </task>
-            <task id="66" name="Hardware" color="#000000" meeting="false" start="2021-10-25" duration="28" complete="23" thirdDate="2021-09-16" thirdDate-constraint="0" expand="true">
+            <task id="66" name="Hardware" color="#000000" meeting="false" start="2021-10-25" duration="28" complete="36" thirdDate="2021-09-16" thirdDate-constraint="0" expand="true">
                 <task id="185" name="Assembly and Mounts" color="#00ccff" meeting="false" start="2021-11-16" duration="12" complete="0" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true"/>
                 <task id="175" name="Test boat" color="#66ff33" meeting="false" start="2021-11-03" duration="12" complete="0" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true">
                     <task id="179" name="Failsafe System" color="#66ff33" meeting="false" start="2021-11-11" duration="6" complete="0" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true"/>
@@ -116,11 +116,11 @@
                 <task id="190" name="4G transciever" color="#8cb6ce" meeting="false" start="2021-11-01" duration="3" complete="33" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true">
                     <depend id="58" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="155" name="Sensor system" color="#ff3366" meeting="false" start="2021-10-25" duration="16" complete="43" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true">
+                <task id="155" name="Sensor system" color="#ff3366" meeting="false" start="2021-10-25" duration="16" complete="71" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true">
                     <task id="157" name="Battery system" color="#ff3366" meeting="false" start="2021-11-08" duration="6" complete="0" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true">
                         <depend id="185" type="2" difference="0" hardness="Strong"/>
                     </task>
-                    <task id="159" name="RC" color="#ff3366" meeting="false" start="2021-11-01" duration="2" complete="0" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true">
+                    <task id="159" name="RC" color="#ff3366" meeting="false" start="2021-11-01" duration="2" complete="90" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true">
                         <depend id="177" type="2" difference="0" hardness="Strong"/>
                     </task>
                     <task id="161" name="Wind" color="#ff3366" meeting="false" start="2021-10-25" duration="5" complete="100" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true">
@@ -132,10 +132,10 @@
                         <depend id="36" type="2" difference="0" hardness="Strong"/>
                         <depend id="37" type="2" difference="0" hardness="Strong"/>
                     </task>
-                    <task id="163" name="GNSS" color="#ff3366" meeting="false" start="2021-11-03" duration="3" complete="0" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true">
+                    <task id="163" name="GNSS" color="#ff3366" meeting="false" start="2021-11-03" duration="3" complete="90" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true">
                         <depend id="157" type="2" difference="0" hardness="Strong"/>
                     </task>
-                    <task id="171" name="IMU" color="#ff3366" meeting="false" start="2021-11-03" duration="3" complete="0" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true">
+                    <task id="171" name="IMU" color="#ff3366" meeting="false" start="2021-11-03" duration="3" complete="90" thirdDate="2021-10-21" thirdDate-constraint="0" expand="true">
                         <depend id="157" type="2" difference="0" hardness="Strong"/>
                     </task>
                 </task>
