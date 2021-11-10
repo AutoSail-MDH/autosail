@@ -1,4 +1,4 @@
-#include "protocol.h"
+#include "include/protocol.h"
 
 // configure adc sensor reading
 void configure_adc(void) {
