@@ -45,10 +45,8 @@ int i;
 int c;
 float lon;
 float lat;
-uint8_t reg_addr;
 uint8_t* data;
 char* message;
-i2c_ack_type_t ack;
 
 void timer_callback(rcl_timer_t* timer, int64_t last_call_time) {
     RCLC_UNUSED(last_call_time);
@@ -62,7 +60,7 @@ void timer_callback(rcl_timer_t* timer, int64_t last_call_time) {
         lat = 0;
 
         // Only convert up to the * sign, since that marks the end of a message
-        while ((data[i] != 42) && (i < 100)) {
+        while ((data[i] != 42) && (i < 82)) {
             message[i] = (char)data[i];
             i++;
         }
@@ -76,7 +74,7 @@ void timer_callback(rcl_timer_t* timer, int64_t last_call_time) {
             // printf("Lat: %.4f : Long: %.4f\n", lat, lon);
         }
 
-        if (lon != 0 || lat != 0) {
+        if (lon != 0 && lat != 0) {
             msg.data.data[0] = lat;
             msg.data.size++;
             msg.data.data[1] = lon;
@@ -106,7 +104,7 @@ void appMain(void* arg) {
 
     // create timer,
     rcl_timer_t timer;
-    const unsigned int timer_timeout = 100;
+    const unsigned int timer_timeout = 10;
     RCCHECK(rclc_timer_init_default(&timer, &support, RCL_MS_TO_NS(timer_timeout), timer_callback));
 
     // create executor
@@ -141,8 +139,8 @@ void appMain(void* arg) {
     configure_i2c_master();
 
     while (1) {
-        rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
-        usleep(100);
+        rclc_executor_spin_some(&executor, RCL_MS_TO_NS(10));
+        usleep(10);
     }
 
     // free resources
