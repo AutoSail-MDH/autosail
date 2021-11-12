@@ -1,5 +1,7 @@
 // Copyright 2016 Open Source Robotics Foundation, Inc.
 //
+// Modified by Erik Lindgren
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -34,6 +36,7 @@ class MinimalSubscriber : public rclcpp::Node {
 
    private:
     void topic_callback(const std_msgs::msg::Float32MultiArray::SharedPtr msg) const {
+        // Checking if the lat/long values are not correct, and prints a fault if they are incorrect
         if ((int)floor(msg->data.data()[0]) != 59 || (int)floor(msg->data.data()[1]) != 16) {
             fault++;
             RCLCPP_INFO(this->get_logger(), "[%d] [Lat: %f - Long: %f] Faults: [%d]", c, msg->data.data()[0],
