@@ -51,9 +51,12 @@ Use the ID from earlier when running the agent
 ```
 ros2 run micro_ros_agent micro_ros_agent serial --dev [device ID]
 ```
-You might have to press the restart button on the esp32 if the agent does not work properly
+You might have to press the restart button on the esp32 if the agent does not work properly. See the image below on what is a normal look for the agent. For example, if only the first two rows are shown in the terminal, you might have to press the restart button on the esp32.
+
+![normal_agent](https://user-images.githubusercontent.com/31732187/141467001-6a39c2ac-4bb9-48d2-903c-675f5fb736d9.png)
 
 In another terminal, monitor the topic you published to
 ```
 ros2 topic echo /position/GPS
 ```
+
