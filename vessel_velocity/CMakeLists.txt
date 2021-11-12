@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(vessel_position)
+project(vessel_velocity)
 
 # Default to C99 - rmv
 if(NOT CMAKE_C_STANDARD)
