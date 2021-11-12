@@ -7,6 +7,8 @@
 /*
 Modified by Peter Nguyen
 */
+
+//
 #include <driver/i2c.h>
 #include <esp_log.h>
 #include <esp_err.h>
@@ -28,6 +30,12 @@ Modified by Peter Nguyen
 #include <rclc/rclc.h>
 #include <rclc/executor.h>
 
+#include "driver/uart.h"
+
+#include <rmw_microxrcedds_c/config.h>
+#include <rmw_microros/rmw_microros.h>
+#include "esp32_serial_transport.h"
+
 #define PIN_SDA 21
 #define PIN_CLK 22
 
@@ -36,7 +44,8 @@ Modified by Peter Nguyen
 
 Quaternion q;           // [w, x, y, z]         quaternion container
 VectorFloat gravity;    // [x, y, z]            gravity vector
-float ypr[2];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
+float ypr[3];      		// [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
+VectorInt16 accel;
 uint16_t packetSize = 42;    // expected DMP packet size (default is 42 bytes)
 uint16_t fifoCount;     // count of all bytes currently in FIFO
 uint8_t fifoBuffer[64]; // FIFO storage buffer
@@ -46,7 +55,11 @@ MPU6050 mpu;
 rcl_publisher_t publisher;
 std_msgs__msg__Float32MultiArray msg;
 
-void task_init(void *ignore) {
+extern "C" {
+	void app_main(void);
+}
+
+void task_init() {
 
 	//Initialize I2C
 
@@ -66,17 +79,31 @@ void task_init(void *ignore) {
 
 	mpu = MPU6050();
 	mpu.initialize();
-	mpu.dmpInitialize();
+	RCCHECK(mpu.dmpInitialize());
 
 	// This need to be setup individually
-	mpu.setXGyroOffset(220);
-	mpu.setYGyroOffset(76);
-	mpu.setZGyroOffset(-85);
-	mpu.setZAccelOffset(1788);
+	//mpu.setXGyroOffset(220);
+	//mpu.setYGyroOffset(76);
+	//mpu.setZGyroOffset(-85);
+	//mpu.setZAccelOffset(1788);
+
+	mpu.setXGyroOffset(mpu.getXGyroOffset());
+	mpu.setYGyroOffset(mpu.getYGyroOffset());
+	mpu.setZGyroOffset(mpu.getZGyroOffset());
+	mpu.setZAccelOffset(mpu.getZAccelOffset());
+	
+
+	// Calibration Time: generate offsets and calibrate our MPU6050
+	mpu.CalibrateGyro(6);
+	mpu.CalibrateAccel(6);
 
 	mpu.setDMPEnabled(true);
 
-	vTaskDelete(NULL);
+	//Allocate message memory
+	static float memory[3];
+    msg.data.capacity = 3;
+    msg.data.data = memory;
+    msg.data.size = 0;
 }
 
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
@@ -105,35 +132,45 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 	 		mpu.dmpGetQuaternion(&q, fifoBuffer);
 			mpu.dmpGetGravity(&gravity, &q);
 			mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
-			printf("YAW: %3.1f, ", ypr[0] * 180/M_PI);
-			printf("PITCH: %3.1f, ", ypr[1] * 180/M_PI);
-			printf("ROLL: %3.1f \n", ypr[2] * 180/M_PI);
+			//ypr[0] = ypr[0] * 180/M_PI;
+			//ypr[1] = ypr[1] * 180/M_PI;
+			//ypr[2] = ypr[2] * 180/M_PI;
+
+			mpu.dmpGetAccel(&accel, fifoBuffer);
 	    }
 
 		//micro-ROS to publish to topic
 
-		for(int32_t i = 0; i < 3; i++){
-			msg.data.data = &ypr[i];
+		for (int32_t i = 0; i < 3; i++) {
+			msg.data.data[i] = ypr[i] * 180/M_PI;
 			msg.data.size++;
 		}
 
 		RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
 
 		msg.data.size = 0;
-		/*
-		msg.data = ypr[0] * 180/M_PI;
-		RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
-		msg.data = ypr[1] * 180/M_PI;
-		RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
-		msg.data = ypr[2] * 180/M_PI;
-		RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
-		*/
-		//msg.data++;
 	}
 }
 
-void micro_ros_task(void * arg)
+static size_t uart_port = UART_NUM_0;
+
+void app_main(void)
 {
+	//Create serial UART connection using custom transport
+	//Needed for micro-ROS ESP-IDF component
+	#if defined(RMW_UXRCE_TRANSPORT_CUSTOM)
+	rmw_uros_set_custom_transport(
+		true,
+		(void *) &uart_port,
+		esp32_serial_open,
+		esp32_serial_close,
+		esp32_serial_write,
+		esp32_serial_read
+	);
+	#else
+	#error micro-ROS transports misconfigured
+	#endif  // RMW_UXRCE_TRANSPORT_CUSTOM
+	
 	//Setup for micro-ROS
 
 	rcl_allocator_t allocator = rcl_get_default_allocator();
@@ -161,7 +198,7 @@ void micro_ros_task(void * arg)
 	//100/portTICK_PERIOD_MS
 	//Gyrometer: 8kHz
 	//Accelerometer: 1 kHz
-	const unsigned int timer_timeout = 1;
+	const unsigned int timer_timeout = 100;
 	RCCHECK(rclc_timer_init_default(
 		&timer,
 		&support,
@@ -173,16 +210,8 @@ void micro_ros_task(void * arg)
 	RCCHECK(rclc_executor_init(&executor, &support.context, 1, &allocator));
 	RCCHECK(rclc_executor_add_timer(&executor, &timer));
 
-	//Assign memory to sequence
-	/*
-	msg.data.capacity = 100;
-	msg.data.data = (float64_t*) malloc(msg.data.capacity * sizeof(float64_t));
-	msg.data.size = 0;
-	*/
-	static float_t memory[2];
-	msg.data.capacity = 2;
-	msg.data.data = memory;
-	msg.data.size = 0;
+	vTaskDelay(500/portTICK_PERIOD_MS);
+	task_init();
 
 	while(1){
 		rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
