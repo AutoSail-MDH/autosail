@@ -10,6 +10,8 @@ Place the `gps_test_validation` folder in `$ROS2_WORKSPACE/src`
 cd ~/$ROS2_WORKSPACE
 
 colcon build
+
+. install/setup.bash
 ```
 Run the listener app
 ```
