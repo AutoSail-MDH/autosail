@@ -37,31 +37,53 @@ source $HOME/.bashrc
 
 ## Test
 
-### Land PC
+### Boat publish to land
 
-```console
-T1: ros2 run demo_nodes_cpp listener
-> [INFO] [1636924614.288293801] [listener]: I heard: [Hello World: 1]
-T2: ros2 run demo_nodes_cpp talker
-> [INFO] [1636924614.287177107] [talker]: Publishing: 'Hello World: 1'
-
-T3: ros2 topic list
-> /chatter
-> /parameter_events
-> /rosout
-```
-
-### Boat PC
+#### Land PC
 
 ```console
 T1: ros2 run demo_nodes_cpp listener
 > [INFO] [1636924614.288293801] [listener]: I heard: [Hello World: 1]
 
-T2: ros2 run demo_nodes_cpp talker
-> [INFO] [1636924614.287177107] [talker]: Publishing: 'Hello World: 1'
-
-T3: ros2 topic list
+T2: ros2 topic list
 > /chatter
 > /parameter_events
 > /rosout
 ```
+
+#### Boat PC
+
+```console
+T1: ros2 run demo_nodes_cpp talker
+> [INFO] [1636924614.287177107] [talker]: Publishing: 'Hello World: 1'
+
+T2: ros2 topic list
+> /chatter
+> /parameter_events
+> /rosout
+```
+
+### Land publish to boat
+
+#### Land PC
+
+```console
+T1: ros2 run demo_nodes_cpp talker
+> [INFO] [1636924614.287177107] [talker]: Publishing: 'Hello World: 1'
+
+T2: ros2 topic list
+> /chatter
+> /parameter_events
+> /rosout
+```
+
+#### Boat PC
+
+```console
+T1: ros2 run demo_nodes_cpp listener
+> [INFO] [1636924614.288293801] [listener]: I heard: [Hello World: 1]
+
+T2: ros2 topic list
+> /chatter
+> /parameter_events
+> /rosout
