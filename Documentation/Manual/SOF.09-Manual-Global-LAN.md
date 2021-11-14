@@ -2,6 +2,9 @@
 
 The following manual will describe how to setup communication between boat and land through 4G cellular network, see [fig 1](#Global-LAN/network-autosail.png).
 
+
+Follow attached guide to create an account and set up a Zerotier Network and adding clients and server, see "ZeroTier configuration - Teltonika Networks Wiki.html".
+
 ![Autosail Network using Zerotier](SOF.09/network-autosail.png)
 
 ## Initial setup if no setup exists
