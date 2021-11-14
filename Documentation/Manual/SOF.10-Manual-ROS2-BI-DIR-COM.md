@@ -4,46 +4,64 @@ This manual will describe how to initiate a bidirectional communication between 
 
 This guide assumes that ROS2-full (not base) is installed on both clients and server.
 
-## Setup host (Land PC)
+## Prerequisites
 
-### Start server
+### rosdep
 
-    > fastdds discovery -i 0
+```console
+sudo apt-get install python3-rosdep
+sudo rosdep init # Only once
+rosdep update
+```
 
-### Start listener in a new terminal to receive msg from the boat(Do not forget to source ROS 2 in every new terminal)
+[More info of rosdep](https://wiki.ros.org/rosdep#Installing_rosdep)
 
-#### Insert node to be received from boat, example of demo
+### eProsima Fast DDS
 
-    > export ROS_DISCOVERY_SERVER="127.0.0.1:11811"
+```concole
+sudo apt install ros-foxy-rmw-fastrtps-cpp
+```
 
-#### The following command will listen to the specified node coming from the boat on land pc loopback address, in this case a demo
+## Switch to rmw_fastrtps
 
-    > ros2 run demo_nodes_cpp listener --ros-args --remap __node:=listener_discovery_server
+```concole
+export RMW_IMPLEMENTATION=rmw_fastrtps_cpp # In every new terminal
+# OR 
+echo "export RMW_IMPLEMENTATION=rmw_fastrtps_cpp" >> $HOME/.bashrc
+source $HOME/.bashrc
+```
 
-### Start talker in a new terminal to transmit msg to the boat(Do not forget to source ROS 2 in every new terminal)
+[More info: Working with multiple RMW implementations](https://ftp-osl.osuosl.org/pub/ros/ros_docs_mirror/en/galactic/How-To-Guides/Working-with-multiple-RMW-implementations.html)
 
-#### Insert node to be transmitted to loopback and listened by boat, example of demo
+## All machines can now communicate topics on zerotier network
 
-    > export ROS_DISCOVERY_SERVER="127.0.0.1:11811"
+## Test
 
-    > ros2 run demo_nodes_cpp talker --ros-args --remap __node:=talker_discovery_server
+### Land PC
 
-## Setup target (Boat pc)
+```console
+T1: ros2 run demo_nodes_cpp listener
+> [INFO] [1636924614.288293801] [listener]: I heard: [Hello World: 1]
+T2: ros2 run demo_nodes_cpp talker
+> [INFO] [1636924614.287177107] [talker]: Publishing: 'Hello World: 1'
 
-Fetch land_PC_ip_address from [https://my.zerotier.com/network](https://my.zerotier.com/network)
+T3: ros2 topic list
+> /chatter
+> /parameter_events
+> /rosout
+```
 
-### Start listener in a new terminal to receive msg from the land pc (Do not forget to source ROS 2 in every new terminal)
+### Boat PC
 
-    > export ROS_DISCOVERY_SERVER="<land_PC_ip_address>:11811"
+```console
+T1: ros2 run demo_nodes_cpp listener
+> [INFO] [1636924614.288293801] [listener]: I heard: [Hello World: 1]
 
-    > ros2 run demo_nodes_cpp listener --ros-args --remap __node:=listener_discovery_server
+T2: ros2 run demo_nodes_cpp talker
+> [INFO] [1636924614.287177107] [talker]: Publishing: 'Hello World: 1'
 
-### Start talker in a new terminal to transmit msg to the land pc (Do not forget to source ROS 2 in every new terminal)
-
-    > export ROS_DISCOVERY_SERVER="<land_PC_ip_address>:11811"
-
-    > ros2 run demo_nodes_cpp talker --ros-args --remap __node:=talker_discovery_server
-
-**Note**: If more targets (clients) are wanted, redo "Setup target (Boat PC)"
-
-Further reading see [Use ROS 2 with Fast-DDS Discovery Server](https://fast-dds.docs.eprosima.com/en/latest/fastdds/ros2/discovery_server/ros2_discovery_server.html#discovery-server-v2)
+T3: ros2 topic list
+> /chatter
+> /parameter_events
+> /rosout
+```
