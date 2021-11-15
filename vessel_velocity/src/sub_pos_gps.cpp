@@ -5,36 +5,31 @@
 #include <math.h>
 //Dependencies
 #include "rclcpp/rclcpp.hpp" //Common for ROS 2
-#include <std_msgs/msg/float32_multi_array.hpp> //Built-in messages types for publishing data
+#include <std_msgs/msg/float32_multi_array.hpp> //Built-in message types for publishing data
 
 using namespace std::chrono_literals;
 using std::placeholders::_1;
-
-/* This example creates a subclass of Node and uses std::bind() to register a
- * member function as a callback from the timer. */
 
 class MinimalPubSub : public rclcpp::Node //Create node class by inheriting
 { //this refers to the MinimalPublisher node
 public:
   MinimalPubSub() //The public constructor intits node
   : Node("pubsub")
-  { //           node  create publisher of type String      Topic name and value
+  {
     GPS_sub_ = this->create_subscription<std_msgs::msg::Float32MultiArray>( //Constructor uses the node's create_subscription class for callbacks
       "/position/GPS", 50, std::bind(&MinimalPubSub::GPS_topic_callback, this, _1)); //No timer, instant response
 
-    publisher_ = this->create_publisher<std_msgs::msg::Float32MultiArray>("/velocity/calculator", 50); //Init msg type, topic name and msg size
+    publisher_ = this->create_publisher<std_msgs::msg::Float32MultiArray>("/boat/velocity", 50); //Init msg type, topic name and msg size
 
-    nodeTime_ = this->get_clock();
+    nodeTime_ = this->get_clock(); //Create clock starting at the time of node creation
   }
 
 private:
-  void GPS_topic_callback(const std_msgs::msg::Float32MultiArray::SharedPtr msg) //Receives the string message data published over the topic
+  void GPS_topic_callback(const std_msgs::msg::Float32MultiArray::SharedPtr msg)
   {
-    //auto message = msg->data[0]; //Test
     auto message = std_msgs::msg::Float32MultiArray();
     
-    RCLCPP_INFO(this->get_logger(), "Lat: '%lf', Lon: '%lf'", msg->data[0], msg->data[1]); //Write to console using macro
-    //RCLCPP_INFO(this->get_logger(), "Yaw: '%lf, Pitch: '%lf, Roll: '%lf, '", msg->data[0], msg->data[1], msg->data[2]);
+    //RCLCPP_INFO(this->get_logger(), "Lat: '%lf', Lon: '%lf'", msg->data[0], msg->data[1]); //Write to console using macro
 
     auto curr_GPS_ = msg->data; //Get current GPS reading
     currTime_ = nodeTime_->now(); //Get time elapsed since node initialization
@@ -43,12 +38,14 @@ private:
 
     // Get the distance between current and previous GPS reading
 
+    //Convert coordinates from degrees to radians
     float currLat = curr_GPS_[0] * M_PIl / 180.0;
     float currLon = curr_GPS_[1] * M_PIl / 180.0;
 
     float prevLat = prev_GPS_[0] * M_PIl / 180.0;
     float prevLon = prev_GPS_[1] * M_PIl / 180.0;
 
+    /*
     // P
     float currRho = r * cos(currLat);
     float currZ = r * sin(currLat);
@@ -71,37 +68,50 @@ private:
     float theta = acos(cos_theta);
 
     float dist = r * theta;
+    */
+
+    //Haversine formula: distance between two points on earth
+    float u = sin((currLat - prevLat)/2);
+    float v = sin((currLon - prevLon)/2);
+    float dist = 2.0 * r * asin(sqrt(u * u + cos(prevLat) * cos(currLat) * v * v));
 
     //Calculate average speed
 
-    auto avgTime = (currTime_ - prevTime_).nanoseconds();
-    float velocity = dist / avgTime; //m/s
+    float deltaTime = abs((float)((currTime_ - prevTime_).nanoseconds()) / pow(10, 9)); //Time difference in seconds, with nanosecond precision
+    float velocity = dist / deltaTime; //m/s
     //velocity = (velocity * 3600.0) / 1000.0; //km/h
 
-    //RCLCPP_INFO(this->get_logger(), "currLat: %f, prevLon: %f, currY: %f, prevY: %f, dot: %f, cos_theta: %f, theta: %f, dist: %f, avgTime: %f", currLat, prevLon, currY, prevY, dot, cos_theta, theta, dist, avgTime);
-    message.data = {velocity};
-    RCLCPP_INFO(this->get_logger(), "velocity: '%f'", velocity);
-    }
+    message.data = {velocity}; //Data to publish
 
-    //Set current to previous GPS reading
+    if (curr_GPS_[0] != prev_GPS_[0] || curr_GPS_[1] !=  prev_GPS_[1]) { //Print only if position changed since last
+      //RCLCPP_INFO(this->get_logger(), "currLat: %f, prevLon: %f, currY: %f, prevY: %f, dot: %f, cos_theta: %f, theta: %f, dist: %f, deltaTime: %f", currLat, prevLon, currY, prevY, dot, cos_theta, theta, dist, deltaTime);
+      //RCLCPP_INFO(this->get_logger(), "currLat: %f, prevLon: %f, u: %f, v: %f, dist: %f, deltaTime: %f", currLat, prevLon, u, v, dist, deltaTime);
+      RCLCPP_INFO(this->get_logger(), "Lat: '%lf', Lon: '%lf'", curr_GPS_[0], curr_GPS_[1]);
+      RCLCPP_INFO(this->get_logger(), "velocity: '%f'", velocity);
+      RCLCPP_INFO(this->get_logger(), "deltaTime: '%f'", (float) deltaTime);
+      //RCLCPP_INFO(this->get_logger(), "prevLat: '%lf', prevLon: '%lf'", prev_GPS_[0], prev_GPS_[1]);
+      }
+    }
+    else //Print start position
+      RCLCPP_INFO(this->get_logger(), "Lat: '%lf', Lon: '%lf'", curr_GPS_[0], curr_GPS_[1]);
+
+    //Save current GPS readings
     prev_GPS_ = curr_GPS_;
     prevTime_ = currTime_;
 
     //while (publisher_->get_subscription_count() < 1);
-    rclcpp::sleep_for(std::chrono::nanoseconds(5)); //To have enough time to publish
+    rclcpp::sleep_for(std::chrono::nanoseconds(1)); //To have enough time to publish
     publisher_->publish(message);
   }
 
   //Declaration of fields
   rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr GPS_sub_;
   rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr publisher_;
-  //std_msgs::msg::Float32MultiArray::SharedPtr curr_GPS_;
-  //std_msgs::msg::Float32MultiArray::SharedPtr prev_GPS_;
   rclcpp::Clock::SharedPtr nodeTime_;
   std::vector<float> prev_GPS_;
   rclcpp::Time currTime_;
   rclcpp::Time prevTime_;
-  float r = 6371000; //Earth radius m
+  float r = 6371000; //Earth radius in meters
 };
 
 int main(int argc, char * argv[])
