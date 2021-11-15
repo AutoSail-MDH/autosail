@@ -1,4 +1,30 @@
-++ 1.1 - **Software**
+@startwbs ABSWBS
+' !include style.puml
+<style>
+  wbsDiagram {
+    Linecolor DimGray
+    BackgroundColor White
+    RoundCorner 10
+    Shadowing 0
+    margin 8
+    padding 5
+    MaximumWidth 220
+    MinimumWidth 220
+    ' FontName Arial black
+    ' HorizontalAlignment center
+    ' LineThickness 0
+    :depth(0) {
+      padding 10
+      FontSize 15
+      HorizontalAlignment center
+    }
+     :depth(1) {
+         LineThickness 1
+        HorizontalAlignment center
+    }
+     :depth(1) {
+         LineThickness 1
+     }
 
 +++ 1.1.1 - SBC Land
 ++++ 1.1.1.1 - Fail-safe signal control
