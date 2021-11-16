@@ -6,8 +6,6 @@ These values come from the Adafruit MPU-6050 6-DOF IMU.
 The version of ROS2 is Foxy desktop on Ubuntu 20.04. The node publishes to the topic `/position/IMU`
 
 ## Prerequsities
-This application assumes the user has installed ros2 and micro-ros using the following tutorials:
-
 This application assumes the user has Docker and either ESP-IDF version v4.1, v4.2 or v4.3.
 
 If the user has installed the ESP-IDF prerequisites, the micro-ROS ESP-IDF component probably won't work.
