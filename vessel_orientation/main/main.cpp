@@ -132,9 +132,6 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 	 		mpu.dmpGetQuaternion(&q, fifoBuffer);
 			mpu.dmpGetGravity(&gravity, &q);
 			mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
-			//ypr[0] = ypr[0] * 180/M_PI;
-			//ypr[1] = ypr[1] * 180/M_PI;
-			//ypr[2] = ypr[2] * 180/M_PI;
 
 			mpu.dmpGetAccel(&accel, fifoBuffer);
 	    }
