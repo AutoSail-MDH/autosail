@@ -3,8 +3,13 @@ using namespace std;
 
 int main() {
     int wind_direction = 0;
-    float wind_angle = 90;
+    float wind_angle_rad = 3.1415926536;
+    float wind_angle = 0;
     float sail_angle = 0;
+    float pi = 3.141592653589793238463;  // 3.14159;  // 22 / 7;
+
+    // convert radians to degrees
+    wind_angle = wind_angle_rad * (180 / pi);
 
     if (wind_angle > -45 && wind_angle < 45) {
         wind_direction = 1;
@@ -36,7 +41,6 @@ int main() {
             } else {
                 sail_angle = -30;
             }
-
             break;
         case 4:  // beam reach
             cout << "beam reach" << endl;
@@ -45,7 +49,6 @@ int main() {
             } else {
                 sail_angle = -45;
             }
-
             break;
         case 5:  // broad reach
             cout << "broad reach" << endl;
@@ -54,7 +57,6 @@ int main() {
             } else {
                 sail_angle = -60;
             }
-
             break;
         case 6:  // running
             cout << "running" << endl;
