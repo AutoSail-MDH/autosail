@@ -29,8 +29,11 @@ ros2 run vessel_orientation sub_pos_gps
 ```
 
 For it to actually function it needs to receive GPS data.
+
 Download one of the ROS2 bags with GPS data here: https://github.com/AutoSail-MDH/AutoSail-HT21/tree/vessel_position/ROS2/Testing/gps_test_validation/bag_files
+
 Put the bag folder in the source of your workspace.
+
 Run the following commands at the source of your workspace with your ROS2 version sourced:
 ```
 . install/local_setup.bash
