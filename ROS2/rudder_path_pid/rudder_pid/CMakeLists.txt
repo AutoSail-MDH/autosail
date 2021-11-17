@@ -18,10 +18,12 @@ add_executable(pub src/publisher.cpp)
 ament_target_dependencies(pub rclcpp std_msgs)
 add_executable(sub src/subscriber.cpp)
 ament_target_dependencies(sub rclcpp std_msgs)
-
+add_executable(sub_pub src/sub_pub.cpp)
+ament_target_dependencies(sub_pub rclcpp std_msgs)
 install(TARGETS
   pub
   sub
+  sub_pub
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
