@@ -4,6 +4,7 @@ using namespace std;
 int main() {
     int wind_direction = 0;
     float wind_angle = -45;
+    float sail_angle = 0;
 
     if (wind_angle > -45 && wind_angle < 45) {
         wind_direction = 1;
@@ -21,26 +22,48 @@ int main() {
 
     switch (wind_direction) {
         case 1:  // no go
-            cout << "1" << endl;
+            cout << "no go" << endl;
+            sail_angle = 0;
             break;
         case 2:  // close hauled
-            cout << "2" << endl;
+            cout << "close hauled" << endl;
+            sail_angle = 0;
             break;
         case 3:  // close reach
-            cout << "3" << endl;
+            cout << "close reach" << endl;
+            if (wind_angle < 0) {
+                sail_angle = 30;
+            } else {
+                sail_angle = -30;
+            }
+
             break;
         case 4:  // beam reach
-            cout << "4" << endl;
+            cout << "beam reach" << endl;
+            if (wind_angle < 0) {
+                sail_angle = 45;
+            } else {
+                sail_angle = -45;
+            }
+
             break;
         case 5:  // broad reach
-            cout << "5" << endl;
+            cout << "broad reach" << endl;
+            if (wind_angle < 0) {
+                sail_angle = 60;
+            } else {
+                sail_angle = -60;
+            }
+
             break;
         case 6:  // running
-            cout << "6" << endl;
+            cout << "running" << endl;
+            sail_angle = 90;
             break;
         default:
             cout << "0" << endl;
     }
+    cout << "Wind direction: " << wind_angle << " Sail angle: " << sail_angle << endl;
 
     return 0;
 }
