@@ -81,7 +81,7 @@ private:
     float velocity = dist / deltaTime; //m/s
     //velocity = (velocity * 3600.0) / 1000.0; //km/h
 
-    message.data = {velocity}; //Data to publish
+    message.data = {velocity, currLat, currLon}; //Data to publish
 
     if (curr_GPS_[0] != prev_GPS_[0] || curr_GPS_[1] !=  prev_GPS_[1]) { //Print only if position changed since last
       //RCLCPP_INFO(this->get_logger(), "currLat: %f, prevLon: %f, currY: %f, prevY: %f, dot: %f, cos_theta: %f, theta: %f, dist: %f, deltaTime: %f", currLat, prevLon, currY, prevY, dot, cos_theta, theta, dist, deltaTime);
