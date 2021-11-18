@@ -4,6 +4,7 @@
 
 int get_direction(float wind_angle) {
     int wind_direction = 0;
+
     if (wind_angle > -45 && wind_angle < 45) {
         wind_direction = 1;
     } else if ((wind_angle >= 45 && wind_angle < 55) || (wind_angle > -55 && wind_angle <= -45)) {
