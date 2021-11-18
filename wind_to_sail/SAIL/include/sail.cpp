@@ -1,17 +1,9 @@
+#include "sail.hpp"
+
 #include <iostream>
-using namespace std;
 
-int main() {
+int get_direction(float wind_angle) {
     int wind_direction = 0;
-    float wind_angle_rad = -3.1415926536;
-    float wind_angle = 0;
-    float sail_angle = 0;
-    float pi = 3.141592653589793238463;  // 3.14159;  // 22 / 7;
-
-    // convert radians to degrees
-    wind_angle = wind_angle_rad * (180 / pi);
-
-    // determine which wind direction the wind angle is
     if (wind_angle > -45 && wind_angle < 45) {
         wind_direction = 1;
     } else if ((wind_angle >= 45 && wind_angle < 55) || (wind_angle > -55 && wind_angle <= -45)) {
@@ -25,8 +17,11 @@ int main() {
     } else if ((wind_angle >= 170 && wind_angle <= 180) || (wind_angle >= -180 && wind_angle <= -170)) {
         wind_direction = 6;
     }
+    return wind_direction;
+}
 
-    // set angle according to wind direction
+float set_angle(int wind_direction, float wind_angle) {
+    float sail_angle = 0;
     switch (wind_direction) {
         case 1:  // no go
             sail_angle = 0;
@@ -65,7 +60,5 @@ int main() {
         default:
             break;
     }
-    cout << "Wind direction: " << wind_angle << " Sail angle: " << sail_angle << endl;
-
-    return 0;
+    return sail_angle;
 }
