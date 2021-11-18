@@ -57,6 +57,6 @@ You might have to press the restart button on the esp32 if the agent does not wo
 
 In another terminal, monitor the topic you published to
 ```
-ros2 topic echo /position/RMC
+ros2 topic echo /RMC/angle
 ```
 
