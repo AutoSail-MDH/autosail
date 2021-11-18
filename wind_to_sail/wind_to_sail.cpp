@@ -3,7 +3,7 @@ using namespace std;
 
 int main() {
     int wind_direction = 0;
-    float wind_angle_rad = 3.1415926536;
+    float wind_angle_rad = -3.1415926536;
     float wind_angle = 0;
     float sail_angle = 0;
     float pi = 3.141592653589793238463;  // 3.14159;  // 22 / 7;
@@ -11,6 +11,7 @@ int main() {
     // convert radians to degrees
     wind_angle = wind_angle_rad * (180 / pi);
 
+    // determine which wind direction the wind angle is
     if (wind_angle > -45 && wind_angle < 45) {
         wind_direction = 1;
     } else if ((wind_angle >= 45 && wind_angle < 55) || (wind_angle > -55 && wind_angle <= -45)) {
@@ -25,17 +26,15 @@ int main() {
         wind_direction = 6;
     }
 
+    // set angle according to wind direction
     switch (wind_direction) {
         case 1:  // no go
-            cout << "no go" << endl;
             sail_angle = 0;
             break;
         case 2:  // close hauled
-            cout << "close hauled" << endl;
             sail_angle = 0;
             break;
         case 3:  // close reach
-            cout << "close reach" << endl;
             if (wind_angle > 0) {
                 sail_angle = 30;
             } else {
@@ -43,7 +42,6 @@ int main() {
             }
             break;
         case 4:  // beam reach
-            cout << "beam reach" << endl;
             if (wind_angle > 0) {
                 sail_angle = 45;
             } else {
@@ -51,7 +49,6 @@ int main() {
             }
             break;
         case 5:  // broad reach
-            cout << "broad reach" << endl;
             if (wind_angle > 0) {
                 sail_angle = 60;
             } else {
@@ -59,7 +56,6 @@ int main() {
             }
             break;
         case 6:  // running
-            cout << "running" << endl;
             if (wind_angle > 0) {
                 sail_angle = 90;
             } else {
@@ -67,7 +63,7 @@ int main() {
             }
             break;
         default:
-            cout << "0" << endl;
+            break;
     }
     cout << "Wind direction: " << wind_angle << " Sail angle: " << sail_angle << endl;
 
