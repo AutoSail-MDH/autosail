@@ -16,8 +16,11 @@ find_package(std_msgs REQUIRED)
 
 add_executable(rpp src/rudder_path_pid.cpp)
 ament_target_dependencies(rpp rclcpp std_msgs)
+add_executable(sub src/subscriber.cpp)
+ament_target_dependencies(sub rclcpp std_msgs)
 install(TARGETS
   rpp
+  sub
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
