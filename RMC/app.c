@@ -1,5 +1,5 @@
 /*
-https://github.com/espressif/esp-idf/tree/master/examples/peripherals/ledc/ledc_basic
+https://github.com/espressif/esp-idf/blob/master/examples/peripherals/mcpwm/mcpwm_servo_control/main/mcpwm_servo_control_example_main.c
 */
 
 #include <rcl/rcl.h>

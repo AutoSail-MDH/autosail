@@ -9,6 +9,12 @@
                 "-DRMW_UXRCE_MAX_CLIENTS=0",
                 "-DRMW_UXRCE_MAX_HISTORY=1",
             ]
+        },
+        "microxrcedds_client": {
+            "cmake-args": [
+                "-DUCLIENT_MAX_SESSION_CONNECTION_ATTEMPTS=5000",
+                "-DUCLIENT_MIN_SESSION_CONNECTION_INTERVAL=100",
+            ]
         }
     }
 }
