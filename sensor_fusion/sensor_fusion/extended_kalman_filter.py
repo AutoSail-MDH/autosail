@@ -1,6 +1,7 @@
 """
 Extended kalman filter (EKF) localization sample
 author: Atsushi Sakai (@Atsushi_twi)
+edited by: Peter Nguyen
 """
 
 import math
@@ -10,6 +11,7 @@ import numpy as np
 import rclpy
 from rclpy.node import Node
 
+#Variance values not yet measured
 
 # Covariance matrix of process noise
 Q = np.diag([

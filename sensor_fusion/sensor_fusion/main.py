@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from sensor_fusion.extended_kalman_filter import calc_input, ekf_estimation, jacob_h, observation
+from sensor_fusion.extended_kalman_filter import ekf_estimation
 
 from std_msgs.msg import Float32MultiArray
 from sensor_msgs.msg import JointState
@@ -21,7 +21,7 @@ class MinimalPublisher(Node):
 
         self.publisher_ = self.create_publisher(Float32MultiArray, '/position/fusion', 10)
 
-        self.prevTime_ = None
+        self.curr_GPS_ = []
 
         # EKF
         self.xEst = np.zeros((4, 1)) #State vector [x y yaw v]
@@ -33,23 +33,19 @@ class MinimalPublisher(Node):
         ypr = msg.position          #[yaw pitch roll]
         accel = msg.velocity        #[z y x]
         gyro = msg.effort           #[z y x]
-        GPS = self.curr_GPS_        #[v x y]
+        GPS = self.curr_GPS_        #[v x y deltaTime]
 
-        time = msg.header.stamp
-        currTime = time.sec
-
-        if self.prevTime_ != None:  #//Atleast two readings
-
+        if self.curr_GPS_:  #//Atleast two readings
+            
             v = GPS[0]              #Speed from GPS
             x = GPS[1]              #Latitude
             y = GPS[2]              #Longitude
+            DT = GPS[3]             #Difference in time between readings [s]
             z = np.array([[x],      #Observation vector
                             [y]])
 
             yaw = ypr[0]            #z-axis rotation
             yawrate = gyro[0]       #z-axis gyroscope value
-
-            DT = currTime - self.prevTime_  #time tick [s]
 
             self.get_logger().info('v: %f, x: %f, y: %f, yaw: %f, yawrate: %f, DT: %f' % (v, x, y, yaw, yawrate, DT))
 
@@ -65,8 +61,6 @@ class MinimalPublisher(Node):
             message.data = {float(self.xEst[3]), float(self.xEst[0]), float(self.xEst[1])} #[v x y]
             self.publisher_.publish(message)
             self.get_logger().info('v = %f, x = %f, y = %f' % (message.data[0], message.data[1], message.data[2]))
-        
-        self.prevTime_ = currTime
 
     def GPS_callback(self, msg):
         self.curr_GPS_ = msg.data
