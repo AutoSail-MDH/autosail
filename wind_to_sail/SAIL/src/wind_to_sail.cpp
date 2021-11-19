@@ -1,20 +1,9 @@
-#include <math.h>
-
-#include <iostream>
-
 #include "sail.cpp"
-
-using namespace std;
 
 int main() {
     int wind_direction = 0;
-    float wind_angle_rad = 3.1415926536;
-    float wind_angle = 0;
+    float wind_angle = 60;
     float sail_angle = 0;
-    float pi = M_PI;  // 3.14159;  // 3.141592653589793238463;
-
-    // convert radians to degrees
-    wind_angle = wind_angle_rad * (180 / pi);
 
     // determine which wind direction the wind angle is
     wind_direction = get_direction(wind_angle);
