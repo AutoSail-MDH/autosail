@@ -39,7 +39,7 @@ Modified by Peter Nguyen
 #define PIN_SDA 21
 #define PIN_CLK 22
 
-#define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Aborting.\n",__LINE__,(int)temp_rc);vTaskDelete(NULL);}}
+#define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Aborting.\n",__LINE__,(int)temp_rc);esp_restart();}}
 #define RCSOFTCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Continuing.\n",__LINE__,(int)temp_rc);}}
 
 Quaternion q;           // [w, x, y, z]         quaternion container
@@ -143,7 +143,7 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 			msg.data.size++;
 		}
 
-		RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
+		RCCHECK(rcl_publish(&publisher, &msg, NULL));
 
 		msg.data.size = 0;
 	}
@@ -169,6 +169,8 @@ void app_main(void)
 	#endif  // RMW_UXRCE_TRANSPORT_CUSTOM
 	
 	//Setup for micro-ROS
+	
+	while (RMW_RET_OK != rmw_uros_ping_agent(1000, 1));
 
 	rcl_allocator_t allocator = rcl_get_default_allocator();
 	rclc_support_t support;

@@ -32,7 +32,7 @@ Modified by Peter Nguyen
 #define PIN_SDA 21
 #define PIN_CLK 22
 
-#define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Aborting.\n",__LINE__,(int)temp_rc);vTaskDelete(NULL);}}
+#define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Aborting.\n",__LINE__,(int)temp_rc);esp_restart();}}
 #define RCSOFTCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Continuing.\n",__LINE__,(int)temp_rc);}}
 
 Quaternion q;           // [w, x, y, z]         quaternion container
@@ -163,7 +163,7 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 		msg.header.stamp.sec = tv.tv_sec;
 		msg.header.stamp.nanosec = tv.tv_usec; //microseconds
 
-		RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
+		RCCHECK(rcl_publish(&publisher, &msg, NULL));
 
 		msg.position.size = 0;
 		msg.velocity.size = 0;

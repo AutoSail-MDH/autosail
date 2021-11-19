@@ -18,7 +18,7 @@
 #include "driver/gpio.h"
 #include "driver/adc.h"
 
-#define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Aborting.\n",__LINE__,(int)temp_rc);vTaskDelete(NULL);}}
+#define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Aborting.\n",__LINE__,(int)temp_rc);esp_restart();}}
 #define RCSOFTCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Continuing.\n",__LINE__,(int)temp_rc);}}
 
 #define NO_OF_SAMPLES 64
@@ -49,15 +49,15 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
         //Average readings
         windDir = reading / NO_OF_SAMPLES;
         //Convert to radians
-        direction = windDir / 651;
+        direction = windDir / 12.3;
 
         //Adjust for starting position (wait for hardware team to modify)
-        //direction += 1;
+        direction += 32;
 
-        //Bound to [-pi,pi]
-        if(direction > 3.14){
+        //Bound to [0, 360]
+        if(direction > 360){
 
-            direction = direction - 6.28;
+            direction = direction - 360;
 
         }
 
@@ -66,7 +66,7 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 		msg.data.data = &direction;
 		msg.data.size++;
 
-		RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
+		RCCHECK(rcl_publish(&publisher, &msg, NULL));
 
 		msg.data.size = 0;
 	}
@@ -74,6 +74,8 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 
 void micro_ros_task(void * arg)
 {
+	while (RMW_RET_OK != rmw_uros_ping_agent(1000, 1));
+	
 	rcl_allocator_t allocator = rcl_get_default_allocator();
 	rclc_support_t support;
 

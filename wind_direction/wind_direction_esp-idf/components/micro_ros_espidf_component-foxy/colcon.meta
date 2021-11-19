@@ -29,7 +29,9 @@
                 "-DUCLIENT_PROFILE_CUSTOM_TRANSPORT=ON",
                 "-DUCLIENT_PROFILE_SERIAL=OFF",
                 "-DUCLIENT_PROFILE_TCP=OFF",
-                "-DUCLIENT_MIN_HEARTBEAT_TIME_INTERVAL=1"
+                "-DUCLIENT_MIN_HEARTBEAT_TIME_INTERVAL=1",
+                "-DUCLIENT_MAX_SESSION_CONNECTION_ATTEMPTS=1000",
+                "-DUCLIENT_MIN_SESSION_CONNECTION_INTERVAL=150"
             ]
         },
         "rmw_microxrcedds": {

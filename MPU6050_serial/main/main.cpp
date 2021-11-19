@@ -38,9 +38,11 @@ void app_main(void)
 #else
 #error micro-ROS transports misconfigured
 #endif  // RMW_UXRCE_TRANSPORT_CUSTOM
-        
-    xTaskCreate(&task_init, "mpu_task", 2048, NULL, 5, NULL);
-    //vTaskDelay(500/portTICK_PERIOD_MS);
+	
+	while (RMW_RET_OK != rmw_uros_ping_agent(1000, 1));
+	
+	xTaskCreate(&task_init, "mpu_task", 2048, NULL, 5, NULL);
+    	//vTaskDelay(500/portTICK_PERIOD_MS);
 	xTaskCreate(&micro_ros_task,
             "uros_task",
             CONFIG_MICRO_ROS_APP_STACK,

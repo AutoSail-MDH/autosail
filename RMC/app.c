@@ -14,6 +14,8 @@ https://github.com/espressif/esp-idf/blob/master/examples/peripherals/mcpwm/mcpw
 #include <unistd.h>
 #include <math.h>
 
+#include <rmw_microros/rmw_microros.h>
+
 #ifdef ESP_PLATFORM
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -21,7 +23,7 @@ https://github.com/espressif/esp-idf/blob/master/examples/peripherals/mcpwm/mcpw
 #include "esp_log.h"
 #endif
 
-#define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Aborting.\n",__LINE__,(int)temp_rc); vTaskDelete(NULL);}}
+#define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Aborting.\n",__LINE__,(int)temp_rc); esp_restart();}}
 #define RCSOFTCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Continuing.\n",__LINE__,(int)temp_rc);}}
 
 // You can get these value from the datasheet of servo you use, in general pulse width varies between 1000 to 2000 mocrosecond
@@ -47,11 +49,13 @@ void subscription_callback(const void * msgin)
 	vTaskDelay(pdMS_TO_TICKS(200)); //Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation under 5V power supply
 	
 	send_msg.data = (float)duty_us;
-	RCSOFTCHECK(rcl_publish(&publisher, &send_msg, NULL));
+	RCCHECK(rcl_publish(&publisher, &send_msg, NULL));
 }
 
 void appMain(void *argument)
 {
+	while (RMW_RET_OK != rmw_uros_ping_agent(1000, 1));
+	
 	rcl_allocator_t allocator = rcl_get_default_allocator();
 	rclc_support_t support;
 
