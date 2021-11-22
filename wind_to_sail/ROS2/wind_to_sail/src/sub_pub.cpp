@@ -2,17 +2,15 @@
 // Example written by Peter Nguyen, Modified by Erik Lindgren, Used and modified by Emma Jakobsson to fit wind_to_sail
 
 #include <chrono>
+#include <iostream>
 #include <memory>
 
 #include "rclcpp/rclcpp.hpp"
-//#include "sail.hpp"
-#include <iostream>
-
 #include "std_msgs/msg/float32.hpp"
 using namespace std;
 
 // Change these to your topics
-#define SUB_TOPIC "hejhej"  //"/direction/wind"
+#define SUB_TOPIC "/direction/wind"
 #define PUB_TOPIC "/sail/angle"
 // Change this to your message type, made this define to not have to write the long expression
 #define STD_MSG std_msgs::msg::Float32
@@ -35,35 +33,32 @@ class MinimalSubPub : public rclcpp::Node {
    private:
     void topic_callback(const STD_MSG::SharedPtr msg) {
         auto message = STD_MSG();
-        // Sets the message that was read from the subscriber
-        // message.data = msg->data;
 
-        // Do your message processing here
+        // initialize variables
         float wind_angle = msg->data;
         float sail_angle = 0;
         int wind_direction = 0;
 
         // determine which wind direction the wind angle is
-        // wind_direction = get_direction(wind_angle);
         if (wind_angle < 55 && wind_angle > 305) {
-            wind_direction = 1;
+            wind_direction = 1;  // no go and close hauled zone
         } else if ((wind_angle >= 55 && wind_angle < 80) || (wind_angle > 280 && wind_angle <= 305)) {
-            wind_direction = 2;
+            wind_direction = 2;  // close reach zone
         } else if ((wind_angle >= 80 && wind_angle < 120) || (wind_angle > 240 && wind_angle <= 280)) {
-            wind_direction = 3;
+            wind_direction = 3;  // beam reach zone
         } else if ((wind_angle >= 120 && wind_angle < 160) || (wind_angle > 200 && wind_angle <= 240)) {
-            wind_direction = 4;
+            wind_direction = 4;  // broad reach zone
         } else if (wind_angle >= 160 && wind_angle <= 200) {
-            wind_direction = 5;
+            wind_direction = 5;  // running zone
         }
 
         // set angle according to wind direction
-        // sail_angle = set_angle(wind_direction, wind_angle);
         switch (wind_direction) {
             case 1:  // no go and close hauled
                 sail_angle = 0;
                 break;
             case 2:  // close reach
+                // determine which side of the boat the sail should point towards, 0-180 starboard 180-360 port
                 if (wind_angle < 180) {
                     sail_angle = 30;
                 } else {
@@ -71,6 +66,7 @@ class MinimalSubPub : public rclcpp::Node {
                 }
                 break;
             case 3:  // beam reach
+                // determine which side of the boat the sail should point towards, 0-180 starboard 180-360 port
                 if (wind_angle < 180) {
                     sail_angle = 45;
                 } else {
@@ -78,6 +74,7 @@ class MinimalSubPub : public rclcpp::Node {
                 }
                 break;
             case 4:  // broad reach
+                // determine which side of the boat the sail should point towards, 0-180 starboard 180-360 port
                 if (wind_angle < 180) {
                     sail_angle = 60;
                 } else {
@@ -85,6 +82,7 @@ class MinimalSubPub : public rclcpp::Node {
                 }
                 break;
             case 5:  // running
+                // determine which side of the boat the sail should point towards, 0-180 starboard 180-360 port
                 if (wind_angle < 180) {
                     sail_angle = 90;
                 } else {
@@ -95,7 +93,7 @@ class MinimalSubPub : public rclcpp::Node {
                 break;
         }
 
-        // set the message to publish to the angle to set the sail
+        // set the message to publish to the angle of the sail
         message.data = sail_angle;
         printf("I heard: %f || Publishing: '%f'\n", msg->data, message.data);
 
