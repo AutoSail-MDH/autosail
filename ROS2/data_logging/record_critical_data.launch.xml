@@ -1,3 +1,0 @@
-<launch>
-	<executable cmd="ros2 bag record -o critical_data_recorded /topic_1 /topic_2" output="screen" />
-</launch>
