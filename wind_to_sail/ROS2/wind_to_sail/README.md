@@ -1,6 +1,6 @@
 # Wind to Sail
 
-Wind to sail reads the wind direction and sets the angle of the sail according to the direction of the wind. It is a stand in for the SNN that will replace it.
+Wind to sail reads the wind direction and sets the angle of the sail according to the direction of the wind. This is a simple stand in for the SNN that will later replace this node.
 
 ## Usage
 
