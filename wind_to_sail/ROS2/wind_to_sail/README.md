@@ -1,34 +1,22 @@
-# Foobar
+# Wind to Sail
 
-Foobar is a Python library for dealing with word pluralization.
-
-## Installation
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
-```bash
-pip install foobar
-```
+Wind to sail reads the wind direction and sets the angle of the sail according to the direction of the wind. It is a stand in for the SNN that will replace it.
 
 ## Usage
 
-```python
-import foobar
+Place the wind to sail folder in the src folder in your ROS2 workspace.
 
-# returns 'words'
-foobar.pluralize('word')
+## Setup
 
-# returns 'geese'
-foobar.pluralize('goose')
+```bash
+cd ~/dev_ws
 
-# returns 'phenomenon'
-foobar.singularize('phenomena')
+colcon build
+
+source install/local_setup.bash
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+## Run
+```bash
+ros2 run wind_to_sail sub_pub
+```
