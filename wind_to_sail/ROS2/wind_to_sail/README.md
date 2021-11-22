@@ -20,7 +20,6 @@ source install/local_setup.bash
 
 Run the publisher of the wind sensor by following the steps in the README in the wind_direction folder. (Put in link or path???)
 
-```
 Run the wind to sail that reads from the wind sensor and publishes sail angle.
 ```bash
 ros2 run wind_to_sail sub_pub
