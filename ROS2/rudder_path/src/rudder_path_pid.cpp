@@ -12,7 +12,7 @@
 
 // Change these to your topics
 #define SUB_TOPIC "/position/IMU"
-#define PUB_TOPIC "/position/RUDDER_ANGLE"
+#define PUB_TOPIC "/rudder/ANGLE"
 // Change this to your message type, made this define to not have to write the long expression
 #define STD_MULTIFLOAT std_msgs::msg::Float32MultiArray
 #define STD_FLOAT std_msgs::msg::Float32
@@ -48,6 +48,7 @@ class MinimalSubPub : public rclcpp::Node {
         float goal_lat = 60.000000 * M_PIl / 180.0;
         float goal_lon = 16.000000 * M_PIl / 180.0;
 
+        // if (Angle2Goal > 1) {
         float u = sin((goal_lat - curr_lat) / 2);
         float v = sin((goal_lon - curr_lon) / 2);
         float dDist = 2.0 * earth_rad * asin(sqrt(u * u + cos(curr_lat) * cos(goal_lat) * v * v));
@@ -71,10 +72,14 @@ class MinimalSubPub : public rclcpp::Node {
         Angle2Goal = bearing + heading;
         Angle2Goal = fmod(Angle2Goal, 360);
 
-        printf("[%d] [Boat Angle: %.2f] [Distance to goal: %.2f] [Angle to goal is: %.2f] [Final bearing: %.2f]\n", c++,
-               heading, dDist, Angle2Goal, bearing);
+        printf(
+            "[%d] [Boat Heading: %.2f deg] [Distance to goal: %.2f m] [Angle to goal is: %.2f deg] [Final bearing: "
+            "%.2f deg]\n",
+            c++, heading, dDist, Angle2Goal, bearing);
 
         // Assign data to the message and publish it
+        //}
+
         message.data = Angle2Goal;
         currTime_ = nodeTime_->now();
         rclcpp::sleep_for(std::chrono::nanoseconds(1));
@@ -94,3 +99,25 @@ int main(int argc, char* argv[]) {
     rclcpp::shutdown();
     return 0;
 }
+
+class MultiSubscriber : public rclcpp::Node {
+   public:
+    message_filters::Subscriber<sensor_msgs::msg::Image> image_sub_;
+    message_filters::Subscriber<sensor_msgs::msg::Image> disparity_sub_;
+    MultiSubscriber(const std::string& name) : Node(name) {
+        image_sub_.subscribe(this, "/image_color");
+        disparity_sub_.subscribe(this, "/image_disparity");
+        typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image>
+            approximate_policy;
+        message_filters::Synchronizer<approximate_policy> syncApproximate(approximate_policy(10), image_sub_,
+                                                                          disparity_sub_);
+        syncApproximate.setMaxIntervalDuration(rclcpp::Duration(3, 0));  // Added after a comment
+        syncApproximate.registerCallback(&MultiSubscriber::disparityCb, this);
+    }
+
+   private:
+    void disparityCb(const sensor_msgs::msg::Image::SharedPtr disparity_msg,
+                     const sensor_msgs::msg::Image::SharedPtr color_msg) {
+        std::cout << "Hello messages are being received";
+    }
+};
