@@ -4,7 +4,7 @@ Wind to sail reads the wind direction and sets the angle of the sail according t
 
 ## Prerequsities
 
-Connect the wind sensor and run the publisher of the wind sensor by following the steps in the README in the wind_direction folder, [wind direction README](https://github.com/AutoSail-MDH/AutoSail-HT21/tree/wind_direction/micro-ROS/Sensors/wind_direction).
+Connect the wind sensor and run the publisher of the wind sensor by following the steps in the README in the wind_direction folder, [wind direction README](https://github.com/AutoSail-MDH/AutoSail-HT21/tree/main/micro-ROS/Sensors/wind_direction/wind_direction_ros2).
 
 ## Usage
 
