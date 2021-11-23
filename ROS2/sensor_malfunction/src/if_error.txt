@@ -1,0 +1,70 @@
+#include <chrono>
+#include <memory>
+#include <cstring>
+#include <math.h>
+
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/int32.hpp"
+#include "std_msgs/msg/float32_multi_array.hpp"
+
+using namespace std::chrono_literals;
+using std::placeholders::_1;
+
+class MinimalSubscriber : public rclcpp::Node
+{
+    public:
+    MinimalSubscriber()
+    : Node("param_sub")
+    {
+        this->declare_parameter<std::string>("my_topic", "topic"); //(paramName, default)
+        this->get_parameter("my_topic", param_topic_); //(paramName, type)
+        subscription_ = this->create_subscription<std_msgs::msg::Float32MultiArray>( //Constructor uses the node's create_subscription class for callbacks
+        param_topic_, 50, std::bind(&MinimalSubscriber::topic_callback, this, _1)); //No timer, instant response
+
+        publisher_ = this->create_publisher<std_msgs::msg::Int32>("/sensor/malfunction", 50); //Init msg type, topic name and msg size
+        timer_ = this->create_wall_timer( //Init timer and start timer_callback to execute 2 times/s
+            500ms, std::bind(&MinimalSubscriber::timer_callback, this));
+        
+        nodeTime_ = this->get_clock(); //Create clock starting at the time of node creation
+    }
+
+    private: //Name and type must match with publisher
+    void topic_callback(const std_msgs::msg::Float32MultiArray::SharedPtr msg)
+    {
+        prevTime_ = nodeTime_->now(); //Get time elapsed since node initialization
+        RCLCPP_INFO(this->get_logger(), "Hello");
+        start = 1;
+    }
+    void timer_callback() //Function for setting messages and publishing
+    {
+        auto message = std_msgs::msg::Int32();
+        if (start == 1) {
+            auto diff = (nodeTime_->now() - prevTime_).seconds();
+
+            if (diff > 5)
+                message.data = -1;
+            else
+                message.data = 0;
+            
+            RCLCPP_WARN(this->get_logger(), "velocity: '%d'", message.data);
+            publisher_->publish(message);
+        }
+    }
+    //Field declaration
+    std::string param_topic_;
+    rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr subscription_;
+    rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr publisher_;
+
+    rclcpp::TimerBase::SharedPtr timer_;
+    rclcpp::Clock::SharedPtr nodeTime_;
+    rclcpp::Time prevTime_;
+    int32_t start = 0;
+};
+
+int main(int argc, char * argv[])
+{
+  rclcpp::init(argc, argv);
+  rclcpp::spin(std::make_shared<MinimalSubscriber>()); //Prep to receive from pub
+  rclcpp::shutdown();
+  return 0;
+}
