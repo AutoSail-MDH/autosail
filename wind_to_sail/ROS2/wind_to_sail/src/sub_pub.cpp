@@ -11,7 +11,7 @@
 using namespace std;
 
 // Change these to your topics
-#define SUB_TOPIC "/direction/wind"  //"/wind/test"  //"/direction/wind"
+#define SUB_TOPIC "/direction/wind"
 #define PUB_TOPIC "/position/SAIL_ANGLE"
 // Change this to your message type, made this define to not have to write the long expression
 #define STD_MSG std_msgs::msg::Float32
