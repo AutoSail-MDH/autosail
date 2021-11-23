@@ -4,11 +4,11 @@ Wind to sail reads the wind direction and sets the angle of the sail according t
 
 ## Prerequsities
 
-Run the publisher of the wind sensor by following the steps in the README in the wind_direction folder, [wind direction README](https://github.com/AutoSail-MDH/AutoSail-HT21/tree/wind_direction/micro-ROS/Sensors/wind_direction).
+Connect the wind sensor and run the publisher of the wind sensor by following the steps in the README in the wind_direction folder, [wind direction README](https://github.com/AutoSail-MDH/AutoSail-HT21/tree/wind_direction/micro-ROS/Sensors/wind_direction).
 
 ## Usage
 
-Place the wind to sail folder in the src folder in your ROS2 workspace.
+Place the wind_to_sail folder in the src folder in your ROS2 workspace.
 
 ## Setup
 
@@ -25,11 +25,4 @@ source install/local_setup.bash
 Run the wind to sail that reads from the wind sensor and publishes sail angle.
 ```bash
 ros2 run wind_to_sail sub_pub
-```
-
-##
-
-In the package, there is a simple publisher that publish values between 0 and 360. Instead of starting the publisher for the wind sensor to test the wind to sail node you can also run:
-```bash
-ros2 run wind_to_sail pub
 ```
