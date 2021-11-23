@@ -2,3 +2,4 @@ build
 sdkconfig
 sdkconfig.old
 .vscode
+micro_ros_espidf_component-foxy/
