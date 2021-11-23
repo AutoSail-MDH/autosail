@@ -61,9 +61,9 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 
         }
 
-		msg.data.data = &windDir;
+		msg.data.data[0] = windDir;
 		msg.data.size++;
-		msg.data.data = &direction;
+		msg.data.data[1] = direction;
 		msg.data.size++;
 
 		RCCHECK(rcl_publish(&publisher, &msg, NULL));
