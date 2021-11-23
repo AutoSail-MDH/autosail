@@ -24,7 +24,7 @@ class MinimalSubscriber : public rclcpp::Node {
    public:
     MinimalSubscriber() : Node("subscriber") {
         subscription_ = this->create_subscription<std_msgs::msg::Float32>(
-            "/sail/angle", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
+            "/position/SAIL_ANGLE", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
     }
 
    private:
