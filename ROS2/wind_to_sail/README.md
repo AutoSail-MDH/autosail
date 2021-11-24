@@ -1,6 +1,6 @@
 # Wind to Sail
 
-Wind to sail reads the wind direction and sets the angle of the sail according to the direction of the wind. This is a simple stand in for the SNN that will later replace this node. The node subscribes from the topic /direction/wind and publishes to /position/SAIL_ANGLE. It is run with ROS2 foxy desktop on Ubuntu 20.04.
+Wind to sail reads the wind direction and sets the angle of the sail according to the direction of the wind. This is a simple stand in for the SNN that will later replace this node. The node subscribes from the topic /direction/wind and publishes to /position/SAIL_ANGLE. The angle the node publishes is in the range [-90,90], where [-90,0] means the sail is to be pointed out on the port side of the boat and [0,90] on the starboard side. It is run with ROS2 foxy desktop on Ubuntu 20.04.
 
 ## Prerequsities
 
