@@ -30,7 +30,7 @@ def import_topics_from(filename):
     lines = []
     topics = []
     try:
-        # Read critical topics from list, ignore blank
+        # Read topics from list, ignore blank
         with open(filename) as f:
             lines = list(line for line in (l.strip() for l in f) if line)
         # Remove '\n'
