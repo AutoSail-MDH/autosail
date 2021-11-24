@@ -1,5 +1,5 @@
 # Sensor fusion
-This application creates a sensor fusion between the GPS and the IMU using EKF. It tries to give a better estimation of the velocity and position.
+This application creates a sensor fusion between the IMU and the GPS using EKF. It tries to give a better estimation of the velocity and the position.
 
 The version of ROS2 is Foxy desktop on Ubuntu 20.04. The application will read from /position/IMU and /boat/velocity, and publish a Float32MultiArray [v x y] to /position/fusion.
 
@@ -25,11 +25,12 @@ colcon build --packages-select sensor_malfunction
 ros2 launch sensor_malfunction malfunction_launch.py
 ```
 
-For it to actually function it needs to receive IMU and GPS data.
 
-Download this IMU bag here: https://github.com/AutoSail-MDH/AutoSail-HT21/tree/vessel_orientation/ROS2/Testing/bag_files/rosbag2_MPU6050_serial
+For this to function it needs to receive IMU and GPS data.
 
-Download one of the ROS2 bags with GPS data here: https://github.com/AutoSail-MDH/AutoSail-HT21/tree/vessel_position/ROS2/Testing/gps_test_validation/bag_files
+Download a IMU bag here: https://github.com/AutoSail-MDH/AutoSail-HT21/tree/vessel_orientation/ROS2/Testing/bag_files/rosbag2_MPU6050_serial
+
+Download a velocity bag here: https://github.com/AutoSail-MDH/AutoSail-HT21/tree/vessel_orientation/ROS2/Testing/bag_files/rosbag2_vessel_velocity
 
 Put the bag folders in the source of your workspace.
 
