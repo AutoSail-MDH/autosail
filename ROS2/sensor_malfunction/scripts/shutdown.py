@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+...
+
 import rclpy
 from rclpy.node import Node
 
@@ -14,8 +17,7 @@ class MinimalPublisher(Node):
         self.pubIMU_ # prevent unused variable warning
     
     def error_callback(self, msg):
-        if (msg.level == 50):
-            #result = subprocess.run("ls", capture_output=True)
+        if (msg.level == 50): #50 is FATAL severity level
             result = subprocess.run("echo hello_world", shell=True, capture_output=True)
             print(result.stdout.decode())
 

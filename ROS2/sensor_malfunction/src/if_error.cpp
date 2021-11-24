@@ -1,11 +1,7 @@
 #include <chrono>
 #include <memory>
-#include <cstring>
-#include <math.h>
 
 #include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/int32.hpp"
-#include "std_msgs/msg/float32_multi_array.hpp"
 
 using namespace std::chrono_literals;
 using std::placeholders::_1;

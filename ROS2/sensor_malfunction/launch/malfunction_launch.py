@@ -3,6 +3,15 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     return LaunchDescription([
+    	#Shutdown node
+    	Node(
+            package="sensor_malfunction",
+            executable="shutdown.py",
+            name="shutdown",
+            output="screen",
+            emulate_tty=True
+        ),
+        #Monitor node(s)
         Node(
             package="sensor_malfunction",
             namespace="position",

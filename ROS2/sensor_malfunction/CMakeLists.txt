@@ -17,18 +17,29 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
+find_package(rclpy REQUIRED)
+find_package(rcl_interfaces REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
 add_executable(if_error src/if_error.cpp)
-ament_target_dependencies(if_error rclcpp std_msgs)
+ament_target_dependencies(if_error rclcpp)
 
 install(TARGETS
   if_error
   DESTINATION lib/${PROJECT_NAME})
+  
+# Install Python modules
+ament_python_install_package(${PROJECT_NAME})
+
+# Install Python executables
+install(PROGRAMS
+  scripts/shutdown.py
+  DESTINATION lib/${PROJECT_NAME}
+)
   
 install(
   DIRECTORY launch
