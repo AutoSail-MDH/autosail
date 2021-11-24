@@ -1,6 +1,4 @@
 # Sensor fusion
-This application creates multiple nodes to monitor topics for publishers, sending log messages for shutdown request if the publisher is disconnected for too long. The application also starts a shutdown node to monitor the log messages, which executes a user-specified shell command if a log message with severity level 50 (FATAL) is read.
-
 This application creates a sensor fusion between the GPS and the IMU using EKF. It tries to give a better estimation of the velocity and position.
 
 The version of ROS2 is Foxy desktop on Ubuntu 20.04. The application will read from /position/IMU and /boat/velocity, and publish a Float32MultiArray [v x y] to /position/fusion.
