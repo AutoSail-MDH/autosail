@@ -23,6 +23,9 @@ class MinimalPublisher(Node):
 
         self.curr_GPS_ = []
 
+        self.prev_time_ = 0
+        self.prev_velocity_ = {0, 0, 0}
+
         # EKF
         self.xEst = np.zeros((4, 1)) #State vector [x y yaw v]
         self.PEst = np.eye(4)        #Covariance matrix of the state
@@ -31,21 +34,22 @@ class MinimalPublisher(Node):
         message = Float32MultiArray()
 
         ypr = msg.position          #[yaw pitch roll]
-        accel = msg.velocity        #[z y x]
-        gyro = msg.effort           #[z y x]
+        accel = msg.velocity        #[x y z]
+        gyro = msg.effort           #[x y z]
         GPS = self.curr_GPS_        #[v x y deltaTime]
 
         if self.curr_GPS_:  #//Atleast two readings
             
-            v = GPS[0]              #Speed from GPS
+            #v = GPS[0]              #Speed from GPS
+            v = self.accel_to_velocity(self, accel)
             x = GPS[1]              #Latitude
             y = GPS[2]              #Longitude
-            DT = GPS[3]             #Difference in time between readings [s]
+            DT = GPS[3]             #Difference in time between GPS readings [s]
             z = np.array([[x],      #Observation vector
                             [y]])
 
             yaw = ypr[0]            #z-axis rotation
-            yawrate = gyro[0]       #z-axis gyroscope value
+            yawrate = gyro[2]       #z-axis gyroscope value
 
             self.get_logger().info('v: %f, x: %f, y: %f, yaw: %f, yawrate: %f, DT: %f' % (v, x, y, yaw, yawrate, DT))
 
@@ -54,7 +58,8 @@ class MinimalPublisher(Node):
                                     [yaw],
                                     [v]])
 
-            u = np.array([[v], [yawrate]])  #Input vector
+            u = np.array([[v],              #Input vector
+                            [yawrate]])
 
             self.xEst, self.PEst = ekf_estimation(self, self.xEst, self.PEst, z, u, DT)
 
@@ -64,6 +69,28 @@ class MinimalPublisher(Node):
 
     def GPS_callback(self, msg):
         self.curr_GPS_ = msg.data
+    
+    def accel_to_velocity(self, accel):
+        curr_time = self.get_clock().now()
+
+        dvx = accel[0] * (curr_time - self.prev_time_)
+        dvy = accel[1] * (curr_time - self.prev_time_)
+        dvz = accel[2] * (curr_time - self.prev_time_)
+
+        vx = dvx + self.prev_velocity_[0]
+        vy = dvy + self.prev_velocity_[1]
+        vz = dvz + self.prev_velocity_[2]
+
+        velocity = math.sqrt(pow(vx, 2) + pow(vy, 2) + pow(vz, 2))
+
+        self.prev_time_ = curr_time
+        
+        self.prev_velocity_[0] = vx
+        self.prev_velocity_[1] = vy
+        self.prev_velocity_[2] = vz
+
+        return velocity
+
 
 
 def main(args=None):

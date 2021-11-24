@@ -1,4 +1,4 @@
-# Vessel velocity
+# Sensor malfunction
 This application creates multiple nodes to monitor topics for publishers, sending log messages for shutdown request if the publisher is disconnected for too long. The application also starts a shutdown node to monitor the log messages, which executes a user-specified shell command if a log message with severity level 50 (FATAL) is read.
 
 The version of ROS2 is Foxy desktop on Ubuntu 20.04. The monitor nodes will read publisher count from user specified topics and send log messages to the default topic /rosout, while the shutdown node will read from /rosout.
