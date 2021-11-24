@@ -19,7 +19,7 @@ Run the following command to initiate recording of selected topics published on 
 
 Run the following command to initiate playback of selected topics recorded on network.
 
-> ros2 launch play recorded_<timestamp>
+> ros2 launch play recorded_{timestamp}
 
 ## Echo topics
 
