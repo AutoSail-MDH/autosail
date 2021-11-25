@@ -1,0 +1,24 @@
+[0.483s] Invoking command in '/root/dev_ws/src/sig_shutdown': PYTHONPATH=/root/dev_ws/install/sig_shutdown/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/sig_shutdown build --build-base /root/dev_ws/build/sig_shutdown/build install --prefix /root/dev_ws/install/sig_shutdown --record /root/dev_ws/build/sig_shutdown/install.log --single-version-externally-managed
+[0.944s] running egg_info
+[0.946s] writing ../../build/sig_shutdown/sig_shutdown.egg-info/PKG-INFO
+[0.946s] writing dependency_links to ../../build/sig_shutdown/sig_shutdown.egg-info/dependency_links.txt
+[0.946s] writing entry points to ../../build/sig_shutdown/sig_shutdown.egg-info/entry_points.txt
+[0.946s] writing requirements to ../../build/sig_shutdown/sig_shutdown.egg-info/requires.txt
+[0.947s] writing top-level names to ../../build/sig_shutdown/sig_shutdown.egg-info/top_level.txt
+[1.020s] reading manifest file '../../build/sig_shutdown/sig_shutdown.egg-info/SOURCES.txt'
+[1.021s] writing manifest file '../../build/sig_shutdown/sig_shutdown.egg-info/SOURCES.txt'
+[1.022s] running build
+[1.022s] running build_py
+[1.022s] copying sig_shutdown/main.py -> /root/dev_ws/build/sig_shutdown/build/lib/sig_shutdown
+[1.022s] running install
+[1.023s] running install_lib
+[1.025s] copying /root/dev_ws/build/sig_shutdown/build/lib/sig_shutdown/main.py -> /root/dev_ws/install/sig_shutdown/lib/python3.8/site-packages/sig_shutdown
+[1.026s] byte-compiling /root/dev_ws/install/sig_shutdown/lib/python3.8/site-packages/sig_shutdown/main.py to main.cpython-38.pyc
+[1.028s] running install_data
+[1.029s] running install_egg_info
+[1.030s] removing '/root/dev_ws/install/sig_shutdown/lib/python3.8/site-packages/sig_shutdown-0.0.0-py3.8.egg-info' (and everything under it)
+[1.031s] Copying ../../build/sig_shutdown/sig_shutdown.egg-info to /root/dev_ws/install/sig_shutdown/lib/python3.8/site-packages/sig_shutdown-0.0.0-py3.8.egg-info
+[1.032s] running install_scripts
+[1.061s] Installing sig_shutdown script to /root/dev_ws/install/sig_shutdown/lib/sig_shutdown
+[1.062s] writing list of installed files to '/root/dev_ws/build/sig_shutdown/install.log'
+[1.091s] Invoked command in '/root/dev_ws/src/sig_shutdown' returned '0': PYTHONPATH=/root/dev_ws/install/sig_shutdown/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/sig_shutdown build --build-base /root/dev_ws/build/sig_shutdown/build install --prefix /root/dev_ws/install/sig_shutdown --record /root/dev_ws/build/sig_shutdown/install.log --single-version-externally-managed

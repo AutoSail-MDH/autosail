@@ -1,0 +1,16 @@
+package.xml
+setup.cfg
+setup.py
+../../build/sig_shutdown/sig_shutdown.egg-info/PKG-INFO
+../../build/sig_shutdown/sig_shutdown.egg-info/SOURCES.txt
+../../build/sig_shutdown/sig_shutdown.egg-info/dependency_links.txt
+../../build/sig_shutdown/sig_shutdown.egg-info/entry_points.txt
+../../build/sig_shutdown/sig_shutdown.egg-info/requires.txt
+../../build/sig_shutdown/sig_shutdown.egg-info/top_level.txt
+../../build/sig_shutdown/sig_shutdown.egg-info/zip-safe
+resource/sig_shutdown
+sig_shutdown/__init__.py
+sig_shutdown/main.py
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py
