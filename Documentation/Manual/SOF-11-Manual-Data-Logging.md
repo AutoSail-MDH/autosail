@@ -1,9 +1,9 @@
 # Data-logging using ROS bag
 
-Note: If topics cannot be discovered, make sure to follow [SOF.10-Manual-ROS2-BI-DIR-COM](https://github.com/AutoSail-MDH/AutoSail-HT21/Documentation/Manual/SOF.10-Manual-ROS2-BI-DIR-COM.md).
+Note: If topics cannot be discovered, make sure to follow [SOF.10-Manual-ROS2-BI-DIR-COM](https://github.com/AutoSail-MDH/AutoSail-HT21/blob/main/Documentation/Manual/SOF.10-Manual-ROS2-BI-DIR-COM.md).
 Disclaimer: This manual assumes that topics have been initiated and are publishing data, although by default ROS bag utilises autodiscovery to start recording topics once initiated. Autodiscovery can be disabled by adding "--no-discovery" at EOL in launch file mentioned below.
 
-The mentioned files can be found at [Autosail-HT21/ROS2/data_logging](https://github.com/AutoSail-MDH/AutoSail-HT21/ROS2/data_logging)
+The mentioned files can be found at [Autosail-HT21/ROS2/data_logging](https://github.com/AutoSail-MDH/AutoSail-HT21/tree/main/ROS2/data_logging)
 
 ## Record data
 
