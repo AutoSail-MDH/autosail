@@ -21,7 +21,6 @@ Q = np.diag([
     1.0  # variance of velocity
 ]) ** 2  # predict state covariance
 
-#GPS NEO-M9N 1.5m accuracy
 R = np.diag([1.0, 1.0]) ** 2  # Covariance matrix of observation noise: x,y position covariance
 
 
@@ -36,7 +35,7 @@ def motion_model(x, u, DT):
                   [0.0, DT],
                   [1.0, 0.0]])
 
-    x = F @ x + B @ u
+    x = F @ x + B @ u #4x4 * 4*1 + 4x2 * 2x1
 
     return x
 
@@ -96,9 +95,9 @@ def ekf_estimation(self, xEst, PEst, z, u, DT):
     #  Update
     jH = jacob_h()                              #Jacobian of Observation Model
     zPred = observation_model(xPred)            #Observation vector prediction
-    y = z - zPred                               #Output signal
+    y = z - zPred                               #
     S = jH @ PPred @ jH.T + R                   #
     K = PPred @ jH.T @ np.linalg.inv(S)         #
-    xEst = xPred + K @ y                        #EKF state estimation
-    PEst = (np.eye(len(xEst)) - K @ jH) @ PPred #EKF covariance estimation
+    xEst = xPred + K @ y                        #
+    PEst = (np.eye(len(xEst)) - K @ jH) @ PPred #
     return xEst, PEst
