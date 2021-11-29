@@ -1,3 +1,0 @@
-[console_scripts]
-sig_shutdown = sig_shutdown.main:main
-
