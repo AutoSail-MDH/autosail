@@ -18,6 +18,7 @@
 #define PUB_TOPIC "/rudder/ANGLE"
 #define LEFT_TURN 1
 #define RIGHT_TURN 2
+#define ANGLE_LIM 60
 
 // A define to easier change which message type is used, since the expression appears everywhere
 #define STD_MULTIFLOAT std_msgs::msg::Float32MultiArray
@@ -36,18 +37,22 @@ float c_lat = 0.0;
 float c_long = 0.0;
 
 // Goal position is Lat/Long
-float g_lat = 60.0000 * (M_PI / 180.0);
+float g_lat = 0.0;
 
-float g_long = 16.0000 * (M_PI / 180.0);
+float g_long = 0.0;
 
 // Current heading in rad
 float yaw = 0.0;
 
-float rud_ang = 0;
+float rud_ang = 0.0;
 // float Angle2Goal = 0;
 // Counter
 int c = 0;
 float earth_rad = 6371000.0;
+
+float SetRudderAng(float Angle, int dir);
+int AngleDir(float heading, float bearing);
+float AngleToGoal(float bearing, float heading);
 
 class MinimalSubPub : public rclcpp::Node {
    public:
@@ -90,19 +95,13 @@ class MinimalSubPub : public rclcpp::Node {
     void topic_callback() {
         auto message = STD_FLOAT();
 
-        float heading = 0;
-
-        // Calculate distance
-        float u = sin((g_lat - c_lat) / 2.0);
-        float v = sin((g_long - c_long) / 2.0);
-        float dDist = 2.0 * earth_rad * asin(sqrt(u * u + cos(c_lat) * cos(g_lat) * v * v));
+        float heading = 0.0;
 
         // Yaw value is between -180 to 180, convert to between 0 and 360
         heading = yaw;
         if (heading < 0) {
             heading = 180 + (180 + heading);
         }
-
         // Compute initial bearing between true north and the distance vector between goal pos and current pos
         float bearing = atan2(sin(g_long - c_long) * cos(g_lat),
                               cos(c_lat) * sin(g_lat) - sin(c_lat) * cos(g_lat) * cos(g_long - c_long));
@@ -114,53 +113,13 @@ class MinimalSubPub : public rclcpp::Node {
 
         // Compute angle to goal and mod it with 360.
 
-        float Angle2Goal = abs(bearing - heading);
-        Angle2Goal = fmod(Angle2Goal, 360);
+        message.data = SetRudderAng(AngleToGoal(heading, bearing), AngleDir(heading, bearing));
 
-        if (Angle2Goal > 180) {
-            Angle2Goal = 360 - Angle2Goal;
-        }
+        // Change the sign of angle to change the way the rudder turns
 
-        // "PID - ID"
-        if (Angle2Goal < THRESHHOLD) {
-            rud_ang = 0;
-        } else {
-            rud_ang = Angle2Goal / 2;
-        }
-
-        if (rud_ang > 60) {
-            rud_ang = 60;
-        }
-
-        float prov = bearing - heading;
-        float turn = 0.0;
-        
-        if ((prov <= 180) && prov > -180) {
-            turn = prov;
-        } else if (prov > 180) {
-            turn = prov - 360;
-        } else if (prov <= -180) {
-            turn = prov + 360;
-        }
-        int dir = 0;
-
-        // Left turn
-        if (turn < 0) {
-            dir = LEFT_TURN;
-            // Right turn
-        } else {
-            dir = RIGHT_TURN;
-        }
-
-        if (dir == RIGHT_TURN) {
-            rud_ang = (-1) * rud_ang;
-        }
-
-        printf(
-            "[%d] [Distance to goal: %.2f m] [Boat Heading: %.2f deg] [Final bearing: %.2f deg]  [Angle to goal is: "
-            "%.2f deg] [Rudder Angle: %.2f deg] [Direction: %d]\n",
-            c++, dDist, heading, bearing, Angle2Goal, rud_ang, dir);
         // Publish the rudder angle to a topic
+
+        printf("[Heading: %.2f] [Bearing %.2f] [Angle: %.2f]\n", heading, bearing, message.data);
         message.data = rud_ang;
         currTime_ = nodeTime_->now();
         rclcpp::sleep_for(std::chrono::nanoseconds(1));
@@ -182,4 +141,82 @@ int main(int argc, char *argv[]) {
     rclcpp::spin(std::make_shared<MinimalSubPub>());
     rclcpp::shutdown();
     return 0;
+}
+
+/**
+ * @brief Takes the angle between the current boat heading and the goal, and sets the angle for the rudder
+ *
+ * @param Angle Angle between the heading and bearing
+ * @param dir direction to turn
+ * @return returns the angle to set the rudder to
+ */
+
+float SetRudderAng(float Angle, int dir) {
+    if (Angle < THRESHHOLD) {
+        rud_ang = 0;
+    } else {
+        rud_ang = Angle / 2;
+    }
+
+    if (rud_ang > ANGLE_LIM) {
+        rud_ang = ANGLE_LIM;
+    }
+
+    if (dir == RIGHT_TURN) {
+        rud_ang = (-1) * rud_ang;
+    }
+    return rud_ang;
+}
+
+/**
+ * @brief Computes if turning clockwise or counter clickwise is better to faster reach the goal position
+ *
+ * @param heading the angle which the boat is currently facing
+ * @param bearing the angle which the goal position is
+ * @return returns 1 if the turn should be left(CCW), and 2 is the turn should be right(CW)
+ */
+
+int AngleDir(float heading, float bearing) {
+    float prov = bearing - heading;
+    float turn = 0.0;
+    // Math to compute which way to turn.
+    // From: https://math.stackexchange.com/questions/1366869/calculating-rotation-direction-between-two-angles
+    if ((prov <= 180) && prov > -180) {
+        turn = prov;
+    } else if (prov > 180) {
+        turn = prov - 360;
+    } else if (prov <= -180) {
+        turn = prov + 360;
+    }
+
+    int dir = 0;
+
+    // Left turn
+    if (turn < 0) {
+        dir = LEFT_TURN;
+        // Right turn
+    } else {
+        dir = RIGHT_TURN;
+    }
+
+    return dir;
+}
+
+/**
+ * @brief Computes the angle between the heading and bearing
+ *
+ * @param heading the angle which the boat is currently facing
+ * @param bearing the angle which the goal currently is
+ * @return the angle as a float
+ */
+
+float AngleToGoal(float heading, float bearing) {
+    float ret = abs(bearing - heading);
+    ret = fmod(ret, 360);
+
+    if (ret > 180) {
+        ret = 360 - ret;
+    }
+
+    return ret;
 }
