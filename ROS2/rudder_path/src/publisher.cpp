@@ -13,6 +13,9 @@
 // Change this to your message type, made this define to not have to write the long expression
 #define STD_MSG std_msgs::msg::Float32MultiArray
 
+#define LAT 60.0
+#define LON 16.0
+
 using namespace std::chrono_literals;
 
 /* This example creates a subclass of Node and uses std::bind() to register a
@@ -29,11 +32,9 @@ class MinimalPublisher : public rclcpp::Node {
    private:
     void timer_callback() {
         auto msg = STD_MSG();
-        // msg.data.data[0] = 60;
-        // msg.data.data[1] = 16;
 
-        // Do message processing here
-        printf("HEJ\n");
+        msg.data = {LAT, LON};
+        rclcpp::sleep_for(std::chrono::nanoseconds(1));
         publisher_->publish(msg);
     }
     rclcpp::TimerBase::SharedPtr timer_;

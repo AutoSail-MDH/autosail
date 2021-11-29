@@ -16,6 +16,8 @@
 #define SUB_TOPIC_2 "/position/GPS"
 #define SUB_TOPIC_3 "/position/GOAL"
 #define PUB_TOPIC "/rudder/ANGLE"
+#define LEFT_TURN 1
+#define RIGHT_TURN 2
 
 // A define to easier change which message type is used, since the expression appears everywhere
 #define STD_MULTIFLOAT std_msgs::msg::Float32MultiArray
@@ -46,7 +48,6 @@ float rud_ang = 0;
 // Counter
 int c = 0;
 float earth_rad = 6371000.0;
-int rightTurn = 0;
 
 class MinimalSubPub : public rclcpp::Node {
    public:
@@ -75,15 +76,13 @@ class MinimalSubPub : public rclcpp::Node {
 
     // Get current position in Lat/Long
     void GPS_callback(const STD_MULTIFLOAT::SharedPtr msg) {
-        c_lat = 59.25 * (M_PI / 180.0);
-        c_long = 16.33 * (M_PI / 180.0);
+        c_lat = msg->data[0] * (M_PI / 180.0);
+        c_long = msg->data[1] * (M_PI / 180.0);
     }
     // Get current goal position in Lat/Long
     void GOAL_callback(const STD_MULTIFLOAT::SharedPtr msg) {
-        // g_lat = msg->data[0] * M_PIl / 180.0;
-        // g_long = msg->data[1] * M_PIl / 180.0;
-        g_lat = 60.0000 * (M_PI / 180.0);
-        g_long = 16.0000 * (M_PI / 180.0);
+        g_lat = msg->data[0] * M_PIl / 180.0;
+        g_long = msg->data[1] * M_PIl / 180.0;
     }
 
     // Larger calback to compute distance, unify the heading and bearing, as well as set which angle to set the rudder
@@ -117,6 +116,7 @@ class MinimalSubPub : public rclcpp::Node {
 
         float Angle2Goal = abs(bearing - heading);
         Angle2Goal = fmod(Angle2Goal, 360);
+
         if (Angle2Goal > 180) {
             Angle2Goal = 360 - Angle2Goal;
         }
@@ -132,14 +132,34 @@ class MinimalSubPub : public rclcpp::Node {
             rud_ang = 60;
         }
 
-        if (rightTurn == 1) {
+        float prov = bearing - heading;
+        float turn = 0.0;
+        
+        if ((prov <= 180) && prov > -180) {
+            turn = prov;
+        } else if (prov > 180) {
+            turn = prov - 360;
+        } else if (prov <= -180) {
+            turn = prov + 360;
+        }
+        int dir = 0;
+
+        // Left turn
+        if (turn < 0) {
+            dir = LEFT_TURN;
+            // Right turn
+        } else {
+            dir = RIGHT_TURN;
+        }
+
+        if (dir == RIGHT_TURN) {
             rud_ang = (-1) * rud_ang;
         }
 
         printf(
             "[%d] [Distance to goal: %.2f m] [Boat Heading: %.2f deg] [Final bearing: %.2f deg]  [Angle to goal is: "
-            "%.2f deg] [Rudder Angle: %.2f deg]\n",
-            c++, dDist, heading, bearing, Angle2Goal, rud_ang);
+            "%.2f deg] [Rudder Angle: %.2f deg] [Direction: %d]\n",
+            c++, dDist, heading, bearing, Angle2Goal, rud_ang, dir);
         // Publish the rudder angle to a topic
         message.data = rud_ang;
         currTime_ = nodeTime_->now();
