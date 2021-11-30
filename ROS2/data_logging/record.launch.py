@@ -3,6 +3,7 @@ from datetime import datetime
 
 # Target filename containing topics
 filename = "select_topics.txt"
+bagname = "recorded"
 timestamp = datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
 
 def generate_launch_description():
@@ -14,7 +15,7 @@ def generate_launch_description():
     return launch.LaunchDescription([
         launch.actions.ExecuteProcess(
             cmd=['ros2', 'bag', 'record', '-o',
-                 'recorded_' + timestamp, import_topics_from(filename)],
+                 bagname + '_' + timestamp, import_topics_from(filename)],
             output='screen'
         )
     ])

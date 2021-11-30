@@ -1,5 +1,5 @@
 # Wind direction
-This application is creates a ros2 node that publishes relative wind direction in radians to a topic on a ros network. The values are between -pi and pi but there is an approximately 10-15 degree window where all values are 0. The version of ros2 is foxy desktop on ubuntu 20.04. The node publishes to the topic `/direction/wind`
+This application creates a ros2 node that publishes relative wind direction in degrees to a topic on a ros network. The values is in the range [0,360], but there is an approximately 10-15 degree window where all values are 0. The version of ros2 is foxy desktop on ubuntu 20.04. The node publishes to the topic `/direction/wind`. Make sure that the 0 degree of the wind sensor is in the direction of the boat due to the 10-15 degree window who are all 0.
 
 ## Prerequsities
 This application assumes the user has installed ros2 and micro-ros using the following tutorials:
@@ -10,7 +10,7 @@ This application assumes the user has installed ros2 and micro-ros using the fol
 
 ## Usage
 
-Place the wind_direction folder in your apps folder under the firmware app in your micro-ROS workspace. 
+Place the wind_direction_ros2 folder in your apps folder under the firmware app in your micro-ROS workspace. 
 
 ### Setup
 Sources the proper micro-ROS environment and prepares the building and flashing to the correct app.
@@ -22,7 +22,7 @@ colcon build
 source install/local_setup.bash
 ```
 ```
-ros2 run micro_ros_setup configure_firmware.sh wind_direction --transport serial
+ros2 run micro_ros_setup configure_firmware.sh wind_direction_ros2 --transport serial
 ```
 
 ### Build, flash
@@ -57,6 +57,6 @@ You might have to press the restart button on the esp32 if the agent does not wo
 
 In another terminal, monitor the topic you published to
 ```
-ros2 topic echo /position/wind_direction
+ros2 topic echo /direction/wind
 ```
 
