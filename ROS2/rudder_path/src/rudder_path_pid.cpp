@@ -108,21 +108,16 @@ class MinimalSubPub : public rclcpp::Node {
         }
 
         float bearing = GetBearing();
-        // Compute angle to goal and mod it with 360.
 
         message.data = SetRudderAng(AngleToGoal(heading, bearing), AngleDir(heading, bearing));
 
-        // Change the sign of angle to change the way the rudder turns
-
         // Publish the rudder angle to a topic
-
-        printf("[Heading: %.2f] [Bearing %.2f] [Angle: %.2f]\n", heading, bearing, message.data);
+        // printf("[%d] [Heading: %.2f] [Bearing %.2f] [Angle: %.2f]\n",c, heading, bearing);
         message.data = rud_ang;
         currTime_ = nodeTime_->now();
         sleep_for(std::chrono::nanoseconds(1));
         publisher_->publish(message);
     }
-
     Subscription<STD_MULTIFLOAT>::SharedPtr subscriber_IMU;
     Subscription<STD_MULTIFLOAT>::SharedPtr subscriber_GPS;
     Subscription<STD_MULTIFLOAT>::SharedPtr subscriber_GOAL;
@@ -172,7 +167,7 @@ float SetRudderAng(float Angle, int dir) {
         rud_ang = ANGLE_LIM;
     }
 
-    if (dir == RIGHT_TURN) {
+    if (dir == LEFT_TURN) {
         rud_ang = (-1) * rud_ang;
     }
     return rud_ang;
