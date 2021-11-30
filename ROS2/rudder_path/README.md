@@ -10,7 +10,7 @@ Current heading in degrees, which is the current heading of the boat. This data 
 
 ## Prerequisites
 
-This application assumes the topics mentioned for each of the inputs is receiving data.
+This application assumes the topics mentioned for each of the inputs contains data.
 
 ## Setup
 
@@ -29,7 +29,31 @@ colcon build
 You have to source the setup file for each new terminal you use.
 
 ```bash
+cd ~/$ROS2_WORKSPACE/
+
 . install/setup.bash
 
 ros2 run rudder_path rpp
 ```
+In a new terminal:
+
+```bash
+cd ~/$ROS2_WORKSPACE/
+
+. install/setup.bash
+
+ros2 run rudder_path pub
+```
+The pub executable publishes the goal position, which is the Lat/Long values of where the goal position is. You can change this in real time. In a new terminal:
+
+```bash
+.cd ~/$ROS2_WORKSPACE/
+
+. install/setup.bash
+
+ros2 param set goal_pub lat $Latitude_Value
+
+ros2 param set goal_pub long $Longitude_Value
+
+```
+Make sure that the value is of the float format, which for example means written as `12.0` and not `12`. If it is not written as a decimal number, the program will crash. 
