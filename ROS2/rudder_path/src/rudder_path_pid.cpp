@@ -1,5 +1,5 @@
 
-// example gotne from avalible examples within ROS, modified by Erik Lindgren
+// example gotten from avalible examples within ROS, modified by Erik Lindgren
 
 #include <math.h>
 
@@ -16,8 +16,12 @@
 #define SUB_TOPIC_2 "/position/GPS"
 #define SUB_TOPIC_3 "/position/GOAL"
 #define PUB_TOPIC "/rudder/ANGLE"
+
+// Defines to make the code cleaner and more readable
 #define LEFT_TURN 1
 #define RIGHT_TURN 2
+
+// The angle limit as specified by hardware
 #define ANGLE_LIM 60
 
 // A define to easier change which message type is used, since the expression appears everywhere
@@ -28,6 +32,7 @@
 #define THRESHHOLD 5
 
 using namespace std::chrono_literals;
+using namespace rclcpp;
 using std::placeholders::_1;
 
 // Save the latest value of the different topics
@@ -38,21 +43,22 @@ float c_long = 0.0;
 
 // Goal position is Lat/Long
 float g_lat = 0.0;
-
 float g_long = 0.0;
 
 // Current heading in rad
 float yaw = 0.0;
 
+// Final rudder angle
 float rud_ang = 0.0;
-// float Angle2Goal = 0;
 // Counter
 int c = 0;
-float earth_rad = 6371000.0;
 
+// Function declerations
+
+float GetBearing(void);
 float SetRudderAng(float Angle, int dir);
 int AngleDir(float heading, float bearing);
-float AngleToGoal(float bearing, float heading);
+float AngleToGoal(float heading, float bearing);
 
 class MinimalSubPub : public rclcpp::Node {
    public:
@@ -95,22 +101,13 @@ class MinimalSubPub : public rclcpp::Node {
     void topic_callback() {
         auto message = STD_FLOAT();
 
-        float heading = 0.0;
-
         // Yaw value is between -180 to 180, convert to between 0 and 360
-        heading = yaw;
+        float heading = yaw;
         if (heading < 0) {
             heading = 180 + (180 + heading);
         }
-        // Compute initial bearing between true north and the distance vector between goal pos and current pos
-        float bearing = atan2(sin(g_long - c_long) * cos(g_lat),
-                              cos(c_lat) * sin(g_lat) - sin(c_lat) * cos(g_lat) * cos(g_long - c_long));
 
-        // Convert rad to degrees, and add 360 degrees to normalize it. Then perform mod 360 to not get a
-        // degree above 360.
-        bearing = ((bearing * 180) / M_PIl) + 360;
-        bearing = fmod(bearing, 360);
-
+        float bearing = GetBearing();
         // Compute angle to goal and mod it with 360.
 
         message.data = SetRudderAng(AngleToGoal(heading, bearing), AngleDir(heading, bearing));
@@ -122,25 +119,38 @@ class MinimalSubPub : public rclcpp::Node {
         printf("[Heading: %.2f] [Bearing %.2f] [Angle: %.2f]\n", heading, bearing, message.data);
         message.data = rud_ang;
         currTime_ = nodeTime_->now();
-        rclcpp::sleep_for(std::chrono::nanoseconds(1));
+        sleep_for(std::chrono::nanoseconds(1));
         publisher_->publish(message);
     }
-    // Defines
-    rclcpp::Subscription<STD_MULTIFLOAT>::SharedPtr subscriber_IMU;
-    rclcpp::Subscription<STD_MULTIFLOAT>::SharedPtr subscriber_GPS;
-    rclcpp::Subscription<STD_MULTIFLOAT>::SharedPtr subscriber_GOAL;
-    rclcpp::Publisher<STD_FLOAT>::SharedPtr publisher_;
-    rclcpp::Clock::SharedPtr nodeTime_;
-    rclcpp::Time currTime_;
-    rclcpp::Time prevTime_;
-    rclcpp::TimerBase::SharedPtr timer_;
+
+    Subscription<STD_MULTIFLOAT>::SharedPtr subscriber_IMU;
+    Subscription<STD_MULTIFLOAT>::SharedPtr subscriber_GPS;
+    Subscription<STD_MULTIFLOAT>::SharedPtr subscriber_GOAL;
+    Publisher<STD_FLOAT>::SharedPtr publisher_;
+    Clock::SharedPtr nodeTime_;
+    Time currTime_;
+    Time prevTime_;
+    TimerBase::SharedPtr timer_;
 };
 
-int main(int argc, char *argv[]) {
-    rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<MinimalSubPub>());
-    rclcpp::shutdown();
-    return 0;
+/**
+ * @brief Compute initial bearing between true north and the distance vector between goal pos and current pos and
+ * convert it to degrees
+ *
+ * @return the bearing as a float
+ */
+
+float GetBearing(void) {
+    //
+    float bearing = atan2(sin(g_long - c_long) * cos(g_lat),
+                          cos(c_lat) * sin(g_lat) - sin(c_lat) * cos(g_lat) * cos(g_long - c_long));
+
+    // Convert rad to degrees, and add 360 degrees to normalize it. Then perform mod 360 to not get a
+    // degree above 360.
+    bearing = ((bearing * 180) / M_PIl) + 360;
+    bearing = fmod(bearing, 360);
+
+    return bearing;
 }
 
 /**
@@ -219,4 +229,11 @@ float AngleToGoal(float heading, float bearing) {
     }
 
     return ret;
+}
+
+int main(int argc, char *argv[]) {
+    rclcpp::init(argc, argv);
+    rclcpp::spin(std::make_shared<MinimalSubPub>());
+    rclcpp::shutdown();
+    return 0;
 }

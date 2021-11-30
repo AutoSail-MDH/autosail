@@ -13,6 +13,7 @@
 // Change this to your message type, made this define to not have to write the long expression
 #define STD_MSG std_msgs::msg::Float32MultiArray
 
+// The goal position to go towards
 #define LAT 60.0
 #define LON 16.0
 
@@ -32,7 +33,6 @@ class MinimalPublisher : public rclcpp::Node {
    private:
     void timer_callback() {
         auto msg = STD_MSG();
-
         msg.data = {LAT, LON};
         rclcpp::sleep_for(std::chrono::nanoseconds(1));
         publisher_->publish(msg);
