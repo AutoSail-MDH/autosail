@@ -3,6 +3,7 @@
 #include "driver/adc.h"
 #include "driver/gpio.h"
 #include "driver/i2c.h"
+#include "driver/timer.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "string.h"

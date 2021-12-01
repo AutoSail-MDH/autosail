@@ -4,6 +4,7 @@
 #include <rclc/rclc.h>
 #include <std_msgs/msg/float32_multi_array.h>
 #include <stdio.h>
+#include <time.h>
 #include <unistd.h>
 
 #include "components/nmea/include/nmea.h"
@@ -13,6 +14,7 @@
 
 #ifdef ESP_PLATFORM
 #include "driver/i2c.h"
+#include "driver/timer.h"
 #include "esp_log.h"
 #include "esp_system.h"
 #include "freertos/FreeRTOS.h"
@@ -36,17 +38,22 @@
     }
 
 #define INIT 94
+#define FATAL -1000.0
+#define THREE_SECONDS 3
 
 rcl_publisher_t publisher;
 std_msgs__msg__Float32MultiArray msg;
 
 // variables
 int i;
-int c;
 float lon;
 float lat;
 uint8_t* data;
 char* message;
+int calibrate = 1;
+int begin_timer = 0;
+volatile int timeout = 0;
+clock_t start_t, end_t;
 
 void timer_callback(rcl_timer_t* timer, int64_t last_call_time) {
     RCLC_UNUSED(last_call_time);
@@ -67,24 +74,41 @@ void timer_callback(rcl_timer_t* timer, int64_t last_call_time) {
 
         // get the GPS position
         if (!getPos(message, &lat, &lon)) {
-            c++;
+            if (calibrate == 0) {
+                begin_timer = 1;
+            }
             // printf("No data avalible for %d readings\n", c);
         } else {
-            c = 0;
+            start_t = clock();
+            calibrate = 0;
+            begin_timer = 0;
             // printf("Lat: %.4f : Long: %.4f\n", lat, lon);
         }
 
-        if (lon != 0 && lat != 0) {
+        //
+        if (begin_timer) {
+            end_t = clock();
+            if (((end_t - start_t) / CLOCKS_PER_SEC) >= THREE_SECONDS) {
+                timeout = 1;
+                msg.data.data[0] = FATAL;
+                msg.data.size++;
+                msg.data.data[1] = FATAL;
+                msg.data.size++;
+            }
+        }
+
+        if ((lon != 0 && lat != 0) && timeout == 0) {
             msg.data.data[0] = lat;
             msg.data.size++;
             msg.data.data[1] = lon;
             msg.data.size++;
-            RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
-            msg.data.size = 0;
         }
-        // delay for easier to read prints
-        // vTaskDelay(25);
+
+        RCSOFTCHECK(rcl_publish(&publisher, &msg, NULL));
+        msg.data.size = 0;
     }
+    // delay for easier to read prints
+    // vTaskDelay(25);
 }
 
 void appMain(void* arg) {
@@ -114,7 +138,6 @@ void appMain(void* arg) {
 
     // variables
     i = 0;
-    c = 0;
 
     lon = 0;
     lat = 0;
