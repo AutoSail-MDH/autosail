@@ -29,8 +29,9 @@
 #define STD_FLOAT std_msgs::msg::Float32
 
 // Used to regulate the PID
-#define THRESHHOLD 5
+#define THRESHHOLD 5.0
 
+// Namespaces to make the code far more readable
 using namespace std::chrono_literals;
 using namespace rclcpp;
 using std::placeholders::_1;
@@ -48,6 +49,8 @@ float g_long = 0.0;
 // Current heading in rad
 float yaw = 0.0;
 
+float pid = THRESHHOLD;
+
 // Final rudder angle
 float rud_ang = 0.0;
 // Counter
@@ -62,8 +65,11 @@ float AngleToGoal(float heading, float bearing);
 
 class MinimalSubPub : public rclcpp::Node {
    public:
-    MinimalSubPub() : Node("subpub") {
+    MinimalSubPub() : Node("rudder_angle") {
+        // Create a parameter so the threshhold for the PID can change during runtime
+        this->declare_parameter<float>("p", THRESHHOLD);
         // Create three subscribers for 3 different topics. each is bound to a custom callback
+
         subscriber_IMU = this->create_subscription<STD_MULTIFLOAT>(
 
             SUB_TOPIC_1, 50, std::bind(&MinimalSubPub::IMU_callback, this, _1));
@@ -100,6 +106,7 @@ class MinimalSubPub : public rclcpp::Node {
     // to
     void topic_callback() {
         auto message = STD_FLOAT();
+        this->get_parameter("p", pid);
 
         // Yaw value is between -180 to 180, convert to between 0 and 360
         float heading = yaw;
@@ -111,8 +118,10 @@ class MinimalSubPub : public rclcpp::Node {
 
         message.data = SetRudderAng(AngleToGoal(heading, bearing), AngleDir(heading, bearing));
 
+        // Uncomment the row below to see the live print of the current heading and bearing
+        printf("[%d] [Heading: %.2f] [Bearing %.2f] [Rudder Angle %.2f]\n", c++, heading, bearing, rud_ang);
+
         // Publish the rudder angle to a topic
-        // printf("[%d] [Heading: %.2f] [Bearing %.2f] [Angle: %.2f]\n",c, heading, bearing);
         message.data = rud_ang;
         currTime_ = nodeTime_->now();
         sleep_for(std::chrono::nanoseconds(1));
@@ -157,7 +166,7 @@ float GetBearing(void) {
  */
 
 float SetRudderAng(float Angle, int dir) {
-    if (Angle < THRESHHOLD) {
+    if (Angle < pid) {
         rud_ang = 0;
     } else {
         rud_ang = Angle / 2;
@@ -167,6 +176,7 @@ float SetRudderAng(float Angle, int dir) {
         rud_ang = ANGLE_LIM;
     }
 
+    // Change the sign of the angle so the rudder angle is set in the right direction
     if (dir == LEFT_TURN) {
         rud_ang = (-1) * rud_ang;
     }

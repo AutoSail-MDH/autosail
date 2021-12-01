@@ -26,7 +26,7 @@ using namespace std::chrono_literals;
 
 class MinimalPublisher : public rclcpp::Node {
    public:
-    MinimalPublisher() : Node("minimal_publisher"), count_(0) {
+    MinimalPublisher() : Node("goal_pub"), count_(0) {
         // Declare parameters
         this->declare_parameter<float>("lat", 0.0);
         this->declare_parameter<float>("long", 0.0);
