@@ -56,4 +56,8 @@ ros2 param set goal_pub lat $Latitude_Value
 ros2 param set goal_pub long $Longitude_Value
 
 ```
-Make sure that the value is of the float format, which for example means written as `12.0` and not `12`. If it is not written as a decimal number, the program will crash. 
+Make sure that the value is of the float format, which for example means written as `12.0` and not `12`. If it is not written as a decimal number, the program will crash. The rudder angle is set to zero(Steering straight ahead) when the heading of the boat and the angle of the goal are close to eachother. To tweak how close these two values must be for this to trigger, change the parameter `p` like this:
+```bash
+ros2 param set rudder_angle p $threshhold_value
+```
+Just like above, this value should also be a float value, so written on the format `XX.X`, such as `12.0`.
