@@ -2,6 +2,7 @@
 #include <rcl/rcl.h>
 #include <rclc/executor.h>
 #include <rclc/rclc.h>
+#include <rmw_microros/rmw_microros.h>
 #include <std_msgs/msg/float32_multi_array.h>
 #include <stdio.h>
 #include <time.h>
@@ -42,6 +43,7 @@
 #define INIT 94
 #define FATAL -1000.0
 #define THREE_SECONDS 3
+#define NO_OF_SAMPLES 64
 
 rcl_publisher_t publisher_wind;
 rcl_publisher_t publisher_gps;
@@ -58,6 +60,10 @@ int calibrate = 1;
 int begin_timer = 0;
 volatile int timeout = 0;
 clock_t start_t, end_t;
+
+float windDir, direction, reading;
+static const adc_channel_t channel = ADC1_CHANNEL_0;
+// static const adc_atten_t atten = ADC_ATTEN_11db;
 
 void wind_callback(rcl_timer_t* timer, int64_t last_call_time) {
     RCLC_UNUSED(last_call_time);
@@ -129,22 +135,22 @@ void gps_callback(rcl_timer_t* timer, int64_t last_call_time) {
             end_t = clock();
             if (((end_t - start_t) / CLOCKS_PER_SEC) >= THREE_SECONDS) {
                 timeout = 1;
-                msg.data.data[0] = FATAL;
-                msg.data.size++;
-                msg.data.data[1] = FATAL;
-                msg.data.size++;
+                msg_gps.data.data[0] = FATAL;
+                msg_gps.data.size++;
+                msg_gps.data.data[1] = FATAL;
+                msg_gps.data.size++;
             }
         }
 
         if ((lon != 0 && lat != 0) && timeout == 0) {
-            msg.data.data[0] = lat;
-            msg.data.size++;
-            msg.data.data[1] = lon;
-            msg.data.size++;
+            msg_gps.data.data[0] = lat;
+            msg_gps.data.size++;
+            msg_gps.data.data[1] = lon;
+            msg_gps.data.size++;
         }
 
-        RCSOFTCHECK(rcl_publish(&publisher_gps, &msg, NULL));
-        msg.data.size = 0;
+        RCSOFTCHECK(rcl_publish(&publisher_gps, &msg_gps, NULL));
+        msg_gps.data.size = 0;
     }
     // delay for easier to read prints
     // vTaskDelay(25);
@@ -170,19 +176,24 @@ void appMain(void* arg) {
     RCCHECK(rclc_publisher_init_default(
         &publisher_gps, &gps_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/position/GPS"));
     RCCHECK(rclc_publisher_init_default(
-        &publisher_wind, &wind_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "direction/wind"));
+        &publisher_wind, &wind_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/direction/wind"));
 
     // create timer,
     rcl_timer_t timer;
     const unsigned int timer_timeout = 10;
-    RCCHECK(rclc_timer_init_default(&timer, &support, RCL_MS_TO_NS(timer_timeout), timer_callback));
+    RCCHECK(rclc_timer_init_default(&timer, &support, RCL_MS_TO_NS(timer_timeout), gps_callback));
+
+    // create timer,
+    rcl_timer_t timer_wind;
+    RCCHECK(rclc_timer_init_default(&timer_wind, &support, RCL_MS_TO_NS(timer_timeout), wind_callback));
 
     // create executor
     rclc_executor_t executor = rclc_executor_get_zero_initialized_executor();
     RCCHECK(rclc_executor_init(&executor, &support.context, 2, &allocator));
     RCCHECK(rclc_executor_add_timer(&executor, &timer));
-    RCCHECK(rclc_executor_add_subscription(&executor, &publisher_gps, &gps_msg, &gps_callback, ON_NEW_DATA));
-    RCCHECK(rclc_executor_add_subscription(&executor, &publisher_wind, &wind_msg, &wind_callback, ON_NEW_DATA));
+    RCCHECK(rclc_executor_add_timer(&executor, &timer_wind));
+    // RCCHECK(rclc_executor_add_subscription(&executor, &publisher_gps, &msg_gps, &gps_callback, ON_NEW_DATA));
+    // RCCHECK(rclc_executor_add_subscription(&executor, &publisher_wind, &msg_wind, &wind_callback, ON_NEW_DATA));
 
     // variables
     i = 0;
