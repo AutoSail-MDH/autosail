@@ -8,12 +8,12 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "include/nmea.h"
-#include "nmea.c"
-#include "include/protocol.h"
-#include "protocol.c"
 #include "driver/adc.h"
 #include "driver/gpio.h"
+#include "include/nmea.h"
+#include "include/protocol.h"
+#include "nmea.c"
+#include "protocol.c"
 
 #ifdef ESP_PLATFORM
 #include "driver/i2c.h"
@@ -147,6 +147,11 @@ void gps_callback(rcl_timer_t* timer, int64_t last_call_time) {
             msg_gps.data.size++;
             msg_gps.data.data[1] = lon;
             msg_gps.data.size++;
+        } else {
+            msg_gps.data.data[0] = 0.0;
+            msg_gps.data.size++;
+            msg_gps.data.data[1] = 0.0;
+            msg_gps.data.size++;
         }
 
         RCSOFTCHECK(rcl_publish(&publisher_gps, &msg_gps, NULL));
@@ -157,7 +162,6 @@ void gps_callback(rcl_timer_t* timer, int64_t last_call_time) {
 }
 
 void init_gps_wind(rcl_allocator_t* allocator, rclc_support_t* support, rclc_executor_t* executor) {
-
     // create node
     rcl_node_t gps_node;
     rcl_node_t wind_node;
@@ -216,8 +220,8 @@ void init_gps_wind(rcl_allocator_t* allocator, rclc_support_t* support, rclc_exe
     configure_i2c_master();
 
     while (1) {
-    	rclc_executor_spin_some(executor, RCL_MS_TO_NS(50));
-	usleep(10000);
+        rclc_executor_spin_some(executor, RCL_MS_TO_NS(50));
+        usleep(10000);
     }
 
     // free resources
