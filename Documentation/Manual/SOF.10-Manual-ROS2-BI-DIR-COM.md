@@ -30,12 +30,12 @@ export RMW_IMPLEMENTATION=rmw_fastrtps_cpp # In every new terminal
 echo "export RMW_IMPLEMENTATION=rmw_fastrtps_cpp" >> $HOME/.bashrc
 source $HOME/.bashrc
 ```
+
+[More info: Working with multiple RMW implementations](https://ftp-osl.osuosl.org/pub/ros/ros_docs_mirror/en/galactic/How-To-Guides/Working-with-multiple-RMW-implementations.html)
+
 ## If communication is not working, enable port forwarding by:
 
 > net.ipv4.ip_forward=1 # /etc/systctl.conf
-
-
-[More info: Working with multiple RMW implementations](https://ftp-osl.osuosl.org/pub/ros/ros_docs_mirror/en/galactic/How-To-Guides/Working-with-multiple-RMW-implementations.html)
 
 ## All machines can now communicate topics on zerotier network
 
