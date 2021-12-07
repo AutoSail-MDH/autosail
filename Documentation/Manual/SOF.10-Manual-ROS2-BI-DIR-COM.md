@@ -33,9 +33,11 @@ source $HOME/.bashrc
 
 [More info: Working with multiple RMW implementations](https://ftp-osl.osuosl.org/pub/ros/ros_docs_mirror/en/galactic/How-To-Guides/Working-with-multiple-RMW-implementations.html)
 
-## All machines can now communicate topics on zerotier network
+## If communication is not working, enable ip forwarding on mobile network:
 
-## Test
+> net.ipv4.ip_forward=1 # /etc/systctl.conf
+
+## All machines can now communicate topics on zerotier network
 
 ### Boat publish to land
 
