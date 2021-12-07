@@ -1,9 +1,9 @@
-import launch
+#  import launch
 from datetime import datetime
 
 # Target filename containing topics
 filename = "select_topics.txt"
-bagname = "recorded"
+bagname = "captured"
 timestamp = datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
 
 def generate_launch_description():
@@ -15,13 +15,27 @@ def generate_launch_description():
     return launch.LaunchDescription([
         launch.actions.ExecuteProcess(
             cmd=['ros2', 'bag', 'record', '-o',
-                 bagname + '_' + timestamp, import_topics_from(filename)],
+                 import_topics_from(filename), bagname + '_' + timestamp],
             output='screen'
         )
     ])
 
+def format_topics(topics: list) -> str:
+        # Format into bag format for multiple topics
+        is_num_topics = len(topics)
+        topics = ' '.join(topics)
+        # Check if number of topics is greater than 1
+        if is_num_topics > 1:  
+            # Format: "/topic1 /topic2 ..." -> "{'/topic1','/topic2', ..."}
+            topics = topics.replace("/", "'/")
+            topics = topics.replace(" ", "',")
+            topics = "{" + topics + "'}"
+            return topics
+        else: # Single topics format
+            return topics
 
-def import_topics_from(filename):
+
+def import_topics_from(filename: str):
     '''Read topics from file and return correct ROS2 string format
     Args:
         filename (str): filename containing topic names separated by rows
@@ -41,8 +55,9 @@ def import_topics_from(filename):
                 topics.append(x.replace("\n", ""))
             else:
                 raise TypeError("Wrong format: Topics start with '/'")
-        # Format into bag format
-        topics = ' '.join(topics)
-        return topics
+        return format_topics(topics)
+            
     except FileNotFoundError:
         print(f"{filename}: File Not Found, correct filename/path?")
+
+print(import_topics_from(filename))
