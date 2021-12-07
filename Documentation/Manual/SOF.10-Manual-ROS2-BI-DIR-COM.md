@@ -31,6 +31,14 @@ echo "export RMW_IMPLEMENTATION=rmw_fastrtps_cpp" >> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
+## Allow communication through firewall
+
+> sudo ufw allow 11811
+
+Alternative: Allow all communication from Zerotier ip adresses:
+
+> sudo ufw allow <172.22.0.X>
+
 [More info: Working with multiple RMW implementations](https://ftp-osl.osuosl.org/pub/ros/ros_docs_mirror/en/galactic/How-To-Guides/Working-with-multiple-RMW-implementations.html)
 
 ## If communication is not working, enable ip forwarding on mobile network:
