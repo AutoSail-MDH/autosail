@@ -73,8 +73,6 @@ std_msgs__msg__Float32MultiArray msg;
 extern "C" {
 	void app_main(void);
 	extern void init_gps_wind(rcl_allocator_t* allocator, rclc_support_t* support, rclc_executor_t* executor);
-	extern void wind_callback(rcl_timer_t* timer, int64_t last_call_time);
-	extern void gps_callback(rcl_timer_t* timer, int64_t last_call_time);
 }
 
 void task_init() {
@@ -142,22 +140,17 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 		//MPU to read and store sensor values
 
 		mpuIntStatus = mpu.getIntStatus();
-		// get current FIFO count
-		fifoCount = mpu.getFIFOCount();
+		fifoCount = mpu.getFIFOCount(); // get current FIFO count
 
 		gettimeofday(&currTime,NULL);
 
 		float timeDiff = abs((currTime.tv_sec - prevTime.tv_sec));
 
-	    if ((mpuIntStatus & 0x10) || fifoCount == 1024) {
-	        // reset so we can continue cleanly
-	        mpu.resetFIFO();
-
-			gettimeofday(&currTime,NULL);
-			timeDiff = abs((currTime.tv_sec - prevTime.tv_sec));
+	    if (((mpuIntStatus & 0x10) || fifoCount == 1024) && (timeDiff < TO))
+	        mpu.resetFIFO(); // reset so we can continue cleanly
 
 	    // otherwise, check for DMP data ready interrupt frequently)
-	    } else if (mpuIntStatus & 0x02) {
+	    else if (mpuIntStatus & 0x02) {
 	        // wait for correct available data length, should be a VERY short wait
 	        while ((fifoCount < packetSize) && (timeDiff < TO)) {
 				fifoCount = mpu.getFIFOCount();
@@ -171,15 +164,16 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 	        mpu.getFIFOBytes(fifoBuffer, packetSize);
 	 		mpu.dmpGetQuaternion(&q, fifoBuffer);
 			mpu.dmpGetGravity(&gravity, &q);
+
 			mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
 
 			VectorInt16 temp;
-
 			mpu.dmpGetAccel(&accelInt16, fifoBuffer);
 			memcpy(&temp, &accelInt16, sizeof(temp));
 			mpu.dmpGetLinearAccel(&accelInt16, &temp, &gravity);
 			memcpy(&temp, &accelInt16, sizeof(temp));
 			mpu.dmpGetLinearAccelInWorld(&accelInt16, &temp, &q);
+
 			mpu.dmpGetGyro(&gyroInt16, fifoBuffer);
 
 			accel[0] = (float)accelInt16.z;
@@ -190,13 +184,15 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 			gyro[1] = (float)gyroInt16.y;
 			gyro[2] = (float)gyroInt16.x;
 
+			//Fill buffer by replacing oldest value
 			for (int32_t i = 0; i < 3; i++) {
 				yprBuffer[i][count % sizeMAF] = ypr[i];
 				accelBuffer[i][count % sizeMAF] = accel[i];
 				gyroBuffer[i][count % sizeMAF] = gyro[i];
 			}
 
-			if ((count % 1 == 0) && (count >= sizeMAF)) {
+			//Everyother sample and only if buffer is full
+			if ((count % 2 == 0) && (count >= sizeMAF)) {
 				moving_average_filter(ypr, yprBuffer);
 				moving_average_filter(accel, accelBuffer);
 				moving_average_filter(gyro, gyroBuffer);
@@ -280,7 +276,7 @@ void app_main(void)
 	//100/portTICK_PERIOD_MS
 	//Gyrometer: 8kHz
 	//Accelerometer: 1 kHz
-	const unsigned int timer_timeout = 1;
+	const unsigned int timer_timeout = 10;
 	RCCHECK(rclc_timer_init_default(
 		&timer,
 		&support,

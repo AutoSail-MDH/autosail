@@ -8,12 +8,12 @@
 #include <time.h>
 #include <unistd.h>
 
+#include "include/nmea.h"
+#include "nmea.c"
+#include "include/protocol.h"
+#include "protocol.c"
 #include "driver/adc.h"
 #include "driver/gpio.h"
-#include "include/nmea.h"
-#include "include/protocol.h"
-#include "nmea.c"
-#include "protocol.c"
 
 #ifdef ESP_PLATFORM
 #include "driver/i2c.h"
@@ -29,7 +29,7 @@
         rcl_ret_t temp_rc = fn;                                                          \
         if ((temp_rc != RCL_RET_OK)) {                                                   \
             printf("Failed status on line %d: %d. Aborting.\n", __LINE__, (int)temp_rc); \
-            vTaskDelete(NULL);                                                           \
+            esp_restart();                                                               \
         }                                                                                \
     }
 #define RCSOFTCHECK(fn)                                                                    \
@@ -62,8 +62,9 @@ volatile int timeout = 0;
 clock_t start_t, end_t;
 
 float windDir, direction, reading;
+int errorTime = 0, errorCounter = 0;
 static const adc_channel_t channel = ADC1_CHANNEL_0;
-// static const adc_atten_t atten = ADC_ATTEN_11db;
+static const adc_atten_t atten = ADC_ATTEN_11db;
 
 void wind_callback(rcl_timer_t* timer, int64_t last_call_time) {
     RCLC_UNUSED(last_call_time);
@@ -89,12 +90,18 @@ void wind_callback(rcl_timer_t* timer, int64_t last_call_time) {
             direction = direction - 360;
         }
 
+        errorTime += 1;
+        if (windDir != -1)
+            errorTime = 0;
+        else
+            errorCounter ++;
+
         msg_wind.data.data[0] = windDir;
         msg_wind.data.size++;
         msg_wind.data.data[1] = direction;
         msg_wind.data.size++;
 
-        RCCHECK(rcl_publish(&publisher_wind, &msg_wind, NULL));
+        RCSOFTCHECK(rcl_publish(&publisher_wind, &msg_wind, NULL));
 
         msg_wind.data.size = 0;
     }
@@ -162,6 +169,7 @@ void gps_callback(rcl_timer_t* timer, int64_t last_call_time) {
 }
 
 void init_gps_wind(rcl_allocator_t* allocator, rclc_support_t* support, rclc_executor_t* executor) {
+
     // create node
     rcl_node_t gps_node;
     rcl_node_t wind_node;
@@ -176,7 +184,7 @@ void init_gps_wind(rcl_allocator_t* allocator, rclc_support_t* support, rclc_exe
 
     // create timer,
     rcl_timer_t timer;
-    const unsigned int timer_timeout = 10;
+    const unsigned int timer_timeout = 100;
     RCCHECK(rclc_timer_init_default(&timer, support, RCL_MS_TO_NS(timer_timeout), gps_callback));
 
     // create timer,
@@ -219,8 +227,10 @@ void init_gps_wind(rcl_allocator_t* allocator, rclc_support_t* support, rclc_exe
     // configure i2c
     configure_i2c_master();
 
+    adc1_config_channel_atten(channel, atten);
+
     while (1) {
-        rclc_executor_spin_some(executor, RCL_MS_TO_NS(50));
+    	rclc_executor_spin_some(executor, RCL_MS_TO_NS(10));
         usleep(10000);
     }
 
