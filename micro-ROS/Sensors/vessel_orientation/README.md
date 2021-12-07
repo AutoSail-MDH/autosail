@@ -1,4 +1,4 @@
-# GPS
+# Vessel Orientation
 This application creates a micro-ROS node that publishes roll, pitch, yaw values to a ROS2 topic using an agent.
 
 These values come from the Adafruit MPU-6050 6-DOF IMU.
