@@ -12,6 +12,7 @@ def generate_launch_description():
         topics (str): Preprocessed topic names in standard ROS2 format
         timestamp (str): Time format - yyyy_mm_dd-H_M_S
     """
+
     return launch.LaunchDescription([
         launch.actions.ExecuteProcess(
             cmd=['ros2', 'bag', 'record', '-o',
@@ -21,18 +22,22 @@ def generate_launch_description():
     ])
 
 def format_topics(topics: list) -> str:
-        # Format into bag format for multiple topics
-        is_num_topics = len(topics)
-        topics = ' '.join(topics)
-        # Check if number of topics is greater than 1
-        if is_num_topics > 1:  
-            # Format: "/topic1 /topic2 ..." -> "{'/topic1','/topic2', ..."}
-            topics = topics.replace("/", "'/")
-            topics = topics.replace(" ", "',")
-            topics = "{" + topics + "'}"
-            return topics
-        else: # Single topics format
-            return topics
+    """  Format into bag format for multiple topics
+    Args:
+        topics (list): Preprocessed topic names in standard ROS2 format
+        str: "{'/topic1','/topic2', ..."}
+    """
+    is_num_topics = len(topics)
+    topics = ' '.join(topics)
+    # Check if number of topics is greater than 1
+    if is_num_topics > 1:  
+        # Format: "/topic1 /topic2 ..." -> "{'/topic1','/topic2', ..."}
+        topics = topics.replace("/", "'/")
+        topics = topics.replace(" ", "',")
+        topics = "{" + topics + "'}"
+        return topics
+    else: # Single topics format
+        return topics
 
 
 def import_topics_from(filename: str):
@@ -40,7 +45,7 @@ def import_topics_from(filename: str):
     Args:
         filename (str): filename containing topic names separated by rows
     Returns:
-        str: Format "/topic_1 /topic_2 /topic_3"
+        str: "{'/topic1','/topic2', ..."}
     '''
     lines = []
     topics = []
