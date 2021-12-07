@@ -22,7 +22,7 @@
 #define RIGHT_TURN 2
 
 // The angle limit as specified by hardware
-#define ANGLE_LIM 60
+#define ANGLE_LIM 45
 
 // A define to easier change which message type is used, since the expression appears everywhere
 #define STD_MULTIFLOAT std_msgs::msg::Float32MultiArray
