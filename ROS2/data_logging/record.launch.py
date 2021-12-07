@@ -12,7 +12,6 @@ def generate_launch_description():
         topics (str): Preprocessed topic names in standard ROS2 format
         timestamp (str): Time format - yyyy_mm_dd-H_M_S
     """
-
     return launch.LaunchDescription([
         launch.actions.ExecuteProcess(
             cmd=['ros2', 'bag', 'record', '-o',
@@ -64,5 +63,3 @@ def import_topics_from(filename: str):
             
     except FileNotFoundError:
         print(f"{filename}: File Not Found, correct filename/path?")
-
-print(import_topics_from(filename))
