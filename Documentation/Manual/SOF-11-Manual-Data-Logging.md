@@ -19,10 +19,17 @@ Run the following command to initiate recording of selected topics published on 
 
 Run the following command to initiate playback of selected topics recorded on network.
 
-> ros2 launch play recorded_{timestamp}
+> ros2 bag play recorded_{timestamp}
 
 ## Echo topics
 
 Once playback has been initiated, open new terminal and echo topics.
 
 > ros2 topic echo /topic_1 /topic_2 /topic_3 ... /topic_N
+
+
+## Note
+
+If multiple topics cannot be recorded using launch, attempt to add shell=True to resolve issue
+
+ExecuteProcess(['ros2', 'bag', ...], shell=True)  
