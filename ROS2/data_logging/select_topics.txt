@@ -1,1 +1,3 @@
-/chatter1
+/direction/wind
+/position/GPS
+/position/IMU
