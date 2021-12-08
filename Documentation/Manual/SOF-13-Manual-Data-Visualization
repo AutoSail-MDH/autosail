@@ -1,0 +1,19 @@
+# Data-logging using ROS bag
+
+## Create plots
+
+Run local_setup.bash?
+
+. install/local_setup.bash
+
+Run the following command to start the visualisation script and create the plots.
+
+ros2 run subplots subplots
+
+As soon as a message is published onto one of the topics subscribed to the data should show up on the corresponding plot.
+
+## Note
+
+The GPS plot never resets, which means a restart is required to clear the plot.
+The velocity prints the 20 latest velocities and all the polar plots plot the current value. 
+
