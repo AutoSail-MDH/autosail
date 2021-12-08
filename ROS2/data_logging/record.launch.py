@@ -1,9 +1,6 @@
 from datetime import datetime
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
 from launch.actions import ExecuteProcess
-from launch.substitutions import LaunchConfiguration
-
 
 # Target FILENAME containing topics
 FILENAME = "select_topics.txt"
@@ -27,7 +24,7 @@ def generate_launch_description():
     ])
 
 
-def import_topics_from(FILENAME: str):
+def import_topics_from(filename: str):
     '''Read topics from file and return correct ROS2 string format
     Args:
         FILENAME (str): FILENAME containing topic names separated by rows
@@ -38,7 +35,7 @@ def import_topics_from(FILENAME: str):
     topics = []
     try:
         # Read topics from list, ignore blank
-        with open(FILENAME) as f:
+        with open(filename) as f:
             lines = list(line for line in (l.strip() for l in f) if line)
         # Remove '\n'
         is_zero_idx_slash = 0
@@ -53,4 +50,3 @@ def import_topics_from(FILENAME: str):
             
     except FileNotFoundError:
         print(f"{FILENAME}: File Not Found, correct FILENAME/path?")
-print(import_topics_from(FILENAME))
