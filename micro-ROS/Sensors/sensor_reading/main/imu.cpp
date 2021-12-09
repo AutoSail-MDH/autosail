@@ -18,9 +18,10 @@
 #define PIN_SDA 21
 #define PIN_CLK 22
 
-#define FATAL -1000
+#define FATAL	-1000
 #define sizeMAF 4
 #define TO		3
+#define rec		2
 
 #define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Aborting.\n",__LINE__,(int)temp_rc);esp_restart();}}
 #define RCSOFTCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Continuing.\n",__LINE__,(int)temp_rc);}}
@@ -170,7 +171,7 @@ void imu_callback(void * arg)
 			}
 
 			//Every other sample and only if buffer is full
-			if ((count % 2 == 0) && (count >= sizeMAF)) {
+			if ((count % rec == 0) && (count >= sizeMAF)) {
 				moving_average_filter(ypr, yprBuffer);
 				moving_average_filter(accel, accelBuffer);
 				moving_average_filter(gyro, gyroBuffer);
@@ -183,7 +184,7 @@ void imu_callback(void * arg)
 					msg.data.data[i+6] = gyro[i];
 					msg.data.size += 3;
 				}
-				msg.layout.data_offset = count;
+				msg.layout.data_offset = count/rec;
 
 				RCCHECK(rcl_publish(publisher, &msg, NULL));
 			}

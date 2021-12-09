@@ -44,6 +44,7 @@ void micro_ros_task(void * arg)
 	rcl_node_t node;
 	RCCHECK(rclc_node_init_default(&node, "multithread_node", "", &support));
 
+	// create publishers
 	RCCHECK(rclc_publisher_init_default(
 		&publisher_imu, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/position/IMU"));
     RCCHECK(rclc_publisher_init_default(
@@ -51,16 +52,16 @@ void micro_ros_task(void * arg)
     RCCHECK(rclc_publisher_init_default(
         &publisher_wind, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/direction/wind"));
 
-	xTaskCreate(
+	// create multithreading tasks
+	xTaskCreate( //Needs to pass the actual publisher for some reason due to it being a cpp file
 		imu_callback, "imu_callback", CONFIG_MICRO_ROS_APP_STACK, &publisher_imu, CONFIG_MICRO_ROS_APP_TASK_PRIO, NULL);
 	xTaskCreate(
 		gps_callback, "gps_callback", CONFIG_MICRO_ROS_APP_STACK, NULL, CONFIG_MICRO_ROS_APP_TASK_PRIO, NULL);
 	xTaskCreate(
 		wind_callback, "wind_callback", CONFIG_MICRO_ROS_APP_STACK, NULL, CONFIG_MICRO_ROS_APP_TASK_PRIO, NULL);
 
-	while(1){
+	while(1)
 		sleep(100);
-	}
 
 	// free resources
 	RCCHECK(rcl_publisher_fini(&publisher_imu, &node));
