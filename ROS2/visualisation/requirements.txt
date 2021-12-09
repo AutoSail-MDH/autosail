@@ -1,0 +1,4 @@
+basemap==1.2.1
+matplotlib==3.5.0
+numpy==1.21.4
+
