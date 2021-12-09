@@ -10,6 +10,14 @@ To install BaseMap, follow this guide
 
 https://matplotlib.org/basemap/users/installing.html
 
+Download: 
+https://github.com/matplotlib/basemap/releases/
+
+cd to-downloaded-directory
+unzip basemap
+cd geos-X-X-X
+sudo export GEOS_DIR=/usr/local
+
 ## Create plots
 
 colcon build --packages-select subplots
