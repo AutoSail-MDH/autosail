@@ -1,12 +1,14 @@
 # Data-logging using ROS bag
 
-## Install packages
+## Prerequisites
 
-Install the packages listed in the requirements.txt file
+cd AutoSail-HT21/ROS2/visualisation/
+
+pip install -r requirements.txt
 
 ## Create plots
 
-Run local_setup.bash?
+colcon build --packages-select subplots
 
 . install/local_setup.bash
 
