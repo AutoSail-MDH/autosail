@@ -19,7 +19,7 @@ class MinimalPublisher(Node):
         self.pubYaw_ = self.create_subscription(Float32MultiArray, '/position/IMU', self.yaw_callback, 10)
         self.pubYaw_ # prevent unused variable warning
 
-        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/position/IMU', self.wind_callback, 10)
+        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/direction/wind', self.wind_callback, 10)
         self.pubGPS_ # prevent unused variable warning
 
         self.pubGPS_ = self.create_subscription(Float32MultiArray, '/position/IMU', self.rudder_callback, 10)
