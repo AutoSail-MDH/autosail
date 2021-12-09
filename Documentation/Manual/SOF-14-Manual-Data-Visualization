@@ -1,5 +1,7 @@
 # Data-logging using ROS bag
 
+> Note that this guide will only initiate plots and wait for topics GPS, IMU, VELOCITY to be launched, once topics are launched plots will begin
+
 ## Prerequisites
 
 cd AutoSail-HT21/ROS2/visualisation/
@@ -8,16 +10,18 @@ pip install -r requirements.txt
 
 To install BaseMap, follow this guide
 
+Download: 
+
+Follow this guide 
 https://matplotlib.org/basemap/users/installing.html
 
-Download: 
-https://github.com/matplotlib/basemap/releases/
-
+OR
+1. Download: https://github.com/matplotlib/basemap/releases/
 cd to-downloaded-directory
 unzip basemap
 cd geos-X-X-X
-sudo export GEOS_DIR=/usr/local
-
+export GEOS_DIR=/usr/local
+sudo python setup.py install
 ## Create plots
 
 colcon build --packages-select subplots
