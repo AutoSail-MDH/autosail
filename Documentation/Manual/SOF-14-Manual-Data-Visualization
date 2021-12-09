@@ -6,6 +6,10 @@ cd AutoSail-HT21/ROS2/visualisation/
 
 pip install -r requirements.txt
 
+To install BaseMap, follow this guide
+
+https://matplotlib.org/basemap/users/installing.html
+
 ## Create plots
 
 colcon build --packages-select subplots
