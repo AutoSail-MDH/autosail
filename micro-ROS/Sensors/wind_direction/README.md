@@ -1,6 +1,8 @@
 # Wind direction
 This application creates a ros2 node that publishes relative wind direction in degrees to a topic on a ros network. The values is in the range [0,360], but there is an approximately 10-15 degree window where all values are 0. The version of ros2 is foxy desktop on ubuntu 20.04. The node publishes to the topic `/direction/wind`. Make sure that the 0 degree of the wind sensor is in the direction of the boat due to the 10-15 degree window who are all 0.
 
+The red wire should be connected to 3.3V, the yellow wire to the pin labeled VP and the back wire to ground.
+
 ## Prerequsities
 This application assumes the user has installed ros2 and micro-ros using the following tutorials:
 
