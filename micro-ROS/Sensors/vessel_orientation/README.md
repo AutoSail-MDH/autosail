@@ -5,6 +5,11 @@ These values come from the Adafruit MPU-6050 6-DOF IMU.
 
 The version of ROS2 is Foxy desktop on Ubuntu 20.04. The node publishes to the topic `/position/IMU`
 
+# Hardware connection
+The connections from the MPU to ESP32 is:
+
+VIN - 3v3. GND - GND. SCL - 22. SDA 21.
+
 ## Prerequsities
 This application assumes the user has Docker and either ESP-IDF version v4.1, v4.2 or v4.3.
 
