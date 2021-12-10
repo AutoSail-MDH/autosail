@@ -1,44 +1,26 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <time.h>
+
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "driver/i2c.h"
+#include "driver/timer.h"
+#include "driver/adc.h"
+#include "driver/gpio.h"
+
 #include <rcl/error_handling.h>
 #include <rcl/rcl.h>
-#include <rclc/executor.h>
 #include <rclc/rclc.h>
-#include <rmw_microros/rmw_microros.h>
 #include <std_msgs/msg/float32_multi_array.h>
-#include <stdio.h>
-#include <time.h>
-#include <unistd.h>
 
 #include "include/nmea.h"
 #include "nmea.c"
 #include "include/protocol.h"
 #include "protocol.c"
-#include "driver/adc.h"
-#include "driver/gpio.h"
 
-#ifdef ESP_PLATFORM
-#include "driver/i2c.h"
-#include "driver/timer.h"
-#include "esp_log.h"
-#include "esp_system.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#endif
-
-#define RCCHECK(fn)                                                                      \
-    {                                                                                    \
-        rcl_ret_t temp_rc = fn;                                                          \
-        if ((temp_rc != RCL_RET_OK)) {                                                   \
-            printf("Failed status on line %d: %d. Aborting.\n", __LINE__, (int)temp_rc); \
-            esp_restart();                                                               \
-        }                                                                                \
-    }
-#define RCSOFTCHECK(fn)                                                                    \
-    {                                                                                      \
-        rcl_ret_t temp_rc = fn;                                                            \
-        if ((temp_rc != RCL_RET_OK)) {                                                     \
-            printf("Failed status on line %d: %d. Continuing.\n", __LINE__, (int)temp_rc); \
-        }                                                                                  \
-    }
+#define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Aborting.\n",__LINE__,(int)temp_rc);esp_restart();}}
+#define RCSOFTCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Continuing.\n",__LINE__,(int)temp_rc);}}
 
 #define INIT 94
 #define FATAL -1000.0
@@ -47,8 +29,8 @@
 
 rcl_publisher_t publisher_wind;
 rcl_publisher_t publisher_gps;
-std_msgs__msg__Float32MultiArray msg_gps;
 std_msgs__msg__Float32MultiArray msg_wind;
+std_msgs__msg__Float32MultiArray msg_gps;
 
 // variables
 int i;
@@ -66,9 +48,16 @@ int errorTime = 0, errorCounter = 0;
 static const adc_channel_t channel = ADC1_CHANNEL_0;
 static const adc_atten_t atten = ADC_ATTEN_11db;
 
-void wind_callback(rcl_timer_t* timer, int64_t last_call_time) {
-    RCLC_UNUSED(last_call_time);
-    if (timer != NULL) {
+int count_wind = 0;
+int count_gps = 0;
+
+void wind_callback(void * arg) {
+
+    TickType_t xLastWakeTime;
+ 	const TickType_t xFrequency = 20;
+	xLastWakeTime = xTaskGetTickCount();
+
+    while (1) {
         // Reset reading between
         reading = 0;
 
@@ -90,26 +79,42 @@ void wind_callback(rcl_timer_t* timer, int64_t last_call_time) {
             direction = direction - 360;
         }
 
-        errorTime += 1;
+        errorTime++;
         if (windDir != -1)
             errorTime = 0;
         else
-            errorCounter ++;
+            if(errorTime == 1)
+                errorCounter++;
+        
+        if (errorTime >= 100 || errorCounter >= 4) {
+		    msg_wind.data.data[0] = FATAL;
+		    msg_wind.data.size++;
+	    } else {
+            msg_wind.data.data[0] = windDir;
+            msg_wind.data.size++;
+            msg_wind.data.data[1] = direction;
+            msg_wind.data.size++;
+        }
 
-        msg_wind.data.data[0] = windDir;
-        msg_wind.data.size++;
-        msg_wind.data.data[1] = direction;
-        msg_wind.data.size++;
+        count_wind++;
+        msg_wind.layout.data_offset = count_wind;
 
         RCSOFTCHECK(rcl_publish(&publisher_wind, &msg_wind, NULL));
 
         msg_wind.data.size = 0;
+
+        //usleep(100000);
+        vTaskDelayUntil(&xLastWakeTime, xFrequency);
     }
 }
 
-void gps_callback(rcl_timer_t* timer, int64_t last_call_time) {
-    RCLC_UNUSED(last_call_time);
-    if (timer != NULL) {
+void gps_callback(void * arg) {
+
+    TickType_t xLastWakeTime;
+ 	const TickType_t xFrequency = 20;
+	xLastWakeTime = xTaskGetTickCount();
+
+    while (1) {
         // read data from the sensor
         i2c_read(I2C_MASTER_NUM, data, 400);
 
@@ -161,41 +166,18 @@ void gps_callback(rcl_timer_t* timer, int64_t last_call_time) {
             msg_gps.data.size++;
         }
 
+        count_gps++;
+        msg_gps.layout.data_offset = count_gps;
+
         RCSOFTCHECK(rcl_publish(&publisher_gps, &msg_gps, NULL));
         msg_gps.data.size = 0;
+
+        //usleep(100000);
+        vTaskDelayUntil(&xLastWakeTime, xFrequency);
     }
-    // delay for easier to read prints
-    // vTaskDelay(25);
 }
 
-void init_gps_wind(rcl_allocator_t* allocator, rclc_support_t* support, rclc_executor_t* executor) {
-
-    // create node
-    rcl_node_t gps_node;
-    rcl_node_t wind_node;
-    RCCHECK(rclc_node_init_default(&gps_node, "GPS_pub", "", support));
-    RCCHECK(rclc_node_init_default(&wind_node, "wind_node", "", support));
-
-    // create publisher
-    RCCHECK(rclc_publisher_init_default(
-        &publisher_gps, &gps_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/position/GPS"));
-    RCCHECK(rclc_publisher_init_default(
-        &publisher_wind, &wind_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/direction/wind"));
-
-    // create timer,
-    rcl_timer_t timer;
-    const unsigned int timer_timeout = 100;
-    RCCHECK(rclc_timer_init_default(&timer, support, RCL_MS_TO_NS(timer_timeout), gps_callback));
-
-    // create timer,
-    rcl_timer_t timer_wind;
-    RCCHECK(rclc_timer_init_default(&timer_wind, support, RCL_MS_TO_NS(timer_timeout), wind_callback));
-
-    // create executor
-    RCCHECK(rclc_executor_add_timer(executor, &timer));
-    RCCHECK(rclc_executor_add_timer(executor, &timer_wind));
-    // RCCHECK(rclc_executor_add_subscription(&executor, &publisher_gps, &msg_gps, &gps_callback, ON_NEW_DATA));
-    // RCCHECK(rclc_executor_add_subscription(&executor, &publisher_wind, &msg_wind, &wind_callback, ON_NEW_DATA));
+void init_gps_wind() {
 
     // variables
     i = 0;
@@ -228,15 +210,4 @@ void init_gps_wind(rcl_allocator_t* allocator, rclc_support_t* support, rclc_exe
     configure_i2c_master();
 
     adc1_config_channel_atten(channel, atten);
-
-    while (1) {
-    	rclc_executor_spin_some(executor, RCL_MS_TO_NS(10));
-        usleep(10000);
-    }
-
-    // free resources
-    RCCHECK(rcl_publisher_fini(&publisher_gps, &gps_node));
-    RCCHECK(rcl_publisher_fini(&publisher_wind, &wind_node));
-    RCCHECK(rcl_node_fini(&gps_node));
-    RCCHECK(rcl_node_fini(&wind_node));
 }
