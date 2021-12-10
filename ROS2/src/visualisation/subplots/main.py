@@ -19,7 +19,7 @@ class MinimalPublisher(Node):
         self.pubYaw_ = self.create_subscription(Float32MultiArray, '/position/IMU', self.yaw_callback, 10)
         self.pubYaw_ # prevent unused variable warning
 
-        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/position/IMU', self.wind_callback, 10)
+        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/direction/wind', self.wind_callback, 10)
         self.pubGPS_ # prevent unused variable warning
 
         self.pubGPS_ = self.create_subscription(Float32MultiArray, '/position/IMU', self.rudder_callback, 10)
@@ -37,11 +37,13 @@ class MinimalPublisher(Node):
         self.fig1 = plt.figure() #Fig1 is velocity
         self.ax1 = self.fig1.add_subplot(2,1,1) #Only one subplot for velocity
         #Fig2 holds four subplots: Yaw, Wind, Sail, Rudder
-        self.fig2, ((self.ax2, self.ax3), (self.ax4, self.ax5)) = plt.subplots(2, 2, subplot_kw=dict(projection= 'polar')) 
+        self.fig2, ((self.ax2, self.ax3), (self.ax4, self.ax5)) = plt.subplots(2, 2, subplot_kw=dict(projection= 'polar'))
 
-        self.ax6 = self.fig1.add_subplot(2,1,2)
+        self.ax6 = self.fig1.add_subplot(2,1,2) #Add GPS to first figure, second subplot
 
-        self.m = Basemap(projection='lcc', resolution=None, width=8E6, height=8E6, lat_0=59, lon_0=16)
+        #Create a map for converting coordinates to plottable points
+        #Change lat_0 and lon_0 to approximate current location for more accurate plotting (if run in Panama or Colombia)
+        self.m = Basemap(projection='lcc', resolution=None, width=8E6, height=8E6, lat_0=59, lon_0=16) 
 
         #Initialize variables
         self.Velxs = []
@@ -56,8 +58,8 @@ class MinimalPublisher(Node):
         self.DrawSail = 0
 
         #Easiest way to draw a line?
-        self.PolarY = np.linspace(0, 1, 10)
-        self.SailY = np.linspace(0, 0.5, 10)
+        self.PolarY = np.linspace(0, 1, 10) #For all polar plots
+        self.SailY = np.linspace(0, 0.5, 10) #For extra sail angle in wind plot
 
         #Set velocity x to [1, 20]
         for i in range(20):
@@ -69,6 +71,11 @@ class MinimalPublisher(Node):
         plt.pause(0.001)
     
     def velocity_callback(self, msg):
+        """Runs whenever velocity data is recieved 
+
+        Args:
+            msg (float32multiarray): Holds some other stuff but we only use velocity in msg.data[0]
+        """        
         self.get_logger().info('Vel %f' % (msg.data[0])) #VXYDT; Receive data. 0=Velocity, 1=X, 2=Y, 3=dt?
     
         #Shift old Y values back
@@ -80,86 +87,121 @@ class MinimalPublisher(Node):
     
         #Animation code
         ani = animation.FuncAnimation(self.fig1, self.animateVel, interval=1000)
-        self.fig1.canvas.draw_idle()
+        self.fig1.canvas.draw_idle() #Use draw_idle to specifically draw fig1 and not all plots to lessen strain
         self.fig1.canvas.flush_events() #Use this instead of pause since pause forces plot to foreground, which is super annoying.
-        #plt.pause(0.001)
 
     
     def yaw_callback(self, msg):
+        """Runs whenever yaw data is recieved 
+
+        Args:
+            msg (float32multiarray): Holds some other stuff but we only use yaw in msg.data[0]
+        """  
+
         self.get_logger().info('Yaw %f' % (msg.data[0])) #YPR; Receive data. 0=Yaw, 1=Pitch, 2=Roll
 
         #Read and convert to radians
         self.DrawYaw = msg.data[0]
         self.DrawYaw = np.radians(self.DrawYaw)
-        
-        #Automatically scales subplots
-        #self.fig2.tight_layout()
-
+    
+        #Animation updates the plots once run
         ani = animation.FuncAnimation(self.fig2, self.animateYaw, interval=1000)
-        self.fig2.canvas.draw_idle()
+        self.fig2.canvas.draw_idle() 
         self.fig2.canvas.flush_events()
 
     def wind_callback(self, msg):
+        """Runs whenever wind data is recieved 
+
+        Args:
+            msg (float32multiarray): Holds some other stuff but we only use wind direction in msg.data[0]
+        """  
+
         self.get_logger().info('Wind %f' % (msg.data[0])) #Wind direction, raw
 
+        #Read and convert to radians
         self.DrawWind = msg.data[0]
         self.DrawWind= np.radians(self.DrawWind)
 
+        #Animation updates the plots once run
         ani = animation.FuncAnimation(self.fig2, self.animateWind, interval=1000)
         self.fig2.canvas.draw_idle()
         self.fig2.canvas.flush_events()
 
     def rudder_callback(self, msg):
+        """Runs whenever rudder angle data is recieved 
+
+        Args:
+            msg (float32multiarray): Holds only rudder angle in msg.data[0]
+        """  
+        
         self.get_logger().info('Rudder %f' % (msg.data[0])) #Recieve the set rudder angle
 
+        #Read and convert to radians (Should be radiands already)
         self.DrawRudder = msg.data[0]
         #self.DrawRudder = np.radians(self.DrawRudder)
 
+        #Animation updates the plots once run
         ani = animation.FuncAnimation(self.fig2, self.animateRudder, interval=1000)
         self.fig2.canvas.draw_idle()
         self.fig2.canvas.flush_events()
 
     def sail_callback(self, msg):
+        """Runs whenever sail angle data is recieved 
+
+        Args:
+            msg (float32multiarray): Holds only sail angle in msg.data[0]
+        """  
+
         self.get_logger().info('Sail %f' % (msg.data[0])) #Recieve the set sail angle
 
+        #Read and convert to radians (Should be radiands already)
         self.DrawSail = msg.data[0]
-        self.DrawSail = np.radians(self.DrawSail)
+        #self.DrawSail = np.radians(self.DrawSail)
 
+        #Animation updates the plots once run
         ani = animation.FuncAnimation(self.fig2, self.animateSail, interval=1000)
         self.fig2.canvas.draw_idle()
         self.fig2.canvas.flush_events()
 
 
     def gps_callback(self, msg):
+        """Runs whenever position data is recieved 
+
+        Args:
+            msg (float32multiarray): Holds Latitude in msg.data[0] and Longitude in msg.data[1]
+        """  
+
         self.get_logger().info('Lat: %f' % (msg.data[0])) #LAT, LON
 
+        #Read values
         self.GPSlat = msg.data[0]
         self.GPSlon = msg.data[1]
 
+        #Convert to meters for plotting using the basemap m set up during initialization
         self.xLat, self.yLon = self.m(self.GPSlat, self.GPSlon)
 
+        #Animation updates the plots once run
         ani = animation.FuncAnimation(self.fig1, self.animateGPS, interval=1000)
         self.fig1.canvas.draw_idle()
         self.fig1.canvas.flush_events()
-        #plt.pause(0.001)
 
 
 
 
     def animateVel(self, i):
-        self.ax1.clear()
-        self.ax1.plot(self.Velxs, self.Velys)
+        self.ax1.clear() #Clear old data
+        self.ax1.plot(self.Velxs, self.Velys) #Plot new data
 
     def animateYaw(self, i):
     
-        self.YawX = []
+        self.YawX = [] #Empty YawX array
         
-        #Set every entry in YawX to DrawYaw just to have the same dimensions
+        #Set every entry in YawX to DrawYaw just to have the same dimensions as PolarY
         for i in range(10):
             self.YawX.append(self.DrawYaw)
 
-        self.ax2.clear()
-        self.ax2.plot(self.YawX, self.PolarY)
+        self.ax2.clear() #Clear old data
+        self.ax2.plot(self.YawX, self.PolarY) #Plot new data
 
 
         self.ax2.set_title("Yaw") #Set title
@@ -169,11 +211,11 @@ class MinimalPublisher(Node):
     def animateWind(self, i):
 
         self.WindX = []
-        self.windSail = []
+        self.windSail = [] #To plot sail in same subplot as wind direction
         
         for i in range(10):
             self.WindX.append(self.DrawWind)
-            self.windSail.append(self.DrawSail - np.pi)    
+            self.windSail.append(self.DrawSail - np.pi) #Since wind and sail have different zeros we add pi 
 
         self.ax3.clear()
         self.ax3.plot(self.WindX, self.PolarY)
@@ -214,32 +256,24 @@ class MinimalPublisher(Node):
         self.ax5.set_theta_zero_location('S') #Set 0 to north
 
     def animateGPS(self, i):
-        #self.ax6.clear()
 
-        self.ax6.plot(self.xLat, self.yLon, 'ok', markersize=5)
-        #self.ax6.title("GPS")
-
-
-
-
-
-
-
-
-
+        self.ax6.plot(self.xLat, self.yLon, 'ok', markersize=5) #Don't clear old points for the GPS plots, simply add the new one
 
 def main(args=None): 
     rclpy.init(args=args)
 
     minimal_publisher = MinimalPublisher()
 
-    rclpy.spin(minimal_publisher)
-
-    # Destroy the node explicitly
-    # (optional - otherwise it will be done automatically
-    # when the garbage collector destroys the node object)
-    minimal_publisher.destroy_node()
-    rclpy.shutdown()
+    try:
+        rclpy.spin(minimal_publisher)
+    except KeyboardInterrupt:
+        print("CTRL-C: KeyboardInterrupt registered")
+    finally:
+        # Destroy the node explicitly
+        # (optional - otherwise it will be done automatically
+        # when the garbage collector destroys the node object)
+        minimal_publisher.destroy_node()
+        rclpy.shutdown()
 
 
 if __name__ == '__main__':
