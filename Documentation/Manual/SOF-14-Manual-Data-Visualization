@@ -32,6 +32,8 @@ Run the following command to start the visualisation script and create the plots
 
 ros2 run subplots subplots
 
+> Stop program by holding: CTRL + C
+
 As soon as a message is published onto one of the topics subscribed to the data should show up on the corresponding plot.
 
 ## Note
