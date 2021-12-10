@@ -64,4 +64,3 @@ In another terminal, monitor the topic you published to
 ros2 topic echo /position/SAIL_ANGLE
 ros2 topic echo /rudder/ANGLE
 ```
-

@@ -31,7 +31,7 @@ https://github.com/espressif/esp-idf/blob/master/examples/peripherals/mcpwm/mcpw
 #define SERVO_MIN_PULSEWIDTH_US (800) // Minimum pulse width in microsecond
 #define SERVO_MAX_PULSEWIDTH_US (2200) // Maximum pulse width in microsecond
 #define SERVO_MAX_DEGREE        (90)   // Maximum angle in degree upto which servo can rotate
-#define SERVO_PULSE_GPIO_SAIL 	(17)   // GPIO connects to the PWM signal line
+#define SERVO_PULSE_GPIO_SAIL 	(19)   // GPIO connects to the PWM signal line
 #define SERVO_PULSE_GPIO_RUDDER (18)   // GPIO connects to the PWM signal line
 
 rcl_subscription_t sub_sail;
@@ -61,7 +61,7 @@ void rudder_callback(const void * msgin)
 	int32_t angle = msg->data * 180/M_PI; //In degrees
 	uint32_t duty_us = (angle + SERVO_MAX_DEGREE) * (SERVO_MAX_PULSEWIDTH_US - SERVO_MIN_PULSEWIDTH_US) / (2 * SERVO_MAX_DEGREE) + SERVO_MIN_PULSEWIDTH_US;
 
-	ESP_ERROR_CHECK(mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, duty_us));
+	ESP_ERROR_CHECK(mcpwm_set_duty_in_us(MCPWM_UNIT_1, MCPWM_TIMER_1, MCPWM_OPR_A, duty_us));
 	vTaskDelay(pdMS_TO_TICKS(200)); //Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation under 5V power supply
 
 	printf("Rudder duty cycle set to: %f", (float)duty_us);
@@ -89,14 +89,14 @@ void appMain(void *argument)
 
 	// create executor
 	rclc_executor_t executor = rclc_executor_get_zero_initialized_executor();
-	RCCHECK(rclc_executor_init(&executor, &support.context, 1, &allocator));
+	RCCHECK(rclc_executor_init(&executor, &support.context, 2, &allocator));
 
 	RCCHECK(rclc_executor_add_subscription(&executor, &sub_sail, &msg_sail, &sail_callback, ON_NEW_DATA));
 	RCCHECK(rclc_executor_add_subscription(&executor, &sub_rudder, &msg_rudder, &rudder_callback, ON_NEW_DATA));
 
 	//
 	mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, SERVO_PULSE_GPIO_SAIL); // To drive a RC servo, one MCPWM generator is enough
-	mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, SERVO_PULSE_GPIO_RUDDER); // To drive a RC servo, one MCPWM generator is enough
+	mcpwm_gpio_init(MCPWM_UNIT_1, MCPWM1A, SERVO_PULSE_GPIO_RUDDER); // To drive a RC servo, one MCPWM generator is enough
 
     mcpwm_config_t pwm_config = {
         .frequency = 50, // frequency = 50Hz, i.e. for every servo motor time period should be 20ms
@@ -105,7 +105,7 @@ void appMain(void *argument)
         .duty_mode = MCPWM_DUTY_MODE_0,
     };
     mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &pwm_config);
-	mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &pwm_config);
+	mcpwm_init(MCPWM_UNIT_1, MCPWM_TIMER_1, &pwm_config);
 	//
 
 	while(1){
