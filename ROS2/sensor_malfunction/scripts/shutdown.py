@@ -18,8 +18,11 @@ class MinimalPublisher(Node):
     
     def error_callback(self, msg):
         if (msg.level == 50): #50 is FATAL severity level
-            result = subprocess.run("echo hello_world", shell=True, capture_output=True)
+            command = "echo System shutdown due to " + msg.name
+            result = subprocess.run(command, shell=True, capture_output=True)
             print(result.stdout.decode())
+            #result = subprocess.run("poweroff", shell=True, capture_output=True)
+            #print(result.stdout.decode())
 
 
 

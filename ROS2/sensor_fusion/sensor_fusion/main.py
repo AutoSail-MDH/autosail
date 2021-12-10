@@ -3,7 +3,6 @@ from rclpy.node import Node
 from sensor_fusion.extended_kalman_filter import ekf_estimation
 
 from std_msgs.msg import Float32MultiArray
-from sensor_msgs.msg import JointState
 
 import math
 import numpy as np
@@ -13,15 +12,24 @@ class MinimalPublisher(Node):
     def __init__(self):
         super().__init__('minimal_publisher')
         
-        self.pubIMU_ = self.create_subscription(JointState, '/position/IMU', self.IMU_callback, 10)
-        self.pubIMU_ # prevent unused variable warning
-        
-        self.subGPS_ = self.create_subscription(Float32MultiArray, '/boat/velocity', self.GPS_callback, 10)
+        self.subGPS_ = self.create_subscription(Float32MultiArray, '/position/GPS', self.GPS_callback, 10)
         self.subGPS_  # prevent unused variable warning
 
+        self.pubIMU_ = self.create_subscription(Float32MultiArray, '/position/IMU', self.IMU_callback, 10)
+        self.pubIMU_ # prevent unused variable warning
+
         self.publisher_ = self.create_publisher(Float32MultiArray, '/position/fusion', 10)
+        
+        self.start = self.get_clock().now()
 
         self.curr_GPS_ = []
+        self.curr_time_GPS_ = self.start
+        self.prev_time_GPS_ = self.start
+
+        self.prev_time_IMU_ = self.start
+        #self.prev_velocity_ = [0, 0, 0] #[z y x]
+
+        self.prev_yaw_ = 0
 
         # EKF
         self.xEst = np.zeros((4, 1)) #State vector [x y yaw v]
@@ -30,40 +38,80 @@ class MinimalPublisher(Node):
     def IMU_callback(self, msg):
         message = Float32MultiArray()
 
-        ypr = msg.position          #[yaw pitch roll]
-        accel = msg.velocity        #[z y x]
-        gyro = msg.effort           #[z y x]
-        GPS = self.curr_GPS_        #[v x y deltaTime]
+        ypr = msg.data[0:3]         #[yaw pitch roll]
+        accel = msg.data[3:6]       #[z y x]
+        #gyro = msg.data[6:9]        #[z y x]
 
-        if self.curr_GPS_:  #//Atleast two readings
+        GPS = self.curr_GPS_        #[x y]
+
+        yaw = ypr[0]                #z-axis rotation
+
+        curr_time_IMU = self.get_clock().now()
+
+        if (self.curr_GPS_ != []) & (self.prev_time_IMU_ != self.start):  #//Atleast two readings
+            x = GPS[0]              #Latitude
+            y = GPS[1]              #Longitude
+
+            #DT_GPS = (self.curr_time_GPS_ - self.prev_time_GPS_).nanoseconds / pow(10, 9) #Difference in time between GPS readings [s]
+            DT_IMU = (curr_time_IMU - self.prev_time_IMU_).nanoseconds / pow(10, 9) #Difference in time between IMU readings [s]
+
+            #yawrate = gyro[0]       #z-axis angular velocity
+            yawrate = self.yaw_to_yawrate(yaw, DT_IMU)
+
+            v = self.accel_to_velocity(accel, DT_IMU) #Convert IMU acceleration to speed
+
+            self.get_logger().info('x: %f, y: %f, yaw: %f, v: %f, yawrate: %f, DT_IMU: %f' % (x, y, yaw, v, yawrate, DT_IMU))
+
+            #self.xEst = np.array([[x],     #State vector
+            #                        [y],
+            #                        [yaw],
+            #                        [v]])
             
-            v = GPS[0]              #Speed from GPS
-            x = GPS[1]              #Latitude
-            y = GPS[2]              #Longitude
-            DT = GPS[3]             #Difference in time between readings [s]
-            z = np.array([[x],      #Observation vector
+            u = np.array([[v],              #Input vector
+                            [yawrate]])
+                            
+            z = np.array([[x],              #Observation vector
                             [y]])
 
-            yaw = ypr[0]            #z-axis rotation
-            yawrate = gyro[0]       #z-axis gyroscope value
+            self.xEst, self.PEst = ekf_estimation(self.xEst, self.PEst, z, u, DT_IMU)
 
-            self.get_logger().info('v: %f, x: %f, y: %f, yaw: %f, yawrate: %f, DT: %f' % (v, x, y, yaw, yawrate, DT))
-
-            self.xEst = np.array([[x],      #State vector
-                                    [y],
-                                    [yaw],
-                                    [v]])
-
-            u = np.array([[v], [yawrate]])  #Input vector
-
-            self.xEst, self.PEst = ekf_estimation(self, self.xEst, self.PEst, z, u, DT)
-
-            message.data = {float(self.xEst[3]), float(self.xEst[0]), float(self.xEst[1])} #[v x y]
+            message.data = [float(self.xEst[0]), float(self.xEst[1]), float(self.xEst[2]), float(self.xEst[3])] #[x y yaw v]
+            self.get_logger().info('x = %f, y = %f, yaw = %f, v = %f' % (message.data[0], message.data[1], message.data[2], message.data[3]))
             self.publisher_.publish(message)
-            self.get_logger().info('v = %f, x = %f, y = %f' % (message.data[0], message.data[1], message.data[2]))
+
+        self.prev_time_IMU_ = curr_time_IMU
+        self.prev_yaw_ = yaw
 
     def GPS_callback(self, msg):
         self.curr_GPS_ = msg.data
+        self.prev_time_GPS_ = self.curr_time_GPS_
+        self.curr_time_GPS_ = self.get_clock().now()
+
+    def yaw_to_yawrate(self, yaw, DT):
+
+        yawrate = (yaw - self.prev_yaw_) / DT
+
+        return yawrate
+    
+    def accel_to_velocity(self, accel, DT):
+
+        #vz = accel[0] * DT
+        vy = accel[1] * DT
+        vx = accel[2] * DT
+
+        #vz = vz + self.prev_velocity_[0]
+        #vy = vy + self.prev_velocity_[1]
+        #vx = vx + self.prev_velocity_[2]
+
+        #velocity = math.sqrt(pow(vz, 2) + pow(vy, 2) + pow(vx, 2))
+        velocity = math.sqrt(pow(vy, 2) + pow(vx, 2)) #Take acceleration only from x and y heading
+        
+        #self.prev_velocity_[0] = vz
+        #self.prev_velocity_[1] = vy
+        #self.prev_velocity_[2] = vx
+
+        return velocity
+
 
 
 def main(args=None):

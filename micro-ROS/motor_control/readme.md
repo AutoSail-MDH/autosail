@@ -1,10 +1,12 @@
-# Rudder motor control
-This application creates a ros2 node that takes an angle in radians and converts it into a PWM signal. The input values can be between -pi/2 and pi/2, but the physical servo does not quite achieve a full 180 degree rotation; but it is close enough that it should hardly make a difference. The outputted PWM singal is per the servo's specifications between 800 and 2200 microseconds, on GPIO18. The version of ros2 is foxy desktop on ubuntu 20.04.
+# Motor control
+This application creates a micro-ROS node that takes an angle in radians and converts it into a PWM signal to be sent to the connected motors. The input values can be between -pi/2 and pi/2, but the physical servo does not quite achieve a full 180 degree rotation; but it is close enough that it should hardly make a difference. The outputted PWM singal is per the servo's specifications between 800 and 2200 microseconds. The version of ROS2 is Foxy on Ubuntu 20.04.
 
-The application subscribes to /RMW/angle and publishes the duty cycle to /RMW/duty
+The sail PWM signal is sent to GPIO17 and the rudder PWM signal is sent to GPIO18, being pin 17 and 18 on the ESP32 respectively.
+
+The application subscribes to /position/SAIL_ANGLE and /rudder/ANGLE.
 
 ## Prerequsities
-This application assumes the user has installed ros2 and micro-ros using the following tutorials:
+This application assumes the user has installed ROS2 and micro-ROS using the following tutorials:
 
 [ros2 installtion script](https://github.com/Tiryoh/ros2_setup_scripts_ubuntu)
 
@@ -12,7 +14,7 @@ This application assumes the user has installed ros2 and micro-ros using the fol
 
 ## Usage
 
-Place the RMC folder in your apps folder under the firmware app in your micro-ROS workspace. 
+Place the motor_control folder in ../firmware/freertos_apps/apps/ in your micro-ROS workspace. 
 
 ### Setup
 Sources the proper micro-ROS environment and prepares the building and flashing to the correct app.
@@ -24,11 +26,11 @@ colcon build
 source install/local_setup.bash
 ```
 ```
-ros2 run micro_ros_setup configure_firmware.sh wind_direction --transport serial
+ros2 run micro_ros_setup configure_firmware.sh motor_control --transport serial
 ```
 
 ### Build, flash
-Builds the gps app and flashes it to the esp32. Make sure the device is plugged in, and that you have your port unlocked, which can be done by [adding your user to the dialout group](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/establish-serial-connection.html#linux-dialout-group)
+Builds the app and flashes it to the esp32. Make sure the device is plugged in, and that you have your port unlocked, which can be done by [adding your user to the dialout group](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/establish-serial-connection.html#linux-dialout-group) .
 ```
 ros2 run micro_ros_setup build_firmware.sh
 
@@ -59,6 +61,7 @@ You might have to press the restart button on the esp32 if the agent does not wo
 
 In another terminal, monitor the topic you published to
 ```
-ros2 topic echo /RMC/angle
+ros2 topic echo /position/SAIL_ANGLE
+ros2 topic echo /rudder/ANGLE
 ```
 

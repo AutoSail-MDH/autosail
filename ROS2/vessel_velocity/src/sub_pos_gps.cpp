@@ -89,6 +89,7 @@ private:
       RCLCPP_INFO(this->get_logger(), "velocity: '%f'", velocity);
       RCLCPP_INFO(this->get_logger(), "Lat: '%lf', Lon: '%lf'", curr_GPS_[0], curr_GPS_[1]);
       RCLCPP_INFO(this->get_logger(), "deltaTime: '%f'", (float) deltaTime);
+      RCLCPP_INFO(this->get_logger(), "distance: '%f'", (float) dist);
       //RCLCPP_INFO(this->get_logger(), "prevLat: '%lf', prevLon: '%lf'", prev_GPS_[0], prev_GPS_[1]);
 
       //while (publisher_->get_subscription_count() < 1);

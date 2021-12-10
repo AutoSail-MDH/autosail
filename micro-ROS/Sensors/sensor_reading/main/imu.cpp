@@ -19,8 +19,8 @@
 #define PIN_CLK 22
 
 #define FATAL	-1000
-#define sizeMAF 4
-#define TO		3
+#define sizeMAF 4	//Size of moving average filter
+#define TO		3	//Seconds until timeout
 #define rec		2
 
 #define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Aborting.\n",__LINE__,(int)temp_rc);esp_restart();}}
@@ -184,7 +184,7 @@ void imu_callback(void * arg)
 					msg.data.data[i+6] = gyro[i];
 					msg.data.size += 3;
 				}
-				msg.layout.data_offset = count/rec;
+				msg.layout.data_offset = count/rec; //xLastWakeTime/portTICK_PERIOD_MS
 
 				RCCHECK(rcl_publish(publisher, &msg, NULL));
 			}

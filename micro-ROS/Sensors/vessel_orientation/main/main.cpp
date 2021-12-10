@@ -21,6 +21,7 @@ Modified by Peter Nguyen
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <sys/time.h>
 
 #include "esp_system.h"
 
@@ -39,18 +40,25 @@ Modified by Peter Nguyen
 #define PIN_SDA 21
 #define PIN_CLK 22
 
+#define FATAL -1000
+#define sizeMAF 4
+#define TO		5
+
 #define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Aborting.\n",__LINE__,(int)temp_rc);esp_restart();}}
 #define RCSOFTCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Continuing.\n",__LINE__,(int)temp_rc);}}
 
 Quaternion q;           // [w, x, y, z]         quaternion container
 VectorFloat gravity;    // [x, y, z]            gravity vector
 float ypr[3];      		// [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
-VectorInt16 accel;
+float yprBuffer[3][sizeMAF];
 uint16_t packetSize = 42;    // expected DMP packet size (default is 42 bytes)
 uint16_t fifoCount;     // count of all bytes currently in FIFO
 uint8_t fifoBuffer[64]; // FIFO storage buffer
 uint8_t mpuIntStatus;   // holds actual interrupt status byte from MPU
 MPU6050 mpu;
+uint32_t count = 0;
+struct timeval currTime;
+struct timeval prevTime;
 
 rcl_publisher_t publisher;
 std_msgs__msg__Float32MultiArray msg;
@@ -81,29 +89,40 @@ void task_init() {
 	mpu.initialize();
 	RCCHECK(mpu.dmpInitialize());
 
-	// This need to be setup individually
-	//mpu.setXGyroOffset(220);
-	//mpu.setYGyroOffset(76);
-	//mpu.setZGyroOffset(-85);
-	//mpu.setZAccelOffset(1788);
-
 	mpu.setXGyroOffset(mpu.getXGyroOffset());
 	mpu.setYGyroOffset(mpu.getYGyroOffset());
 	mpu.setZGyroOffset(mpu.getZGyroOffset());
+	
+	mpu.setXAccelOffset(mpu.getXAccelOffset());
+	mpu.setYAccelOffset(mpu.getYAccelOffset());
 	mpu.setZAccelOffset(mpu.getZAccelOffset());
 	
 
 	// Calibration Time: generate offsets and calibrate our MPU6050
 	mpu.CalibrateGyro(6);
 	mpu.CalibrateAccel(6);
+	
+	//mpu.setZAccelOffset(mpu.getZAccelOffset() + 4.7);
 
 	mpu.setDMPEnabled(true);
 
 	//Allocate message memory
 	static float memory[3];
-    msg.data.capacity = 3;
-    msg.data.data = memory;
-    msg.data.size = 0;
+    	msg.data.capacity = 3;
+    	msg.data.data = memory;
+    	msg.data.size = 0;
+	
+	gettimeofday(&prevTime,NULL);
+}
+
+void moving_average_filter(float avg[], float buffer[3][sizeMAF])
+{
+	for (int32_t i = 0; i < 3; i++)
+		for (int32_t j = 0; j < sizeMAF; j++)
+			avg[i] = avg[i] + buffer[i][j];
+	
+	for (int32_t i = 0; i < 3; i++)
+		avg[i] = avg[i] / sizeMAF;
 }
 
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
@@ -117,14 +136,21 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 		// get current FIFO count
 		fifoCount = mpu.getFIFOCount();
 
-	    if ((mpuIntStatus & 0x10) || fifoCount == 1024) {
+		gettimeofday(&currTime,NULL);
+		float timeDiff = abs((currTime.tv_sec - prevTime.tv_sec));
+
+		if ((mpuIntStatus & 0x10) || fifoCount == 1024) {
 	        // reset so we can continue cleanly
 	        mpu.resetFIFO();
-
 	    // otherwise, check for DMP data ready interrupt frequently)
 	    } else if (mpuIntStatus & 0x02) {
 	        // wait for correct available data length, should be a VERY short wait
-	        while (fifoCount < packetSize) fifoCount = mpu.getFIFOCount();
+	        while ((fifoCount < packetSize) && (timeDiff < TO)) {
+				fifoCount = mpu.getFIFOCount();
+
+				gettimeofday(&currTime,NULL);
+				timeDiff = abs((currTime.tv_sec - prevTime.tv_sec));
+			}
 
 	        // read a packet from FIFO
 
@@ -132,18 +158,35 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 	 		mpu.dmpGetQuaternion(&q, fifoBuffer);
 			mpu.dmpGetGravity(&gravity, &q);
 			mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
+			
+			for (int32_t i = 0; i < 3; i++)
+				yprBuffer[i][count % sizeMAF] = ypr[i];
 
-			mpu.dmpGetAccel(&accel, fifoBuffer);
+			if ((count % 2 == 0) && (count >= sizeMAF)) {
+				moving_average_filter(ypr, yprBuffer);
+
+				//Assign data to message
+
+				for (int32_t i = 0; i < 3; i++) {
+					msg.data.data[i] = ypr[i] * 180/M_PI;
+					msg.data.size++;
+				}
+				msg.layout.data_offset = count;
+				
+				RCCHECK(rcl_publish(&publisher, &msg, NULL));
+			}
+
+			prevTime = currTime;
+			count++;
 	    }
 
-		//micro-ROS to publish to topic
-
-		for (int32_t i = 0; i < 3; i++) {
-			msg.data.data[i] = ypr[i] * 180/M_PI;
-			msg.data.size++;
+		if ((timeDiff > TO) && (count > sizeMAF)) {
+			for (int32_t i = 0; i < 3; i++) {
+				msg.data.data[i] = FATAL;
+				msg.data.size++;
+			}
+			RCCHECK(rcl_publish(&publisher, &msg, NULL));
 		}
-
-		RCCHECK(rcl_publish(&publisher, &msg, NULL));
 
 		msg.data.size = 0;
 	}
