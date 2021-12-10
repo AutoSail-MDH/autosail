@@ -259,31 +259,22 @@ class MinimalPublisher(Node):
 
         self.ax6.plot(self.xLat, self.yLon, 'ok', markersize=5) #Don't clear old points for the GPS plots, simply add the new one
 
-
-
-
-
-
-
-
-
-
 def main(args=None): 
     rclpy.init(args=args)
 
     minimal_publisher = MinimalPublisher()
 
-    rclpy.spin(minimal_publisher)
-
-    # Destroy the node explicitly
-    # (optional - otherwise it will be done automatically
-    # when the garbage collector destroys the node object)
-    minimal_publisher.destroy_node()
-    rclpy.shutdown()
+    try:
+        rclpy.spin(minimal_publisher)
+    except KeyboardInterrupt:
+        print("CTRL-C: KeyboardInterrupt registered")
+    finally:
+        # Destroy the node explicitly
+        # (optional - otherwise it will be done automatically
+        # when the garbage collector destroys the node object)
+        minimal_publisher.destroy_node()
+        rclpy.shutdown()
 
 
 if __name__ == '__main__':
-    try:
-       main()
-    except KeyboardInterrupt:
-       exit()
+    main()
