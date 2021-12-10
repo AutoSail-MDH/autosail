@@ -4,7 +4,7 @@ This application creates a ros2 node that publishes relative wind direction in d
 The red wire should be connected to 3.3V, the yellow wire to the pin labeled VP and the back wire to ground.
 
 ## Prerequsities
-This application assumes the user has installed ros2 and micro-ros using the following tutorials:
+This application assumes the user has installed ros2, and micro-ros using the following tutorials:
 
 [ros2 installtion script](https://github.com/Tiryoh/ros2_setup_scripts_ubuntu)
 
