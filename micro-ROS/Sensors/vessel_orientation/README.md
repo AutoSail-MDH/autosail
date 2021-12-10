@@ -14,7 +14,7 @@ GND - GND.
 
 SCL - 22.
 
-SDA 21.
+SDA - 21.
 
 ## Prerequsities
 This application assumes the user has Docker and either ESP-IDF version v4.1, v4.2 or v4.3.
