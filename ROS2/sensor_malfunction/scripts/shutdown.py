@@ -1,29 +1,26 @@
 #!/usr/bin/env python3
-...
-
 import rclpy
 from rclpy.node import Node
-
 from rcl_interfaces.msg import Log
-
 import subprocess
+...
+
 
 class MinimalPublisher(Node):
 
     def __init__(self):
         super().__init__('minimal_publisher')
-        
-        self.pubIMU_ = self.create_subscription(Log, '/rosout', self.error_callback, 10)
-        self.pubIMU_ # prevent unused variable warning
-    
+
+        self.pubIMU_ = self.create_subscription(
+            Log, '/rosout', self.error_callback, 10)
+        self.pubIMU_  # prevent unused variable warning
+
     def error_callback(self, msg):
-        if (msg.level == 50): #50 is FATAL severity level
+        if (msg.level == 50):  # 50 is FATAL severity level
             command = "echo System shutdown due to " + msg.name
             result = subprocess.run(command, shell=True, capture_output=True)
             print(result.stdout.decode())
             #result = subprocess.run("poweroff", shell=True, capture_output=True)
-            #print(result.stdout.decode())
-
 
 
 def main(args=None):
