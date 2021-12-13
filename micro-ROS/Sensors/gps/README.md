@@ -1,6 +1,8 @@
 # GPS
 This application is creates a ros2 node that publishes Lat/Long values to a topic on a ros network. These values come from the GPS NEO-M9N. The version of ros2 is foxy desktop on ubuntu 20.04. The node publishes to the topic `/position/GPS`
 
+The GPS is connected using I2C to the MCU. SDA(Blue cable) is connected to GPIO 21 and SCL(Yellow Cable) is connected to GPIO 22. The GPS should be connected(Red cable) to a 3.3V power source. The black cable is ground.
+
 ## Prerequsities
 This application assumes the user has installed ros2 and micro-ros using the following tutorials:
 
