@@ -1,23 +1,22 @@
+#include <driver/gpio.h>
+#include <driver/uart.h>
 #include <uxr/client/transport.h>
 
-#include <driver/uart.h>
-#include <driver/gpio.h>
-
-#define UART_TXD  (CONFIG_MICROROS_UART_TXD)
-#define UART_RXD  (CONFIG_MICROROS_UART_RXD)
-#define UART_RTS  (CONFIG_MICROROS_UART_RTS)
-#define UART_CTS  (CONFIG_MICROROS_UART_CTS)
+#define UART_TXD (CONFIG_MICROROS_UART_TXD)
+#define UART_RXD (CONFIG_MICROROS_UART_RXD)
+#define UART_RTS (CONFIG_MICROROS_UART_RTS)
+#define UART_CTS (CONFIG_MICROROS_UART_CTS)
 
 // --- micro-ROS Transports ---
 #define UART_BUFFER_SIZE (512)
 
-bool esp32_serial_open(struct uxrCustomTransport * transport){
-    size_t * uart_port = (size_t*) transport->args;
+bool esp32_serial_open(struct uxrCustomTransport* transport) {
+    size_t* uart_port = (size_t*)transport->args;
 
     uart_config_t uart_config = {
         .baud_rate = 115200,
         .data_bits = UART_DATA_8_BITS,
-        .parity    = UART_PARITY_DISABLE,
+        .parity = UART_PARITY_DISABLE,
         .stop_bits = UART_STOP_BITS_1,
         .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
     };
@@ -35,20 +34,20 @@ bool esp32_serial_open(struct uxrCustomTransport * transport){
     return true;
 }
 
-bool esp32_serial_close(struct uxrCustomTransport * transport){
-    size_t * uart_port = (size_t*) transport->args;
+bool esp32_serial_close(struct uxrCustomTransport* transport) {
+    size_t* uart_port = (size_t*)transport->args;
 
     return uart_driver_delete(*uart_port) == ESP_OK;
 }
 
-size_t esp32_serial_write(struct uxrCustomTransport* transport, const uint8_t * buf, size_t len, uint8_t * err){
-    size_t * uart_port = (size_t*) transport->args;
-    const int txBytes = uart_write_bytes(*uart_port, (const char*) buf, len);
+size_t esp32_serial_write(struct uxrCustomTransport* transport, const uint8_t* buf, size_t len, uint8_t* err) {
+    size_t* uart_port = (size_t*)transport->args;
+    const int txBytes = uart_write_bytes(*uart_port, (const char*)buf, len);
     return txBytes;
 }
 
-size_t esp32_serial_read(struct uxrCustomTransport* transport, uint8_t* buf, size_t len, int timeout, uint8_t* err){
-    size_t * uart_port = (size_t*) transport->args;
+size_t esp32_serial_read(struct uxrCustomTransport* transport, uint8_t* buf, size_t len, int timeout, uint8_t* err) {
+    size_t* uart_port = (size_t*)transport->args;
     const int rxBytes = uart_read_bytes(*uart_port, buf, len, timeout / portTICK_RATE_MS);
     return rxBytes;
 }

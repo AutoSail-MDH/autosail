@@ -1,26 +1,37 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <time.h>
-
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "driver/i2c.h"
-#include "driver/timer.h"
-#include "driver/adc.h"
-#include "driver/gpio.h"
-
 #include <rcl/error_handling.h>
 #include <rcl/rcl.h>
 #include <rclc/rclc.h>
 #include <std_msgs/msg/float32_multi_array.h>
+#include <stdio.h>
+#include <time.h>
+#include <unistd.h>
 
+#include "driver/adc.h"
+#include "driver/gpio.h"
+#include "driver/i2c.h"
+#include "driver/timer.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 #include "include/nmea.h"
-#include "nmea.c"
 #include "include/protocol.h"
+#include "nmea.c"
 #include "protocol.c"
 
-#define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Aborting.\n",__LINE__,(int)temp_rc);esp_restart();}}
-#define RCSOFTCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){printf("Failed status on line %d: %d. Continuing.\n",__LINE__,(int)temp_rc);}}
+#define RCCHECK(fn)                                                                      \
+    {                                                                                    \
+        rcl_ret_t temp_rc = fn;                                                          \
+        if ((temp_rc != RCL_RET_OK)) {                                                   \
+            printf("Failed status on line %d: %d. Aborting.\n", __LINE__, (int)temp_rc); \
+            esp_restart();                                                               \
+        }                                                                                \
+    }
+#define RCSOFTCHECK(fn)                                                                    \
+    {                                                                                      \
+        rcl_ret_t temp_rc = fn;                                                            \
+        if ((temp_rc != RCL_RET_OK)) {                                                     \
+            printf("Failed status on line %d: %d. Continuing.\n", __LINE__, (int)temp_rc); \
+        }                                                                                  \
+    }
 
 #define INIT 94
 #define FATAL -1000.0
@@ -51,11 +62,10 @@ static const adc_atten_t atten = ADC_ATTEN_11db;
 int count_wind = 0;
 int count_gps = 0;
 
-void wind_callback(void * arg) {
-
+void wind_callback(void* arg) {
     TickType_t xLastWakeTime;
- 	const TickType_t xFrequency = 20;
-	xLastWakeTime = xTaskGetTickCount();
+    const TickType_t xFrequency = 20;
+    xLastWakeTime = xTaskGetTickCount();
 
     while (1) {
         // Reset reading between
@@ -82,14 +92,13 @@ void wind_callback(void * arg) {
         errorTime++;
         if (windDir != -1)
             errorTime = 0;
-        else
-            if(errorTime == 1)
-                errorCounter++;
-        
+        else if (errorTime == 1)
+            errorCounter++;
+
         if (errorTime >= 100 || errorCounter >= 4) {
-		    msg_wind.data.data[0] = FATAL;
-		    msg_wind.data.size++;
-	    } else {
+            msg_wind.data.data[0] = FATAL;
+            msg_wind.data.size++;
+        } else {
             msg_wind.data.data[0] = windDir;
             msg_wind.data.size++;
             msg_wind.data.data[1] = direction;
@@ -103,16 +112,14 @@ void wind_callback(void * arg) {
 
         msg_wind.data.size = 0;
 
-        //usleep(100000);
         vTaskDelayUntil(&xLastWakeTime, xFrequency);
     }
 }
 
-void gps_callback(void * arg) {
-
+void gps_callback(void* arg) {
     TickType_t xLastWakeTime;
- 	const TickType_t xFrequency = 20;
-	xLastWakeTime = xTaskGetTickCount();
+    const TickType_t xFrequency = 20;
+    xLastWakeTime = xTaskGetTickCount();
 
     while (1) {
         // read data from the sensor
@@ -172,13 +179,11 @@ void gps_callback(void * arg) {
         RCSOFTCHECK(rcl_publish(&publisher_gps, &msg_gps, NULL));
         msg_gps.data.size = 0;
 
-        //usleep(100000);
         vTaskDelayUntil(&xLastWakeTime, xFrequency);
     }
 }
 
 void init_gps_wind() {
-
     // variables
     i = 0;
 
