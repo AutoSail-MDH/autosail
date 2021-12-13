@@ -15,6 +15,14 @@ https://docs.ros.org/en/foxy/Tutorials/Workspace/Creating-A-Workspace.html
 
 Place the sensor_malfunction folder inside src in the ROS2 workspace.
 
+Edit /launch/malfunction_launch.py file to add more topics to monitor and edit parameters.
+
+"my_topic" is the name of the topic to monitor.
+
+"my_DL" is the time in seconds before the monitoring node starts sending FATAL messages.
+
+"my_iteration" is the amount of times the topic can be unresponsive before FATAL messages are sent.
+
 ### Setup and run
 Open up a terminal at the source of your ROS2 workspace and source your ROS2 version.
 
