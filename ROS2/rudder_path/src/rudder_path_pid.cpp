@@ -12,7 +12,7 @@
 #include "std_msgs/msg/string.hpp"
 
 // Topics for which to read from and publish to
-#define SUB_TOPIC_1 "/position/IMU"
+#define SUB_TOPIC_1 "/position/fusion"
 #define SUB_TOPIC_2 "/position/GPS"
 #define SUB_TOPIC_3 "/position/GOAL"
 #define PUB_TOPIC "/rudder/ANGLE"
@@ -89,7 +89,7 @@ class MinimalSubPub : public rclcpp::Node {
 
    private:
     // Get current heading
-    void IMU_callback(const STD_MULTIFLOAT::SharedPtr msg) { yaw = msg->data[0]; }
+    void IMU_callback(const STD_MULTIFLOAT::SharedPtr msg) { yaw = msg->data[2]; }
 
     // Get current position in Lat/Long
     void GPS_callback(const STD_MULTIFLOAT::SharedPtr msg) {
