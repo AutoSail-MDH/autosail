@@ -14,10 +14,11 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 from ament_index_python.packages import get_package_share_directory
 
+
 def generate_launch_description():
     sensor_malfunction = get_package_share_directory('sensor_malfunction')
     return LaunchDescription([
-        #Agent
+        # Agent
         Node(
             package='micro_ros_agent',
             executable='micro_ros_agent',
@@ -26,7 +27,7 @@ def generate_launch_description():
             emulate_tty=True,
             arguments=['serial', '--dev', '/dev/ttyUSB0']
         ),
-        #Velocity
+        # Velocity
         Node(
             package="vessel_velocity",
             executable="sub_pos_gps",
@@ -34,7 +35,7 @@ def generate_launch_description():
             output="screen",
             emulate_tty=True
         ),
-        #Sensor fusion
+        # Sensor fusion
         Node(
             package="sensor_fusion",
             executable="EKF",
@@ -42,12 +43,45 @@ def generate_launch_description():
             output="screen",
             emulate_tty=True
         ),
-        #Data logging
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/record.launch.py'])
+        # Rudder path
+        Node(
+            package="rudder_path",
+            executable="rpp",
+            name="rudder",
+            output="screen",
+            emulate_tty=True,
+            parameters=[
+                {"p": 5.0}
+            ]
         ),
-        #Sensor malfunction
+        # Rudder path publisher
+        Node(
+            package="rudder_path",
+            executable="pub",
+            name="rudder_pub",
+            output="screen",
+            emulate_tty=True,
+            parameters=[
+                {"lat": 0.0},
+                {"long": 0.0}
+            ]
+        ),
+        # Wind to Sail
+        Node(
+            package="wind_to_sail",
+            executable="sub_pub",
+            name="sail",
+            output="screen",
+            emulate_tty=True
+        ),
+        # Data logging
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([sensor_malfunction, '/launch', '/malfunction_launch.py'])
+            PythonLaunchDescriptionSource(
+                [ThisLaunchFileDir(), '/record.launch.py'])
+        ),
+        # Sensor malfunction
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                [sensor_malfunction, '/launch', '/malfunction_launch.py'])
         ),
     ])
