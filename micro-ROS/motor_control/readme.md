@@ -8,7 +8,7 @@ The application subscribes to /position/SAIL_ANGLE and /rudder/ANGLE.
 ## Prerequsities
 This application assumes the user has installed ROS2 and micro-ROS using the following tutorials:
 
-[ROS2 installation script](https://github.com/Tiryoh/ros2_setup_scripts_ubuntu)
+[ros2 installtion script](https://github.com/Tiryoh/ros2_setup_scripts_ubuntu)
 
 [micro-ROS](https://micro.ros.org/docs/tutorials/core/first_application_rtos/freertos/)
 

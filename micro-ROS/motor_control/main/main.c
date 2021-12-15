@@ -6,6 +6,7 @@
 #include <rmw_microxrcedds_c/config.h>
 #include <std_msgs/msg/float32.h>
 #include <stdio.h>
+#include <sys/time.h>
 #include <unistd.h>
 
 #include "driver/mcpwm.h"
@@ -44,6 +45,11 @@ rcl_subscription_t sub_rudder;
 std_msgs__msg__Float32 msg_sail;
 std_msgs__msg__Float32 msg_rudder;
 
+struct timeval startTime;
+struct timeval currTime;
+struct timeval prevTimeSail;
+struct timeval prevTimeRudder;
+
 void sail_callback(const void *msgin) {
     const std_msgs__msg__Float32 *msg = (const std_msgs__msg__Float32 *)msgin;
 
@@ -61,6 +67,8 @@ void sail_callback(const void *msgin) {
                                           // 100ms/60degree rotation under 5V power supply
 
     printf("Sail duty cycle set to: %f\r\n", (float)duty_us);
+
+    gettimeofday(&prevTimeSail, NULL);
 }
 
 void rudder_callback(const void *msgin) {
@@ -80,6 +88,8 @@ void rudder_callback(const void *msgin) {
                                           // 100ms/60degree rotation under 5V power supply
 
     printf("Rudder duty cycle set to: %f\r\n", (float)duty_us);
+
+    gettimeofday(&prevTimeRudder, NULL);
 }
 
 void micro_ros_task(void *arg) {
@@ -124,13 +134,21 @@ void micro_ros_task(void *arg) {
 
     while (1) {
         rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
-        usleep(10000);
+        gettimeofday(&currTime, NULL);
+        if (((prevTimeSail.tv_sec > 1) && (prevTimeRudder.tv_sec > 1)) || RMW_RET_OK != rmw_uros_ping_agent(1000, 1))
+            if (((currTime.tv_sec - prevTimeSail.tv_sec) >= 3) || ((currTime.tv_sec - prevTimeRudder.tv_sec) >= 3)) {
+                settimeofday(&startTime, NULL);
+                esp_restart();
+            }
+        usleep(100);
     }
 
     // free resources
     RCCHECK(rcl_subscription_fini(&sub_sail, &node));
     RCCHECK(rcl_subscription_fini(&sub_rudder, &node));
     RCCHECK(rcl_node_fini(&node));
+    RCCHECK(rclc_executor_fini(&executor));
+    RCCHECK(rclc_support_fini(&support));
 
     vTaskDelete(NULL);
 }
@@ -144,6 +162,12 @@ void app_main(void) {
 #else
 #error micro-ROS transports misconfigured
 #endif  // RMW_UXRCE_TRANSPORT_CUSTOM
+
+    gettimeofday(&startTime, NULL);
+    // gettimeofday(&prevTimeSail, NULL);
+    // gettimeofday(&prevTimeRudder, NULL);
+    prevTimeSail = startTime;
+    prevTimeRudder = startTime;
 
     while (RMW_RET_OK != rmw_uros_ping_agent(1000, 1))
         ;
