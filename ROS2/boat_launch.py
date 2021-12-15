@@ -18,14 +18,15 @@ from ament_index_python.packages import get_package_share_directory
 def generate_launch_description():
     sensor_malfunction = get_package_share_directory('sensor_malfunction')
     return LaunchDescription([
-        # Agent
+        # Multiserial Agent
         Node(
             package='micro_ros_agent',
             executable='micro_ros_agent',
             name='micro_ros_agent',
             output='screen',
             emulate_tty=True,
-            arguments=['serial', '--dev', '/dev/ttyUSB0']
+            arguments=['multiserial', '--devs',
+                       "/dev/ttyUSB0 /dev/ttyUSB1", 'v6']
         ),
         # Velocity
         Node(
