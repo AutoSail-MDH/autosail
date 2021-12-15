@@ -62,8 +62,8 @@ def generate_launch_description():
             output="screen",
             emulate_tty=True,
             parameters=[
-                {"lat": 0.0},
-                {"lon": 0.0}
+                {"lat": 60.0},
+                {"lon": 10.0}
             ]
         ),
         # Wind to Sail
