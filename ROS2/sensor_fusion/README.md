@@ -1,5 +1,5 @@
 # Sensor fusion
-This application creates a sensor fusion between the IMU and the GPS using EKF. It tries to give a better estimation of the velocity and the position.
+This application creates a sensor fusion between the IMU and the GPS using EKF. It tries to give a better estimation of orientation and position.
 
 The version of ROS2 is Foxy desktop on Ubuntu 20.04. The application will read from /position/IMU and /position/GPS, and publish a Float32MultiArray [x y yaw v] to /position/fusion.
 
