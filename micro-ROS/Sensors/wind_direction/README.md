@@ -41,9 +41,9 @@ You only have to create and build the agent the first time, afterwards you only 
 ```
 ros2 run micro_ros_setup create_agent_ws.sh
 
-ros2 run micro_ros_setup build_agent.sh`
+ros2 run micro_ros_setup build_agent.sh
 
-source install/local_setup.bash`
+source install/local_setup.bash
 ```
 Find the device ID using:
 ```
