@@ -24,6 +24,7 @@ void configure_i2c_master(void) {
     // configure and install the i2c driver
     i2c_param_config(I2C_MASTER_NUM, &conf);
     i2c_driver_install(I2C_MASTER_NUM, conf.mode, I2C_MASTER_RX_BUF_DISABLE, I2C_MASTER_TX_BUF_DISABLE, 0);
+    i2c_set_timeout(I2C_NUM_0, 30000);
 }
 
 esp_err_t i2c_read(i2c_port_t i2c_num, uint8_t *data_rd, size_t size) {

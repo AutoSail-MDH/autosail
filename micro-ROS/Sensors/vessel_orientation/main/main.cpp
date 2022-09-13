@@ -1,14 +1,3 @@
-/*
- * Display.c
- *
- *  Created on: 14.08.2017
- *      Author: darek
- */
-/*
-Modified by Peter Nguyen
-*/
-
-//
 #include <driver/i2c.h>
 #include <esp_err.h>
 #include <esp_log.h>
@@ -21,17 +10,19 @@ Modified by Peter Nguyen
 #include <rmw_microros/rmw_microros.h>
 #include <rmw_microxrcedds_c/config.h>
 #include <std_msgs/msg/float32_multi_array.h>
+#include <math.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/time.h>
 #include <unistd.h>
 
-#include "MPU6050.h"
-#include "MPU6050_6Axis_MotionApps20.h"
+#include "BNO055ESP32.h"
 #include "driver/uart.h"
 #include "esp32_serial_transport.h"
 #include "esp_system.h"
 #include "sdkconfig.h"
+
+#include <std_msgs/msg/int32.h>
 
 #define PIN_SDA 21
 #define PIN_CLK 22
@@ -57,21 +48,21 @@ Modified by Peter Nguyen
         }                                                                                  \
     }
 
-Quaternion q;         // [w, x, y, z]         quaternion container
-VectorFloat gravity;  // [x, y, z]            gravity vector
+bno055_quaternion_t q;
+bno055_vector_t gravity;
 float ypr[3];         // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
 float yprBuffer[3][sizeMAF];
-uint16_t packetSize = 42;  // expected DMP packet size (default is 42 bytes)
-uint16_t fifoCount;        // count of all bytes currently in FIFO
-uint8_t fifoBuffer[64];    // FIFO storage buffer
-uint8_t mpuIntStatus;      // holds actual interrupt status byte from MPU
-MPU6050 mpu;
+bno055_interrupts_status_t mpuIntStatus;      // holds actual interrupt status byte from MPU
 uint32_t count = 0;
+BNO055* bno = NULL;
 struct timeval currTime;
 struct timeval prevTime;
 
 rcl_publisher_t publisher;
 std_msgs__msg__Float32MultiArray msg;
+
+rcl_publisher_t publisher_2;
+std_msgs__msg__Int32 msg_2;
 
 extern "C" {
 void app_main(void);
@@ -86,33 +77,39 @@ void task_init() {
     conf.scl_io_num = (gpio_num_t)PIN_CLK;
     conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
     conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
-    conf.master.clk_speed = 400000;
-    ESP_ERROR_CHECK(i2c_param_config(I2C_NUM_0, &conf));
-    ESP_ERROR_CHECK(i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0));
+    conf.master.clk_speed = 100000;
+    i2c_param_config(I2C_NUM_0, &conf);
+    i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0);
+    i2c_set_timeout(I2C_NUM_0, 30000);
 
-    vTaskDelay(500 / portTICK_PERIOD_MS);
+    //to use i²C leave the following line active
+    bno = new BNO055((i2c_port_t)I2C_NUM_0, 0x28); // BNO055 I2C Addr can be 0x28 or 0x29 (depends on your hardware)
 
-    // Initialize MPU and DMP
 
-    mpu = MPU6050();
-    mpu.initialize();
-    RCCHECK(mpu.dmpInitialize());
+    // bno055_offsets_t storedOffsets;
+    // storedOffsets.accelOffsetX = 29;
+    // storedOffsets.accelOffsetY = 24;
+    // storedOffsets.accelOffsetZ = 16;
+    // storedOffsets.magOffsetX = -243;
+    // storedOffsets.magOffsetY = -420;
+    // storedOffsets.magOffsetZ = -131;
+    // storedOffsets.gyroOffsetX = 1;
+    // storedOffsets.gyroOffsetY = -1;
+    // storedOffsets.gyroOffsetZ = 0;
+    // storedOffsets.accelRadius = 0;
+    // storedOffsets.magRadius = 662;
 
-    mpu.setXGyroOffset(mpu.getXGyroOffset());
-    mpu.setYGyroOffset(mpu.getYGyroOffset());
-    mpu.setZGyroOffset(mpu.getZGyroOffset());
 
-    mpu.setXAccelOffset(mpu.getXAccelOffset());
-    mpu.setYAccelOffset(mpu.getYAccelOffset());
-    mpu.setZAccelOffset(mpu.getZAccelOffset());
-
-    // Calibration Time: generate offsets and calibrate our MPU6050
-    mpu.CalibrateGyro(6);
-    mpu.CalibrateAccel(6);
-
-    // mpu.setZAccelOffset(mpu.getZAccelOffset() + 4.7);
-
-    mpu.setDMPEnabled(true);
+    bno->begin();  // BNO055 is in CONFIG_MODE until it is changed
+    bno->enableExternalCrystal();
+    // bno.setSensorOffsets(storedOffsets);
+    // bno.setAxisRemap(BNO055_REMAP_CONFIG_P1, BNO055_REMAP_SIGN_P1); // see datasheet, section 3.4
+    /* you can specify a PoWeRMode using:
+            - setPwrModeNormal(); (Default on startup)
+            - setPwrModeLowPower();
+            - setPwrModeSuspend(); (while suspended bno055 must remain in CONFIG_MODE)
+    */
+    bno->setOprModeNdof();
 
     // Allocate message memory
     static float memory[3];
@@ -121,6 +118,16 @@ void task_init() {
     msg.data.size = 0;
 
     gettimeofday(&prevTime, NULL);
+}
+
+void GetHeading(float *data, bno055_quaternion_t *q, bno055_vector_t *gravity) {
+        // yaw: (about Z axis)
+        data[0] = atan2(2*q -> x*q -> y - 2*q -> w*q -> z, 2*q -> w*q -> w + 2*q -> x*q -> x - 1);
+        // pitch: (nose up/down, about Y axis)
+        data[1] = atan(gravity -> x / sqrt(gravity -> y*gravity -> y + gravity -> z*gravity -> z));
+        // roll: (tilt left/right, about X axis)
+        data[2] = atan(gravity -> y / sqrt(gravity -> x*gravity -> x + gravity -> z*gravity -> z));
+        return;
 }
 
 void moving_average_filter(float avg[], float buffer[3][sizeMAF]) {
@@ -135,61 +142,50 @@ void timer_callback(rcl_timer_t *timer, int64_t last_call_time) {
     if (timer != NULL) {
         // MPU to read and store sensor values
 
-        mpuIntStatus = mpu.getIntStatus();
-        fifoCount = mpu.getFIFOCount();  // get current FIFO count
+        //mpuIntStatus = bno.getInterruptsStatus();
+        //fifoCount = mpu.getFIFOCount();  // get current FIFO count
 
         gettimeofday(&currTime, NULL);
-        float timeDiff = abs((currTime.tv_sec - prevTime.tv_sec));
 
-        if ((mpuIntStatus & 0x10) || fifoCount == 1024) {
-            // reset so we can continue cleanly
-            mpu.resetFIFO();
-            // otherwise, check for DMP data ready interrupt frequently)
-        } else if (mpuIntStatus & 0x02) {
-            // wait for correct available data length, should be a VERY short wait
-            while ((fifoCount < packetSize) && (timeDiff < TO)) {
-                fifoCount = mpu.getFIFOCount();
+        q = bno->getQuaternion();         // [w, x, y, z]         quaternion container
+        gravity = bno->getVectorGravity(); // [x, y, z]            gravity vector
 
-                // To not get stuck
-                gettimeofday(&currTime, NULL);
-                timeDiff = abs((currTime.tv_sec - prevTime.tv_sec));
-            }
+        // Get heading
+        GetHeading(ypr, &q, &gravity);
+        
+        //bno->clearInterruptPin();  // don't forget to place this.
 
-            // read a packet from FIFO and convert
+        // Fill buffer by replacing oldest value
+        for (int32_t i = 0; i < 3; i++) yprBuffer[i][count % sizeMAF] = ypr[i];
 
-            mpu.getFIFOBytes(fifoBuffer, packetSize);
-            mpu.dmpGetQuaternion(&q, fifoBuffer);
-            mpu.dmpGetGravity(&gravity, &q);
-            mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
 
-            // Fill buffer by replacing oldest value
-            for (int32_t i = 0; i < 3; i++) yprBuffer[i][count % sizeMAF] = ypr[i];
-
-            if ((count % rec == 0) && (count >= sizeMAF)) {
+        if ((count % rec == 0) && (count >= sizeMAF)) {
                 moving_average_filter(ypr, yprBuffer);
 
-                // micro-ROS to publish to topic
 
-                for (int32_t i = 0; i < 3; i++) {
-                    msg.data.data[i] = ypr[i] * 180 / M_PI;
-                    msg.data.size++;
-                }
-                msg.layout.data_offset = count / rec;
-
-                RCCHECK(rcl_publish(&publisher, &msg, NULL));
+            // micro-ROS to publish to topic
+            for (int32_t i = 0; i < 3; i++) {
+                msg.data.data[i] = ypr[i] * 180 / M_PI;
+                msg.data.size++;
             }
-            prevTime = currTime;
-            count++;
-        }
+            msg.layout.data_offset = count / rec;
 
-        // If nothing is received from FIFO, publish FATAL message
-        if ((timeDiff > TO) && (count > sizeMAF)) {
-            msg.data.data[0] = FATAL;
-            msg.data.size++;
-            RCCHECK(rcl_publish(publisher, &msg, NULL));
+            RCCHECK(rcl_publish(&publisher, &msg, NULL));
+            vTaskDelay(100 / portTICK_PERIOD_MS);  // in fusion mode max output rate is 100hz (actual rate: 100ms (10hz))
         }
+        
+        prevTime = currTime;
+        count++;
 
         msg.data.size = 0;
+    }
+}
+
+void timer_callback_2(rcl_timer_t *timer, int64_t last_call_time) {
+    RCLC_UNUSED(last_call_time);
+    if (timer != NULL) {
+        RCCHECK(rcl_publish(&publisher_2, &msg_2, NULL));
+        msg_2.data++;
     }
 }
 
@@ -207,8 +203,7 @@ void app_main(void) {
 
     // Setup for micro-ROS
 
-    while (RMW_RET_OK != rmw_uros_ping_agent(1000, 1))
-        ;
+    while (RMW_RET_OK != rmw_uros_ping_agent(1000, 1));
 
     rcl_allocator_t allocator = rcl_get_default_allocator();
     rclc_support_t support;
@@ -242,14 +237,30 @@ void app_main(void) {
     vTaskDelay(500 / portTICK_PERIOD_MS);
     task_init();
 
+
+    rcl_node_t node_2;
+    RCCHECK(rclc_node_init_default(&node_2, "IMUnt", "", &support));
+    //RCCHECK(rclc_publisher_init_default(&publisher_2, &node_2, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32), "/testing"));
+    //rcl_timer_t timer_2;
+    //RCCHECK(rclc_timer_init_default(&timer_2, &support, RCL_MS_TO_NS(timer_timeout), timer_callback_2));
+    //rclc_executor_t executor_2;
+    //RCCHECK(rclc_executor_init(&executor_2, &support.context, 1, &allocator));
+    //RCCHECK(rclc_executor_add_timer(&executor_2, &timer_2));
+
+    vTaskDelay(500 / portTICK_PERIOD_MS);
+
+    msg_2.data = 0;
     while (1) {
         rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
-        usleep(10000);
+        //rclc_executor_spin_some(&executor_2, RCL_MS_TO_NS(100));
+        usleep(100000);
     }
 
     // free resources
     RCCHECK(rcl_publisher_fini(&publisher, &node));
     RCCHECK(rcl_node_fini(&node));
+    //RCCHECK(rcl_publisher_fini(&publisher_2, &node));
+    RCCHECK(rcl_node_fini(&node_2));
 
     vTaskDelete(NULL);
 }
