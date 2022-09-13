@@ -1,0 +1,8 @@
+[submodule "micro-ROS/Sensors/vessel_orientation/components/micro_ros_espidf_component"]
+	path = micro-ROS/Sensors/sensor_reading/components/micro_ros_espidf_component
+	url = https://github.com/micro-ROS/micro_ros_espidf_component.git
+[submodule "micro-ROS/Sensors/vessel_orientation/components/micro_ros_espidf_component"]
+	path = micro-ROS/Sensors/sensor_reading/components/micro_ros_espidf_component
+	url = https://github.com/micro-ROS/micro_ros_espidf_component.git	
+	
+
