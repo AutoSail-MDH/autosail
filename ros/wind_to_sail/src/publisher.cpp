@@ -30,7 +30,7 @@ auto message = std_msgs::msg::Float32();
 class MinimalPublisher : public rclcpp::Node {
    public:
     MinimalPublisher() : Node("publisher"), count_(0) {
-        publisher_ = this->create_publisher<std_msgs::msg::Float32>("/wind/test", 10);
+        publisher_ = this->create_publisher<std_msgs::msg::Float32>("/sensor/wind_test", 10);
         timer_ = this->create_wall_timer(100ms, std::bind(&MinimalPublisher::timer_callback, this));
     }
 

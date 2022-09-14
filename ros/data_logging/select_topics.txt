@@ -1,3 +1,3 @@
-/direction/wind
-/position/GPS
-/position/IMU
+/sensor/wind
+/sensor/gps
+/sensor/imu

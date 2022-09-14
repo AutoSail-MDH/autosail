@@ -18,7 +18,7 @@ def generate_launch_description():
             executable="if_error",
             name="vessel_orientation",
             parameters=[
-                {'my_topic': 'IMU'},
+                {'my_topic': 'imu'},
                 {'my_DL': 3},
                 {'my_iteration': 4}
                 ],

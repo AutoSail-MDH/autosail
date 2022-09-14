@@ -10,7 +10,7 @@
 #include "std_msgs/msg/string.hpp"
 
 // Change these to your topics
-#define PUB_TOPIC "/position/GOAL"
+#define PUB_TOPIC "/position/goal"
 // Change this to your message type, made this define to not have to write the long expression
 #define STD_MSG std_msgs::msg::Float32MultiArray
 #define STD_FLOAT std_msgs::msg::Float32

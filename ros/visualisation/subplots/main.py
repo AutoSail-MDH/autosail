@@ -13,22 +13,22 @@ class MinimalPublisher(Node):
     def __init__(self):
         super().__init__('minimal_publisher') 
         
-        self.pubVel_ = self.create_subscription(Float32MultiArray, '/boat/velocity', self.velocity_callback, 10)
+        self.pubVel_ = self.create_subscription(Float32MultiArray, '/sensor/velocity', self.velocity_callback, 10)
         self.pubVel_ # prevent unused variable warning
 
-        self.pubYaw_ = self.create_subscription(Float32MultiArray, '/position/IMU', self.yaw_callback, 10)
+        self.pubYaw_ = self.create_subscription(Float32MultiArray, '/sensor/imu', self.yaw_callback, 10)
         self.pubYaw_ # prevent unused variable warning
 
-        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/direction/wind', self.wind_callback, 10)
+        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/sensor/wind', self.wind_callback, 10)
         self.pubGPS_ # prevent unused variable warning
 
-        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/position/IMU', self.rudder_callback, 10)
+        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/sensor/imu', self.rudder_callback, 10)
         self.pubGPS_ # prevent unused variable warning
 
-        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/position/IMU', self.sail_callback, 10)
+        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/sensor/imu', self.sail_callback, 10)
         self.pubGPS_ # prevent unused variable warning
 
-        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/position/GPS', self.gps_callback, 10)
+        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/sensor/gps', self.gps_callback, 10)
         self.pubGPS_ # prevent unused variable warning
         
 

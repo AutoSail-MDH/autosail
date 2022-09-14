@@ -14,15 +14,15 @@ class MinimalPublisher(Node):
         super().__init__('minimal_publisher')
 
         self.subGPS_ = self.create_subscription(
-            Float32MultiArray, '/position/GPS', self.GPS_callback, 10)
+            Float32MultiArray, '/sensor/gps', self.GPS_callback, 10)
         self.subGPS_  # prevent unused variable warning
 
         self.pubIMU_ = self.create_subscription(
-            Float32MultiArray, '/position/IMU', self.IMU_callback, 10)
+            Float32MultiArray, '/sensor/imu', self.IMU_callback, 10)
         self.pubIMU_  # prevent unused variable warning
 
         self.publisher_ = self.create_publisher(
-            Float32MultiArray, '/position/fusion', 10)
+            Float32MultiArray, '/sensor/fusion', 10)
 
         self.start = self.get_clock().now()
 

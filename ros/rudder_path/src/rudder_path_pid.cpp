@@ -12,10 +12,10 @@
 #include "std_msgs/msg/string.hpp"
 
 // Topics for which to read from and publish to
-#define SUB_TOPIC_1 "/position/fusion"
-#define SUB_TOPIC_2 "/position/GPS"
-#define SUB_TOPIC_3 "/position/GOAL"
-#define PUB_TOPIC "/rudder/ANGLE"
+#define SUB_TOPIC_1 "/sensor/fusion"
+#define SUB_TOPIC_2 "/sensor/gps"
+#define SUB_TOPIC_3 "/sensor/goal"
+#define PUB_TOPIC "/rudder/angle"
 
 // Defines to make the code cleaner and more readable
 #define LEFT_TURN 1

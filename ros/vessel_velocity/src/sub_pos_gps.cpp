@@ -20,11 +20,11 @@ class MinimalPubSub : public rclcpp::Node  // Create node class by inheriting
         GPS_sub_ =
             this->create_subscription<std_msgs::msg::Float32MultiArray>(  // Constructor uses the node's
                                                                           // create_subscription class for callbacks
-                "/position/GPS", 50,
+                "/sensor/gps", 50,
                 std::bind(&MinimalPubSub::GPS_topic_callback, this, _1));  // No timer, instant response
 
         publisher_ = this->create_publisher<std_msgs::msg::Float32MultiArray>(
-            "/boat/velocity", 50);  // Init msg type, topic name and msg size
+            "/sensor/velocity", 50);  // Init msg type, topic name and msg size
 
         nodeTime_ = this->get_clock();  // Create clock starting at the time of node creation
     }
