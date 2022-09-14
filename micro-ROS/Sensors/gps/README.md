@@ -26,7 +26,7 @@ source install/local_setup.bash
 ```
 ros2 run micro_ros_setup configure_firmware.sh gps --transport serial
 
-ln -s firmware/freertos_apps/apps src/apps
+ln -s src/apps firmware/freertos_apps/apps
 
 ```
 
