@@ -62,6 +62,6 @@ You might have to press the restart button on the esp32 if the agent does not wo
 
 In another terminal, monitor the topic you published to
 ```bash
-ros2 topic echo /position/GPS
+ros2 topic echo /sensor/gps
 ```
 
