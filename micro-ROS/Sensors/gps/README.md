@@ -17,7 +17,7 @@ Place the gps folder in your apps folder under the firmware app in your micro-RO
 ### Setup
 Sources the proper micro-ROS environment and prepares the building and flashing to the correct app.
 ```bash
-cd ~/microros_ws
+cd ~/uros_ws
 
 colcon build
 
@@ -25,6 +25,9 @@ source install/local_setup.bash
 ```
 ```
 ros2 run micro_ros_setup configure_firmware.sh gps --transport serial
+
+ln -s firmware/freertos_apps/apps src/apps
+
 ```
 
 ### Build, flash
