@@ -12,7 +12,7 @@ using namespace std;
 
 // Change these to your topics
 #define SUB_TOPIC "/sensor/wind"
-#define PUB_TOPIC "/sensor/sail_angle"
+#define PUB_TOPIC "/actuator/sail"
 // Change this to your message type, made this define to not have to write the long expression
 #define STD_MSG std_msgs::msg::Float32
 #define STD_ARRAY std_msgs::msg::Float32MultiArray

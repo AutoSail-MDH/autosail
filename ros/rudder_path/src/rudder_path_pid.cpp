@@ -15,7 +15,7 @@
 #define SUB_TOPIC_1 "/sensor/fusion"
 #define SUB_TOPIC_2 "/sensor/gps"
 #define SUB_TOPIC_3 "/sensor/goal"
-#define PUB_TOPIC "/rudder/angle"
+#define PUB_TOPIC "/actuator/rudder"
 
 // Defines to make the code cleaner and more readable
 #define LEFT_TURN 1

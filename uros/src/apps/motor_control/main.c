@@ -8,11 +8,16 @@
 #include <stdio.h>
 #include <sys/time.h>
 #include <unistd.h>
-
 #include "driver/mcpwm.h"
-#include "esp32_serial_transport.h"
+
+#ifdef ESP_PLATFORM
+#include "driver/i2c.h"
+#include "driver/timer.h"
+#include "esp_log.h"
+#include "esp_system.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#endif
 
 #define RCCHECK(fn)                                                                      \
     {                                                                                    \
@@ -92,7 +97,14 @@ void rudder_callback(const void *msgin) {
     gettimeofday(&prevTimeRudder, NULL);
 }
 
-void micro_ros_task(void *arg) {
+void appMain(void* arg) {
+
+    while (RMW_RET_OK != rmw_uros_ping_agent(1000, 1));
+
+    gettimeofday(&startTime, NULL);
+    prevTimeSail = startTime;
+    prevTimeRudder = startTime;
+
     rcl_allocator_t allocator = rcl_get_default_allocator();
     rclc_support_t support;
 
@@ -104,10 +116,10 @@ void micro_ros_task(void *arg) {
     RCCHECK(rclc_node_init_default(&node, "motor_node", "", &support));
 
     RCCHECK(rclc_subscription_init_default(&sub_sail, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32),
-                                           "/position/SAIL_ANGLE"));
+                                           "/actuator/sail"));
     vTaskDelay(500 / portTICK_PERIOD_MS);
     RCCHECK(rclc_subscription_init_default(&sub_rudder, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32),
-                                           "/rudder/ANGLE"));
+                                           "/actuator/rudder"));
 
     // create executor
     rclc_executor_t executor = rclc_executor_get_zero_initialized_executor();
@@ -149,28 +161,4 @@ void micro_ros_task(void *arg) {
     RCCHECK(rcl_node_fini(&node));
     RCCHECK(rclc_executor_fini(&executor));
     RCCHECK(rclc_support_fini(&support));
-
-    vTaskDelete(NULL);
-}
-
-static size_t uart_port = 0;  // UART_NUM_0;
-
-void app_main(void) {
-#if defined(RMW_UXRCE_TRANSPORT_CUSTOM)
-    rmw_uros_set_custom_transport(true, (void *)&uart_port, esp32_serial_open, esp32_serial_close, esp32_serial_write,
-                                  esp32_serial_read);
-#else
-#error micro-ROS transports misconfigured
-#endif  // RMW_UXRCE_TRANSPORT_CUSTOM
-
-    gettimeofday(&startTime, NULL);
-    // gettimeofday(&prevTimeSail, NULL);
-    // gettimeofday(&prevTimeRudder, NULL);
-    prevTimeSail = startTime;
-    prevTimeRudder = startTime;
-
-    while (RMW_RET_OK != rmw_uros_ping_agent(1000, 1))
-        ;
-
-    xTaskCreate(micro_ros_task, "uros_task", CONFIG_MICRO_ROS_APP_STACK, NULL, CONFIG_MICRO_ROS_APP_TASK_PRIO, NULL);
 }
