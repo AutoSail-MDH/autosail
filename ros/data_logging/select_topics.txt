@@ -1,3 +1,0 @@
-/sensor/wind
-/sensor/gps
-/sensor/imu

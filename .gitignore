@@ -342,3 +342,9 @@ build/
 # Local History for Visual Studio Code
 .history/
 __pycache__
+
+
+install/
+log/
+src/
+
