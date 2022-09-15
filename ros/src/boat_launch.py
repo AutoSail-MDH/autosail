@@ -76,10 +76,10 @@ def generate_launch_description():
             emulate_tty=True
         ),
         # Data logging
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                [ThisLaunchFileDir(), '/record.launch.py'])
-        ),
+        #IncludeLaunchDescription(
+        #    PythonLaunchDescriptionSource(
+        #        [ThisLaunchFileDir(), '/data_logging', '/record.launch.py'])
+        #),
         # Sensor malfunction
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(

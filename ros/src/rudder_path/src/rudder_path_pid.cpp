@@ -14,7 +14,7 @@
 // Topics for which to read from and publish to
 #define SUB_TOPIC_1 "/sensor/fusion"
 #define SUB_TOPIC_2 "/sensor/gps"
-#define SUB_TOPIC_3 "/sensor/goal"
+#define SUB_TOPIC_3 "/position/goal"
 #define PUB_TOPIC "/actuator/rudder"
 
 // Defines to make the code cleaner and more readable

@@ -14,7 +14,7 @@ def generate_launch_description():
         #Monitor node(s)
         Node(
             package="sensor_malfunction",
-            namespace="position",
+            namespace="sensor",
             executable="if_error",
             name="vessel_orientation",
             parameters=[
