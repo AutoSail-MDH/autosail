@@ -172,7 +172,7 @@ void appMain(void* arg) {
     // create imu node
     rcl_node_t node_imu;
     RCCHECK(rclc_node_init_default(&node_imu, "imu_node", "", &support));
-    RCCHECK(rclc_publisher_init_default(&publisher_imu, &node_imu, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/sensor/IMU"));
+    RCCHECK(rclc_publisher_init_default(&publisher_imu, &node_imu, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/sensor/imu"));
     // create imu timer
     rcl_timer_t timer_imu;
     RCCHECK(rclc_timer_init_default(&timer_imu, &support, RCL_MS_TO_NS(1000), imu_callback));
@@ -187,7 +187,7 @@ void appMain(void* arg) {
     // create gps node
     rcl_node_t node_gps;// = rcl_get_zero_initialized_node();
     RCCHECK(rclc_node_init_default(&node_gps, "gps_node", "", &support));
-    RCCHECK(rclc_publisher_init_default(&publisher_gps, &node_gps, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/sensor/GPS"));
+    RCCHECK(rclc_publisher_init_default(&publisher_gps, &node_gps, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/sensor/gps"));
     // create gps timer
     rcl_timer_t timer_gps;
     RCCHECK(rclc_timer_init_default(&timer_gps, &support, RCL_MS_TO_NS(1000), gps_callback));
