@@ -30,8 +30,10 @@ ros2 run micro_ros_setup configure_firmware.sh gps --transport serial
 ros2 run micro_ros_setup build_firmware.sh menuconfig
 ```
 Go to Compiler options -> enable c++ exceptions.
+
 ```bash
-ln -s src/apps firmware/freertos_apps/apps
+rm -r firmware/freertos_apps/apps
+ln -s ../../src/apps firmware/freertos_apps/apps
 
 ```
 
