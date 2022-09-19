@@ -342,3 +342,12 @@ build/
 # Local History for Visual Studio Code
 .history/
 __pycache__
+<<<<<<< HEAD
+=======
+
+
+install/
+log/
+build/
+ros/src/uros/
+>>>>>>> simon_fixing

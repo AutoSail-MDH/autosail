@@ -1,0 +1,43 @@
+# Data-logging using ROS bag
+
+> Note that this guide will only initiate plots and wait for topics GPS, IMU, VELOCITY to be launched, once topics are launched plots will begin
+
+## Prerequisites
+
+cd AutoSail-HT21/ROS2/visualisation/
+
+pip install -r requirements.txt
+
+
+To install BaseMap, follow this guide:
+
+https://matplotlib.org/basemap/users/installing.html
+
+OR
+1. Download: https://github.com/matplotlib/basemap/releases/
+cd to-downloaded-directory
+unzip basemap
+cd geos-X-X-X
+export GEOS_DIR=/usr/local
+sudo python setup.py install
+
+
+## Create plots
+
+colcon build --packages-select subplots
+
+. install/local_setup.bash
+
+Run the following command to start the visualisation script and create the plots.
+
+ros2 run subplots subplots
+
+> Stop program by holding: CTRL + C
+
+As soon as a message is published onto one of the topics subscribed to the data should show up on the corresponding plot.
+
+## Note
+
+The GPS plot never resets, which means a restart is required to clear the plot.
+The velocity prints the 20 latest velocities and all the polar plots plot the current value. 
+
