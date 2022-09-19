@@ -55,8 +55,11 @@ rcl_publisher_t publisher_gps;
 
 bno055_quaternion_t q;
 bno055_vector_t gravity;
+bno055_vector_t linAccel;
 float ypr[3];         // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
+float accel[3];         // [x, y, z]		linear acceleration
 float yprBuffer[3][sizeMAF];
+float accelBuffer[3][sizeMAF];
 bno055_interrupts_status_t mpuIntStatus;      // holds actual interrupt status byte from MPU
 uint32_t count = 0;
 BNO055* bno = NULL;
@@ -96,8 +99,8 @@ void init_imu() {
     bno->setOprModeNdof();
 
     // Allocate message memory
-    static float memory[3];
-    msg.data.capacity = 3;
+    static float memory[6];
+    msg.data.capacity = 6;
     msg.data.data = memory;
     msg.data.size = 0;
 
@@ -129,19 +132,28 @@ void imu_callback(rcl_timer_t * timer, int64_t last_call_time) {
 
         q = bno->getQuaternion();         // [w, x, y, z]         quaternion container
         gravity = bno->getVectorGravity(); // [x, y, z]            gravity vector
+        linAccel = bno->getVectorLinearAccel(); // [x, y, z]	    linear acceleration 
 
         // Get heading
         GetHeading(ypr, &q, &gravity);
+        accel[0] = linAccel.x;
+        accel[1] = linAccel.y;
+        accel[2] = linAccel.z;
         
         // Fill buffer by replacing oldest value
-        for (int32_t i = 0; i < 3; i++) yprBuffer[i][count % sizeMAF] = ypr[i];
+        for (int32_t i = 0; i < 3; i++) yprBuffer[i][count % sizeMAF] = ypr[i]; // yaw pitch roll
+
+        for (int32_t i = 0; i < 3; i++) accelBuffer[i][count % sizeMAF] = accel[i];	// linear accel
 
         if ((count % rec == 0) && (count >= sizeMAF)) {
                 moving_average_filter(ypr, yprBuffer);
+                moving_average_filter(accel, accelBuffer);
 
             // micro-ROS to publish to topic
             for (int32_t i = 0; i < 3; i++) {
                 msg.data.data[i] = ypr[i] * 180 / M_PI;
+                msg.data.size++;
+                msg.data.data[i+3] = accel[i];
                 msg.data.size++;
             }
             msg.layout.data_offset = count / rec;
