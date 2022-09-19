@@ -56,7 +56,8 @@ class MinimalSubscriber : public rclcpp::Node {
                 connected = 0;
                 iteration++;
             } else {
-            }  // RCLCPP_INFO(this->get_logger(), "Topic %s/%s functioning", pubSpace, pubName);
+                //RCLCPP_INFO(this->get_logger(), "Topic %s/%s functioning", pubSpace, pubName);
+            }        
         } else {
             if ((currTime - prevTime_).seconds() < 1) connected = 1;
             if (iteration >= param_iteration_)
