@@ -10,7 +10,7 @@ class MinimalPublisher(Node):
         self.get_logger().fatal('Shutting down')
 
 
-def main(args=None):s
+def main(args=None):
     rclpy.init(args=args)
     minimal_publisher = MinimalPublisher()
     rclpy.spin(minimal_publisher)

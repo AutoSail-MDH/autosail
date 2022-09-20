@@ -37,7 +37,7 @@ class MinimalSubPub : public rclcpp::Node {
         auto message = STD_MSG();
 
         // initialize variables
-        float wind_angle = msg->data[1];
+        float wind_angle = msg->data[0];
         float sail_angle = 0;
         int wind_direction = 0;
 
@@ -97,7 +97,7 @@ class MinimalSubPub : public rclcpp::Node {
 
         // set the message to publish to the angle of the sail
         message.data = sail_angle;
-        printf("I heard: %f || Publishing: '%f'\n", msg->data[1], message.data);
+        printf("I heard: %f || Publishing: '%f'\n", msg->data[0], message.data);
 
         // Publishing of the message
         currTime_ = nodeTime_->now();
