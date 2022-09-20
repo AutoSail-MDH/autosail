@@ -151,7 +151,7 @@ void wind_callback(rcl_timer_t * timer, int64_t last_call_time)
         getWind(message2, &wind_angle, &wind_speed);
         */
         
-        msg_wind.data.data[0] = wind_angle;
+    msg_wind.data.data[0] = wind_angle;
 	msg_wind.data.size++;
 	msg_wind.data.data[1] = wind_speed;
 	msg_wind.data.size++;

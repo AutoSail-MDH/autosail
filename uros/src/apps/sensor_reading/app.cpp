@@ -152,9 +152,8 @@ void imu_callback(rcl_timer_t * timer, int64_t last_call_time) {
             // micro-ROS to publish to topic
             for (int32_t i = 0; i < 3; i++) {
                 msg.data.data[i] = ypr[i] * 180 / M_PI;
-                msg.data.size++;
                 msg.data.data[i+3] = accel[i];
-                msg.data.size++;
+                msg.data.size += 2;
             }
             msg.layout.data_offset = count / rec;
 
@@ -187,7 +186,7 @@ void appMain(void* arg) {
     RCCHECK(rclc_publisher_init_default(&publisher_imu, &node_imu, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/sensor/imu"));
     // create imu timer
     rcl_timer_t timer_imu;
-    RCCHECK(rclc_timer_init_default(&timer_imu, &support, RCL_MS_TO_NS(1000), imu_callback));
+    RCCHECK(rclc_timer_init_default(&timer_imu, &support, RCL_MS_TO_NS(100), imu_callback));
     // create imu executor
     rclc_executor_t executor_imu = rclc_executor_get_zero_initialized_executor();
     RCCHECK(rclc_executor_init(&executor_imu, &support.context, 2, &allocator));
@@ -202,7 +201,7 @@ void appMain(void* arg) {
     RCCHECK(rclc_publisher_init_default(&publisher_gps, &node_gps, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/sensor/gps"));
     // create gps timer
     rcl_timer_t timer_gps;
-    RCCHECK(rclc_timer_init_default(&timer_gps, &support, RCL_MS_TO_NS(1000), gps_callback));
+    RCCHECK(rclc_timer_init_default(&timer_gps, &support, RCL_MS_TO_NS(100), gps_callback));
     // create gps executor
     rclc_executor_t executor_gps = rclc_executor_get_zero_initialized_executor();
     RCCHECK(rclc_executor_init(&executor_gps, &support.context, 2, &allocator));
@@ -218,7 +217,7 @@ void appMain(void* arg) {
     RCCHECK(rclc_publisher_init_default(&publisher_wind, &node_wind, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/sensor/wind"));
     // create wind timer
     rcl_timer_t timer_wind;
-    RCCHECK(rclc_timer_init_default(&timer_wind, &support, RCL_MS_TO_NS(1000), wind_callback));
+    RCCHECK(rclc_timer_init_default(&timer_wind, &support, RCL_MS_TO_NS(100), wind_callback));
     // create wind executor
     rclc_executor_t executor_wind = rclc_executor_get_zero_initialized_executor();
     RCCHECK(rclc_executor_init(&executor_wind, &support.context, 2, &allocator));
