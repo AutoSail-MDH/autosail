@@ -1,6 +1,7 @@
 #! /bin/bash
 cd uros/	
 
+
 source /opt/ros/foxy/setup.bash
 
 git clone -b foxy https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
