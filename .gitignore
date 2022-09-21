@@ -350,3 +350,6 @@ build/
 ros/src/uros/
 firmware/
 micro_ros_setup/
+src/uros/
+uros/src/uros/
+uros/src/ros2.repos

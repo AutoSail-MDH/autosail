@@ -147,12 +147,12 @@ void appMain(void* arg) {
     while (1) {
         rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
         gettimeofday(&currTime, NULL);
-        if (((prevTimeSail.tv_sec > 1) && (prevTimeRudder.tv_sec > 1)) || RMW_RET_OK != rmw_uros_ping_agent(1000, 1))
-            if (((currTime.tv_sec - prevTimeSail.tv_sec) >= 3) || ((currTime.tv_sec - prevTimeRudder.tv_sec) >= 3)) {
-                settimeofday(&startTime, NULL);
-                esp_restart();
-            }
-        usleep(100);
+        // if (((prevTimeSail.tv_sec > 1) && (prevTimeRudder.tv_sec > 1)) || RMW_RET_OK != rmw_uros_ping_agent(1000, 1))
+            // if (((currTime.tv_sec - prevTimeSail.tv_sec) >= 3) || ((currTime.tv_sec - prevTimeRudder.tv_sec) >= 3)) {
+                // settimeofday(&startTime, NULL);
+                // esp_restart();
+            // }
+        // usleep(100);
     }
 
     // free resources
