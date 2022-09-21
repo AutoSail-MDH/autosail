@@ -13,11 +13,13 @@ Current heading in degrees, which is the current heading of the boat. This data 
 This application assumes the topics mentioned for each of the inputs contains data.
 
 ## Setup
+Place the 'rudder_path' folder inside your ROS2 workspace, in the src folder
 ```bash
+cd ~/$ROS2_WORKSPACE/
 
 colcon build
 
-source install/setup.bash
+. install/setup.bash
 ```
 
 ## Usage
