@@ -81,8 +81,8 @@ def generate_launch_description():
         #        [ThisLaunchFileDir(), '/data_logging', '/record.launch.py'])
         #),
         # Sensor malfunction
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                [sensor_malfunction, '/launch', '/malfunction_launch.py'])
-        ),
+        #  IncludeLaunchDescription(
+            #  PythonLaunchDescriptionSource(
+                #  [sensor_malfunction, '/launch', '/malfunction_launch.py'])
+        #  ),
     ])
