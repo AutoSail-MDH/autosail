@@ -82,7 +82,7 @@ ros2 topic list
 ```
 
 
-#Alternative read me using setup script (foxy only for now)
+# Alternative read me using setup script (foxy only for now)
 This folder contains the apps that can be run on the microcontroller.
 The apps are:
 [Sensor Reading](https://github.com/AutoSail-MDH/AutoSail/tree/main/uros/src/apps/wind_direction)
