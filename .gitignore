@@ -348,3 +348,7 @@ install/
 log/
 build/
 ros/src/uros/
+firmware/
+micro_ros_setup/
+uros/src/uros
+uros/src/ros2.repos
