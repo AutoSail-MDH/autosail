@@ -347,9 +347,9 @@ __pycache__
 install/
 log/
 build/
-ros/src/uros/
+# ros/src/uros/
 firmware/
 micro_ros_setup/
-src/uros/
-uros/src/uros/
-uros/src/ros2.repos
+# src/uros/
+# uros/src/uros/
+# uros/src/ros2.repos

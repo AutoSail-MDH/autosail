@@ -1,8 +1,9 @@
-[submodule "micro-ROS/Sensors/vessel_orientation/components/micro_ros_espidf_component"]
-	path = micro-ROS/Sensors/sensor_reading/components/micro_ros_espidf_component
-	url = https://github.com/micro-ROS/micro_ros_espidf_component.git
-[submodule "micro-ROS/Sensors/vessel_orientation/components/micro_ros_espidf_component"]
-	path = micro-ROS/Sensors/sensor_reading/components/micro_ros_espidf_component
-	url = https://github.com/micro-ROS/micro_ros_espidf_component.git	
-	
-
+[submodule "ros/src/uros/drive_base"]
+	path = ros/src/uros/drive_base
+	url = https://github.com/micro-ROS/drive_base.git
+[submodule "ros/src/uros/micro-ROS-Agent"]
+	path = ros/src/uros/micro-ROS-Agent
+	url = https://github.com/micro-ROS/micro-ROS-Agent.git
+[submodule "ros/src/uros/micro_ros_msgs"]
+	path = ros/src/uros/micro_ros_msgs
+	url = https://github.com/micro-ROS/micro_ros_msgs.git
