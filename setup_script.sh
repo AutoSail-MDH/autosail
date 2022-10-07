@@ -1,10 +1,9 @@
 #! /bin/bash
-cd uros/	
+cd ~/ros2_ws/autosail
 
+source /opt/ros/${ROS_DISTRO}/setup.bash
 
-source /opt/ros/foxy/setup.bash
-
-git clone -b foxy https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
+git clone -b ${ROS_DISTRO} https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
 
 sudo apt update && rosdep update 
 
@@ -22,13 +21,4 @@ ln -s ../../src/apps firmware/freertos_apps/apps
 
 ros2 run micro_ros_setup create_agent_ws.sh
 ros2 run micro_ros_setup build_agent.sh
-source install/local_setup.bash
-
-cd ..
-cp -R uros/src/uros/ ros/src/
-
-cd ros/
-source /opt/ros/foxy/setup.bash
-
-colcon build
 source install/local_setup.bash
