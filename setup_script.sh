@@ -1,4 +1,5 @@
 #! /bin/bash
+sudo apt install python3-rosdep2 python3-vcstool
 cd ~/ros2_ws/autosail
 
 source /opt/ros/${ROS_DISTRO}/setup.bash
