@@ -12,7 +12,7 @@ using namespace std;
 
 // Change these to your topics
 #define SUB_TOPIC "/sensor/wind"
-#define PUB_TOPIC "/actuator/sail"
+#define PUB_TOPIC "/actuator/sail_angle"
 // Change this to your message type, made this define to not have to write the long expression
 #define STD_MSG std_msgs::msg::Float32
 #define STD_ARRAY std_msgs::msg::Float32MultiArray
@@ -20,12 +20,12 @@ using namespace std;
 using namespace std::chrono_literals;
 using std::placeholders::_1;
 
-class MinimalSubPub : public rclcpp::Node {
+class SailAngleControl : public rclcpp::Node {
    public:
-    MinimalSubPub() : Node("subpub") {
+    SailAngleControl() : Node("sail_angle_node") {
         subscriber_ = this->create_subscription<STD_ARRAY>(
 
-            SUB_TOPIC, 50, std::bind(&MinimalSubPub::topic_callback, this, _1));  // No timer, instant response
+            SUB_TOPIC, 50, std::bind(&SailAngleControl::topic_callback, this, _1));  // No timer, instant response
 
         publisher_ = this->create_publisher<STD_MSG>(PUB_TOPIC, 50);
 
@@ -114,7 +114,7 @@ class MinimalSubPub : public rclcpp::Node {
 
 int main(int argc, char* argv[]) {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<MinimalSubPub>());
+    rclcpp::spin(std::make_shared<SailAngleControl>());
     rclcpp::shutdown();
     return 0;
 }
