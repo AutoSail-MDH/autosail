@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'subplots'
+package_name = 'visualisation'
 
 setup(
     name=package_name,
@@ -13,14 +13,14 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='skola',
-    maintainer_email='pnn16004@student.mdh.se',
-    description='Examples of minimal publisher/subscriber using rclpy',
-    license='Apache License 2.0',
+    maintainer='gin',
+    maintainer_email='ean18016@student.mdu.se',
+    description='Visualisation of sensor values',
+    license='Apache Licence 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        	'subplots = subplots.main:main',
+            'data_visualisation = visualisation.data_visualisation:main'
         ],
     },
 )
