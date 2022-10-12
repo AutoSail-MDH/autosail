@@ -19,7 +19,7 @@ ament_target_dependencies(rudder_control rclcpp std_msgs)
 add_executable(set_next_position src/set_next_position.cpp)
 ament_target_dependencies(set_next_position rclcpp std_msgs)
 install(TARGETS
-rudder_control
+  rudder_control
   set_next_position
   DESTINATION lib/${PROJECT_NAME})
 
