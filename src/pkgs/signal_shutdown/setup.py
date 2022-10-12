@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'sig_shutdown'
+package_name = 'signal_shutdown'
 
 setup(
     name=package_name,
