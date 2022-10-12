@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'sig_shutdown = sig_shutdown.main:main'
+            'boat_shutdown = src.boat_shutdown:main'
         ],
     },
 )
