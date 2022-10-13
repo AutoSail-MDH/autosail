@@ -6,8 +6,6 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "driver/adc.h"
-#include "driver/gpio.h"
 #include "components/nmea/include/nmea.h"
 #include "components/protocol/include/protocol.h"
 #include "components/nmea/nmea.c"
@@ -38,10 +36,8 @@
         }                                                                                  \
     }
 
-#define INIT 94
 #define FATAL -1000.0
 #define THREE_SECONDS 3
-#define NO_OF_SAMPLES 64
 
 rcl_publisher_t publisher_gps;
 std_msgs__msg__Float32MultiArray msg_gps;
