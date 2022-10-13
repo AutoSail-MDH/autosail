@@ -8,12 +8,12 @@ from mpl_toolkits.basemap import Basemap
 
 from std_msgs.msg import Float32MultiArray
 
-class MinimalPublisher(Node):
+class DataVisualisation(Node):
 
     def __init__(self):
-        super().__init__('minimal_publisher') 
+        super().__init__('data_visualisation_node') 
         
-        self.pubVel_ = self.create_subscription(Float32MultiArray, '/sensor/velocity', self.velocity_callback, 10)
+        self.pubVel_ = self.create_subscription(Float32MultiArray, '/position/velocity', self.velocity_callback, 10)
         self.pubVel_ # prevent unused variable warning
 
         self.pubYaw_ = self.create_subscription(Float32MultiArray, '/sensor/imu', self.yaw_callback, 10)
@@ -262,17 +262,17 @@ class MinimalPublisher(Node):
 def main(args=None): 
     rclpy.init(args=args)
 
-    minimal_publisher = MinimalPublisher()
+    data_visualisation_node = DataVisualisation()
 
     try:
-        rclpy.spin(minimal_publisher)
+        rclpy.spin(data_visualisation_node)
     except KeyboardInterrupt:
         print("CTRL-C: KeyboardInterrupt registered")
     finally:
         # Destroy the node explicitly
         # (optional - otherwise it will be done automatically
         # when the garbage collector destroys the node object)
-        minimal_publisher.destroy_node()
+        data_visualisation_node.destroy_node()
         rclpy.shutdown()
 
 
