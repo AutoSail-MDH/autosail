@@ -41,7 +41,7 @@ int parse(char* buf, char* pattern_1, char* pattern_2, float* angle, float* spee
     return 1;
 }
 
-int getWind(char* buf, float* angle, float* speed) {
+int GetWind(char* buf, float* angle, float* speed) {
     regmatch_t pmatch[2];
 
     // Tries to find out if the message is either GGA, GLL or RMC, which measn they contain positions

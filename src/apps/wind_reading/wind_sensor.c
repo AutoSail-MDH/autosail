@@ -46,13 +46,13 @@ std_msgs__msg__Float32MultiArray msg_wind;
 
 // variables
 int i;
-float angle;
-float windspeed;
 uint8_t* data;
 char* message;
 
 float wind_angle, wind_speed, reading;
-int count= 0;
+float buffer_angle[3];
+int buffer_counter = 0;
+int count = 0;
 int length = 0;
 char wind_angle_string[4];
 char wind_speed_string[6];
@@ -62,7 +62,16 @@ const int uart_buffer_size = (1024 * 2);
 QueueHandle_t uart_queue;
 const uart_port_t uart_num = UART_NUM_2;
 
-void wind_callback(rcl_timer_t * timer, int64_t last_call_time)
+int MovingAverageFilter(float* buffer)
+{
+    float value = 0;
+    for(int x = 0; x < 3; x++) {
+        value += buffer[x];
+    }
+    return value / 3;
+}
+
+void WindCallback(rcl_timer_t * timer, int64_t last_call_time)
 {
     (void) last_call_time;
     if (timer != NULL) { 
@@ -77,74 +86,35 @@ void wind_callback(rcl_timer_t * timer, int64_t last_call_time)
             /* make sure the line is a standard string */
 
             data[length] = '\0';
-	    
-	    // Code for decoding message using a while loop
-	    /*
-        const uint8_t *d = data;
-            uint8_t dirPos = 0;
-            uint8_t speedPos = 0;
-            int delimCounter = 0;
-            if (*d == '$') {
-        	wind_speed = 1; 
-                while (*d) {
-                    if (*d == ',') {
-                        if (delimCounter == 0){
-                        d++;
-                        wind_angle_string[dirPos++] = *d;
-                        d++;
-                        wind_angle_string[dirPos++] = *d;
-                        d++;
-                        wind_angle_string[dirPos++] = *d;
-                        wind_angle_string[dirPos] = '\0';
-                        } else if (delimCounter == 2) {
-                        d++;
-                        wind_speed_string[speedPos++] = *d;
-                        d++;
-                        wind_speed_string[speedPos++] = *d;
-                        d++;
-                        wind_speed_string[speedPos++] = *d;
-                        d++;
-                        wind_speed_string[speedPos++] = *d;
-                        d++;
-                        wind_speed_string[speedPos++] = *d;
-                        wind_speed_string[speedPos] = '\0';
-                        break;
-                        }
-                        delimCounter++;
-                    }
-                    d++;
-                    if (*d == '*') {
-                        break;
-                    }
-                }
-                wind_angle = strtof(wind_angle_string, NULL);
-                wind_speed = strtof(wind_speed_string, NULL);
+
+            //Code for decoding message using regex
+                // Only convert up to the * sign, since that marks the end of a message
+            while ((data[i] != 42) && (i < 82)) {
+                message[i] = (char)data[i];
+                i++;
             }
-		*/
-	//Code for decoding message using regex
-        // Only convert up to the * sign, since that marks the end of a message
-    while ((data[i] != 42) && (i < 82)) {
-        message[i] = (char)data[i];
-        i++;
-    }
-                        
-    wind_angle = 0;
-    wind_speed = 0;  
-	
-    getWind(message, &wind_angle, &wind_speed);
-        
-    msg_wind.data.data[0] = wind_angle;
-	msg_wind.data.size++;
-	msg_wind.data.data[1] = wind_speed;
-	msg_wind.data.size++;
+                                
+            wind_angle = 0;
+            wind_speed = 0;  
+            
+            GetWind(message, &wind_angle, &wind_speed);
 
-	count++;
-	msg_wind.layout.data_offset = count;
+            buffer_angle[buffer_counter % 3] = wind_angle;
 
-	RCSOFTCHECK(rcl_publish(&publisher_wind, &msg_wind, NULL));
+            wind_angle = MovingAverageFilter(buffer_angle);
 
-	msg_wind.data.size = 0;
-    i = 0;
+            msg_wind.data.data[0] = wind_angle;
+            msg_wind.data.size++;
+            msg_wind.data.data[1] = wind_speed;
+            msg_wind.data.size++;
+
+            count++;
+            msg_wind.layout.data_offset = count;
+
+            RCSOFTCHECK(rcl_publish(&publisher_wind, &msg_wind, NULL));
+
+            msg_wind.data.size = 0;
+            i = 0;
         
         } else {
         
@@ -154,7 +124,7 @@ void wind_callback(rcl_timer_t * timer, int64_t last_call_time)
     }
 }
 
-void init_wind_sensor() {
+void InitWindSensor() {
     data = calloc(100, 4);
     message = calloc(100, 1);
 

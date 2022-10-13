@@ -45,15 +45,15 @@
 rcl_publisher_t publisher_wind;
 
 extern "C" {
-void appMain(void* arg);
+    void appMain(void* arg);
 
-    extern void init_wind_sensor();
-    extern void wind_callback(rcl_timer_t * timer, int64_t last_call_time);
+    extern void InitWindSensor();
+    extern void WindCallback(rcl_timer_t * timer, int64_t last_call_time);
 }
 
 void appMain(void* arg) {
 
-    init_wind_sensor();
+    InitWindSensor();
 
     // Setup for micro-ROS
 
@@ -69,7 +69,7 @@ void appMain(void* arg) {
     RCCHECK(rclc_publisher_init_default(&publisher_wind, &node_wind, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/sensor/wind"));
     // create wind timer
     rcl_timer_t timer_wind;
-    RCCHECK(rclc_timer_init_default(&timer_wind, &support, RCL_MS_TO_NS(100), wind_callback));
+    RCCHECK(rclc_timer_init_default(&timer_wind, &support, RCL_MS_TO_NS(100), WindCallback));
     // create wind executor
     rclc_executor_t executor_wind = rclc_executor_get_zero_initialized_executor();
     RCCHECK(rclc_executor_init(&executor_wind, &support.context, 2, &allocator));
