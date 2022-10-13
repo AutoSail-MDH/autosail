@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'sensor_fusion'
+package_name = 'pose_estimation'
 
 setup(
     name=package_name,
@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        	'EKF = sensor_fusion.main:main',
+        	'pose_estimation = pose_estimation.pose_estimation:main',
         ],
     },
 )

@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from sensor_fusion.extended_kalman_filter import ekf_estimation
+from pose_estimation.extended_kalman_filter import ekf_estimation
 
 from std_msgs.msg import Float32MultiArray
 
@@ -8,13 +8,13 @@ import math
 import numpy as np
 
 
-class MinimalPublisher(Node):
+class PoseEstimation(Node):
 
     def __init__(self):
-        super().__init__('minimal_publisher')
+        super().__init__('pose_estimation_node')
 
         self.subGPS_ = self.create_subscription(
-            Float32MultiArray, '/sensor/gps', self.GPS_callback, 10)
+            Float32MultiArray, '/sensor/gnss', self.GPS_callback, 10)
         self.subGPS_  # prevent unused variable warning
 
         self.pubIMU_ = self.create_subscription(
@@ -22,7 +22,7 @@ class MinimalPublisher(Node):
         self.pubIMU_  # prevent unused variable warning
 
         self.publisher_ = self.create_publisher(
-            Float32MultiArray, '/sensor/fusion', 10)
+            Float32MultiArray, '/position/pose', 10)
 
         self.start = self.get_clock().now()
 
@@ -124,14 +124,14 @@ class MinimalPublisher(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    minimal_publisher = MinimalPublisher()
+    pose_estimation_node = PoseEstimation()
 
-    rclpy.spin(minimal_publisher)
+    rclpy.spin(pose_estimation_node)
 
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically
     # when the garbage collector destroys the node object)
-    minimal_publisher.destroy_node()
+    pose_estimation_node.destroy_node()
     rclpy.shutdown()
 
 
