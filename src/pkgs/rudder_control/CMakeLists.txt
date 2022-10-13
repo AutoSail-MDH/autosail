@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(rudder_path)
+project(rudder_control)
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
@@ -14,13 +14,13 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
-add_executable(rpp src/rudder_path_pid.cpp)
-ament_target_dependencies(rpp rclcpp std_msgs)
-add_executable(pub src/publisher.cpp)
-ament_target_dependencies(pub rclcpp std_msgs)
+add_executable(rudder_control src/rudder_control.cpp)
+ament_target_dependencies(rudder_control rclcpp std_msgs)
+add_executable(set_next_position src/set_next_position.cpp)
+ament_target_dependencies(set_next_position rclcpp std_msgs)
 install(TARGETS
-  rpp
-  pub
+  rudder_control
+  set_next_position
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()

@@ -12,9 +12,9 @@
 #include "std_msgs/msg/string.hpp"
 
 // Topics for which to read from and publish to
-#define SUB_TOPIC_1 "/sensor/fusion"
-#define SUB_TOPIC_2 "/sensor/gps"
-#define SUB_TOPIC_3 "/position/goal"
+#define SUB_TOPIC_1 "/position/pose"
+#define SUB_TOPIC_2 "/sensor/gnss"
+#define SUB_TOPIC_3 "/path/next_position"
 #define PUB_TOPIC "/actuator/rudder"
 
 // Defines to make the code cleaner and more readable
@@ -63,28 +63,28 @@ float SetRudderAng(float Angle, int dir);
 int AngleDir(float heading, float bearing);
 float AngleToGoal(float heading, float bearing);
 
-class MinimalSubPub : public rclcpp::Node {
+class RudderControl : public rclcpp::Node {
    public:
-    MinimalSubPub() : Node("rudder_angle") {
+    RudderControl() : Node("rudder_control_node") {
         // Create a parameter so the threshhold for the PID can change during runtime
         this->declare_parameter<float>("p", THRESHHOLD);
         // Create three subscribers for 3 different topics. each is bound to a custom callback
 
         subscriber_IMU = this->create_subscription<STD_MULTIFLOAT>(
 
-            SUB_TOPIC_1, 50, std::bind(&MinimalSubPub::IMU_callback, this, _1));
+            SUB_TOPIC_1, 50, std::bind(&RudderControl::IMU_callback, this, _1));
         subscriber_GPS = this->create_subscription<STD_MULTIFLOAT>(
 
-            SUB_TOPIC_2, 50, std::bind(&MinimalSubPub::GPS_callback, this, _1));
+            SUB_TOPIC_2, 50, std::bind(&RudderControl::GPS_callback, this, _1));
         subscriber_GOAL = this->create_subscription<STD_MULTIFLOAT>(
 
-            SUB_TOPIC_3, 50, std::bind(&MinimalSubPub::GOAL_callback, this, _1));
+            SUB_TOPIC_3, 50, std::bind(&RudderControl::GOAL_callback, this, _1));
 
         // Create publisher
         publisher_ = this->create_publisher<STD_FLOAT>(PUB_TOPIC, 50);
 
         nodeTime_ = this->get_clock();  // Create clock starting at the time of node creation
-        timer_ = this->create_wall_timer(100ms, std::bind(&MinimalSubPub::topic_callback, this));
+        timer_ = this->create_wall_timer(100ms, std::bind(&RudderControl::topic_callback, this));
     }
 
    private:
@@ -238,7 +238,7 @@ float AngleToGoal(float heading, float bearing) {
 
 int main(int argc, char *argv[]) {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<MinimalSubPub>());
+    rclcpp::spin(std::make_shared<RudderControl>());
     rclcpp::shutdown();
     return 0;
 }

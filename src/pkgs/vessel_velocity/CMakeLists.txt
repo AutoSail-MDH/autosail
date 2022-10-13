@@ -23,15 +23,15 @@ find_package(std_msgs REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-add_executable(sub_pos_gps src/sub_pos_gps.cpp)
-ament_target_dependencies(sub_pos_gps rclcpp std_msgs)
+add_executable(velocity_calculation src/velocity_calculation.cpp)
+ament_target_dependencies(velocity_calculation rclcpp std_msgs)
 
 include_directories(
   include
 )
 
 install(TARGETS
-  sub_pos_gps
+  velocity_calculation
   DESTINATION lib/${PROJECT_NAME})
 
 #rmv

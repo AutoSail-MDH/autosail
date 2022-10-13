@@ -12,16 +12,16 @@
 using namespace std::chrono_literals;
 using std::placeholders::_1;
 
-class MinimalPubSub : public rclcpp::Node  // Create node class by inheriting
+class VelocityCalculation : public rclcpp::Node  // Create node class by inheriting
 {                                          // this refers to the MinimalPublisher node
    public:
-    MinimalPubSub()  // The public constructor intits node
-        : Node("pubsub") {
+    VelocityCalculation()  // The public constructor intits node
+        : Node("velocity_node") {
         GPS_sub_ =
             this->create_subscription<std_msgs::msg::Float32MultiArray>(  // Constructor uses the node's
                                                                           // create_subscription class for callbacks
-                "/sensor/gps", 50,
-                std::bind(&MinimalPubSub::GPS_topic_callback, this, _1));  // No timer, instant response
+                "/position/GPS", 50, // "/sensor/gnss"
+                std::bind(&VelocityCalculation::gnss_topic_callback, this, _1));  // No timer, instant response
 
         publisher_ = this->create_publisher<std_msgs::msg::Float32MultiArray>(
             "/sensor/velocity", 50);  // Init msg type, topic name and msg size
@@ -30,7 +30,7 @@ class MinimalPubSub : public rclcpp::Node  // Create node class by inheriting
     }
 
    private:
-    void GPS_topic_callback(const std_msgs::msg::Float32MultiArray::SharedPtr msg) {
+    void gnss_topic_callback(const std_msgs::msg::Float32MultiArray::SharedPtr msg) {
         auto message = std_msgs::msg::Float32MultiArray();
 
         auto curr_GPS_ = msg->data;    // Get current GPS reading
@@ -90,7 +90,7 @@ class MinimalPubSub : public rclcpp::Node  // Create node class by inheriting
 
 int main(int argc, char* argv[]) {
     rclcpp::init(argc, argv);                         // Init ROS 2
-    rclcpp::spin(std::make_shared<MinimalPubSub>());  // Process data from the node, incl. timer callbacks
+    rclcpp::spin(std::make_shared<VelocityCalculation>());  // Process data from the node, incl. timer callbacks
     rclcpp::shutdown();
     return 0;
 }

@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'sig_shutdown'
+package_name = 'signal_shutdown'
 
 setup(
     name=package_name,
@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'sig_shutdown = sig_shutdown.main:main'
+            'boat_shutdown = signal_shutdown.boat_shutdown:main'
         ],
     },
 )

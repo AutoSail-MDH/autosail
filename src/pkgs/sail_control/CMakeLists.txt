@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(wind_to_sail)
+project(sail_control)
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
@@ -18,11 +18,11 @@ add_executable(pub src/publisher.cpp)
 ament_target_dependencies(pub rclcpp std_msgs)
 add_executable(sub src/subscriber.cpp)
 ament_target_dependencies(sub rclcpp std_msgs)
-add_executable(sub_pub src/sub_pub.cpp)
-ament_target_dependencies(sub_pub rclcpp std_msgs)
+add_executable(sail_angle_control src/sail_angle_control.cpp)
+ament_target_dependencies(sail_angle_control rclcpp std_msgs)
 
 install(TARGETS
-  sub_pub
+  sail_angle_control
   pub
   sub
   DESTINATION lib/${PROJECT_NAME})

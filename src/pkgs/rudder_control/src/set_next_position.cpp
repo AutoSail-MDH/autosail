@@ -10,7 +10,7 @@
 #include "std_msgs/msg/string.hpp"
 
 // Change these to your topics
-#define PUB_TOPIC "/position/goal"
+#define PUB_TOPIC "/path/next_position"
 // Change this to your message type, made this define to not have to write the long expression
 #define STD_MSG std_msgs::msg::Float32MultiArray
 #define STD_FLOAT std_msgs::msg::Float32
@@ -24,16 +24,16 @@ using namespace std::chrono_literals;
 /* This example creates a subclass of Node and uses std::bind() to register a
  * member function as a callback from the timer. */
 
-class MinimalPublisher : public rclcpp::Node {
+class SetNextPosition : public rclcpp::Node {
    public:
-    MinimalPublisher() : Node("goal_pub"), count_(0) {
+    SetNextPosition() : Node("rudder_control_node"), count_(0) {
         // Declare parameters
         this->declare_parameter<float>("lat", 0.0);
         this->declare_parameter<float>("long", 0.0);
 
         publisher_ = this->create_publisher<STD_MSG>(PUB_TOPIC, 10);
         // Change this timer to change how fast it publishes
-        timer_ = this->create_wall_timer(500ms, std::bind(&MinimalPublisher::timer_callback, this));
+        timer_ = this->create_wall_timer(500ms, std::bind(&SetNextPosition::timer_callback, this));
     }
 
    private:
@@ -59,7 +59,7 @@ class MinimalPublisher : public rclcpp::Node {
 
 int main(int argc, char* argv[]) {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<MinimalPublisher>());
+    rclcpp::spin(std::make_shared<SetNextPosition>());
     rclcpp::shutdown();
     return 0;
 }
