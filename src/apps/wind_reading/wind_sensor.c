@@ -1,7 +1,7 @@
 #include <rcl/error_handling.h>
 #include <rcl/rcl.h>
 #include <rclc/rclc.h>
-#include <std_msgs/msg/float32_multi_array.h>
+#include <autosail_message/msg/wind_message.h>
 #include <stdio.h>
 #include <time.h>
 #include <unistd.h>
@@ -42,7 +42,7 @@
 #define NO_OF_SAMPLES 64
 
 rcl_publisher_t publisher_wind;
-std_msgs__msg__Float32MultiArray msg_wind;
+autosail_message__msg__WindMessage msg_wind;
 
 // variables
 int i;
@@ -127,7 +127,6 @@ void WindCallback(rcl_timer_t * timer, int64_t last_call_time)
 void InitWindSensor() {
     data = calloc(100, 4);
     message = calloc(100, 1);
-
     
     // Configure UART
     uart_config_t uart_config = {
