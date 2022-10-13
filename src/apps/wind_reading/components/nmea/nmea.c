@@ -19,29 +19,29 @@ int match(char* buf, char* pattern, regmatch_t* pmatch) {
     return 1;
 }
 
-int parse(char* buf, char* pattern, float* lat, float* lon) {
+int parse(char* buf, char* pattern_1, char* pattern_2, float* angle, float* speed) {
     regmatch_t pmatch[2];
 
     // Tries to match according to a pattern
-    if (!match(buf, pattern, pmatch)) {
+    if (!match(buf, pattern_1, pmatch)) {
         return 0;
     }
     // Converts the char value to a float
-    *lat = strtof(&buf[pmatch[0].rm_so], NULL) / 100;
+    *angle = strtof(&buf[pmatch[0].rm_so], NULL);
 
     int start = pmatch[0].rm_eo + 1;
 
     // Tries to match again on the new string, which is everything in the string that is after the earlier match
-    if (!match(&buf[start], pattern, pmatch)) {
+    if (!match(&buf[start], pattern_2, pmatch)) {
         return 0;
     }
     // Converts the char value to a float
-    *lon = strtof(&buf[start + pmatch[0].rm_so], NULL) / 100;
+    *speed = strtof(&buf[start + pmatch[0].rm_so], NULL);
 
     return 1;
 }
 
-int getPos(char* buf, float* lat, float* lon) {
+int getWind(char* buf, float* angle, float* speed) {
     regmatch_t pmatch[2];
 
     // Tries to find out if the message is either GGA, GLL or RMC, which measn they contain positions
@@ -50,7 +50,7 @@ int getPos(char* buf, float* lat, float* lon) {
     }
     if (pmatch[0].rm_so < 10) {
         // Tries to find out where the long/lat values are and populate he lon/lat
-        if (!parse(buf, LONG_LAT, lat, lon)) {
+        if (!parse(buf, ANGLE, SPEED, angle, speed)) {
             return 0;
         }
         return 1;

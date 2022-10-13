@@ -9,15 +9,12 @@
 #include "driver/adc.h"
 #include "driver/gpio.h"
 #include "components/nmea/include/nmea.h"
-#include "components/protocol/include/protocol.h"
 #include "components/nmea/nmea.c"
-#include "components/protocol/protocol.c"
 #include "driver/uart.h"
 
 #ifdef ESP_PLATFORM
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "driver/i2c.h"
 #include "driver/timer.h"
 #include "esp_log.h"
 #include "esp_system.h"
@@ -81,8 +78,9 @@ void wind_callback(rcl_timer_t * timer, int64_t last_call_time)
 
             data[length] = '\0';
 	    
-	    // Code for decoding message using a while loop :(
-	    const uint8_t *d = data;
+	    // Code for decoding message using a while loop
+	    /*
+        const uint8_t *d = data;
             uint8_t dirPos = 0;
             uint8_t speedPos = 0;
             int delimCounter = 0;
@@ -122,19 +120,18 @@ void wind_callback(rcl_timer_t * timer, int64_t last_call_time)
                 wind_angle = strtof(wind_angle_string, NULL);
                 wind_speed = strtof(wind_speed_string, NULL);
             }
-		
-	/* Code for decoding message using regex :)
+		*/
+	//Code for decoding message using regex
         // Only convert up to the * sign, since that marks the end of a message
-        while ((data_wind[i] != 42) && (i < 82)) {
-            message2[i] = (char)data_wind[i];
-            i++;
-        }
+    while ((data[i] != 42) && (i < 82)) {
+        message[i] = (char)data[i];
+        i++;
+    }
                         
-        wind_angle = 0;
-        wind_speed = 0;  
+    wind_angle = 0;
+    wind_speed = 0;  
 	
-        getWind(message2, &wind_angle, &wind_speed);
-        */
+    getWind(message, &wind_angle, &wind_speed);
         
     msg_wind.data.data[0] = wind_angle;
 	msg_wind.data.size++;
@@ -147,6 +144,7 @@ void wind_callback(rcl_timer_t * timer, int64_t last_call_time)
 	RCSOFTCHECK(rcl_publish(&publisher_wind, &msg_wind, NULL));
 
 	msg_wind.data.size = 0;
+    i = 0;
         
         } else {
         
@@ -197,8 +195,4 @@ void init_wind_sensor() {
     if (data == NULL) {
         printf("Calloc for data failed\n");
     }
-
-
-    // configure i2c
-    configure_i2c_master();
 }
