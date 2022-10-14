@@ -2,6 +2,7 @@
 #include <rcl/rcl.h>
 #include <rclc/rclc.h>
 #include <std_msgs/msg/float32_multi_array.h>
+#include <autosail_message/msg/gnss_message.h>
 #include <stdio.h>
 #include <time.h>
 #include <unistd.h>
@@ -40,14 +41,16 @@
 #define THREE_SECONDS 3
 
 rcl_publisher_t publisher_gnss;
-std_msgs__msg__Float32MultiArray msg_gnss;
+autosail_message__msg__GNSSMessage gnss_msg;
 
 // variables
 int i;
-float lon;
-float lat;
-uint8_t* data;
+float time_stamp = 0.0;
+float longitude = 0.0;
+float latitude = 0.0;
+int gps_fix = 0.0;
 char* message;
+uint8_t* data;
 int calibrate = 1;
 int begin_timer = 0;
 volatile int timeout = 0;
@@ -64,8 +67,10 @@ void gnss_callback(rcl_timer_t * timer, int64_t last_call_time)
 
         // convert the data to char
         i = 0;
-        lon = 0;
-        lat = 0;
+        time_stamp = 0.0;
+        longitude = 0.0;
+        latitude = 0.0;
+        gps_fix = 0;
 
         // Only convert up to the * sign, since that marks the end of a message
         while ((data[i] != 42) && (i < 82)) {
@@ -73,8 +78,8 @@ void gnss_callback(rcl_timer_t * timer, int64_t last_call_time)
             i++;
         }
 
-        // get the gnss position
-        if (!getPos(message, &lat, &lon)) {
+        // get the GPS position
+        if (!get_position(message, &longitude, &latitude)) {
             if (calibrate == 0) {
                 begin_timer = 1;
             }
@@ -91,55 +96,53 @@ void gnss_callback(rcl_timer_t * timer, int64_t last_call_time)
             end_t = clock();
             if (((end_t - start_t) / CLOCKS_PER_SEC) >= THREE_SECONDS) {
                 timeout = 1;
-                msg_gnss.data.data[0] = FATAL;
-                msg_gnss.data.size++;
-                msg_gnss.data.data[1] = FATAL;
-                msg_gnss.data.size++;
+                gnss_msg.longitude = FATAL;
+                gnss_msg.latitude = FATAL;
             }
         }
 
-        if ((lon != 0 && lat != 0) && timeout == 0) {
-            msg_gnss.data.data[0] = lat;
-            msg_gnss.data.size++;
-            msg_gnss.data.data[1] = lon;
-            msg_gnss.data.size++;
+        if ((longitude != 0 && latitude != 0) && timeout == 0) {
+            gnss_msg.longitude = latitude;
+            gnss_msg.latitude = longitude;
+            gnss_msg.gps_fix = 1;
         } else {
-            msg_gnss.data.data[0] = 0.0;
-            msg_gnss.data.size++;
-            msg_gnss.data.data[1] = 0.0;
-            msg_gnss.data.size++;
+            gnss_msg.longitude = 0.0;
+            gnss_msg.latitude = 0.0;
+            gnss_msg.gps_fix = 0;
         }
 
         count_gnss++;
-        msg_gnss.layout.data_offset = count_gnss;
+        gnss_msg.time_stamp = count_gnss;
+        
 
-        RCSOFTCHECK(rcl_publish(&publisher_gnss, &msg_gnss, NULL));
-        msg_gnss.data.size = 0;
+        RCSOFTCHECK(rcl_publish(&publisher_gnss, &gnss_msg, NULL));
+        gnss_msg.gps_fix = 0;
     }
 }
 
-void init_gnss_wind() {
+void init_gnss() {
     // variables
     i = 0;
-    lon = 0;
-    lat = 0;
+    time_stamp = 0.0;
+    longitude = 0.0;
+    latitude = 0.0;
+    gps_fix = 0;
+
+    gnss_msg.time_stamp = time_stamp;
+    gnss_msg.longitude = longitude;
+    gnss_msg.latitude = latitude;
+    gnss_msg.gps_fix = gps_fix;
 
     data = calloc(100, 4);
     message = calloc(100, 1);
 
-    // msg setup
-    static float memory_gnss[2];
-    msg_gnss.data.capacity = 2;
-    msg_gnss.data.data = memory_gnss;
-    msg_gnss.data.size = 0;
-
-    if (message == NULL) {
-        printf("Calloc for msg failed\n");
-    }
     if (data == NULL) {
         printf("Calloc for data failed\n");
     }
-
+    
+    if (message == NULL) {
+        printf("Calloc for msg failed\n");
+    }
 
     // configure i2c
     configure_i2c_master();
