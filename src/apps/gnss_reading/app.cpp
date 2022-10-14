@@ -47,7 +47,7 @@
     }
 
 
-rcl_publisher_t publisher_gps;
+rcl_publisher_t publisher_gnss;
 
 std_msgs__msg__Float32MultiArray msg;
 
@@ -55,14 +55,14 @@ std_msgs__msg__Float32MultiArray msg;
 extern "C" {
 void appMain(void* arg);
 
-extern void init_gps_wind();
-extern void gps_callback(rcl_timer_t * timer, int64_t last_call_time);
+extern void init_gnss_wind();
+extern void gnss_callback(rcl_timer_t * timer, int64_t last_call_time);
 }
 
 
 void appMain(void* arg) {
 
-    init_gps_wind();
+    init_gnss_wind();
 
     // Setup for micro-ROS
 
@@ -75,17 +75,17 @@ void appMain(void* arg) {
     vTaskDelay(500 / portTICK_PERIOD_MS);
     
     
-    // create gps node
-    rcl_node_t node_gps;// = rcl_get_zero_initialized_node();
-    RCCHECK(rclc_node_init_default(&node_gps, "gps_node", "", &support));
-    RCCHECK(rclc_publisher_init_default(&publisher_gps, &node_gps, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/sensor/gps"));
-    // create gps timer
-    rcl_timer_t timer_gps;
-    RCCHECK(rclc_timer_init_default(&timer_gps, &support, RCL_MS_TO_NS(100), gps_callback));
-    // create gps executor
-    rclc_executor_t executor_gps = rclc_executor_get_zero_initialized_executor();
-    RCCHECK(rclc_executor_init(&executor_gps, &support.context, 2, &allocator));
-    RCCHECK(rclc_executor_add_timer(&executor_gps, &timer_gps));
+    // create gnss node
+    rcl_node_t node_gnss;// = rcl_get_zero_initialized_node();
+    RCCHECK(rclc_node_init_default(&node_gnss, "gnss_node", "", &support));
+    RCCHECK(rclc_publisher_init_default(&publisher_gnss, &node_gnss, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/sensor/gnss"));
+    // create gnss timer
+    rcl_timer_t timer_gnss;
+    RCCHECK(rclc_timer_init_default(&timer_gnss, &support, RCL_MS_TO_NS(100), gnss_callback));
+    // create gnss executor
+    rclc_executor_t executor_gnss = rclc_executor_get_zero_initialized_executor();
+    RCCHECK(rclc_executor_init(&executor_gnss, &support.context, 2, &allocator));
+    RCCHECK(rclc_executor_add_timer(&executor_gnss, &timer_gnss));
     
     
     vTaskDelay(500 / portTICK_PERIOD_MS);
@@ -93,14 +93,14 @@ void appMain(void* arg) {
     
     while (1)
     {
-        rclc_executor_spin_some(&executor_gps, RCL_MS_TO_NS(100));
+        rclc_executor_spin_some(&executor_gnss, RCL_MS_TO_NS(100));
         usleep(10000);
     }
 
     //while (1) sleep(100);
 
     // free resources
-    RCCHECK(rcl_publisher_fini(&publisher_gps, &node_gps));
+    RCCHECK(rcl_publisher_fini(&publisher_gnss, &node_gnss));
     
-    RCCHECK(rcl_node_fini(&node_gps));
+    RCCHECK(rcl_node_fini(&node_gnss));
 }
