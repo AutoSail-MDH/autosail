@@ -4,7 +4,7 @@
 #include <rclc/executor.h>
 #include <rmw_microros/rmw_microros.h>
 #include <rmw_microxrcedds_c/config.h>
-#include <std_msgs/msg/float32_multi_array.h>
+#include <autosail_message/msg/imu_message.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
@@ -50,6 +50,7 @@
     }
 
 rcl_publisher_t publisher_imu;
+autosail_message__msg__IMUMessage msg_imu;
 
 bno055_quaternion_t q;
 bno055_vector_t gravity;
@@ -63,14 +64,12 @@ uint32_t count = 0;
 BNO055* bno = NULL;
 struct timeval currTime;
 struct timeval prevTime;
-std_msgs__msg__Float32MultiArray msg;
-
 
 extern "C" {
 void appMain(void* arg);
 }
 
-void init_imu() {
+void InitImu() {
     // Initialize I2C
 
     i2c_config_t conf;
@@ -92,12 +91,6 @@ void init_imu() {
 
     bno->setOprModeNdof();
 
-    // Allocate message memory
-    static float memory[6];
-    msg.data.capacity = 6;
-    msg.data.data = memory;
-    msg.data.size = 0;
-
     gettimeofday(&prevTime, NULL);
 }
 
@@ -111,14 +104,14 @@ void GetHeading(float *data, bno055_quaternion_t *q, bno055_vector_t *gravity) {
         return;
 }
 
-void moving_average_filter(float avg[], float buffer[3][sizeMAF]) {
+void MovingAverageFilter(float avg[], float buffer[3][sizeMAF]) {
     for (int32_t i = 0; i < 3; i++)
         for (int32_t j = 0; j < sizeMAF; j++) avg[i] = avg[i] + buffer[i][j];
 
     for (int32_t i = 0; i < 3; i++) avg[i] = avg[i] / sizeMAF;
 }
 
-void imu_callback(rcl_timer_t * timer, int64_t last_call_time) {
+void ImuCallback(rcl_timer_t * timer, int64_t last_call_time) {
     (void) last_call_time;
     if (timer != NULL) {
 
@@ -140,30 +133,29 @@ void imu_callback(rcl_timer_t * timer, int64_t last_call_time) {
         for (int32_t i = 0; i < 3; i++) accelBuffer[i][count % sizeMAF] = accel[i];	// linear accel
 
         if ((count % rec == 0) && (count >= sizeMAF)) {
-                moving_average_filter(ypr, yprBuffer);
-                moving_average_filter(accel, accelBuffer);
+            MovingAverageFilter(ypr, yprBuffer);
+            MovingAverageFilter(accel, accelBuffer);
+
+            // fill message with gyro and accel values.
+            msg_imu.yaw = ypr[0] * 180 / M_PI;
+            msg_imu.pitch = ypr[1] * 180 / M_PI;
+            msg_imu.roll = ypr[2] * 180 / M_PI;
+            msg_imu.linear_acceleration_x = accel[0];
+            msg_imu.linear_acceleration_y = accel[1];
+            msg_imu.linear_acceleration_z = accel[2];
 
             // micro-ROS to publish to topic
-            for (int32_t i = 0; i < 3; i++) {
-                msg.data.data[i] = ypr[i] * 180 / M_PI;
-                msg.data.data[i+3] = accel[i];
-                msg.data.size += 2;
-            }
-            msg.layout.data_offset = count / rec;
-
-            RCCHECK(rcl_publish(&publisher_imu, &msg, NULL));
+            RCCHECK(rcl_publish(&publisher_imu, &msg_imu, NULL));
             vTaskDelay(100 / portTICK_PERIOD_MS);  // in fusion mode max output rate is 100hz (actual rate: 100ms (10hz))
         }
         
         prevTime = currTime;
         count++;
-
-        msg.data.size = 0;
     }
 }
 void appMain(void* arg) {
 
-    init_imu();
+    InitImu();
 
     // Setup for micro-ROS
 
@@ -176,10 +168,10 @@ void appMain(void* arg) {
     // create imu node
     rcl_node_t node_imu;
     RCCHECK(rclc_node_init_default(&node_imu, "imu_node", "", &support));
-    RCCHECK(rclc_publisher_init_default(&publisher_imu, &node_imu, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/sensor/imu"));
+    RCCHECK(rclc_publisher_init_default(&publisher_imu, &node_imu, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, IMUMessage), "/sensor/imu"));
     // create imu timer
     rcl_timer_t timer_imu;
-    RCCHECK(rclc_timer_init_default(&timer_imu, &support, RCL_MS_TO_NS(100), imu_callback));
+    RCCHECK(rclc_timer_init_default(&timer_imu, &support, RCL_MS_TO_NS(100), ImuCallback));
     // create imu executor
     rclc_executor_t executor_imu = rclc_executor_get_zero_initialized_executor();
     RCCHECK(rclc_executor_init(&executor_imu, &support.context, 2, &allocator));

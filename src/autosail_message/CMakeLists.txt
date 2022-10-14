@@ -29,6 +29,8 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/GNSSMessage.msg"
   
   "msg/WindMessage.msg"
+  
+  "msg/IMUMessage.msg"
 )
 
 ament_package()
