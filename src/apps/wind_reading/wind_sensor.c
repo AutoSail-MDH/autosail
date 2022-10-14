@@ -6,7 +6,6 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "driver/adc.h"
 #include "driver/gpio.h"
 #include "components/nmea/include/nmea.h"
 #include "components/nmea/nmea.c"
@@ -36,11 +35,6 @@
         }                                                                                  \
     }
 
-#define INIT 94
-#define FATAL -1000.0
-#define THREE_SECONDS 3
-#define NO_OF_SAMPLES 64
-
 rcl_publisher_t publisher_wind;
 autosail_message__msg__WindMessage msg_wind;
 
@@ -49,26 +43,24 @@ int i;
 uint8_t* data;
 char* message;
 
-float wind_angle, wind_speed, reading;
-float buffer_angle[3];
+int wind_angle;
+float wind_speed;
+int buffer_angle[3];
 int buffer_counter = 0;
-int count = 0;
 int length = 0;
-char wind_angle_string[4];
-char wind_speed_string[6];
 
 // Setup UART buffered IO with event queue
 const int uart_buffer_size = (1024 * 2);
 QueueHandle_t uart_queue;
 const uart_port_t uart_num = UART_NUM_2;
 
-int MovingAverageFilter(float* buffer)
+int MovingAverageFilter(int * buffer)
 {
-    float value = 0;
+    int value = 0;
     for(int x = 0; x < 3; x++) {
         value += buffer[x];
     }
-    return value / 3;
+    return (int)(value / 3);
 }
 
 void WindCallback(rcl_timer_t * timer, int64_t last_call_time)
@@ -93,27 +85,21 @@ void WindCallback(rcl_timer_t * timer, int64_t last_call_time)
                 message[i] = (char)data[i];
                 i++;
             }
-                                
+
             wind_angle = 0;
-            wind_speed = 0;  
-            
+            wind_speed = 0.0;                            
             GetWind(message, &wind_angle, &wind_speed);
 
             buffer_angle[buffer_counter % 3] = wind_angle;
 
             wind_angle = MovingAverageFilter(buffer_angle);
 
-            msg_wind.data.data[0] = wind_angle;
-            msg_wind.data.size++;
-            msg_wind.data.data[1] = wind_speed;
-            msg_wind.data.size++;
-
-            count++;
-            msg_wind.layout.data_offset = count;
+            msg_wind.wind_angle = wind_angle;
+            msg_wind.wind_speed = wind_speed;
 
             RCSOFTCHECK(rcl_publish(&publisher_wind, &msg_wind, NULL));
 
-            msg_wind.data.size = 0;
+            buffer_counter++;
             i = 0;
         
         } else {
@@ -151,12 +137,6 @@ void InitWindSensor() {
     uart_enable_pattern_det_baud_intr(uart_num, '\n', 1, 9, 0, 0);
     uart_pattern_queue_reset(uart_num, 16);
     uart_flush(uart_num); 
-
-    // msg setup
-    static float memory_wind[2];
-    msg_wind.data.capacity = 2;
-    msg_wind.data.data = memory_wind;
-    msg_wind.data.size = 0;
 
     if (message == NULL) {
         printf("Calloc for msg failed\n");

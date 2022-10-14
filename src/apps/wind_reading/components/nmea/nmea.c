@@ -1,6 +1,6 @@
 #include "include/nmea.h"
 
-int match(char* buf, char* pattern, regmatch_t* pmatch) {
+int match(char * buf, char * pattern, regmatch_t * pmatch) {
     regex_t preg;
     int rc;
     size_t nmatch = 2;
@@ -19,20 +19,20 @@ int match(char* buf, char* pattern, regmatch_t* pmatch) {
     return 1;
 }
 
-int parse(char* buf, char* pattern_1, char* pattern_2, float* angle, float* speed) {
+int parse(char * buf, char * pattern_angle, char * pattern_speed, int * angle, float * speed) {
     regmatch_t pmatch[2];
 
     // Tries to match according to a pattern
-    if (!match(buf, pattern_1, pmatch)) {
+    if (!match(buf, pattern_angle, pmatch)) {
         return 0;
     }
     // Converts the char value to a float
-    *angle = strtof(&buf[pmatch[0].rm_so], NULL);
+    *angle = atoi(&buf[pmatch[0].rm_so]);
 
     int start = pmatch[0].rm_eo + 1;
 
     // Tries to match again on the new string, which is everything in the string that is after the earlier match
-    if (!match(&buf[start], pattern_2, pmatch)) {
+    if (!match(&buf[start], pattern_speed, pmatch)) {
         return 0;
     }
     // Converts the char value to a float
@@ -41,7 +41,7 @@ int parse(char* buf, char* pattern_1, char* pattern_2, float* angle, float* spee
     return 1;
 }
 
-int GetWind(char* buf, float* angle, float* speed) {
+int GetWind(char * buf, int * angle, float * speed) {
     regmatch_t pmatch[2];
 
     // Tries to find out if the message is either GGA, GLL or RMC, which measn they contain positions

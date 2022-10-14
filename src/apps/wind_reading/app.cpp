@@ -4,7 +4,7 @@
 #include <rclc/executor.h>
 #include <rmw_microros/rmw_microros.h>
 #include <rmw_microxrcedds_c/config.h>
-#include <std_msgs/msg/float32_multi_array.h>
+#include <autosail_message/msg/wind_message.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
@@ -66,7 +66,7 @@ void appMain(void* arg) {
     // create wind node
     rcl_node_t node_wind;// = rcl_get_zero_initialized_node();
     RCCHECK(rclc_node_init_default(&node_wind, "wind_node", "", &support));
-    RCCHECK(rclc_publisher_init_default(&publisher_wind, &node_wind, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/sensor/wind"));
+    RCCHECK(rclc_publisher_init_default(&publisher_wind, &node_wind, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, WindMessage), "/sensor/wind"));
     // create wind timer
     rcl_timer_t timer_wind;
     RCCHECK(rclc_timer_init_default(&timer_wind, &support, RCL_MS_TO_NS(100), WindCallback));
