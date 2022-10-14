@@ -50,7 +50,7 @@
     }
 
 rcl_publisher_t publisher_imu;
-autosail_message__msg__IMUMessage msg_imu;
+autosail_message__msg__IMUMessage msg_imu;// custom message
 
 bno055_quaternion_t q;
 bno055_vector_t gravity;
