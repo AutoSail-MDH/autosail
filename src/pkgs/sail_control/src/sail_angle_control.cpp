@@ -7,7 +7,7 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/float32.hpp"
-#include "std_msgs/msg/float32_multi_array.hpp"
+#include "autosail_message/msg/wind_message.hpp"
 using namespace std;
 
 // Change these to your topics
@@ -15,7 +15,7 @@ using namespace std;
 #define PUB_TOPIC "/actuator/sail_angle"
 // Change this to your message type, made this define to not have to write the long expression
 #define STD_MSG std_msgs::msg::Float32
-#define STD_ARRAY std_msgs::msg::Float32MultiArray
+#define WIND_MSG autosail_message::msg::WindMessage
 
 using namespace std::chrono_literals;
 using std::placeholders::_1;
@@ -23,8 +23,7 @@ using std::placeholders::_1;
 class SailAngleControl : public rclcpp::Node {
    public:
     SailAngleControl() : Node("sail_angle_node") {
-        subscriber_ = this->create_subscription<STD_ARRAY>(
-
+        subscriber_ = this->create_subscription<WIND_MSG>(
             SUB_TOPIC, 50, std::bind(&SailAngleControl::topic_callback, this, _1));  // No timer, instant response
 
         publisher_ = this->create_publisher<STD_MSG>(PUB_TOPIC, 50);
@@ -33,11 +32,11 @@ class SailAngleControl : public rclcpp::Node {
     }
 
    private:
-    void topic_callback(const STD_ARRAY::SharedPtr msg) {
+    void topic_callback(const WIND_MSG::SharedPtr msg) {
         auto message = STD_MSG();
 
         // initialize variables
-        float wind_angle = msg->data[0];
+        float wind_angle = msg->wind_angle;
         float sail_angle = 0;
         int wind_direction = 0;
 
@@ -97,7 +96,7 @@ class SailAngleControl : public rclcpp::Node {
 
         // set the message to publish to the angle of the sail
         message.data = sail_angle;
-        printf("I heard: %f || Publishing: '%f'\n", msg->data[0], message.data);
+        printf("I heard: %d || Publishing: '%f'\n", msg->wind_angle, message.data);
 
         // Publishing of the message
         currTime_ = nodeTime_->now();
@@ -105,7 +104,7 @@ class SailAngleControl : public rclcpp::Node {
         publisher_->publish(message);
     }
     // Defines
-    rclcpp::Subscription<STD_ARRAY>::SharedPtr subscriber_;
+    rclcpp::Subscription<WIND_MSG>::SharedPtr subscriber_;
     rclcpp::Publisher<STD_MSG>::SharedPtr publisher_;
     rclcpp::Clock::SharedPtr nodeTime_;
     rclcpp::Time currTime_;
