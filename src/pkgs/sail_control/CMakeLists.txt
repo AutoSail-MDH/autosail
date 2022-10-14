@@ -13,13 +13,14 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(autosail_message REQUIRED)
 
 add_executable(pub src/publisher.cpp)
 ament_target_dependencies(pub rclcpp std_msgs)
 add_executable(sub src/subscriber.cpp)
 ament_target_dependencies(sub rclcpp std_msgs)
 add_executable(sail_angle_control src/sail_angle_control.cpp)
-ament_target_dependencies(sail_angle_control rclcpp std_msgs)
+ament_target_dependencies(sail_angle_control rclcpp std_msgs autosail_message)
 
 install(TARGETS
   sail_angle_control
