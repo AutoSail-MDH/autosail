@@ -41,7 +41,7 @@ int parse(char* buf, char* pattern, float* lat, float* lon) {
     return 1;
 }
 
-int getPos(char* buf, float* lat, float* lon) {
+int get_position(char* buf, float* lat, float* lon) {
     regmatch_t pmatch[2];
 
     // Tries to find out if the message is either GGA, GLL or RMC, which measn they contain positions

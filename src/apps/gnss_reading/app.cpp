@@ -4,7 +4,7 @@
 #include <rclc/executor.h>
 #include <rmw_microros/rmw_microros.h>
 #include <rmw_microxrcedds_c/config.h>
-#include <std_msgs/msg/float32_multi_array.h>
+#include <autosail_message/msg/gnss_message.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
@@ -49,20 +49,18 @@
 
 rcl_publisher_t publisher_gnss;
 
-std_msgs__msg__Float32MultiArray msg;
-
 
 extern "C" {
 void appMain(void* arg);
 
-extern void init_gnss_wind();
+extern void init_gnss();
 extern void gnss_callback(rcl_timer_t * timer, int64_t last_call_time);
 }
 
 
 void appMain(void* arg) {
 
-    init_gnss_wind();
+    init_gnss();
 
     // Setup for micro-ROS
 
@@ -78,7 +76,7 @@ void appMain(void* arg) {
     // create gnss node
     rcl_node_t node_gnss;// = rcl_get_zero_initialized_node();
     RCCHECK(rclc_node_init_default(&node_gnss, "gnss_node", "", &support));
-    RCCHECK(rclc_publisher_init_default(&publisher_gnss, &node_gnss, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "/sensor/gnss"));
+    RCCHECK(rclc_publisher_init_default(&publisher_gnss, &node_gnss, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, GNSSMessage), "/sensor/gnss"));
     // create gnss timer
     rcl_timer_t timer_gnss;
     RCCHECK(rclc_timer_init_default(&timer_gnss, &support, RCL_MS_TO_NS(100), gnss_callback));
@@ -89,6 +87,7 @@ void appMain(void* arg) {
     
     
     vTaskDelay(500 / portTICK_PERIOD_MS);
+    
      
     
     while (1)
