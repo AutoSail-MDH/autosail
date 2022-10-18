@@ -31,6 +31,10 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/WindMessage.msg"
   
   "msg/IMUMessage.msg"
+
+  "msg/RudderControlMessage.msg"
+
+  "msg/PositionMessage.msg"
 )
 
 ament_package()
