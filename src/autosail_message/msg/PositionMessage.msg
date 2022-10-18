@@ -1,2 +1,2 @@
-float32 g_lat
-float32 g_long
+float32 goal_lat
+float32 goal_long

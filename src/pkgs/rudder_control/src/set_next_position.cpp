@@ -33,26 +33,26 @@ class SetNextPosition : public rclcpp::Node {
 
         publisher_ = this->create_publisher<POSITION_MSG>(PUB_TOPIC, 10);
         // Change this timer to change how fast it publishes
-        timer_ = this->create_wall_timer(500ms, std::bind(&SetNextPosition::timer_callback, this));
+        timer_ = this->create_wall_timer(500ms, std::bind(&SetNextPosition::position_callback, this));
     }
 
    private:
-    void timer_callback() {
+    void position_callback() {
         auto msg = POSITION_MSG();
         // get the current parameter values
-        this->get_parameter("lat", g_lat);
-        this->get_parameter("long", g_long);
+        this->get_parameter("lat", goal_lat);
+        this->get_parameter("long", goal_long);
 
-        g_lat = abs(g_lat);
-        g_long = abs(g_long);
+        goal_lat = abs(goal_lat);
+        goal_long = abs(goal_long);
 
-        msg.g_lat = g_lat;
-        msg.g_long = g_long;
+        msg.goal_lat = goal_lat;
+        msg.goal_long = goal_long;
         rclcpp::sleep_for(std::chrono::nanoseconds(1));
         publisher_->publish(msg);
     }
-    float g_lat;
-    float g_long;
+    float goal_lat;
+    float goal_long;
     rclcpp::TimerBase::SharedPtr timer_;
     rclcpp::Publisher<POSITION_MSG>::SharedPtr publisher_;
     size_t count_;
