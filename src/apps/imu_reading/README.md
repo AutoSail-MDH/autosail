@@ -4,7 +4,7 @@
 ## Hardware connection
 The IMU sensor is connected directly to the ESP32.
 
-### IMU -> GPS
+### IMU -> ESP32
 
 SDA(Blue cable) - GPIO 21 
 
