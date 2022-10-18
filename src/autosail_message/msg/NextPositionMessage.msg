@@ -1,0 +1,2 @@
+float32 goal_latitude
+float32 goal_longitude

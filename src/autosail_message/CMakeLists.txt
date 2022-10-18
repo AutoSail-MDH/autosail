@@ -34,7 +34,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 
   "msg/RudderControlMessage.msg"
 
-  "msg/PositionMessage.msg"
+  "msg/NextPositionMessage.msg"
 )
 
 ament_package()

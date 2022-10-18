@@ -1,2 +1,0 @@
-float32 goal_lat
-float32 goal_long
