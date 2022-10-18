@@ -52,6 +52,10 @@
 rcl_publisher_t publisher_imu;
 autosail_message__msg__IMUMessage msg_imu;// custom message
 
+bno055_calibration_t cal;// calibration values
+bno055_offsets_t offsets;// saved offsets 
+bool isCalibrated;// if IMU is calibrated or not
+
 bno055_quaternion_t q;
 bno055_vector_t gravity;
 bno055_vector_t linAccel;
@@ -92,18 +96,26 @@ void InitImu() {
     bno->setOprModeNdof();
 
     gettimeofday(&prevTime, NULL);
+    
+    isCalibrated = false;
+
+    // Update the sensor offsets with previously saved values. Do this by using setSensorOffsets()
 }
 
 void GetHeading(float *data, bno055_quaternion_t *q, bno055_vector_t *gravity) {
         // yaw: (about Z axis)
-        data[0] = atan2(2*q -> x*q -> y - 2*q -> w*q -> z, 2*q -> w*q -> w + 2*q -> x*q -> x - 1);
+        data[0] = atan2(2*(q->x*q->y + q->z*q->w) , q->x*q->x - q->y*q->y - q->z*q->z + q->w*q->w);
+
         // pitch: (nose up/down, about Y axis)
-        data[1] = atan(gravity -> x / sqrt(gravity -> y*gravity -> y + gravity -> z*gravity -> z));
+        data[1] = atan(gravity -> x / sqrt(gravity -> y*gravity -> y + gravity -> z*gravity -> z)); 
+
         // roll: (tilt left/right, about X axis)
-        data[2] = atan(gravity -> y / sqrt(gravity -> x*gravity -> x + gravity -> z*gravity -> z));
+        data[2] = atan(gravity -> y / sqrt(gravity -> x*gravity -> x + gravity -> z*gravity -> z)); 
+
         return;
 }
 
+// GIVES INCORRECT VALUES!
 void MovingAverageFilter(float avg[], float buffer[3][sizeMAF]) {
     for (int32_t i = 0; i < 3; i++)
         for (int32_t j = 0; j < sizeMAF; j++) avg[i] = avg[i] + buffer[i][j];
@@ -116,6 +128,21 @@ void ImuCallback(rcl_timer_t * timer, int64_t last_call_time) {
     if (timer != NULL) {
 
         gettimeofday(&currTime, NULL);
+
+        bno->setOprModeNdof();
+
+        cal = bno->getCalibration();
+        if (isCalibrated == false && cal.gyro == 3 && cal.accel == 3 && cal.mag == 3){// checkif calibrated and save offsets first time IMU is correctly calibrated
+            bno->setOprModeConfig(); // must be in config mode to get values
+
+            offsets = bno->getSensorOffsets(); // Get sensor offsets to save to file
+
+            // SAVE TO FILE HERE
+
+            isCalibrated = true;// No more calibration is needed
+
+            bno->setOprModeNdof();// change back the operation mode
+        }
 
         q = bno->getQuaternion();         // [w, x, y, z]         quaternion container
         gravity = bno->getVectorGravity(); // [x, y, z]            gravity vector
@@ -133,7 +160,7 @@ void ImuCallback(rcl_timer_t * timer, int64_t last_call_time) {
         for (int32_t i = 0; i < 3; i++) accelBuffer[i][count % sizeMAF] = accel[i];	// linear accel
 
         if ((count % rec == 0) && (count >= sizeMAF)) {
-            MovingAverageFilter(ypr, yprBuffer);
+            //MovingAverageFilter(ypr, yprBuffer); ///DOES NOT WORK FOR Yaw Pitch Roll
             MovingAverageFilter(accel, accelBuffer);
 
             // fill message with gyro and accel values.
@@ -143,6 +170,10 @@ void ImuCallback(rcl_timer_t * timer, int64_t last_call_time) {
             msg_imu.linear_acceleration_x = accel[0];
             msg_imu.linear_acceleration_y = accel[1];
             msg_imu.linear_acceleration_z = accel[2];
+            msg_imu.calibration_sys = cal.sys;
+            msg_imu.calibration_gyro = cal.gyro;
+            msg_imu.calibration_magnetometer = cal.mag;
+            msg_imu.calibration_accelerometer = cal.accel;
 
             // micro-ROS to publish to topic
             RCCHECK(rcl_publish(&publisher_imu, &msg_imu, NULL));
