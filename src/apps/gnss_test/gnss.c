@@ -4,13 +4,12 @@
 #include <std_msgs/msg/float32_multi_array.h>
 #include <autosail_message/msg/gnss_message.h>
 #include <stdio.h>
-#include <string.h>
 #include <time.h>
 #include <unistd.h>
 
-#include "components/nmea/include/nmea.h"
+#include "components/minmea/minmea.h"
 #include "components/protocol/include/protocol.h"
-#include "components/nmea/nmea.c"
+#include "components/minmea/minmea.c"
 #include "components/protocol/protocol.c"
 
 #ifdef ESP_PLATFORM
@@ -57,23 +56,7 @@ int begin_timer = 0;
 volatile int timeout = 0;
 clock_t start_t, end_t;
 
-char buffer[255];
-char *field[20];
-
-int count_gnss = 0.0;
-
-int parse_comma_delimited_str(char *string, char **fields, int max_fields)
-{
-	int i = 0;
-	fields[i++] = string;
-
-	while ((i < max_fields) && NULL != (string = strchr(string, ','))) {
-		*string = '\0';
-		fields[i++] = ++string;
-	}
-
-	return --i;
-}
+int count_gnss = 0;
 
 void gnss_callback(rcl_timer_t * timer, int64_t last_call_time) 
 {
@@ -81,74 +64,42 @@ void gnss_callback(rcl_timer_t * timer, int64_t last_call_time)
     if (timer != NULL) {
         // read data from the sensor
         i2c_read(I2C_MASTER_NUM, data, 400);
-
-        // convert the data to char
-        i = 0;
-        /*
-        time_stamp = 0.0;
-        longitude = 0.0;
-        latitude = 0.0;
-        gps_fix = 0;
-        */
-
         // Only convert up to the * sign, since that marks the end of a message
         while ((data[i] != 42) && (i < 82)) {
             message[i] = (char)data[i];
             i++;
         }
+        switch (minmea_sentence_id(message, false)) {
+            case MINMEA_SENTENCE_GGA: {
+                struct minmea_sentence_gga frame;
+                if (minmea_parse_gga(&frame, message)) {
+                    gnss_msg.time_stamp = 1;
+                    gnss_msg.longitude = 1;
+                    gnss_msg.latitude = 1;
+                    gnss_msg.gps_fix = 1;
+                }
+                else {
+                    gnss_msg.time_stamp = -1.0;
+                    gnss_msg.longitude = -1.0;
+                    gnss_msg.latitude = -1.0;
+                    gnss_msg.gps_fix = -1.0;
+                }
+            } break;
+            case MINMEA_INVALID: {
+                gnss_msg.time_stamp = -2.0;
+                gnss_msg.longitude = -2.0;
+                gnss_msg.latitude = -2.0;
+                gnss_msg.gps_fix = -2.0;
+            } break;
 
-        if ((strncmp(buffer, "$GP", 3) == 0) | (strncmp(buffer, "$GN", 3) == 0)) {
-            if (strncmp(&buffer[3], "GGA", 3) == 0) {
-                i = parse_comma_delimited_str(buffer, field, 20);
-                //debug_print_fields(i,field);
-                gnss_msg.longitude = strtof(field[2], NULL);
-                gnss_msg.latitude = strtof(field[4], NULL);
-                gnss_msg.gps_fix = strtof(field[6], NULL);
-            }
+            default: {
+                gnss_msg.time_stamp = 0.0;
+                gnss_msg.longitude = 0.0;
+                gnss_msg.latitude = 0.0;
+                gnss_msg.gps_fix = 0;
+            } break;
         }
-
-        /*
-
-        // get the GPS position
-        if (!get_position(message, &longitude, &latitude)) {
-            if (calibrate == 0) {
-                begin_timer = 1;
-            }
-            // printf("No data avalible for %d readings\n", c);
-        } else {
-            start_t = clock();
-            calibrate = 0;
-            begin_timer = 0;
-            // printf("Lat: %.4f : Long: %.4f\n", lat, lon);
-        }
-
-        //
-        if (begin_timer) {
-            end_t = clock();
-            if (((end_t - start_t) / CLOCKS_PER_SEC) >= THREE_SECONDS) {
-                timeout = 1;
-                gnss_msg.longitude = FATAL;
-                gnss_msg.latitude = FATAL;
-            }
-        }
-
-        if ((longitude != 0 && latitude != 0) && timeout == 0) {
-            gnss_msg.longitude = latitude;
-            gnss_msg.latitude = longitude;
-            gnss_msg.gps_fix = 1;
-        } else {
-            gnss_msg.longitude = 0.0;
-            gnss_msg.latitude = 0.0;
-            gnss_msg.gps_fix = 0;
-        }
-        */
-
-        count_gnss++;
-        gnss_msg.time_stamp = count_gnss;
-        
-
         RCSOFTCHECK(rcl_publish(&publisher_gnss, &gnss_msg, NULL));
-        //gnss_msg.gps_fix = 0;
     }
 }
 

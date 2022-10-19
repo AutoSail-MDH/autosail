@@ -1,7 +1,4 @@
 #include <stdio.h>
-
-#include "driver/adc.h"
-#include "driver/gpio.h"
 #include "driver/i2c.h"
 #include "driver/timer.h"
 #include "freertos/FreeRTOS.h"
@@ -27,12 +24,6 @@
 #ifndef HEADER_PROT
 #define HEADER_PROT
 
-/**
- * @brief Configures the adc for initializations and normal usage
- *
- */
-
-void configure_adc(void);
 
 /**
  * @brief Configures i2c for master mode
