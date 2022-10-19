@@ -31,6 +31,8 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/WindMessage.msg"
   
   "msg/IMUMessage.msg"
+  
+  "msg/IMUCalibrationMessage.msg"
 )
 
 ament_package()
