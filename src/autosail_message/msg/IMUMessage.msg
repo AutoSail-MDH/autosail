@@ -4,7 +4,3 @@ float32 roll
 float32 linear_acceleration_x
 float32 linear_acceleration_y
 float32 linear_acceleration_z
-int32 calibration_sys
-int32 calibration_gyro
-int32 calibration_magnetometer
-int32 calibration_accelerometer

@@ -15,9 +15,7 @@ SCL(Yellow cable) - GPIO 22
 GND(Black cable) - GND
 
 ## Calibration
-The IMU needs to be calibrated everytime it is restarted. It is recommended to save the offset/calibration data each time the device is calibrated. 
-
-When a sensor is fully calibrated the associated calibration value displays a 3.
+The IMU needs to be calibrated everytime it is restarted. This is done automatically by the BNO055 IMU sensor and should not take more than a couple of seconds. However if the IMU shows incorrect values for a longer time run the "imu_calibration" app. This app gives new offset values which are to be inserted into the "app.cpp" code. It is recommended to do this before every real test.
 
 ### The cailbration processes are:
 
