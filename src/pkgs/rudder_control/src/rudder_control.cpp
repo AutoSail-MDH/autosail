@@ -6,7 +6,9 @@
 #include <memory>
 #include <std_msgs/msg/float32.hpp>
 #include <autosail_message/msg/rudder_control_message.hpp>
-
+#include <autosail_message/msg/gnss_message.hpp>
+#include <autosail_message/msg/next_position_message.hpp>
+#include <autosail_message/msg/imu_message.hpp>
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
@@ -26,6 +28,9 @@
 
 // A define to easier change which message type is used, since the expression appears everywhere
 #define RUDDER_MSG autosail_message::msg::RudderControlMessage
+#define GNSS_MSG autosail_message::msg::GNSSMessage
+#define NEXT_MSG autosail_message::msg::NextPositionMessage
+#define IMU_MSG autosail_message::msg::IMUMessage
 #define STD_FLOAT std_msgs::msg::Float32
 
 // Used to regulate the PID
@@ -39,8 +44,8 @@ using std::placeholders::_1;
 // Save the latest value of the different topics
 
 // Current position in Lat/long
-float c_lat = 0.0;
-float c_long = 0.0;
+float latitude = 0.0;
+float longitude = 0.0;
 
 // Goal position is Lat/Long
 float goal_latitude = 0.0;
@@ -70,18 +75,17 @@ class RudderControl : public rclcpp::Node {
         this->declare_parameter<float>("p", THRESHHOLD);
         // Create three subscribers for 3 different topics. each is bound to a custom callback
 
-        subscriber_IMU = this->create_subscription<RUDDER_MSG>(
-
+        subscriber_IMU = this->create_subscription<IMU_MSG>(
             SUB_TOPIC_1, 50, std::bind(&RudderControl::IMU_callback, this, _1));
-        subscriber_GNSS = this->create_subscription<GNSS_MSG>(
 
-            SUB_TOPIC_2, 50, std::bind(&RudderControl::GPS_callback, this, _1));
-        subscriber_GOAL = this->create_subscription<RUDDER_MSG>(
+        subscriber_POSE = this->create_subscription<GNSS_MSG>(
+            SUB_TOPIC_2, 50, std::bind(&RudderControl::POSE_callback, this, _1));
 
+        subscriber_GOAL = this->create_subscription<NEXT_MSG>(
             SUB_TOPIC_3, 50, std::bind(&RudderControl::GOAL_callback, this, _1));
 
         // Create publisher
-        publisher_ = this->create_publisher<STD_FLOAT>(PUB_TOPIC, 50);
+        publisher_ = this->create_publisher<RUDDER_MSG>(PUB_TOPIC, 50);
 
         nodeTime_ = this->get_clock();  // Create clock starting at the time of node creation
         timer_ = this->create_wall_timer(100ms, std::bind(&RudderControl::topic_callback, this));
@@ -89,15 +93,16 @@ class RudderControl : public rclcpp::Node {
 
    private:
     // Get current heading
-    void IMU_callback(const RUDDER_MSG::SharedPtr msg) { yaw = msg->yaw; }
+    void IMU_callback(const IMU_MSG::SharedPtr msg) { yaw = msg->yaw; }
 
     // Get current position in Lat/Long
-    void GNSS_callback(const RUDDER_MSG::SharedPtr msg) {
+    void POSE_callback(const GNSS_MSG::SharedPtr msg) {
         latitude = msg->latitude * (M_PI / 180.0);
         longitude = msg->longitude * (M_PI / 180.0);
+        //yaw = msg->yaw;
     }
     // Get current goal position in Lat/Long
-    void GOAL_callback(const RUDDER_MSG::SharedPtr msg) {
+    void GOAL_callback(const NEXT_MSG::SharedPtr msg) {
         goal_latitude = msg->goal_latitude * M_PIl / 180.0;
         goal_longitude = msg->goal_longitude * M_PIl / 180.0;
     }
@@ -105,7 +110,7 @@ class RudderControl : public rclcpp::Node {
     // Larger calback to compute distance, unify the heading and bearing, as well as set which angle to set the rudder
     // to
     void topic_callback() {
-        auto message = STD_FLOAT();
+        auto message = RUDDER_MSG();
         this->get_parameter("p", pid);
 
         // Yaw value is between -180 to 180, convert to between 0 and 360
@@ -116,21 +121,21 @@ class RudderControl : public rclcpp::Node {
 
         float bearing = GetBearing();
 
-        message.data = SetRudderAng(AngleToGoal(heading, bearing), AngleDir(heading, bearing));
+        rudder_angle = SetRudderAng(AngleToGoal(heading, bearing), AngleDir(heading, bearing));
 
         // Uncomment the row below to see the live print of the current heading and bearing
         printf("[%d] [Heading: %.2f] [Bearing %.2f] [Rudder Angle %.2f]\n", c++, heading, bearing, rudder_angle);
 
         // Publish the rudder angle to a topic
-        message.data = rudder_angle;
+        message.rudder_angle = rudder_angle;
         currTime_ = nodeTime_->now();
         sleep_for(std::chrono::nanoseconds(1));
         publisher_->publish(message);
     }
-    Subscription<RUDDER_MSG>::SharedPtr subscriber_IMU;
-    Subscription<RUDDER_MSG>::SharedPtr subscriber_GPS;
-    Subscription<RUDDER_MSG>::SharedPtr subscriber_GOAL;
-    Publisher<STD_FLOAT>::SharedPtr publisher_;
+    Subscription<IMU_MSG>::SharedPtr subscriber_IMU;
+    Subscription<GNSS_MSG>::SharedPtr subscriber_POSE;
+    Subscription<NEXT_MSG>::SharedPtr subscriber_GOAL;
+    Publisher<RUDDER_MSG>::SharedPtr publisher_;
     Clock::SharedPtr nodeTime_;
     Time currTime_;
     Time prevTime_;
@@ -146,8 +151,8 @@ class RudderControl : public rclcpp::Node {
 
 float GetBearing(void) {
     //
-    float bearing = atan2(sin(goal_longitude - c_long) * cos(goal_latitude),
-                          cos(c_lat) * sin(goal_latitude) - sin(c_lat) * cos(goal_latitude) * cos(goal_longitude - c_long));
+    float bearing = atan2(sin(goal_longitude - longitude) * cos(goal_latitude),
+                          cos(latitude) * sin(goal_latitude) - sin(latitude) * cos(goal_latitude) * cos(goal_longitude - longitude));
 
     // Convert rad to degrees, and add 360 degrees to normalize it. Then perform mod 360 to not get a
     // degree above 360.
