@@ -4,7 +4,7 @@
 #include <rclc/executor.h>
 #include <rmw_microros/rmw_microros.h>
 #include <rmw_microxrcedds_c/config.h>
-#include <autosail_message/msg/imu_message.h>
+#include <autosail_message/msg/imu_calibration_message.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
@@ -50,7 +50,11 @@
     }
 
 rcl_publisher_t publisher_imu;
-autosail_message__msg__IMUMessage msg_imu;// custom message
+autosail_message__msg__IMUCalibrationMessage msg_imu;// custom message
+
+bno055_calibration_t cal;// calibration values
+bno055_offsets_t offsets;// saved offsets 
+bool isCalibrated;// if IMU is calibrated or not
 
 bno055_quaternion_t q;
 bno055_vector_t gravity;
@@ -62,8 +66,6 @@ float accelBuffer[3][sizeMAF];
 bno055_interrupts_status_t mpuIntStatus;      // holds actual interrupt status byte from MPU
 uint32_t count = 0;
 BNO055* bno = NULL;
-struct timeval currTime;
-struct timeval prevTime;
 
 extern "C" {
 void appMain(void* arg);
@@ -87,14 +89,11 @@ void InitImu() {
     bno = new BNO055((i2c_port_t)I2C_NUM_0, 0x28); // BNO055 I2C Addr can be 0x28 or 0x29 (depends on your hardware)
 
     bno->begin();  // BNO055 is in CONFIG_MODE until it is changed
-    bno->enableExternalCrystal();
+    bno->enableExternalCrystal();    
 
-    gettimeofday(&prevTime, NULL);
-    
     vTaskDelay(500 / portTICK_PERIOD_MS);
 
-    // Update the sensor offsets with previously saved values.
-    // These offsets were fetched by using the "imu_calibration" app.
+    // Update the sensor offsets with previously saved values. Do this by using setSensorOffsets()
     bno055_offsets_t manualOffsets;
     manualOffsets.accelOffsetX = -25;
     manualOffsets.accelOffsetY = -32;
@@ -108,10 +107,11 @@ void InitImu() {
     manualOffsets.magOffsetZ = -234;
     manualOffsets.magRadius = 884;
 
-    //set offsets
-    bno->setSensorOffsets(manualOffsets);
+    bno->setSensorOffsets(manualOffsets);// gives the calibration process a push so it is calibrated faster
 
-    bno->setOprModeNdof();
+    isCalibrated = false;// set calibration as not complete
+
+    bno->setOprModeNdof();// operation mode used for faster calibration, sensor fusion and absolute orientation.
     
 }
 
@@ -128,53 +128,69 @@ void GetHeading(float *data, bno055_quaternion_t *q, bno055_vector_t *gravity) {
         return;
 }
 
-// GIVES INCORRECT VALUES!
-void MovingAverageFilter(float avg[], float buffer[3][sizeMAF]) {
-    for (int32_t i = 0; i < 3; i++)
-        for (int32_t j = 0; j < sizeMAF; j++) avg[i] = avg[i] + buffer[i][j];
-
-    for (int32_t i = 0; i < 3; i++) avg[i] = avg[i] / sizeMAF;
-}
-
 void ImuCallback(rcl_timer_t * timer, int64_t last_call_time) {
     (void) last_call_time;
     if (timer != NULL) {
+        msg_imu.is_calibration_complete = 0;// set calibration as not complete as this is continuously updated by the IMU
 
-        gettimeofday(&currTime, NULL);
+        cal = bno->getCalibration();// get calibration status for all sensors
 
+        //check if calibration is done(i.e. if all sensor have calibration value 3)
+        if(cal.gyro == 3 && cal.accel == 3 && cal.mag == 3){
+            isCalibrated = true;
+        }
+
+        //if calibration is done send offsets
+        if(isCalibrated){
+            bno->setOprModeConfig(); // must be in config mode to get offset values
+            vTaskDelay(100 / portTICK_PERIOD_MS);  // give IMU time to change operation mode 
+
+            offsets = bno->getSensorOffsets(); // Get sensor offsets
+
+            bno->setOprModeNdof();// change back the operation mode
+            vTaskDelay(100 / portTICK_PERIOD_MS);  // give IMU time to change operation mode 
+
+            // fill message with offsets
+            msg_imu.offset_accel_x = offsets.accelOffsetX;
+            msg_imu.offset_accel_y = offsets.accelOffsetY;
+            msg_imu.offset_accel_z = offsets.accelOffsetZ;
+            msg_imu.offset_accel_radius = offsets.accelRadius;
+            msg_imu.offset_gyro_x = offsets.gyroOffsetX;
+            msg_imu.offset_gyro_y = offsets.gyroOffsetY;
+            msg_imu.offset_gyro_z = offsets.gyroOffsetZ;
+            msg_imu.offset_mag_x = offsets.magOffsetX;
+            msg_imu.offset_mag_y = offsets.magOffsetY;
+            msg_imu.offset_mag_z = offsets.magOffsetZ;
+            msg_imu.offset_mag_radius = offsets.magRadius;
+
+            msg_imu.is_calibration_complete = 1;
+        }
+        
+        //fill message with calibration status
+        msg_imu.calibration_sys = cal.sys;
+        msg_imu.calibration_gyro = cal.gyro;
+        msg_imu.calibration_magnetometer = cal.mag;
+        msg_imu.calibration_accelerometer = cal.accel;
+
+
+        // fill message with orientation and acceleration
         q = bno->getQuaternion();         // [w, x, y, z]         quaternion container
         gravity = bno->getVectorGravity(); // [x, y, z]            gravity vector
         linAccel = bno->getVectorLinearAccel(); // [x, y, z]	    linear acceleration 
-
-        // Get heading
         GetHeading(ypr, &q, &gravity);
-        accel[0] = linAccel.x;
-        accel[1] = linAccel.y;
-        accel[2] = linAccel.z;
-        
-        // Fill buffer by replacing oldest value
-        for (int32_t i = 0; i < 3; i++) yprBuffer[i][count % sizeMAF] = ypr[i]; // yaw pitch roll
+        msg_imu.yaw = ypr[0] * 180 / M_PI;
+        msg_imu.pitch = ypr[1] * 180 / M_PI;
+        msg_imu.roll = ypr[2] * 180 / M_PI;
+        msg_imu.linear_acceleration_x = linAccel.x;
+        msg_imu.linear_acceleration_y = linAccel.y;
+        msg_imu.linear_acceleration_z = linAccel.z;
 
-        for (int32_t i = 0; i < 3; i++) accelBuffer[i][count % sizeMAF] = accel[i];	// linear accel
 
-        if ((count%rec == 0) && (count >= sizeMAF)) {
-            //MovingAverageFilter(ypr, yprBuffer); ///DOES NOT WORK FOR Yaw Pitch Roll
-            MovingAverageFilter(accel, accelBuffer);
 
-            // fill message with gyro and accel values.
-            msg_imu.yaw = ypr[0] * 180 / M_PI;
-            msg_imu.pitch = ypr[1] * 180 / M_PI;
-            msg_imu.roll = ypr[2] * 180 / M_PI;
-            msg_imu.linear_acceleration_x = accel[0];
-            msg_imu.linear_acceleration_y = accel[1];
-            msg_imu.linear_acceleration_z = accel[2];
+        // micro-ROS to publish to topic
+        RCCHECK(rcl_publish(&publisher_imu, &msg_imu, NULL));
+        vTaskDelay(100 / portTICK_PERIOD_MS);  // in fusion mode max output rate is 100hz (actual rate: 100ms (10hz))
 
-            // micro-ROS to publish to topic
-            RCCHECK(rcl_publish(&publisher_imu, &msg_imu, NULL));
-            vTaskDelay(100 / portTICK_PERIOD_MS);  // in fusion mode max output rate is 100hz (actual rate: 100ms (10hz))
-        }
-        
-        prevTime = currTime;
         count++;
     }
 }
@@ -192,8 +208,8 @@ void appMain(void* arg) {
        
     // create imu node
     rcl_node_t node_imu;
-    RCCHECK(rclc_node_init_default(&node_imu, "imu_node", "", &support));
-    RCCHECK(rclc_publisher_init_default(&publisher_imu, &node_imu, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, IMUMessage), "/sensor/imu"));
+    RCCHECK(rclc_node_init_default(&node_imu, "imu_calibration_node", "", &support));
+    RCCHECK(rclc_publisher_init_default(&publisher_imu, &node_imu, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, IMUCalibrationMessage), "/sensor/imu_calibration"));
     // create imu timer
     rcl_timer_t timer_imu;
     RCCHECK(rclc_timer_init_default(&timer_imu, &support, RCL_MS_TO_NS(100), ImuCallback));

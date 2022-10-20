@@ -35,6 +35,8 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/RudderControlMessage.msg"
 
   "msg/NextPositionMessage.msg"
+  
+  "msg/IMUCalibrationMessage.msg"
 )
 
 ament_package()
