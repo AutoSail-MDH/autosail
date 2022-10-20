@@ -26,7 +26,7 @@ using namespace std::chrono_literals;
 
 class SetNextPosition : public rclcpp::Node {
    public:
-    SetNextPosition() : Node("rudder_control_node"), count_(0) {
+    SetNextPosition() : Node("set_next_position_node"), count_(0) {
         // Declare parameters
         this->declare_parameter<float>("lat", 0.0);
         this->declare_parameter<float>("long", 0.0);
