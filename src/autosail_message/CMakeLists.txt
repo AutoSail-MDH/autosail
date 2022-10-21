@@ -30,6 +30,8 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/WindMessage.msg"
   "msg/IMUMessage.msg"
   "msg/IMUCalibrationMessage.msg"
+  "msg/RudderControlMessage.msg"
+  "msg/NextPositionMessage.msg"
   "msg/PositionMessage.msg"
 )
 
