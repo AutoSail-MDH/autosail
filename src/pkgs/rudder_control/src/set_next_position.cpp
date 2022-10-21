@@ -46,8 +46,8 @@ class SetNextPosition : public rclcpp::Node {
         goal_latitude = abs(goal_latitude);
         goal_longitude = abs(goal_longitude);
 
-        msg.goal_latitude = goal_latitude;
-        msg.goal_longitude = goal_longitude;
+        msg.goal_position.latitude = goal_latitude;
+        msg.goal_position.longitude = goal_longitude;
         rclcpp::sleep_for(std::chrono::nanoseconds(1));
         publisher_->publish(msg);
     }
