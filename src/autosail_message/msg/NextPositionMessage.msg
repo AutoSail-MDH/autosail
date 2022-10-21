@@ -1,1 +1,1 @@
-PositionMessage goal_position
+PositionMessage next_position

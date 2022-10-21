@@ -103,8 +103,8 @@ class RudderControl : public rclcpp::Node {
     }
     // Get current goal position in Lat/Long
     void GOAL_callback(const NEXT_MSG::SharedPtr msg) {
-        goal_latitude = msg->goal_position.latitude * M_PIl / 180.0;
-        goal_longitude = msg->goal_position.longitude * M_PIl / 180.0;
+        goal_latitude = msg->next_position.latitude * M_PIl / 180.0;
+        goal_longitude = msg->next_position.longitude * M_PIl / 180.0;
     }
 
     // Larger calback to compute distance, unify the heading and bearing, as well as set which angle to set the rudder
