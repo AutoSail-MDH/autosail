@@ -24,7 +24,7 @@ find_package(std_msgs REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 add_executable(velocity_calculation src/velocity_calculation.cpp)
-ament_target_dependencies(velocity_calculation rclcpp std_msgs)
+ament_target_dependencies(velocity_calculation rclcpp std_msgs autosail_message)
 
 include_directories(
   include
