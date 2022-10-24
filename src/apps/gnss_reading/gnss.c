@@ -96,18 +96,18 @@ void gnss_callback(rcl_timer_t * timer, int64_t last_call_time)
             end_t = clock();
             if (((end_t - start_t) / CLOCKS_PER_SEC) >= THREE_SECONDS) {
                 timeout = 1;
-                gnss_msg.longitude = FATAL;
-                gnss_msg.latitude = FATAL;
+                gnss_msg.position.longitude = FATAL;
+                gnss_msg.position.latitude = FATAL;
             }
         }
 
         if ((longitude != 0 && latitude != 0) && timeout == 0) {
-            gnss_msg.longitude = latitude;
-            gnss_msg.latitude = longitude;
+            gnss_msg.position.longitude = latitude;
+            gnss_msg.position.latitude = longitude;
             gnss_msg.gps_fix = 1;
         } else {
-            gnss_msg.longitude = 0.0;
-            gnss_msg.latitude = 0.0;
+            gnss_msg.position.longitude = 0.0;
+            gnss_msg.position.latitude = 0.0;
             gnss_msg.gps_fix = 0;
         }
 
@@ -129,8 +129,8 @@ void init_gnss() {
     gps_fix = 0;
 
     gnss_msg.time_stamp = time_stamp;
-    gnss_msg.longitude = longitude;
-    gnss_msg.latitude = latitude;
+    gnss_msg.position.longitude = longitude;
+    gnss_msg.position.latitude = latitude;
     gnss_msg.gps_fix = gps_fix;
 
     data = calloc(100, 4);

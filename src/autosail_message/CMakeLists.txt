@@ -27,16 +27,13 @@ find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/GNSSMessage.msg"
-  
   "msg/WindMessage.msg"
-  
   "msg/IMUMessage.msg"
-
+  "msg/IMUCalibrationMessage.msg"
   "msg/RudderControlMessage.msg"
-
   "msg/NextPositionMessage.msg"
-
   "msg/VelocityControlMessage.msg"
+  "msg/PositionMessage.msg"
 )
 
 ament_package()

@@ -26,7 +26,7 @@ using namespace std::chrono_literals;
 
 class SetNextPosition : public rclcpp::Node {
    public:
-    SetNextPosition() : Node("rudder_control_node"), count_(0) {
+    SetNextPosition() : Node("set_next_position_node"), count_(0) {
         // Declare parameters
         this->declare_parameter<float>("lat", 0.0);
         this->declare_parameter<float>("long", 0.0);
@@ -40,19 +40,19 @@ class SetNextPosition : public rclcpp::Node {
     void position_callback() {
         auto msg = NEXT_POSITION_MSG();
         // get the current parameter values
-        this->get_parameter("lat", goal_latitude);
-        this->get_parameter("long", goal_longitude);
+        this->get_parameter("lat", next_latitude);
+        this->get_parameter("long", next_longitude);
 
-        goal_latitude = abs(goal_latitude);
-        goal_longitude = abs(goal_longitude);
+        next_latitude = abs(next_latitude);
+        next_longitude = abs(next_longitude);
 
-        msg.goal_latitude = goal_latitude;
-        msg.goal_longitude = goal_longitude;
+        msg.next_position.latitude = next_latitude;
+        msg.next_position.longitude = next_longitude;
         rclcpp::sleep_for(std::chrono::nanoseconds(1));
         publisher_->publish(msg);
     }
-    float goal_latitude;
-    float goal_longitude;
+    float next_latitude;
+    float next_longitude;
     rclcpp::TimerBase::SharedPtr timer_;
     rclcpp::Publisher<NEXT_POSITION_MSG>::SharedPtr publisher_;
     size_t count_;
