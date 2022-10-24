@@ -1,0 +1,1 @@
+PositionMessage next_position

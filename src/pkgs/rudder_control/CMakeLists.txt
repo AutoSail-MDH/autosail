@@ -13,11 +13,13 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(autosail_message REQUIRED)
+
 
 add_executable(rudder_control src/rudder_control.cpp)
-ament_target_dependencies(rudder_control rclcpp std_msgs)
+ament_target_dependencies(rudder_control rclcpp std_msgs autosail_message)
 add_executable(set_next_position src/set_next_position.cpp)
-ament_target_dependencies(set_next_position rclcpp std_msgs)
+ament_target_dependencies(set_next_position rclcpp std_msgs autosail_message)
 install(TARGETS
   rudder_control
   set_next_position

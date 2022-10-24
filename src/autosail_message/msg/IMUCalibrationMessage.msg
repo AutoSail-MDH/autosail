@@ -1,0 +1,27 @@
+float32 yaw
+float32 pitch
+float32 roll
+float32 linear_acceleration_x
+float32 linear_acceleration_y
+float32 linear_acceleration_z
+
+int32 calibration_sys
+int32 calibration_gyro
+int32 calibration_magnetometer
+int32 calibration_accelerometer
+
+float32 offset_accel_x
+float32 offset_accel_y
+float32 offset_accel_z
+float32 offset_accel_radius
+
+float32 offset_gyro_x
+float32 offset_gyro_y
+float32 offset_gyro_z
+
+int32 offset_mag_x
+int32 offset_mag_y
+int32 offset_mag_z
+int32 offset_mag_radius
+
+int32 is_calibration_complete
