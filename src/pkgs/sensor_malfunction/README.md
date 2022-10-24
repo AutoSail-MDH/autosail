@@ -29,7 +29,7 @@ Open up a terminal at the source of your ROS2 workspace and source your ROS2 ver
 Run the following commands to start the application:
 ```
 rosdep install -i --from-path src --rosdistro foxy -y
-colcon build --packages-select sensor_malfunction
+colcon build --packages-select sensor_malfunction autosail_message
 . install/local_setup.bash
 ros2 launch sensor_malfunction malfunction_launch.py
 ```
