@@ -20,7 +20,7 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
-find_package(std_msgs REQUIRED)
+find_package(autosail_message REQUIRED) 
 find_package(rclcpp REQUIRED)
 find_package(rclpy REQUIRED)
 find_package(rcl_interfaces REQUIRED)
@@ -28,11 +28,17 @@ find_package(rcl_interfaces REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-add_executable(if_error src/if_error.cpp)
-ament_target_dependencies(if_error rclcpp)
+add_executable(gnss_error src/gnss_error.cpp)
+ament_target_dependencies(gnss_error rclcpp autosail_message)
+add_executable(imu_error src/imu_error.cpp)
+ament_target_dependencies(imu_error rclcpp autosail_message)
+add_executable(wind_error src/wind_error.cpp)
+ament_target_dependencies(wind_error rclcpp autosail_message)
 
 install(TARGETS
-  if_error
+  gnss_error
+  imu_error
+  wind_error
   DESTINATION lib/${PROJECT_NAME})
   
 # Install Python modules
