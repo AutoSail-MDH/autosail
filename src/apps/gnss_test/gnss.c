@@ -9,8 +9,11 @@
 
 #include "components/minmea/minmea.h"
 #include "components/I2C/include/devI2C.h"
+#include "components/nmea/include/nmea_parser.h"
 #include "components/minmea/minmea.c"
 #include "components/I2C/devI2C.c"
+#include "components/nmea/nmea_parser.c"
+
 
 #ifdef ESP_PLATFORM
 #include "freertos/FreeRTOS.h"
@@ -72,6 +75,17 @@ void gnss_callback(rcl_timer_t * timer, int64_t last_call_time)
             message[i] = (char)data[i];
             i++;
         }
+
+        
+        get_position(message, &time_stamp, &latitude, &longitude, &gps_fix);
+        gnss_msg.time_stamp = time_stamp;
+        gnss_msg.longitude = longitude;
+        gnss_msg.latitude = latitude;
+        gnss_msg.gps_fix = gps_fix;
+        
+
+
+        /*
         nmea_msg.one = message[0];
         nmea_msg.two = message[1];
         nmea_msg.three = message[2];
@@ -98,47 +112,16 @@ void gnss_callback(rcl_timer_t * timer, int64_t last_call_time)
         nmea_msg.twentyfour = message[33];
         nmea_msg.twentyfive = message[34];
         nmea_msg.twentysix = message[35];
-
-    /*
-        switch (minmea_sentence_id(message, false)) {
-            case MINMEA_SENTENCE_GGA: {
-                struct minmea_sentence_gga frame;
-                if (minmea_parse_gga(&frame, message)) {
-                    gnss_msg.time_stamp = 1;
-                    gnss_msg.longitude = 1;
-                    gnss_msg.latitude = 1;
-                    gnss_msg.gps_fix = 1;
-                }
-                else {
-                    gnss_msg.time_stamp = -1.0;
-                    gnss_msg.longitude = -1.0;
-                    gnss_msg.latitude = -1.0;
-                    gnss_msg.gps_fix = -1.0;
-                }
-            } break;
-            case MINMEA_INVALID: {
-                gnss_msg.time_stamp = -2.0;
-                gnss_msg.longitude = -2.0;
-                gnss_msg.latitude = -2.0;
-                gnss_msg.gps_fix = -2.0;
-            } break;
-
-            default: {
-                gnss_msg.time_stamp = 0.0;
-                gnss_msg.longitude = 0.0;
-                gnss_msg.latitude = 0.0;
-                gnss_msg.gps_fix = 0;
-            } break;
-        }
         */
-        RCSOFTCHECK(rcl_publish(&publisher_gnss, &nmea_msg, NULL));
+
+        RCSOFTCHECK(rcl_publish(&publisher_gnss, &gnss_msg, NULL));
     }
 }
 
 void init_gnss() {
     // variables
     i = 0;
-    /*
+    
     time_stamp = 0.0;
     longitude = 0.0;
     latitude = 0.0;
@@ -148,8 +131,8 @@ void init_gnss() {
     gnss_msg.longitude = longitude;
     gnss_msg.latitude = latitude;
     gnss_msg.gps_fix = gps_fix;
-    */
-
+    
+    /*
     nmea_msg.one = 0;
     nmea_msg.two = 0;
     nmea_msg.three = 0;
@@ -176,6 +159,7 @@ void init_gnss() {
     nmea_msg.twentyfour = 0;
     nmea_msg.twentyfive = 0;
     nmea_msg.twentysix = 0;
+    */
 
     data = calloc(120, 4);
     message = calloc(100, 1);
