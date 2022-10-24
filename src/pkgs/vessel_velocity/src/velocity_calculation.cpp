@@ -6,8 +6,7 @@
 #include <memory>
 
 // Dependencies
-#include <std_msgs/msg/float32_multi_array.hpp>  //Built-in message types for publishing data
-#include <autosail_message/msg/velocity_calculation_message.hpp>
+#include <autosail_message/msg/velocity_message.hpp>
 #include <autosail_message/msg/gnss_message.hpp>
 
 #include "rclcpp/rclcpp.hpp"  //Common for ROS 2
@@ -16,7 +15,7 @@ using namespace std::chrono_literals;
 using std::placeholders::_1;
 
 
-#define VELOCITY_MSG autosail_message::msg::VelocityCalculationMessage
+#define VELOCITY_MSG autosail_message::msg::VelocityMessage
 #define GNSS_MSG autosail_message::msg::GNSSMessage
 
 class VelocityCalculation : public rclcpp::Node  // Create node class by inheriting
@@ -27,7 +26,7 @@ class VelocityCalculation : public rclcpp::Node  // Create node class by inherit
         subscriber_POSE =
             this->create_subscription<GNSS_MSG>(  // Constructor uses the node's
                                                                           // create_subscription class for callbacks
-                "/position/GPS", 50, // "/sensor/gnss"
+                "/sensor/gnss", 50, // "/sensor/gnss"
                 std::bind(&VelocityCalculation::gnss_topic_callback, this, _1));  // No timer, instant response
 
         publisher_ = this->create_publisher<VELOCITY_MSG>(
@@ -38,12 +37,15 @@ class VelocityCalculation : public rclcpp::Node  // Create node class by inherit
 
    private:
     void gnss_topic_callback(const GNSS_MSG::SharedPtr msg) {
-        auto message = std_msgs::msg::Float32MultiArray();
+        auto message = autosail_message::msg::VelocityMessage();
 
-        auto current_gnss_ = msg->data;    // Get current GPS reading
+        float current_gnss_[2] = {0.0, 0.0};
+        current_gnss_[0] = msg->position.latitude;
+        current_gnss_[1] = msg->position.longitude;    // Get current GPS reading
+        
         current_time_ = nodeTime_->now();  // Get time elapsed since node initialization
 
-        if (previous_gnss_.capacity() != 0) {  // Atleast two GPS readings
+        if (previous_gnss_[1] != 0.0) {  // Atleast two GPS readings
 
             // Get the distance between current and previous GPS reading
 
@@ -65,7 +67,7 @@ class VelocityCalculation : public rclcpp::Node  // Create node class by inherit
                                   pow(10, 9));  // Time difference in seconds, with nanosecond precision
             float velocity = dist / deltaTime;  // m/s
 
-            message.data = {velocity, current_lat, current_lon, deltaTime};  // Data to publish
+            message.velocity = velocity;  // Data to publish
 
             if (current_gnss_[0] != previous_gnss_[0] ||
                 current_gnss_[1] != previous_gnss_[1]) {  // Print only if position changed since last
@@ -89,7 +91,7 @@ class VelocityCalculation : public rclcpp::Node  // Create node class by inherit
     rclcpp::Subscription<GNSS_MSG>::SharedPtr subscriber_POSE;
     rclcpp::Publisher<VELOCITY_MSG>::SharedPtr publisher_;
     rclcpp::Clock::SharedPtr nodeTime_;
-    std::vector<float> previous_gnss_;
+    float * previous_gnss_;
     rclcpp::Time current_time_;
     rclcpp::Time previous_time_;
     float r = 6371000;  // Earth radius in meters

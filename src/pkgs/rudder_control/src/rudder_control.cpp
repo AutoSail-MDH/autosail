@@ -58,7 +58,7 @@ float pid = THRESHHOLD;
 
 // Final rudder angle
 float rudder_angle = 0.0;
-// Counter
+// Counterauto
 int c = 0;
 
 // Function declerations
