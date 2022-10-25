@@ -18,7 +18,7 @@ void i2c_master_init(void) {
     i2c_set_timeout(I2C_NUM_0, 30000);
 }
 
-esp_err_t i2c_master_read_slave_reg(i2c_port_t i2c_num,uint8_t* data_rd, size_t size)
+esp_err_t i2c_master_read_slave_reg(i2c_port_t i2c_num, uint8_t* data_rd, size_t size)
 {
     if (size == 0) {
         return ESP_OK;

@@ -73,7 +73,7 @@ void appMain(void* arg) {
     // create gnss node
     rcl_node_t node_gnss;// = rcl_get_zero_initialized_node();
     RCCHECK(rclc_node_init_default(&node_gnss, "gnss_node", "", &support));
-    RCCHECK(rclc_publisher_init_default(&publisher_gnss, &node_gnss, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, GNSSMessage), "/sensor/gnss"));
+    RCCHECK(rclc_publisher_init_default(&publisher_gnss, &node_gnss, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, NMEA), "/sensor/gnss"));
     // create gnss timer
     rcl_timer_t timer_gnss;
     RCCHECK(rclc_timer_init_default(&timer_gnss, &support, RCL_MS_TO_NS(100), gnss_callback));

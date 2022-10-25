@@ -6,6 +6,7 @@
 #include <termios.h>
 #include <time.h>
 #include <stdlib.h>
+#include <math.h>
 
 #ifndef HEADER_NMEA
 #define HEADER_NMEA

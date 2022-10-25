@@ -7,7 +7,7 @@
 
 // I2C
 // Needed for the i2c config
-#define I2C_MASTER_FREQ_HZ 400000
+#define I2C_MASTER_FREQ_HZ 100000
 #define I2C_MASTER_NUM 0
 #define I2C_MASTER_TX_BUF_DISABLE 0
 #define I2C_MASTER_RX_BUF_DISABLE 0
@@ -25,12 +25,17 @@
 #ifndef HEADER_PROT
 #define HEADER_PROT
 
-esp_err_t i2c_read(i2c_port_t i2c_num, uint8_t *data_rd, size_t size);
-
 /**
  * @brief Configures i2c for master mode
  *
  */
 void i2c_master_init(void);
+
+
+/**
+ * @brief Reads register on slave device over i2c
+ *
+ */
+esp_err_t i2c_master_read_slave_reg(i2c_port_t i2c_num, uint8_t* data_rd, size_t size);
 
 #endif
