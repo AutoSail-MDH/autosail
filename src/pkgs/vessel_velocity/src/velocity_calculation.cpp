@@ -30,7 +30,7 @@ class VelocityCalculation : public rclcpp::Node  // Create node class by inherit
                 std::bind(&VelocityCalculation::gnss_topic_callback, this, _1));  // No timer, instant response
 
         publisher_ = this->create_publisher<VELOCITY_MSG>(
-            "/sensor/velocity", 50);  // Init msg type, topic name and msg size
+            "/position/velocity", 50);  // Init msg type, topic name and msg size
 
         nodeTime_ = this->get_clock();  // Create clock starting at the time of node creation
     }
@@ -83,7 +83,8 @@ class VelocityCalculation : public rclcpp::Node  // Create node class by inherit
             RCLCPP_INFO(this->get_logger(), "Lat: '%lf', Lon: '%lf'", current_gnss_[0], current_gnss_[1]);
 
         // Save current GPS readings
-        previous_gnss_ = current_gnss_;
+        previous_gnss_[0] = current_gnss_[0];
+        previous_gnss_[1] = current_gnss_[1];
         previous_time_ = current_time_;
     }
 
@@ -91,7 +92,7 @@ class VelocityCalculation : public rclcpp::Node  // Create node class by inherit
     rclcpp::Subscription<GNSS_MSG>::SharedPtr subscriber_POSE;
     rclcpp::Publisher<VELOCITY_MSG>::SharedPtr publisher_;
     rclcpp::Clock::SharedPtr nodeTime_;
-    float * previous_gnss_;
+    float  previous_gnss_[2];
     rclcpp::Time current_time_;
     rclcpp::Time previous_time_;
     float r = 6371000;  // Earth radius in meters

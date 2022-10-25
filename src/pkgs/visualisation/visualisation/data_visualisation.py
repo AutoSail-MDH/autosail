@@ -13,22 +13,28 @@ class DataVisualisation(Node):
     def __init__(self):
         super().__init__('data_visualisation_node') 
         
-        self.pubVel_ = self.create_subscription(Float32MultiArray, '/position/velocity', self.velocity_callback, 10)
+        self.pubVel_ = self.create_subscription(
+            Float32MultiArray, '/position/velocity', self.velocity_callback, 10)
         self.pubVel_ # prevent unused variable warning
 
-        self.pubYaw_ = self.create_subscription(Float32MultiArray, '/sensor/imu', self.yaw_callback, 10)
+        self.pubYaw_ = self.create_subscription(
+            Float32MultiArray, '/sensor/imu', self.yaw_callback, 10)
         self.pubYaw_ # prevent unused variable warning
 
-        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/sensor/wind', self.wind_callback, 10)
+        self.pubGPS_ = self.create_subscription(
+            Float32MultiArray, '/sensor/wind', self.wind_callback, 10)
         self.pubGPS_ # prevent unused variable warning
 
-        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/sensor/imu', self.rudder_callback, 10)
+        self.pubGPS_ = self.create_subscription(
+            Float32MultiArray, '/actuator/rudder', self.rudder_callback, 10)
         self.pubGPS_ # prevent unused variable warning
 
-        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/sensor/imu', self.sail_callback, 10)
+        self.pubGPS_ = self.create_subscription(
+            Float32MultiArray, '/actuator/sail_angle', self.sail_callback, 10)
         self.pubGPS_ # prevent unused variable warning
 
-        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/sensor/gps', self.gps_callback, 10)
+        self.pubGPS_ = self.create_subscription(
+            Float32MultiArray, '/sensor/gnss', self.gps_callback, 10)
         self.pubGPS_ # prevent unused variable warning
         
 
