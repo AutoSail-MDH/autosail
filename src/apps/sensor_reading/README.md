@@ -1,5 +1,7 @@
 # Data acquisition
-This application bundles together three submodules, [GPS](https://github.com/AutoSail-MDH/AutoSail/tree/main/uros/src/apps/gps), [Vessel orientation](https://github.com/AutoSail-MDH/AutoSail/tree/main/uros/src/apps/vessel_orientation) and [Wind direction](https://github.com/AutoSail-MDH/AutoSail/tree/main/uros/src/apps/wind_direction). This is so all three can be ran on one MCU, instead of on seperate ones. See each seperate submodule for information on how to run them seperate.
+This application bundles together three submodules, [GNSS Reading](https://github.com/AutoSail-MDH/autosail/src/apps/gnss_reading), [IMU Reading](https://github.com/AutoSail-MDH/autosail/src/apps/imu_reading) and [Wind Reading](https://github.com/AutoSail-MDH/autosail/src/apps/wind_reading). This is so all three can be ran on one MCU, instead of on seperate ones. See each seperate submodule for information on how to run them seperate.
+
+This application is not used on the 4m boat.
 
 ## Hardware connection
 The IMU and GPS are connected in series using the Qwiic connectors of the GPS, and the Wind sensor is connected directly to the ESP32.

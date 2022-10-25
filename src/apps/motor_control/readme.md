@@ -4,3 +4,5 @@ This application creates micro-ROS nodes that takes an angle in radians and conv
 The sail PWM signal is sent to GPIO19 and the rudder PWM signal is sent to GPIO18, being pin 19 and 18 on the ESP32 respectively.
 
 The application subscribes to /position/SAIL_ANGLE and /rudder/ANGLE.
+
+WIP
