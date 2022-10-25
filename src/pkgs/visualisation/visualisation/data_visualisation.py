@@ -4,7 +4,8 @@ from rclpy.node import Node
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib import style
-from mpl_toolkits.basemap import Basemap
+import cartopy.crs as ccrs
+#from mpl_toolkits.basemap import Basemap
 
 from std_msgs.msg import Float32MultiArray
 
@@ -49,7 +50,7 @@ class DataVisualisation(Node):
 
         #Create a map for converting coordinates to plottable points
         #Change lat_0 and lon_0 to approximate current location for more accurate plotting (if run in Panama or Colombia)
-        self.m = Basemap(projection='lcc', resolution=None, width=8E6, height=8E6, lat_0=59, lon_0=16) 
+        #self.m = Basemap(projection='lcc', resolution=None, width=8E6, height=8E6, lat_0=59, lon_0=16) 
 
         #Initialize variables
         self.Velxs = []
