@@ -19,6 +19,8 @@ If all nodes are connected and publishing, nothing will happen.
 ### Change behaviour
 Edit /launch/malfunction_launch.py file to edit the following parameters.
 
-"my_DL" is the time in seconds before the monitoring node starts sending FATAL messages.
+"topic" is the topic to monitor.
 
-"my_iteration" is the amount of times the topic can be unresponsive before FATAL messages are sent.
+"timeout" is the time in seconds before the monitoring node starts sending FATAL messages.
+
+"iteration" is the amount of times the topic can be unresponsive before FATAL messages are sent.
