@@ -7,12 +7,12 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "components/minmea/minmea.h"
 #include "components/I2C/include/devI2C.h"
 #include "components/nmea/include/nmea_parser.h"
-#include "components/minmea/minmea.c"
+#include "components/regex/include/regex_parser.h"
 #include "components/I2C/devI2C.c"
 #include "components/nmea/nmea_parser.c"
+#include "components/regex/regex_parser.c"
 
 
 #ifdef ESP_PLATFORM
@@ -83,6 +83,13 @@ void gnss_callback(rcl_timer_t * timer, int64_t last_call_time)
         gnss_msg.position.longitude = longitude;
         gnss_msg.gps_fix = gps_fix;
         
+        /*
+        gps_fix = rget_position(message, &timestamp, &latitude, &longitude);
+        gnss_msg.time_stamp = timestamp;
+        gnss_msg.position.latitude = latitude;
+        gnss_msg.position.longitude = longitude;
+        gnss_msg.gps_fix = gps_fix;
+        */
         
         nmea_msg.one = message[0];
         nmea_msg.two = message[1];
