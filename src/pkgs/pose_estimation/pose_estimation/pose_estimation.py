@@ -2,7 +2,14 @@ import rclpy
 from rclpy.node import Node
 from pose_estimation.extended_kalman_filter import ekf_estimation
 
-from std_msgs.msg import Float32MultiArray
+from autosail_message.msg import GNSSMessage
+from autosail_message.msg import IMUMessage
+from autosail_message.msg import PoseMessage
+
+#include <autosail_message/msg/rudder_control_message.hpp>
+#include <autosail_message/msg/gnss_message.hpp>
+#include <autosail_message/msg/next_position_message.hpp>
+#include <autosail_message/msg/imu_message.hpp>
 
 import math
 import numpy as np
@@ -14,55 +21,55 @@ class PoseEstimation(Node):
         super().__init__('pose_estimation_node')
 
         self.subGPS_ = self.create_subscription(
-            Float32MultiArray, '/sensor/gnss', self.GPS_callback, 10)
+            GNSSMessage, '/sensor/gnss', self.GPS_callback, 10)
         self.subGPS_  # prevent unused variable warning
 
         self.pubIMU_ = self.create_subscription(
-            Float32MultiArray, '/sensor/imu', self.IMU_callback, 10)
+            IMUMessage, '/sensor/imu', self.IMU_callback, 10)
         self.pubIMU_  # prevent unused variable warning
 
         self.publisher_ = self.create_publisher(
-            Float32MultiArray, '/position/pose', 10)
+            PoseMessage, '/position/pose', 10)
 
         self.start = self.get_clock().now()
 
-        self.curr_GPS_ = []
+        self.current_GPS_ = []
 
-        self.prev_time_IMU_ = self.start
+        self.previous_time_IMU_ = self.start
         # self.prev_velocity_ = [0, 0, 0] #[z y x]
 
-        self.prev_yaw_ = 0
+        self.previous_yaw_ = 0
 
         # EKF
-        self.xEst = np.zeros((4, 1))  # State vector [x y yaw v]
-        self.PEst = np.eye(4)  # Covariance matrix of the state
+        self.xEstimate = np.zeros((4, 1))  # State vector [x y yaw v]
+        self.PEstimate = np.eye(4)  # Covariance matrix of the state
 
     def IMU_callback(self, msg):
-        message = Float32MultiArray()
+        message = PoseMessage()
 
-        ypr = msg.data[0:3]     # [yaw pitch roll]
-        accel = msg.data[3:6]   # [z y x]
+        ypr = [msg.yaw, msg.pitch, msg.roll]       # [yaw pitch roll]
+        linear_acceleration = [msg.linear_acceleration_z, msg.linear_acceleration_y, 
+                                msg.linear_acceleration_x]  # [z y x]
         # gyro = msg.data[6:9]  #[z y x]
 
-        GPS = self.curr_GPS_    # [x y]
+        GPS = self.current_GPS_    # [x y]
 
         yaw = ypr[0]    # z-axis rotation
 
-        curr_time_IMU = self.get_clock().now()
+        current_time_IMU = self.get_clock().now()
 
-        if (self.curr_GPS_ != []) & (self.prev_time_IMU_ != self.start):  # //Atleast two readings
+        if (self.current_GPS_ != []) & (self.previous_time_IMU_ != self.start):  # //Atleast two readings
             x = GPS[0]  # Latitude
             y = GPS[1]  # Longitude
 
             # Difference in time between IMU readings [s]
-            DT_IMU = (curr_time_IMU -
-                      self.prev_time_IMU_).nanoseconds / pow(10, 9)
+            DT_IMU = (current_time_IMU -
+                      self.previous_time_IMU_).nanoseconds / pow(10, 9)
 
-            # yawrate = gyro[0]       #z-axis angular velocity
             yawrate = self.yaw_to_yawrate(yaw, DT_IMU)
 
             # Convert IMU acceleration to speed
-            v = self.accel_to_velocity(accel, DT_IMU)
+            v = self.acceleration_to_velocity(linear_acceleration, DT_IMU)
 
             self.get_logger().info('x: %f, y: %f, yaw: %f, v: %f, yawrate: %f, DT_IMU: %f' %
                                    (x, y, yaw, v, yawrate, DT_IMU))
@@ -80,32 +87,36 @@ class PoseEstimation(Node):
             z = np.array([[x],  # Observation vector
                           [y]])
 
-            self.xEst, self.PEst = ekf_estimation(
-                self.xEst, self.PEst, z, u, DT_IMU)
+            self.xEstimate, self.PEstimate = ekf_estimation(
+                self.xEstimate, self.PEstimate, z, u, DT_IMU)
 
-            message.data = [float(self.xEst[0]), float(self.xEst[1]), float(
-                self.xEst[2]), float(self.xEst[3])]  # [x y yaw v]
+            message.position.latitude = float(self.xEstimate[0])
+            message.position.longitude = float(self.xEstimate[1])
+            message.yaw = float(self.xEstimate[2])
+            message.velocity = float(self.xEstimate[3])
+
             self.get_logger().info('x = %f, y = %f, yaw = %f, v = %f' %
-                                   (message.data[0], message.data[1], message.data[2], message.data[3]))
+                        (message.position.latitude, message.position.longitude, message.yaw, message.velocity))
             self.publisher_.publish(message)
 
-        self.prev_time_IMU_ = curr_time_IMU
-        self.prev_yaw_ = yaw
+        self.previous_time_IMU_ = current_time_IMU
+        self.previous_yaw_ = yaw
 
     def GPS_callback(self, msg):
-        self.curr_GPS_ = msg.data
+        self.current_GPS_ = [msg.position.latitude, msg.position.longitude]
+
 
     def yaw_to_yawrate(self, yaw, DT):
 
-        yawrate = (yaw - self.prev_yaw_) / DT
+        yawrate = (yaw - self.previous_yaw_) / DT
 
         return yawrate
 
-    def accel_to_velocity(self, accel, DT):
+    def acceleration_to_velocity(self, acceleration, DT):
 
-        #vz = accel[0] * DT
-        vy = accel[1] * DT
-        vx = accel[2] * DT
+        #vz = acceleration[0] * DT
+        vy = acceleration[1] * DT
+        vx = acceleration[2] * DT
 
         #vz = vz + self.prev_velocity_[0]
         #vy = vy + self.prev_velocity_[1]
