@@ -16,14 +16,14 @@ class GNSSError : public rclcpp::Node {
         rclcpp::Rate r(std::chrono::seconds(7));
         r.sleep();
 
-        this->declare_parameter<std::string>("my_topic", "topic");  //(paramName, default)
-        this->get_parameter("my_topic", param_topic_);              //(paramName, type)
+        this->declare_parameter<std::string>("topic", "topic");  //(paramName, default)
+        this->get_parameter("topic", param_topic_);              //(paramName, type)
 
-        this->declare_parameter<std::int32_t>("my_DL", 20);
-        this->get_parameter("my_DL", param_DL_);
+        this->declare_parameter<std::int32_t>("timeout", 20);
+        this->get_parameter("timeout", param_timeout_);
 
-        this->declare_parameter<std::int32_t>("my_iteration", 20);
-        this->get_parameter("my_iteration", param_iteration_);
+        this->declare_parameter<std::int32_t>("iteration", 20);
+        this->get_parameter("iteration", param_iteration_);
 
         subscription_ = this->create_subscription<
             autosail_message::msg::GNSSMessage>(  // Constructor uses the node's create_subscription class for callbacks
@@ -62,7 +62,7 @@ class GNSSError : public rclcpp::Node {
             if ((current_time - previous_time_).seconds() < 1) connected = 1;
             if (iteration >= param_iteration_)
                 RCLCPP_FATAL(this->get_logger(), "INITIATE SHUTDOWN, %s OUT OF FUNCTION", gnss_topic_name);
-            else if ((current_time - previous_time_).seconds() < param_DL_)
+            else if ((current_time - previous_time_).seconds() < param_timeout_)
                 RCLCPP_WARN(this->get_logger(), "WARNING, %s MALFUNCTION", gnss_topic_name);
             else
                 RCLCPP_FATAL(this->get_logger(), "INITIATE SHUTDOWN, %s OUT OF FUNCTION", gnss_topic_name);
@@ -70,7 +70,7 @@ class GNSSError : public rclcpp::Node {
     }
     // Field declaration
     std::string param_topic_;
-    std::int32_t param_DL_;
+    std::int32_t param_timeout_;
     std::int32_t param_iteration_;
 
     rclcpp::Subscription<autosail_message::msg::GNSSMessage>::SharedPtr subscription_;

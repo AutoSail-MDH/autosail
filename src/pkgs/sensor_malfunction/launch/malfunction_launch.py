@@ -18,9 +18,9 @@ def generate_launch_description():
             executable="imu_error",
             name="direction",
             parameters=[
-                {'my_topic': 'imu'},
-                {'my_DL': 3},
-                {'my_iteration': 4}
+                {'topic': 'imu'},
+                {'timeout': 3},
+                {'iteration': 4}
                 ],
             output="screen",
             emulate_tty=True
@@ -32,9 +32,9 @@ def generate_launch_description():
             executable="gnss_error",
             name="position",
             parameters=[
-                {'my_topic': 'gnss'},
-                {'my_DL': 3},
-                {'my_iteration': 4}
+                {'topic': 'gnss'},
+                {'timeout': 3},
+                {'iteration': 4}
                 ],
             output="screen",
             emulate_tty=True
@@ -46,9 +46,9 @@ def generate_launch_description():
             executable="wind_error",
             name="wind",
             parameters=[
-                {'my_topic': 'wind'},
-                {'my_DL': 3},
-                {'my_iteration': 4}
+                {'topic': 'wind'},
+                {'timeout': 3},
+                {'iteration': 4}
                 ],
             output="screen",
             emulate_tty=True
