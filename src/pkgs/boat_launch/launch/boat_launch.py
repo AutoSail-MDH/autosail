@@ -31,23 +31,23 @@ def generate_launch_description():
         # Velocity
         Node(
             package="vessel_velocity",
-            executable="sub_pos_gps",
+            executable="velocity_calculation",
             name="velocity",
             output="screen",
             emulate_tty=True
         ),
         # Sensor fusion
         Node(
-            package="sensor_fusion",
-            executable="EKF",
-            name="fusion",
+            package="pose_estimation",
+            executable="pose_estimation",
+            name="pose",
             output="screen",
             emulate_tty=True
         ),
         # Rudder path
         Node(
-            package="rudder_path",
-            executable="rpp",
+            package="rudder_control",
+            executable="rudder_control",
             name="rudder",
             output="screen",
             emulate_tty=True,
@@ -57,9 +57,9 @@ def generate_launch_description():
         ),
         # Rudder path publisher
         Node(
-            package="rudder_path",
-            executable="pub",
-            name="rudder_pub",
+            package="rudder_control",
+            executable="set_next_position",
+            name="next_position",
             output="screen",
             emulate_tty=True,
             parameters=[
@@ -69,9 +69,9 @@ def generate_launch_description():
         ),
         # Wind to Sail
         Node(
-            package="wind_to_sail",
-            executable="sub_pub",
-            name="sail",
+            package="sail_control",
+            executable="sail_angle_control",
+            name="sail_angle",
             output="screen",
             emulate_tty=True
         ),
@@ -81,8 +81,8 @@ def generate_launch_description():
         #        [ThisLaunchFileDir(), '/data_logging', '/record.launch.py'])
         #),
         # Sensor malfunction
-        #  IncludeLaunchDescription(
-            #  PythonLaunchDescriptionSource(
-                #  [sensor_malfunction, '/launch', '/malfunction_launch.py'])
-        #  ),
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                [sensor_malfunction, '/launch', '/malfunction_launch.py'])
+        ),
     ])
