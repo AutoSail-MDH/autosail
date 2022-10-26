@@ -36,14 +36,7 @@ int get_position(char * buf, float * timestamp, float * lat, float * lon, int * 
             strncpy(tmp_long, &buf[30], 11);
             strncpy(tmp_fix, &buf[44], 1);
 
-            /*
-            tmp_time[9] = "\0";
-            tmp_lat[10] = "\0";
-            tmp_long[11] = "\0";
-            tmp_fix[1] = "\0";
-            */
-
-            *timestamp = strtof(tmp_time, NULL);
+            *timestamp = roundf(10 * strtof(tmp_time, NULL)) / 10;
             *lat = strtof(tmp_lat, NULL);
             *lon = strtof(tmp_long, NULL);
             *gps_fix = 1;

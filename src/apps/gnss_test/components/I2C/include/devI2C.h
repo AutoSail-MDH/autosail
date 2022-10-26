@@ -7,7 +7,7 @@
 
 // I2C
 // Needed for the i2c config
-#define I2C_MASTER_FREQ_HZ 100000
+#define I2C_MASTER_FREQ_HZ 400000
 #define I2C_MASTER_NUM 0
 #define I2C_MASTER_TX_BUF_DISABLE 0
 #define I2C_MASTER_RX_BUF_DISABLE 0

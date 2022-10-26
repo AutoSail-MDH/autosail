@@ -76,13 +76,14 @@ void gnss_callback(rcl_timer_t * timer, int64_t last_call_time)
             i++;
         }
 
+        /*
         get_position(message, &time_stamp, &latitude, &longitude, &gps_fix);
         gnss_msg.time_stamp = time_stamp;
         gnss_msg.position.latitude = latitude;
         gnss_msg.position.longitude = longitude;
         gnss_msg.gps_fix = gps_fix;
-
-        /*
+        */
+        
         nmea_msg.one = message[0];
         nmea_msg.two = message[1];
         nmea_msg.three = message[2];
@@ -109,7 +110,7 @@ void gnss_callback(rcl_timer_t * timer, int64_t last_call_time)
         nmea_msg.twentyfour = message[33];
         nmea_msg.twentyfive = message[34];
         nmea_msg.twentysix = message[35];
-        */
+        
 
         RCSOFTCHECK(rcl_publish(&publisher_gnss, &nmea_msg, NULL));
     }
@@ -124,10 +125,12 @@ void init_gnss() {
     latitude = 0.0;
     gps_fix = 0;
     
+    /*
     gnss_msg.time_stamp = time_stamp;
     gnss_msg.position.latitude = latitude;
     gnss_msg.position.longitude = longitude;
     gnss_msg.gps_fix = gps_fix;
+    */
     
     nmea_msg.one = 0;
     nmea_msg.two = 0;
@@ -155,6 +158,7 @@ void init_gnss() {
     nmea_msg.twentyfour = 0;
     nmea_msg.twentyfive = 0;
     nmea_msg.twentysix = 0;
+    
 
     data = calloc(100, 4);
     message = calloc(100, 1);
