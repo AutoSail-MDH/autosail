@@ -34,6 +34,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/NextPositionMessage.msg"
   "msg/VelocityMessage.msg"
   "msg/PositionMessage.msg"
+  "msg/PoseMessage.msg"
 )
 
 ament_package()
