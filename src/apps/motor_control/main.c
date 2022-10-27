@@ -49,13 +49,16 @@
 
 rcl_subscription_t sub_sail;
 rcl_subscription_t sub_rudder;
+rcl_subscription_t sub_furl;
 autosail_message__msg__SailAngleMessage angle_msg;
+autosail_message__msg__RudderControlMessage rudder_msg;
 autosail_message__msg__SailFurlMessage furl_msg;
 
 struct timeval startTime;
 struct timeval currTime;
 struct timeval prevTimeSail;
 struct timeval prevTimeRudder;
+struct timeval prevTimeFurl;
 
 void sail_callback(const void *msgin) {
     const autosail_message__msg__SailAngleMessage *msg = (const autosail_message__msg__SailAngleMessage *)msgin;
@@ -79,11 +82,11 @@ void sail_callback(const void *msgin) {
 }
 
 void rudder_callback(const void *msgin) {
-    const autosail_message__msg__SailFurlMessage *msg = (const autosail_message__msg__SailFurlMessage *)msgin;
+    const autosail_message__msg__RudderControlMessage *msg = (const autosail_message__msg__RudderControlMessage *)msgin;
 
     // Use angle to calculate PMW
 
-    int32_t angle = msg->sail_furl_position;  // Data sent in degrees
+    int32_t angle = msg->rudder_angle;  // Data sent in degrees
     printf("Rudder angle received: %d\r\n", angle);
 
     uint32_t duty_us =
@@ -99,6 +102,15 @@ void rudder_callback(const void *msgin) {
     gettimeofday(&prevTimeRudder, NULL);
 }
 
+void furl_callback(const void *msgin) {
+    const autosail_message__msg__SailFurlMessage *msg = (const autosail_message__msg__SailFurlMessage *)msgin;
+
+    int32_t angle = msg->sail_furl_position;  // Data sent in degrees
+    printf("Rudder angle received: %d\r\n", angle);
+
+    gettimeofday(&prevTimeFurl, NULL);
+}
+
 void appMain(void* arg) {
 
     while (RMW_RET_OK != rmw_uros_ping_agent(1000, 1));
@@ -106,6 +118,7 @@ void appMain(void* arg) {
     gettimeofday(&startTime, NULL);
     prevTimeSail = startTime;
     prevTimeRudder = startTime;
+
 
     rcl_allocator_t allocator = rcl_get_default_allocator();
     rclc_support_t support;
@@ -120,15 +133,19 @@ void appMain(void* arg) {
     RCCHECK(rclc_subscription_init_default(&sub_sail, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, SailAngleMessage),
                                            "/actuator/sail"));
     vTaskDelay(500 / portTICK_PERIOD_MS);
-    RCCHECK(rclc_subscription_init_default(&sub_rudder, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, SailFurlMessage),
+    RCCHECK(rclc_subscription_init_default(&sub_rudder, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, RudderControlMessage),
                                            "/actuator/rudder"));
+    vTaskDelay(500 / portTICK_PERIOD_MS);
+    RCCHECK(rclc_subscription_init_default(&sub_furl, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, SailFurlMessage),
+                                           "/actuator/furl"));
 
     // create executor
     rclc_executor_t executor = rclc_executor_get_zero_initialized_executor();
     RCCHECK(rclc_executor_init(&executor, &support.context, 2, &allocator));
 
     RCCHECK(rclc_executor_add_subscription(&executor, &sub_sail, &angle_msg, &sail_callback, ON_NEW_DATA));
-    RCCHECK(rclc_executor_add_subscription(&executor, &sub_rudder, &furl_msg, &rudder_callback, ON_NEW_DATA));
+    RCCHECK(rclc_executor_add_subscription(&executor, &sub_rudder, &rudder_msg, &rudder_callback, ON_NEW_DATA));
+    RCCHECK(rclc_executor_add_subscription(&executor, &sub_furl, &furl_msg, &furl_callback, ON_NEW_DATA));
 
     // configure motor control pulse width modulator (MCPWM)
     mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A,
@@ -160,6 +177,7 @@ void appMain(void* arg) {
     // free resources
     RCCHECK(rcl_subscription_fini(&sub_sail, &node));
     RCCHECK(rcl_subscription_fini(&sub_rudder, &node));
+    RCCHECK(rcl_subscription_fini(&sub_furl, &node));
     RCCHECK(rcl_node_fini(&node));
     RCCHECK(rclc_executor_fini(&executor));
     RCCHECK(rclc_support_fini(&support));
