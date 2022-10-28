@@ -8,7 +8,7 @@
 #include <autosail_message/msg/pose_message.hpp>
 
 #define POSE_TOPIC "/position/pose"
-#define APPARENT_WIND_TOPIC "/sensor/apparent_wind"
+#define APPARENT_WIND_TOPIC "/sensor/wind"
 #define TRUE_WIND_TOPIC "/sensor/true_wind"
 
 #define POSE_MSG autosail_message::msg::PoseMessage
@@ -20,7 +20,7 @@ using namespace rclcpp;
 using std::placeholders::_1;
 
 float boat_velocity = 0.0;
-int apparent_wind_angle = 0;
+float apparent_wind_angle = 0.0;
 float apparent_wind_speed = 0.0;
 
 class TrueWindCalculation : public rclcpp::Node {
@@ -43,19 +43,19 @@ class TrueWindCalculation : public rclcpp::Node {
     }
 
     void apparent_wind_callback(const APPARENT_WIND_MSG::SharedPtr msg) {
-        apparent_wind_angle = msg->wind_angle;
+        apparent_wind_angle = (float)(msg->wind_angle*M_PI/180);
         apparent_wind_speed = msg->wind_speed;
     }
 
     void true_wind_callback() {
         auto message = TRUE_WIND_MSG();
-        message.wind_angle = sqrt(
+        message.wind_speed = sqrt(
             pow(cos(apparent_wind_angle)*apparent_wind_speed+boat_velocity, 2)+
             pow(sin(apparent_wind_angle)*apparent_wind_speed, 2));
 
-        message.wind_speed = atan2(
-            sin(apparent_wind_angle)*apparent_wind_speed,
-            cos(apparent_wind_angle)*apparent_wind_speed+boat_velocity);
+        message.wind_angle = atan2(
+            sin(apparent_wind_angle)*(apparent_wind_speed),
+            cos(apparent_wind_angle)*apparent_wind_speed+boat_velocity)*180/M_PI;
 
         publisher_true_wind_->publish(message);
     }

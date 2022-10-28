@@ -13,4 +13,8 @@ find_package(autosail_message REQUIRED)
 add_executable(true_wind src/true_wind_calculation.cpp)
 ament_target_dependencies(true_wind rclcpp autosail_message)
 
+install(TARGETS
+  true_wind
+  DESTINATION lib/${PROJECT_NAME})
+
 ament_package()
