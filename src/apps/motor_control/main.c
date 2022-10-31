@@ -103,11 +103,6 @@ void rudder_callback(const void *msgin) {
 }
 
 void furl_callback(const void *msgin) {
-    const autosail_message__msg__SailFurlMessage *msg = (const autosail_message__msg__SailFurlMessage *)msgin;
-
-    int32_t angle = msg->sail_furl_position;  // Data sent in degrees
-    printf("Rudder angle received: %d\r\n", angle);
-
     gettimeofday(&prevTimeFurl, NULL);
 }
 
