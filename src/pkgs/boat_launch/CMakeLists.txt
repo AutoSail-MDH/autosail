@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(sensor_malfunction)
+project(boat_launch)
 
 
 # Default to C99 - rmv
@@ -19,37 +19,7 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(ament_cmake_python REQUIRED)
-find_package(autosail_message REQUIRED) 
-find_package(rclcpp REQUIRED)
-find_package(rclpy REQUIRED)
-find_package(rcl_interfaces REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
 
-add_executable(gnss_error src/gnss_error.cpp)
-ament_target_dependencies(gnss_error rclcpp autosail_message)
-add_executable(imu_error src/imu_error.cpp)
-ament_target_dependencies(imu_error rclcpp autosail_message)
-add_executable(wind_error src/wind_error.cpp)
-ament_target_dependencies(wind_error rclcpp autosail_message)
-
-install(TARGETS
-  gnss_error
-  imu_error
-  wind_error
-  DESTINATION lib/${PROJECT_NAME})
-  
-# Install Python modules
-ament_python_install_package(${PROJECT_NAME})
-
-# Install Python executables
-install(PROGRAMS
-  scripts/shutdown.py
-  DESTINATION lib/${PROJECT_NAME}
-)
-  
 install(
   DIRECTORY launch
   DESTINATION share/${PROJECT_NAME}

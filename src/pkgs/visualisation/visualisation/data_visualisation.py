@@ -4,7 +4,8 @@ from rclpy.node import Node
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib import style
-from mpl_toolkits.basemap import Basemap
+import cartopy.crs as ccrs
+#from mpl_toolkits.basemap import Basemap
 
 from std_msgs.msg import Float32MultiArray
 
@@ -13,22 +14,28 @@ class DataVisualisation(Node):
     def __init__(self):
         super().__init__('data_visualisation_node') 
         
-        self.pubVel_ = self.create_subscription(Float32MultiArray, '/position/velocity', self.velocity_callback, 10)
+        self.pubVel_ = self.create_subscription(
+            Float32MultiArray, '/position/velocity', self.velocity_callback, 10)
         self.pubVel_ # prevent unused variable warning
 
-        self.pubYaw_ = self.create_subscription(Float32MultiArray, '/sensor/imu', self.yaw_callback, 10)
+        self.pubYaw_ = self.create_subscription(
+            Float32MultiArray, '/sensor/imu', self.yaw_callback, 10)
         self.pubYaw_ # prevent unused variable warning
 
-        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/sensor/wind', self.wind_callback, 10)
+        self.pubGPS_ = self.create_subscription(
+            Float32MultiArray, '/sensor/wind', self.wind_callback, 10)
         self.pubGPS_ # prevent unused variable warning
 
-        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/sensor/imu', self.rudder_callback, 10)
+        self.pubGPS_ = self.create_subscription(
+            Float32MultiArray, '/actuator/rudder', self.rudder_callback, 10)
         self.pubGPS_ # prevent unused variable warning
 
-        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/sensor/imu', self.sail_callback, 10)
+        self.pubGPS_ = self.create_subscription(
+            Float32MultiArray, '/actuator/sail_angle', self.sail_callback, 10)
         self.pubGPS_ # prevent unused variable warning
 
-        self.pubGPS_ = self.create_subscription(Float32MultiArray, '/sensor/gps', self.gps_callback, 10)
+        self.pubGPS_ = self.create_subscription(
+            Float32MultiArray, '/sensor/gnss', self.gps_callback, 10)
         self.pubGPS_ # prevent unused variable warning
         
 
@@ -43,7 +50,7 @@ class DataVisualisation(Node):
 
         #Create a map for converting coordinates to plottable points
         #Change lat_0 and lon_0 to approximate current location for more accurate plotting (if run in Panama or Colombia)
-        self.m = Basemap(projection='lcc', resolution=None, width=8E6, height=8E6, lat_0=59, lon_0=16) 
+        #self.m = Basemap(projection='lcc', resolution=None, width=8E6, height=8E6, lat_0=59, lon_0=16) 
 
         #Initialize variables
         self.Velxs = []

@@ -1,4 +1,3 @@
-float32 longitude
-float32 latitude
+PositionMessage position
 float32 yaw
 float32 velocity
