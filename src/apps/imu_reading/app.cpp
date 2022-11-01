@@ -26,7 +26,6 @@
 
 #define FATAL -1000
 #define sizeMAF 4  // Size of moving average filter
-#define TO 3       // Seconds until timeout
 #define rec 2      // How often data is sent to topic
 
 //Error check function. If error found restart microcontroller
