@@ -5,13 +5,10 @@
 #include <rmw_microros/rmw_microros.h>
 #include <rmw_microxrcedds_c/config.h>
 #include <autosail_message/msg/gnss_message.h>
+#include <autosail_message/msg/nmea.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
-
-#include "components/I2Cdev/I2Cdev.cpp"
-#include "components/I2Cdev/I2Cdev.h"
-
 
 #ifdef ESP_PLATFORM
 #include "driver/i2c.h"
