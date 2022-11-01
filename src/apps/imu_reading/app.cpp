@@ -10,10 +10,7 @@
 #include <math.h>
 
 #include "components/BNO055ESP32/BNO055ESP32.cpp"
-#include "components/I2Cdev/I2Cdev.cpp"
 #include "components/BNO055ESP32/BNO055ESP32.h"
-#include "components/I2Cdev/I2Cdev.h"
-
 
 #ifdef ESP_PLATFORM
 #include "driver/i2c.h"
@@ -54,16 +51,15 @@ autosail_message__msg__IMUMessage msg_imu;// custom message
 
 bno055_quaternion_t q;
 bno055_vector_t gravity;
-bno055_vector_t linAccel;
+bno055_vector_t linear_acceleration;
 float ypr[3];         // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
-float accel[3];         // [x, y, z]		linear acceleration
-float yprBuffer[3][sizeMAF];
-float accelBuffer[3][sizeMAF];
-bno055_interrupts_status_t mpuIntStatus;      // holds actual interrupt status byte from MPU
+float acceleration[3];         // [x, y, z]		linear acceleration
+float ypr_buffer[3][sizeMAF];
+float acceleration_buffer[3][sizeMAF];
 uint32_t count = 0;
 BNO055* bno = NULL;
-struct timeval currTime;
-struct timeval prevTime;
+struct timeval current_time;
+struct timeval previous_time;
 
 extern "C" {
 void appMain(void* arg);
@@ -89,7 +85,7 @@ void InitImu() {
     bno->begin();  // BNO055 is in CONFIG_MODE until it is changed
     bno->enableExternalCrystal();
 
-    gettimeofday(&prevTime, NULL);
+    gettimeofday(&previous_time, NULL);
     
     vTaskDelay(500 / portTICK_PERIOD_MS);
 
@@ -140,41 +136,40 @@ void ImuCallback(rcl_timer_t * timer, int64_t last_call_time) {
     (void) last_call_time;
     if (timer != NULL) {
 
-        gettimeofday(&currTime, NULL);
+        gettimeofday(&current_time, NULL);
 
         q = bno->getQuaternion();         // [w, x, y, z]         quaternion container
         gravity = bno->getVectorGravity(); // [x, y, z]            gravity vector
-        linAccel = bno->getVectorLinearAccel(); // [x, y, z]	    linear acceleration 
+        linear_acceleration = bno->getVectorLinearAccel(); // [x, y, z]	    linear acceleration 
 
         // Get heading
         GetHeading(ypr, &q, &gravity);
-        accel[0] = linAccel.x;
-        accel[1] = linAccel.y;
-        accel[2] = linAccel.z;
+        acceleration[0] = linear_acceleration.x;
+        acceleration[1] = linear_acceleration.y;
+        acceleration[2] = linear_acceleration.z;
         
         // Fill buffer by replacing oldest value
-        for (int32_t i = 0; i < 3; i++) yprBuffer[i][count % sizeMAF] = ypr[i]; // yaw pitch roll
+        for (int32_t i = 0; i < 3; i++) ypr_buffer[i][count % sizeMAF] = ypr[i]; // yaw pitch roll
 
-        for (int32_t i = 0; i < 3; i++) accelBuffer[i][count % sizeMAF] = accel[i];	// linear accel
+        for (int32_t i = 0; i < 3; i++) acceleration_buffer[i][count % sizeMAF] = acceleration[i];	// linear accel
 
         if ((count%rec == 0) && (count >= sizeMAF)) {
-            //MovingAverageFilter(ypr, yprBuffer); ///DOES NOT WORK FOR Yaw Pitch Roll
-            MovingAverageFilter(accel, accelBuffer);
+            MovingAverageFilter(acceleration, acceleration_buffer);
 
             // fill message with gyro and accel values.
             msg_imu.yaw = ypr[0] * 180 / M_PI;
             msg_imu.pitch = ypr[1] * 180 / M_PI;
             msg_imu.roll = ypr[2] * 180 / M_PI;
-            msg_imu.linear_acceleration_x = accel[0];
-            msg_imu.linear_acceleration_y = accel[1];
-            msg_imu.linear_acceleration_z = accel[2];
+            msg_imu.linear_acceleration_x = acceleration[0];
+            msg_imu.linear_acceleration_y = acceleration[1];
+            msg_imu.linear_acceleration_z = acceleration[2];
 
             // micro-ROS to publish to topic
             RCCHECK(rcl_publish(&publisher_imu, &msg_imu, NULL));
             vTaskDelay(100 / portTICK_PERIOD_MS);  // in fusion mode max output rate is 100hz (actual rate: 100ms (10hz))
         }
         
-        prevTime = currTime;
+        previous_time = current_time;
         count++;
     }
 }
