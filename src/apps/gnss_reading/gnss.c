@@ -118,7 +118,7 @@ void gnss_callback(rcl_timer_t * timer, int64_t last_call_time)
         nmea_msg.twentysix = message[35];
         */
 
-        RCSOFTCHECK(rcl_publish(&publisher_gnss, &nmea_msg, NULL));
+        RCSOFTCHECK(rcl_publish(&publisher_gnss, &gnss_msg, NULL));
     }
 }
 
