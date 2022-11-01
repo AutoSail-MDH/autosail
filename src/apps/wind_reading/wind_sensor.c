@@ -43,9 +43,10 @@ int i;
 uint8_t* data;
 char* message;
 
-int wind_angle;
-float wind_speed;
+int wind_angle = 0;
+float wind_speed = 0.0;
 int buffer_angle[3];
+float buffer_speed[3];
 int buffer_counter = 0;
 int length = 0;
 
@@ -54,13 +55,22 @@ const int uart_buffer_size = (1024 * 2);
 QueueHandle_t uart_queue;
 const uart_port_t uart_num = UART_NUM_2;
 
-int MovingAverageFilter(int * buffer)
+int MovingAverageInt(int * buffer)
 {
     int value = 0;
     for(int x = 0; x < 3; x++) {
         value += buffer[x];
     }
     return (int)(value / 3);
+}
+
+float MovingAverageFloat(float * buffer)
+{
+    float value = 0;
+    for(int x = 0; x < 3; x++) {
+        value += buffer[x];
+    }
+    return (float)(value / 3);
 }
 
 void WindCallback(rcl_timer_t * timer, int64_t last_call_time)
@@ -85,14 +95,14 @@ void WindCallback(rcl_timer_t * timer, int64_t last_call_time)
                 message[i] = (char)data[i];
                 i++;
             }
-
-            wind_angle = 0;
-            wind_speed = 0.0;                            
+                          
             GetWind(message, &wind_angle, &wind_speed);
 
             buffer_angle[buffer_counter % 3] = wind_angle;
+            buffer_speed[buffer_counter % 3] = wind_speed;
 
-            wind_angle = MovingAverageFilter(buffer_angle);
+            wind_angle = MovingAverageInt(buffer_angle);
+            wind_speed = MovingAverageFloat(buffer_speed);
 
             msg_wind.wind_angle = wind_angle;
             msg_wind.wind_speed = wind_speed;
