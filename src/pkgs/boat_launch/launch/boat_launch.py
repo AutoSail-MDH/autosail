@@ -26,7 +26,7 @@ def generate_launch_description():
             output='screen',
             emulate_tty=True,
             arguments=['multiserial', '--devs',
-                       "/dev/ttyUSB0 /dev/ttyUSB1", 'v6']
+                       "/dev/ttyUSB0 /dev/ttyUSB1 /dev/ttyUSB2", 'v6']
         ),
         # Velocity
         Node(
