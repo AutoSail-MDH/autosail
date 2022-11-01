@@ -23,7 +23,7 @@ class VelocityCalculation : public rclcpp::Node  // Create node class by inherit
    public:
     VelocityCalculation()  // The public constructor intits node
         : Node("velocity_node") {
-        subscriber_POSE =
+        subscriber_pose_ =
             this->create_subscription<GNSS_MSG>(  // Constructor uses the node's
                                                                           // create_subscription class for callbacks
                 "/sensor/gnss", 50, // "/sensor/gnss"
@@ -32,7 +32,7 @@ class VelocityCalculation : public rclcpp::Node  // Create node class by inherit
         publisher_ = this->create_publisher<VELOCITY_MSG>(
             "/position/velocity", 50);  // Init msg type, topic name and msg size
 
-        nodeTime_ = this->get_clock();  // Create clock starting at the time of node creation
+        node_clock_ = this->get_clock();  // Create clock starting at the time of node creation
     }
 
    private:
@@ -43,7 +43,7 @@ class VelocityCalculation : public rclcpp::Node  // Create node class by inherit
         current_gnss_[0] = msg->position.latitude;
         current_gnss_[1] = msg->position.longitude;    // Get current GPS reading
         
-        current_time_ = nodeTime_->now();  // Get time elapsed since node initialization
+        current_time_ = node_clock_->now();  // Get time elapsed since node initialization
 
         if (previous_gnss_[1] != 0.0) {  // Atleast two GPS readings
 
@@ -63,9 +63,9 @@ class VelocityCalculation : public rclcpp::Node  // Create node class by inherit
 
             // Calculate average speed
 
-            float deltaTime = abs((float)((current_time_ - previous_time_).nanoseconds()) /
+            float delta_time = abs((float)((current_time_ - previous_time_).nanoseconds()) /
                                   pow(10, 9));  // Time difference in seconds, with nanosecond precision
-            float velocity = dist / deltaTime;  // m/s
+            float velocity = dist / delta_time;  // m/s
 
             message.velocity = velocity;  // Data to publish
 
@@ -73,7 +73,7 @@ class VelocityCalculation : public rclcpp::Node  // Create node class by inherit
                 current_gnss_[1] != previous_gnss_[1]) {  // Print only if position changed since last
                 RCLCPP_INFO(this->get_logger(), "velocity: '%f'", velocity);
                 RCLCPP_INFO(this->get_logger(), "Lat: '%lf', Lon: '%lf'", current_gnss_[0], current_gnss_[1]);
-                RCLCPP_INFO(this->get_logger(), "deltaTime: '%f'", (float)deltaTime);
+                RCLCPP_INFO(this->get_logger(), "delta time: '%f'", (float)delta_time);
                 RCLCPP_INFO(this->get_logger(), "distance: '%f'", (float)dist);
 
                 rclcpp::sleep_for(std::chrono::nanoseconds(1));  // To have enough time to publish
@@ -89,9 +89,9 @@ class VelocityCalculation : public rclcpp::Node  // Create node class by inherit
     }
 
     // Declaration of fields
-    rclcpp::Subscription<GNSS_MSG>::SharedPtr subscriber_POSE;
+    rclcpp::Subscription<GNSS_MSG>::SharedPtr subscriber_pose_;
     rclcpp::Publisher<VELOCITY_MSG>::SharedPtr publisher_;
-    rclcpp::Clock::SharedPtr nodeTime_;
+    rclcpp::Clock::SharedPtr node_clock_;
     float  previous_gnss_[2];
     rclcpp::Time current_time_;
     rclcpp::Time previous_time_;

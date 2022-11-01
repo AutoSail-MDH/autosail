@@ -10,9 +10,7 @@
 #include <math.h>
 
 #include "components/BNO055ESP32/BNO055ESP32.cpp"
-#include "components/I2Cdev/I2Cdev.cpp"
 #include "components/BNO055ESP32/BNO055ESP32.h"
-#include "components/I2Cdev/I2Cdev.h"
 
 
 #ifdef ESP_PLATFORM
@@ -26,11 +24,6 @@
 
 #define PIN_SDA 21
 #define PIN_CLK 22
-
-#define FATAL -1000
-#define sizeMAF 4  // Size of moving average filter
-#define TO 3       // Seconds until timeout
-#define rec 2      // How often data is sent to topic
 
 //Error check function. If error found restart microcontroller
 #define RCCHECK(fn)                                                                      \
@@ -60,10 +53,6 @@ bno055_quaternion_t q;
 bno055_vector_t gravity;
 bno055_vector_t linAccel;
 float ypr[3];         // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
-float accel[3];         // [x, y, z]		linear acceleration
-float yprBuffer[3][sizeMAF];
-float accelBuffer[3][sizeMAF];
-bno055_interrupts_status_t mpuIntStatus;      // holds actual interrupt status byte from MPU
 uint32_t count = 0;
 BNO055* bno = NULL;
 

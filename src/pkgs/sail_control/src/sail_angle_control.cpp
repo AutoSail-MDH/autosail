@@ -1,6 +1,3 @@
-
-// Example written by Peter Nguyen, Modified by Erik Lindgren, Used and modified by Emma Jakobsson to fit wind_to_sail
-
 #include <chrono>
 #include <iostream>
 #include <memory>
@@ -27,8 +24,6 @@ class SailAngleControl : public rclcpp::Node {
             WIND_TOPIC, 50, std::bind(&SailAngleControl::topic_callback, this, _1));  // No timer, instant response
 
         publisher_ = this->create_publisher<SAIL_MSG>(SAIL_TOPIC, 50);
-
-        nodeTime_ = this->get_clock();  // Create clock starting at the time of node creation
     }
 
    private:
@@ -99,16 +94,12 @@ class SailAngleControl : public rclcpp::Node {
         printf("I heard: %d || Publishing: '%f'\n", msg->wind_angle, message.sail_angle);
 
         // Publishing of the message
-        currTime_ = nodeTime_->now();
         rclcpp::sleep_for(std::chrono::nanoseconds(1));
         publisher_->publish(message);
     }
     // Defines
     rclcpp::Subscription<WIND_MSG>::SharedPtr subscriber_;
     rclcpp::Publisher<SAIL_MSG>::SharedPtr publisher_;
-    rclcpp::Clock::SharedPtr nodeTime_;
-    rclcpp::Time currTime_;
-    rclcpp::Time prevTime_;
 };
 
 int main(int argc, char* argv[]) {
