@@ -5,13 +5,10 @@
 #include <rmw_microros/rmw_microros.h>
 #include <rmw_microxrcedds_c/config.h>
 #include <autosail_message/msg/gnss_message.h>
+#include <autosail_message/msg/nmea.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
-
-#include "components/I2Cdev/I2Cdev.cpp"
-#include "components/I2Cdev/I2Cdev.h"
-
 
 #ifdef ESP_PLATFORM
 #include "driver/i2c.h"
@@ -76,7 +73,7 @@ void appMain(void* arg) {
     // create gnss node
     rcl_node_t node_gnss;// = rcl_get_zero_initialized_node();
     RCCHECK(rclc_node_init_default(&node_gnss, "gnss_node", "", &support));
-    RCCHECK(rclc_publisher_init_default(&publisher_gnss, &node_gnss, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, GNSSMessage), "/sensor/gnss"));
+    RCCHECK(rclc_publisher_init_default(&publisher_gnss, &node_gnss, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, NMEA), "/sensor/gnss"));
     // create gnss timer
     rcl_timer_t timer_gnss;
     RCCHECK(rclc_timer_init_default(&timer_gnss, &support, RCL_MS_TO_NS(100), gnss_callback));
