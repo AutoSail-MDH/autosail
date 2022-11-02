@@ -4,20 +4,18 @@
 
 #include <chrono>
 #include <memory>
-#include <std_msgs/msg/float32.hpp>
 #include <autosail_message/msg/rudder_control_message.hpp>
 #include <autosail_message/msg/gnss_message.hpp>
 #include <autosail_message/msg/next_position_message.hpp>
-#include <autosail_message/msg/imu_message.hpp>
+#include <autosail_message/msg/pose_message.hpp>
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
 
 // Topics for which to read from and publish to
-#define SUB_TOPIC_1 "/position/pose"
-#define SUB_TOPIC_2 "/sensor/gnss"
-#define SUB_TOPIC_3 "/path/next_position"
-#define PUB_TOPIC "/actuator/rudder"
+#define POSE_TOPIC "/position/pose"
+#define GOAL_TOPIC "/path/next_position"
+#define RUDDER_TOPIC "/actuator/rudder"
 
 // Defines to make the code cleaner and more readable
 #define LEFT_TURN 1
@@ -28,10 +26,8 @@
 
 // A define to easier change which message type is used, since the expression appears everywhere
 #define RUDDER_MSG autosail_message::msg::RudderControlMessage
-#define GNSS_MSG autosail_message::msg::GNSSMessage
 #define NEXT_MSG autosail_message::msg::NextPositionMessage
-#define IMU_MSG autosail_message::msg::IMUMessage
-#define STD_FLOAT std_msgs::msg::Float32
+#define POSE_MSG autosail_message::msg::PoseMessage
 
 // Used to regulate the PID
 #define THRESHHOLD 5.0
@@ -75,36 +71,30 @@ class RudderControl : public rclcpp::Node {
         this->declare_parameter<float>("p", THRESHHOLD);
         // Create three subscribers for 3 different topics. each is bound to a custom callback
 
-        subscriber_IMU = this->create_subscription<IMU_MSG>(
-            SUB_TOPIC_1, 50, std::bind(&RudderControl::IMU_callback, this, _1));
-
-        subscriber_POSE = this->create_subscription<GNSS_MSG>(
-            SUB_TOPIC_2, 50, std::bind(&RudderControl::POSE_callback, this, _1));
+        subscriber_POSE = this->create_subscription<POSE_MSG>(
+            POSE_TOPIC, 50, std::bind(&RudderControl::POSE_callback, this, _1));
 
         subscriber_GOAL = this->create_subscription<NEXT_MSG>(
-            SUB_TOPIC_3, 50, std::bind(&RudderControl::GOAL_callback, this, _1));
+            GOAL_TOPIC, 50, std::bind(&RudderControl::GOAL_callback, this, _1));
 
         // Create publisher
-        publisher_ = this->create_publisher<RUDDER_MSG>(PUB_TOPIC, 50);
+        publisher_ = this->create_publisher<RUDDER_MSG>(RUDDER_TOPIC, 50);
 
         nodeTime_ = this->get_clock();  // Create clock starting at the time of node creation
         timer_ = this->create_wall_timer(100ms, std::bind(&RudderControl::topic_callback, this));
     }
 
    private:
-    // Get current heading
-    void IMU_callback(const IMU_MSG::SharedPtr msg) { yaw = msg->yaw; }
-
-    // Get current position in Lat/Long
-    void POSE_callback(const GNSS_MSG::SharedPtr msg) {
+    // Get current position in Lat/Long as well as current heading
+    void POSE_callback(const POSE_MSG::SharedPtr msg) {
         latitude = msg->position.latitude * (M_PI / 180.0);
         longitude = msg->position.longitude * (M_PI / 180.0);
-        //yaw = msg->yaw;
+        yaw = msg->yaw; 
     }
     // Get current goal position in Lat/Long
     void GOAL_callback(const NEXT_MSG::SharedPtr msg) {
-        goal_latitude = msg->next_position.latitude * M_PIl / 180.0;
-        goal_longitude = msg->next_position.longitude * M_PIl / 180.0;
+        goal_latitude = msg->next_position.latitude * M_PI / 180.0;
+        goal_longitude = msg->next_position.longitude * M_PI / 180.0;
     }
 
     // Larger calback to compute distance, unify the heading and bearing, as well as set which angle to set the rudder
@@ -132,8 +122,7 @@ class RudderControl : public rclcpp::Node {
         sleep_for(std::chrono::nanoseconds(1));
         publisher_->publish(message);
     }
-    Subscription<IMU_MSG>::SharedPtr subscriber_IMU;
-    Subscription<GNSS_MSG>::SharedPtr subscriber_POSE;
+    Subscription<POSE_MSG>::SharedPtr subscriber_POSE;
     Subscription<NEXT_MSG>::SharedPtr subscriber_GOAL;
     Publisher<RUDDER_MSG>::SharedPtr publisher_;
     Clock::SharedPtr nodeTime_;
