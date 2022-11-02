@@ -18,7 +18,7 @@
   <exec_depend>sail_control</exec_depend>
   <exec_depend>rudder_control</exec_depend>
   <exec_depend>micro_ros_agent</exec_depend>
-  <exec_depend>data_logging</exec_depend>
+  <!--exec_depend>data_logging</exec_depend-->
 
   <export>
     <build_type>ament_cmake</build_type>
