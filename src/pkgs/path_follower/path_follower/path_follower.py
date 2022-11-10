@@ -115,34 +115,17 @@ def los_algorithm(current_position, previous_waypoint, next_waypoint, lookahead_
     return desired_angle, p
     
 
-def get_path_vector(previous_point, next_point):
-    return next_point - previous_point
-
-def get_lateral_distance_vector(current_position, previous_point, next_point):
-    o = current_position    #boats actual position in lat/long
-    a = previous_point      #previous waypoint
-    b = next_point          #next waypoint
-
-    #path vectors used in LOS-angle algorithm
-    ab = get_path_vector(a,b) #path vector from point a to b
-    ao = get_path_vector(a,o) #path vector from point a to o
-
-    #get path vector from the boat to the path ab
-    s = a + np.dot(ao,ab)/np.dot(ab,ab) * ab
-    os = get_path_vector(o,s)
-
-    return os
-
+#gives the lateral_distance_point which is the point where if one made a perpendicular line from the line ab touching the point current position
 def get_lateral_distance_point(current_position, previous_point, next_point):
     o = current_position    #boats actual position in lat/long
     a = previous_point      #previous waypoint
     b = next_point          #next waypoint
 
-    #path vectors used in LOS-angle algorithm
-    ab = get_path_vector(a,b) #path vector from point a to b
-    ao = get_path_vector(a,o) #path vector from point a to o
+    #path vectors
+    ab = b-a #path vector from point a to b
+    ao = o-a #path vector from point a to o
 
-    #get path vector from the boat to the path ab
+    #get the lateral distance point
     s = a + np.dot(ao,ab)/np.dot(ab,ab) * ab
 
     return s
