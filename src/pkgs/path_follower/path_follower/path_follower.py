@@ -19,14 +19,16 @@ class PathFollower(Node):
         #create subscriptions
         self.subPOSE_ = self.create_subscription(PoseMessage, '/position/pose', self.pose_callback, 10)
         self.subPOSE_  # prevent unused variable warning
+        #subscription for true wind angle
+        #subscription for path. previous_waypoint and next_waypoint
 
         #create publishers
         self.publisherRudderAngle_ = self.create_publisher(RudderControlMessage, '/actuator/rudder', 10)
 
         #create timers (callbacks triggered by timers)
-        period = 0.1
+        period = 0.1 #for a 10hz system
         self.rudderControl = self.create_timer(period, self.rudder_control_callback)
-        self.navigation = self.create_timer(period, self.navigation_callback_2)
+        self.navigation = self.create_timer(period, self.navigation_callback)
 
 
         #create varibles
@@ -36,58 +38,23 @@ class PathFollower(Node):
         self.velocity = 0.0
 
     #def PATH_FOLLOWER_callback(self, msg):
-    
-
 
     def navigation_callback(self):
-        o = np.array([8,8]) #self.current_lat   #boats actual position in lat/long
-        a = np.array([4,3]) #self.path.a        #previous waypoint
-        b = np.array([20,8]) #self.path.a       #next waypoint
+        o = np.array([11,1]) #self.current_position   #boats actual position in lat/long
+        b = np.array([4,3]) #self.path.a        #previous waypoint
+        a = np.array([20,8]) #self.path.a       #next waypoint
 
-        lateral_distance_vector = get_lateral_distance_vector(o, a, b)
-        os = lateral_distance_vector
+        lookahead_distance = 4 #self.lookahead_d
 
+        #CONVERT lookahead_distance IN METERS TO LAT/LONG distance. 1 degree latitude is approximately 111 km(differs on where on the earth someone is). (*1/111000)
 
+        # ALL ANGLES MUST BE IN RADIANS!!!!!!!!!!
 
-        self.get_logger().info('%f , %f' % (os[0], os[1])) #push message to console
-        
-    
-    def navigation_callback_2(self):
-        o = np.array([8,8]) #self.current_lat   #boats actual position in lat/long
-        a = np.array([4,3]) #self.path.a        #previous waypoint
-        b = np.array([20,8]) #self.path.a       #next waypoint
+        desired_angle, los_point = los_algorithm(o,a,b,lookahead_distance)
 
-        lookahead_distance = 4
+        desired_angle = np.rad2deg(desired_angle)#convert angle from radians to degrees
 
-        #get the lateral_distance_point s. 
-        lateral_distance_point= get_lateral_distance_point(o, a, b)
-        s = lateral_distance_point
-
-        #use the lateral_distance_point s to create vector sb. This gives only a vector and its length. not the actual position p
-        sb = b-s
-
-        #shorten this sb vector to length 1 by (simply multiply by 1/|sb|) and make it the same length as the lookahead distance(*lookahead_distance)
-        sp = sb*(1/np.linalg.norm(sb))*lookahead_distance
-
-        #the point p will then be located at
-        p = s+sp
-
-        # Set the boats position as Origo[0,0] and make a vector north. Set a new point p with the boats current position o as origo
-        #the desired angle will then be the angle between the north axis and op 
-        oN = np.array([0,99])
-        op = p-o
-
-
-
-        desired_angle = np.arccos((np.dot(oN,op))/(np.linalg.norm(oN)*np.linalg.norm(op)))
-        desired_angle = desired_angle/np.pi * 360
-        desired_angle = 360-desired_angle
-
-        
-
-
-        self.get_logger().info('Desired angle is %f ' % (desired_angle)) #push message to console
-
+        self.get_logger().info('Desired angle is %f and desired los-point is (%f , %f)' % (desired_angle, los_point[0], los_point[1])) #push message to console
 
 
 
@@ -102,11 +69,6 @@ class PathFollower(Node):
 
         #self.get_logger().info('%f' % message.rudder_angle) #push message to console
 
-
-
-
-
-        
     #Pose subscriber used for getting pose and velocity of boat
     def pose_callback(self, msg):
         self.current_latitude = msg.position.latitude
@@ -116,6 +78,42 @@ class PathFollower(Node):
 
 
 
+#Returns the desired boat heading angle in radians determined using a LOS-algorithm 
+def los_algorithm(current_position, previous_waypoint, next_waypoint, lookahead_distance):
+    o = current_position #boats actual position in lat/long
+    a = previous_waypoint #previous waypoint
+    b = next_waypoint#next waypoint
+
+    # ALL ANGLES MUST BE IN RADIANS!!!!!!!!!!
+
+    #get the lateral_distance_point s. 
+    lateral_distance_point = get_lateral_distance_point(o, a, b)
+    s = lateral_distance_point
+
+    #use the lateral_distance_point s to create vector sb. This gives only a vector and its length. not the actual position p
+    sb = b-s
+
+    #shorten this sb vector to length 1 by (simply multiply by 1/|sb|) and make it the same length as the lookahead distance(*lookahead_distance)
+    sp = sb*(1/np.linalg.norm(sb))*lookahead_distance
+
+    #the point p will then be located at
+    p = s+sp
+
+    # Set the boats position as Origo[0,0] and make a vector north. Set a new point p with the boats current position o as origo
+    #the desired angle will then be the angle between the north axis and op 
+    oN = np.array([0,99])
+    op = p-o
+    
+    #calculate counter clockwise angle between vectors op and north_vector
+    one = oN
+    two = op
+    dot = one[0]*two[0]+one[1]*two[1]
+    det = one[0]*two[1]-one[1]*two[0]
+    desired_angle = np.arctan2(det,dot)
+    desired_angle = (desired_angle+2*np.pi)%(2*np.pi)
+
+    return desired_angle, p
+    
 
 def get_path_vector(previous_point, next_point):
     return next_point - previous_point
@@ -148,16 +146,6 @@ def get_lateral_distance_point(current_position, previous_point, next_point):
     s = a + np.dot(ao,ab)/np.dot(ab,ab) * ab
 
     return s
-
-def los_algorithm(boat_heading_angle, lateral_distance_vector, lookahead_distance):
-    lateral_distance = np.linalg.norm(lateral_distance_vector)
-
-    los_angle = math.atan(lateral_distance/lookahead_distance)
-
-    #get angle between ob and sb. the angle between them should be the same sign. so simply set this new angle to size 1 but with the same signa and multiply with the los angle.
-
-
-    return 1
 
 
 
