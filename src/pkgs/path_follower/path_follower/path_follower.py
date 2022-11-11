@@ -6,8 +6,7 @@ from autosail_message.msg import IMUMessage
 from autosail_message.msg import PoseMessage
 from autosail_message.msg import NextPositionMessage
 from autosail_message.msg import RudderControlMessage
-#include <autosail_message/msg/rudder_control_message.hpp>
-
+from autosail_message.msg import WindMessage
 
 import math
 import numpy as np
@@ -17,9 +16,10 @@ class PathFollower(Node):
         super().__init__('path_follower_node')
 
         #create subscriptions
-        self.subPOSE_ = self.create_subscription(PoseMessage, '/position/pose', self.pose_callback, 10)
-        self.subPOSE_  # prevent unused variable warning
-        #subscription for true wind angle
+        self.subscriberPOSE_ = self.create_subscription(PoseMessage, '/position/pose', self.pose_callback, 10)
+        self.subscriberPOSE_  # prevent unused variable warning
+        #self.subscriberTWA_ = self.create_subscription(WindMessage, '/', self.twa_callback, 10) #subscription for true wind angle
+        #self.subscriberTWA_ # prevent unused variable warning
         #subscription for path. previous_waypoint and next_waypoint
 
         #create publishers
@@ -36,6 +36,7 @@ class PathFollower(Node):
         self.current_longitude = 0.0
         self.yaw = 0.0
         self.velocity = 0.0
+        self.twa = 0.0
 
     #def PATH_FOLLOWER_callback(self, msg):
 
@@ -56,6 +57,9 @@ class PathFollower(Node):
 
         self.get_logger().info('Desired angle is %f and desired los-point is (%f , %f)' % (desired_angle, los_point[0], los_point[1])) #push message to console
 
+        #adjust the desired heading angle so that it is not in the "no go zone"
+        #adjusted_angle = adjust_angle_to_wind(desired_angle)
+
 
 
     ## Rudder control callback. Triggered by timer and publishes rudder angle to be set
@@ -75,6 +79,10 @@ class PathFollower(Node):
         self.current_longitude = msg.position.longitude 
         self.yaw = msg.yaw
         self.velocity = msg.velocity
+
+    #TWA subsriber callback used for getting the True Wind Angle
+    def twa_callback(self,msg):
+        self.twa = msg.twa
 
 
 
