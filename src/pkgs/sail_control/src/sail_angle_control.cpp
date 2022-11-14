@@ -1,20 +1,17 @@
-
-// Example written by Peter Nguyen, Modified by Erik Lindgren, Used and modified by Emma Jakobsson to fit wind_to_sail
-
 #include <chrono>
 #include <iostream>
 #include <memory>
 
 #include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/float32.hpp"
+#include "autosail_message/msg/sail_angle_message.hpp"
 #include "autosail_message/msg/wind_message.hpp"
 using namespace std;
 
 // Change these to your topics
-#define SUB_TOPIC "/sensor/wind"
-#define PUB_TOPIC "/actuator/sail_angle"
+#define WIND_TOPIC "/sensor/wind"
+#define SAIL_TOPIC "/actuator/sail_angle"
 // Change this to your message type, made this define to not have to write the long expression
-#define STD_MSG std_msgs::msg::Float32
+#define SAIL_MSG autosail_message::msg::SailAngleMessage
 #define WIND_MSG autosail_message::msg::WindMessage
 
 using namespace std::chrono_literals;
@@ -24,16 +21,14 @@ class SailAngleControl : public rclcpp::Node {
    public:
     SailAngleControl() : Node("sail_angle_node") {
         subscriber_ = this->create_subscription<WIND_MSG>(
-            SUB_TOPIC, 50, std::bind(&SailAngleControl::topic_callback, this, _1));  // No timer, instant response
+            WIND_TOPIC, 50, std::bind(&SailAngleControl::topic_callback, this, _1));  // No timer, instant response
 
-        publisher_ = this->create_publisher<STD_MSG>(PUB_TOPIC, 50);
-
-        nodeTime_ = this->get_clock();  // Create clock starting at the time of node creation
+        publisher_ = this->create_publisher<SAIL_MSG>(SAIL_TOPIC, 50);
     }
 
    private:
     void topic_callback(const WIND_MSG::SharedPtr msg) {
-        auto message = STD_MSG();
+        auto message = SAIL_MSG();
 
         // initialize variables
         float wind_angle = msg->wind_angle;
@@ -95,20 +90,16 @@ class SailAngleControl : public rclcpp::Node {
         }
 
         // set the message to publish to the angle of the sail
-        message.data = sail_angle;
-        printf("I heard: %d || Publishing: '%f'\n", msg->wind_angle, message.data);
+        message.sail_angle = sail_angle;
+        printf("I heard: %d || Publishing: '%f'\n", msg->wind_angle, message.sail_angle);
 
         // Publishing of the message
-        currTime_ = nodeTime_->now();
         rclcpp::sleep_for(std::chrono::nanoseconds(1));
         publisher_->publish(message);
     }
     // Defines
     rclcpp::Subscription<WIND_MSG>::SharedPtr subscriber_;
-    rclcpp::Publisher<STD_MSG>::SharedPtr publisher_;
-    rclcpp::Clock::SharedPtr nodeTime_;
-    rclcpp::Time currTime_;
-    rclcpp::Time prevTime_;
+    rclcpp::Publisher<SAIL_MSG>::SharedPtr publisher_;
 };
 
 int main(int argc, char* argv[]) {
