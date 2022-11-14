@@ -22,6 +22,7 @@ using std::placeholders::_1;
 float boat_velocity = 0.0;
 float apparent_wind_angle = 0.0;
 float apparent_wind_speed = 0.0;
+int wind_angle = 0;
 
 class TrueWindCalculation : public rclcpp::Node {
    public:
@@ -49,14 +50,18 @@ class TrueWindCalculation : public rclcpp::Node {
 
     void true_wind_callback() {
         auto message = TRUE_WIND_MSG();
-        message.wind_speed = sqrt(
-            pow(cos(apparent_wind_angle)*apparent_wind_speed+boat_velocity, 2)+
-            pow(sin(apparent_wind_angle)*apparent_wind_speed, 2));
+        if(apparent_wind_speed != 0.0) {
+            message.wind_speed = sqrt(
+                pow(cos(apparent_wind_angle)*apparent_wind_speed+boat_velocity, 2)+
+                pow(sin(apparent_wind_angle)*apparent_wind_speed, 2));
 
-        message.wind_angle = atan2(
-            sin(apparent_wind_angle)*(apparent_wind_speed),
-            cos(apparent_wind_angle)*apparent_wind_speed+boat_velocity)*180/M_PI;
-
+            wind_angle = atan2(
+                sin(apparent_wind_angle)*(apparent_wind_speed),
+                cos(apparent_wind_angle)*apparent_wind_speed+boat_velocity)*180/M_PI;
+        }else{
+            message.wind_speed = apparent_wind_speed;
+        }
+        message.wind_angle = (wind_angle+360)%360;
         publisher_true_wind_->publish(message);
     }
     // Defines
