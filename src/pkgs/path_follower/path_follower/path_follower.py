@@ -15,63 +15,89 @@ class PathFollower(Node):
     def __init__(self):
         super().__init__('path_follower_node')
 
-        #create subscriptions
+        # Create subscriptions
         self.subscriberPOSE_ = self.create_subscription(PoseMessage, '/position/pose', self.pose_callback, 10)
         self.subscriberPOSE_  # prevent unused variable warning
-        #self.subscriberTWA_ = self.create_subscription(WindMessage, '/', self.twa_callback, 10) #subscription for true wind angle
-        #self.subscriberTWA_ # prevent unused variable warning
+        #self.subscriberTWA_ = self.create_subscription(WindMessage, '/sensor/true_wind', self.twa_callback, 10) #subscription for true wind angle
+        self.subscriberTWA_ = self.create_subscription(WindMessage, '/sensor/wind', self.wind_callback, 10) #ONLY FOR DEVELOPMENT! subscription for wind angle
+        self.subscriberTWA_ # prevent unused variable warning
         #subscription for path. previous_waypoint and next_waypoint
 
-        #create publishers
+        # Create publishers
         self.publisherRudderAngle_ = self.create_publisher(RudderControlMessage, '/actuator/rudder', 10)
 
-        #create timers (callbacks triggered by timers)
+        # Create timers (callbacks triggered by timers)
         period = 0.1 #for a 10hz system
         self.rudderControl = self.create_timer(period, self.rudder_control_callback)
         self.navigation = self.create_timer(period, self.navigation_callback)
 
-
-        #create varibles
+        # Create varibles
         self.current_latitude = 0.0
         self.current_longitude = 0.0
         self.yaw = 0.0
         self.velocity = 0.0
         self.twa = 0.0
+        self.desired_heading_angle = 0.0
+        self.previous_waypoint = 0.0
+        self.next_waypoint = 0.0
+        
+        # Init PID
+        self.pid_controller = PID(0.00000000001, 0.00000000001, 0.00000000001)
+        self.pid_controller.send(None)
 
+    #TROR INTE DETTA BEHÖVS
     #def PATH_FOLLOWER_callback(self, msg):
 
     def navigation_callback(self):
         o = np.array([11,1]) #self.current_position   #boats actual position in lat/long
         b = np.array([4,3]) #self.path.a        #previous waypoint
         a = np.array([20,8]) #self.path.a       #next waypoint
-
+        
+        # Parameters
         lookahead_distance = 4 #self.lookahead_d
+        no_go_zone = 45.0
 
-        #CONVERT lookahead_distance IN METERS TO LAT/LONG distance. 1 degree latitude is approximately 111 km(differs on where on the earth someone is). (*1/111000)
+        # CONVERT lookahead_distance IN METERS TO LAT/LONG distance. 1 degree latitude is approximately 111 km(differs on where on the earth someone is). (*1/111000)
 
-        # ALL ANGLES MUST BE IN RADIANS!!!!!!!!!!
-
+        # Get desired boat heading angle from los-algorithm. 
         desired_angle, los_point = los_algorithm(o,a,b,lookahead_distance)
+        desired_angle = np.rad2deg(desired_angle)   #Convert angle from radians to degrees
 
-        desired_angle = np.rad2deg(desired_angle)#convert angle from radians to degrees
+        # Adjust the desired heading angle so that it is not in the "no go zone"
+        adjusted_angle = adjust_angle_to_wind(self.twa,desired_angle,no_go_zone)
 
-        self.get_logger().info('Desired angle is %f and desired los-point is (%f , %f)' % (desired_angle, los_point[0], los_point[1])) #push message to console
+        # Set desired angle to be used by rudder_control_callback
+        self.desired_heading_angle = adjusted_angle
 
-        #adjust the desired heading angle so that it is not in the "no go zone"
-        #adjusted_angle = adjust_angle_to_wind(desired_angle)
-
+        #DEBUG outputs
+        #self.get_logger().info('Desired los-point is: (%f , %f)' % (los_point[0], los_point[1])) #push message to console
+        #self.get_logger().info('Desired angle is: \t %f' % (desired_angle)) #push message to console
+        #self.get_logger().info('Adjusted angle is:\t %f' % (adjusted_angle)) #push message to console
+        #self.get_logger().info('True wind angle is:    \t %f)' % (self.twa)) #push message to console
 
 
     ## Rudder control callback. Triggered by timer and publishes rudder angle to be set
     def rudder_control_callback(self):
         message = RudderControlMessage()
 
+        desired_angle = self.desired_heading_angle
+        current_angle = self.yaw
 
         message.rudder_angle = 1337.0 #add rudder angle to message
+        
+        timeNow = self.get_clock().now()
+
+        #rudder_angle = self.pid_controller.send([timeNow.nanoseconds,desired_angle,current_angle])
+        rudder_angle = self.pid_controller.send([desired_angle,current_angle,timeNow.nanoseconds])
+        message.rudder_angle = rudder_angle
 
         self.publisherRudderAngle_.publish(message) #add message to publisher
 
+        #DEBUG outputs
         #self.get_logger().info('%f' % message.rudder_angle) #push message to console
+        #self.get_logger().info('Rudder Control says:%f' % message.rudder_angle) #push message to console
+        self.get_logger().info('Rudder Control says:%f' % message.rudder_angle) #push message to console
+
 
     #Pose subscriber used for getting pose and velocity of boat
     def pose_callback(self, msg):
@@ -84,10 +110,15 @@ class PathFollower(Node):
     def twa_callback(self,msg):
         self.twa = msg.twa
 
+    #ONLY TO BE USED FOR DEVELOPMENT
+    def wind_callback(self,msg):
+        self.twa = msg.wind_angle
+
+
 
 
 #Returns the desired boat heading angle in radians determined using a LOS-algorithm 
-def los_algorithm(current_position, previous_waypoint, next_waypoint, lookahead_distance):
+def los_algorithm(current_position:float, previous_waypoint:float, next_waypoint:float, lookahead_distance:float):
     o = current_position #boats actual position in lat/long
     a = previous_waypoint #previous waypoint
     b = next_waypoint#next waypoint
@@ -123,7 +154,7 @@ def los_algorithm(current_position, previous_waypoint, next_waypoint, lookahead_
     return desired_angle, p
     
 
-#gives the lateral_distance_point which is the point where if one made a perpendicular line from the line ab touching the point current position
+#Gives the lateral_distance_point which is the point where if one made a perpendicular line from the line ab touching the point current position
 def get_lateral_distance_point(current_position, previous_point, next_point):
     o = current_position    #boats actual position in lat/long
     a = previous_point      #previous waypoint
@@ -139,7 +170,51 @@ def get_lateral_distance_point(current_position, previous_point, next_point):
     return s
 
 
+#Returns adjusted desired_angle to be outside the sailing "No go zone"
+def adjust_angle_to_wind(twa:float,desired_angle:float,no_go_zone:float):
+    adjusted_angle = desired_angle
 
+    left_bound = twa - no_go_zone/2
+    right_bound = twa + no_go_zone/2
+
+    # The adjusted angle is very unstable as the wind sensor gives very unstable values. Could use filter
+    # Maybe save previous output with yield statement such as in PID
+
+    # Adjust angle to be outside the no go zone
+    if(desired_angle > left_bound and desired_angle <= twa):
+        adjusted_angle = left_bound
+    elif(desired_angle >= twa and desired_angle < right_bound):
+        adjusted_angle = right_bound
+    else:
+        adjusted_angle = desired_angle
+
+    return adjusted_angle
+
+
+#PID controller returns controlled variable. Initial control state can be set
+def PID(Kp, Ki, Kd, initial_control_state = 0):
+    time_previous = 0
+    error_previous = 0
+
+    i = 0 #integral sum
+
+    controlled_v = initial_control_state
+
+    while True:
+        # yield statement outputs controlled variable and pauses loop. When function called again the loop continues from that point with new inputs
+        set_point, process_variable, t = yield controlled_v
+        error = set_point-process_variable
+
+        #PID formula
+        p = Kp*error
+        i = i+Ki*error*(t-time_previous)
+        d = Kd*(error-error_previous)/(t-time_previous)
+        controlled_v = initial_control_state + p+i+d
+
+        #save values
+        time_previous = t
+        error_previous = error
+        
 
 def main(args=None):
     print('Hi from path_follower.')
