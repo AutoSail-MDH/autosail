@@ -32,14 +32,13 @@ class PathFollower(Node):
         self.navigation = self.create_timer(period, self.navigation_callback)
 
         # Create varibles
-        self.current_latitude = 0.0
-        self.current_longitude = 0.0
+        self.current_position = np.array([0.00 , 0.00])#longitude/latitude
         self.yaw = 0.0
         self.velocity = 0.0
         self.twa = 0.0
         self.desired_heading_angle = 0.0
-        self.previous_waypoint = 0.0
-        self.next_waypoint = 0.0
+        self.previous_waypoint = np.array([0.00 , 0.00])#longitude/latitude
+        self.next_waypoint = np.array([0.00 , 0.00])#longitude/latitude
         
         # Init PID
         self.pid_controller = PID(0.00000000001, 0.00000000001, 0.00000000001)
@@ -49,13 +48,18 @@ class PathFollower(Node):
     #def PATH_FOLLOWER_callback(self, msg):
 
     def navigation_callback(self):
+        # Parameters and waypoints
+        o = self.current_position
+        a = self.previous_waypoint
+        b = self.next_waypoint
+        lookahead_distance = 4 #self.lookahead_d
+        no_go_zone = 45.0
+        
+        #TESTING
         o = np.array([11,1]) #self.current_position   #boats actual position in lat/long
         b = np.array([4,3]) #self.path.a        #previous waypoint
         a = np.array([20,8]) #self.path.a       #next waypoint
         
-        # Parameters
-        lookahead_distance = 4 #self.lookahead_d
-        no_go_zone = 45.0
 
         # CONVERT lookahead_distance IN METERS TO LAT/LONG distance. 1 degree latitude is approximately 111 km(differs on where on the earth someone is). (*1/111000)
 
@@ -83,13 +87,14 @@ class PathFollower(Node):
         desired_angle = self.desired_heading_angle
         current_angle = self.yaw
 
-        message.rudder_angle = 1337.0 #add rudder angle to message
+        message.rudder_angle = 1337.0 
         
-        timeNow = self.get_clock().now()
+        timeNow = self.get_clock().now()#get current time
 
-        #rudder_angle = self.pid_controller.send([timeNow.nanoseconds,desired_angle,current_angle])
+        #use PID which outputs wanted rudder angle
         rudder_angle = self.pid_controller.send([desired_angle,current_angle,timeNow.nanoseconds])
-        message.rudder_angle = rudder_angle
+
+        message.rudder_angle = rudder_angle #add rudder angle to message
 
         self.publisherRudderAngle_.publish(message) #add message to publisher
 
@@ -97,7 +102,6 @@ class PathFollower(Node):
         #self.get_logger().info('%f' % message.rudder_angle) #push message to console
         #self.get_logger().info('Rudder Control says:%f' % message.rudder_angle) #push message to console
         self.get_logger().info('Rudder Control says:%f' % message.rudder_angle) #push message to console
-
 
     #Pose subscriber used for getting pose and velocity of boat
     def pose_callback(self, msg):
@@ -113,8 +117,6 @@ class PathFollower(Node):
     #ONLY TO BE USED FOR DEVELOPMENT
     def wind_callback(self,msg):
         self.twa = msg.wind_angle
-
-
 
 
 #Returns the desired boat heading angle in radians determined using a LOS-algorithm 
