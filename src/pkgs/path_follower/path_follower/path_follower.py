@@ -32,13 +32,15 @@ class PathFollower(Node):
         self.navigation = self.create_timer(period, self.navigation_callback)
 
         # Create varibles
-        self.current_position = np.array([0.00 , 0.00])#longitude/latitude
+        self.current_position = np.array([59.637171 , 16.584125])#longitude/latitude
+        #self.current_position = np.array([59.637020 , 16.584150]) #second boat position test point
         self.yaw = 0.0
         self.velocity = 0.0
         self.twa = 0.0
         self.desired_heading_angle = 0.0
-        self.previous_waypoint = np.array([0.00 , 0.00])#longitude/latitude
-        self.next_waypoint = np.array([0.00 , 0.00])#longitude/latitude
+        self.previous_waypoint = np.array([59.637053 , 16.583962])#longitude/latitude
+        self.next_waypoint = np.array([59.637212 , 16.584512])#longitude/latitude
+        self.lookahead_distance = 4#in meters
         
         # Init PID
         self.pid_controller = PID(0.00000000001, 0.00000000001, 0.00000000001)
@@ -46,17 +48,11 @@ class PathFollower(Node):
 
     def navigation_callback(self):
         # Parameters and waypoints
-        o = self.current_position
+        o = self.current_position#boats actual position in lat/long
         a = self.previous_waypoint
         b = self.next_waypoint
-        lookahead_distance = 4 #self.lookahead_d
+        lookahead_distance = self.lookahead_distance
         no_go_zone = 45.0
-        
-        #TESTING
-        o = np.array([59.637171 , 16.584125]) #self.current_position   #boats actual position in lat/long
-        #o = np.array([59.637020 , 16.584150]) #second boat position test point
-        a = np.array([59.637053 , 16.583962]) #self.path.a        #previous waypoint
-        b = np.array([59.637212 , 16.584512]) #self.path.a       #next waypoint
         
         # Get desired boat heading angle from los-algorithm. 
         desired_angle, los_point, s, sb_angle, sb = los_algorithm(o,a,b,lookahead_distance)
