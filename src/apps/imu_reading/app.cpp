@@ -145,7 +145,6 @@ void ImuCallback(rcl_timer_t * timer, int64_t last_call_time) {
 
         // micro-ROS to publish to topic
         RCCHECK(rcl_publish(&publisher_imu, &msg_imu, NULL));
-        vTaskDelay(100 / portTICK_PERIOD_MS);  // in fusion mode max output rate is 100hz (actual rate: 100ms (10hz))
     }
 }
 void appMain(void* arg) {
