@@ -10,11 +10,12 @@
 #include <stdio.h>
 #include <sys/time.h>
 #include <unistd.h>
-#include "driver/mcpwm.h"
 
 #ifdef ESP_PLATFORM
 #include "driver/i2c.h"
 #include "driver/timer.h"
+#include "driver/dac.h"
+#include "driver/mcpwm.h"
 #include "esp_log.h"
 #include "esp_system.h"
 #include "freertos/FreeRTOS.h"
@@ -47,6 +48,8 @@
 #define SERVO_PULSE_GPIO_RUDDER 18      // GPIO connects to the PWM signal line
 
 #define MS_DELAY (10)  // Callback delay
+
+#define DACpin DAC_CHANNEL_1 // PIN 25
 
 rcl_subscription_t sub_sail;
 rcl_subscription_t sub_rudder;
@@ -87,34 +90,21 @@ void sail_callback(const void *msgin) {
 void rudder_callback(const void *msgin) {
     const autosail_message__msg__RudderControlMessage *msg = (const autosail_message__msg__RudderControlMessage *)msgin;
 
-    // Use angle to calculate PMW
-
-    int32_t angle = msg->rudder_angle;  // Data sent in degrees
-    printf("Rudder angle received: %d\r\n", angle);
-    /*
-    if (angle > 45) {
-        angle = 45;
+    // Use angle to calculate output voltage
+    int32_t rudder_angle = msg->rudder_angle;  // Data sent in degrees
+    printf("Rudder angle received: %d\r\n", rudder_angle);
+    
+    if (rudder_angle > 45) {
+        rudder_angle = 45.0;
     }
-    else if (angle < -45){
-        angle = 45;
+    else if (rudder_angle < -45){
+        rudder_angle = -45.0;
     }
-    */
-
     
-    uint32_t duty_us = ((angle - SERVO_MIN_DEGREE) * (SERVO_MAX_PULSEWIDTH_US - SERVO_MIN_PULSEWIDTH_US) / (SERVO_MAX_DEGREE - SERVO_MIN_DEGREE)) + SERVO_MIN_PULSEWIDTH_US;
-    
-    /*
-    uint32_t duty_us =
-        (angle + SERVO_MAX_DEGREE) * (SERVO_MAX_PULSEWIDTH_US - SERVO_MIN_PULSEWIDTH_US) / (2 * SERVO_MAX_DEGREE) +
-        SERVO_MIN_PULSEWIDTH_US;
-    */
+    uint8_t dac_value = ((rudder_angle^2) / 4050) + ((17 * rudder_angle)/6) + 127;
 
-    ESP_ERROR_CHECK(mcpwm_set_duty_in_us(MCPWM_UNIT_1, MCPWM_TIMER_1, MCPWM_OPR_A, duty_us));
-    vTaskDelay(pdMS_TO_TICKS(MS_DELAY));  // Add delay, since it takes time for servo to rotate, generally
-                                          // 100ms/60degree rotation under 5V power supply
-
-    printf("Rudder duty cycle set to: %f\r\n", (float)duty_us);
-    
+    dac_output_voltage(DACpin, dac_value);
+    vTaskDelay(pdMS_TO_TICKS(MS_DELAY)); 
 
     gettimeofday(&prevTimeRudder, NULL);
 }
@@ -169,8 +159,6 @@ void appMain(void* arg) {
     // configure motor control pulse width modulator (MCPWM)
     mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A,
                     SERVO_PULSE_GPIO_SAIL);  // To drive a RC servo, one MCPWM generator is enough
-    mcpwm_gpio_init(MCPWM_UNIT_1, MCPWM1A,
-                    SERVO_PULSE_GPIO_RUDDER);  // To drive a RC servo, one MCPWM generator is enough
 
     mcpwm_config_t pwm_config = {
         .frequency = 50,  // frequency = 50Hz, i.e. for every servo motor time period should be 20ms
@@ -180,7 +168,12 @@ void appMain(void* arg) {
     };
 
     mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &pwm_config);
-    mcpwm_init(MCPWM_UNIT_1, MCPWM_TIMER_1, &pwm_config);
+
+    // Initialize DAC
+    dac_i2s_enable();
+    dac_i2s_disable();
+    dac_output_enable(DACpin);
+
 
     while (1) {
         rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
@@ -200,4 +193,6 @@ void appMain(void* arg) {
     RCCHECK(rcl_node_fini(&node));
     RCCHECK(rclc_executor_fini(&executor));
     RCCHECK(rclc_support_fini(&support));
+
+    dac_output_disable(DACpin);
 }
