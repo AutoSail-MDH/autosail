@@ -133,16 +133,18 @@ void ImuCallback(rcl_timer_t * timer, int64_t last_call_time) {
         acceleration[1] = linear_acceleration.y;
         acceleration[2] = linear_acceleration.z;
 
+
         // fill message with gyro and accel values.
-        msg_imu.yaw = ypr[0] * 180 / M_PI;
-        msg_imu.pitch = ypr[1] * 180 / M_PI;
-        msg_imu.roll = ypr[2] * 180 / M_PI;
+        if((ypr[0] = (ypr[0] * 180 / M_PI)) < 0) ypr[0] += 360.0;
+        msg_imu.yaw = ypr[0];
+        msg_imu.pitch = (ypr[1] * 180 / M_PI);
+        msg_imu.roll = (ypr[2] * 180 / M_PI);
         msg_imu.linear_acceleration_x = acceleration[0];
         msg_imu.linear_acceleration_y = acceleration[1];
         msg_imu.linear_acceleration_z = acceleration[2];
 
         // micro-ROS to publish to topic
-        RCCHECK(rcl_publish(&publisher_imu, &msg_imu, NULL));        
+        RCCHECK(rcl_publish(&publisher_imu, &msg_imu, NULL));
     }
 }
 void appMain(void* arg) {
