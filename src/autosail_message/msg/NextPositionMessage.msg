@@ -1,1 +1,0 @@
-PositionMessage next_position

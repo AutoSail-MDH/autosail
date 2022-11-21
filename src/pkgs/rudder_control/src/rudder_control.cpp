@@ -26,7 +26,7 @@
 
 // A define to easier change which message type is used, since the expression appears everywhere
 #define RUDDER_MSG autosail_message::msg::RudderControlMessage
-#define NEXT_MSG autosail_message::msg::NextPositionMessage
+#define NEXT_POSITION_MSG autosail_message::msg::PositionMessage
 #define POSE_MSG autosail_message::msg::PoseMessage
 
 // Used to regulate the PID
@@ -71,16 +71,15 @@ class RudderControl : public rclcpp::Node {
         this->declare_parameter<float>("p", THRESHHOLD);
         // Create three subscribers for 3 different topics. each is bound to a custom callback
 
-        subscriber_POSE = this->create_subscription<POSE_MSG>(
+        subscriber_POSE_ = this->create_subscription<POSE_MSG>(
             POSE_TOPIC, 50, std::bind(&RudderControl::POSE_callback, this, _1));
 
-        subscriber_GOAL = this->create_subscription<NEXT_MSG>(
+        subscriber_NEXT_POSITION_ = this->create_subscription<NEXT_POSITION_MSG>(
             GOAL_TOPIC, 50, std::bind(&RudderControl::GOAL_callback, this, _1));
 
         // Create publisher
         publisher_ = this->create_publisher<RUDDER_MSG>(RUDDER_TOPIC, 50);
 
-        nodeTime_ = this->get_clock();  // Create clock starting at the time of node creation
         timer_ = this->create_wall_timer(100ms, std::bind(&RudderControl::topic_callback, this));
     }
 
@@ -92,9 +91,9 @@ class RudderControl : public rclcpp::Node {
         yaw = msg->yaw; 
     }
     // Get current goal position in Lat/Long
-    void GOAL_callback(const NEXT_MSG::SharedPtr msg) {
-        goal_latitude = msg->next_position.latitude * M_PI / 180.0;
-        goal_longitude = msg->next_position.longitude * M_PI / 180.0;
+    void GOAL_callback(const NEXT_POSITION_MSG::SharedPtr msg) {
+        goal_latitude = msg->latitude * M_PI / 180.0;
+        goal_longitude = msg->longitude * M_PI / 180.0;
     }
 
     // Larger calback to compute distance, unify the heading and bearing, as well as set which angle to set the rudder
@@ -118,16 +117,12 @@ class RudderControl : public rclcpp::Node {
 
         // Publish the rudder angle to a topic
         message.rudder_angle = rudder_angle;
-        currTime_ = nodeTime_->now();
         sleep_for(std::chrono::nanoseconds(1));
         publisher_->publish(message);
     }
-    Subscription<POSE_MSG>::SharedPtr subscriber_POSE;
-    Subscription<NEXT_MSG>::SharedPtr subscriber_GOAL;
+    Subscription<POSE_MSG>::SharedPtr subscriber_POSE_;
+    Subscription<NEXT_POSITION_MSG>::SharedPtr subscriber_NEXT_POSITION_;
     Publisher<RUDDER_MSG>::SharedPtr publisher_;
-    Clock::SharedPtr nodeTime_;
-    Time currTime_;
-    Time prevTime_;
     TimerBase::SharedPtr timer_;
 };
 

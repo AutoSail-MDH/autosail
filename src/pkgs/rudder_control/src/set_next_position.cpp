@@ -12,7 +12,7 @@
 // Change these to your topics
 #define PUB_TOPIC "/path/next_position"
 // Change this to your message type, made this define to not have to write the long expression
-#define NEXT_POSITION_MSG autosail_message::msg::NextPositionMessage
+#define NEXT_POSITION_MSG autosail_message::msg::PositionMessage
 //#define STD_FLOAT std_msgs::msg::Float32
 
 // The goal position to go towards
@@ -46,8 +46,8 @@ class SetNextPosition : public rclcpp::Node {
         next_latitude = abs(next_latitude);
         next_longitude = abs(next_longitude);
 
-        msg.next_position.latitude = next_latitude;
-        msg.next_position.longitude = next_longitude;
+        msg.latitude = next_latitude;
+        msg.longitude = next_longitude;
         rclcpp::sleep_for(std::chrono::nanoseconds(1));
         publisher_->publish(msg);
     }
