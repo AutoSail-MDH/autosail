@@ -4,7 +4,7 @@
 #include <chrono>
 #include <memory>
 #include <std_msgs/msg/float32.hpp>
-#include <autosail_message/msg/next_position_message.hpp>
+#include <autosail_message/msg/position_message.hpp>
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
@@ -42,9 +42,6 @@ class SetNextPosition : public rclcpp::Node {
         // get the current parameter values
         this->get_parameter("lat", next_latitude);
         this->get_parameter("long", next_longitude);
-
-        next_latitude = abs(next_latitude);
-        next_longitude = abs(next_longitude);
 
         msg.latitude = next_latitude;
         msg.longitude = next_longitude;

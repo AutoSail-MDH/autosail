@@ -6,7 +6,7 @@
 #include <memory>
 #include <autosail_message/msg/rudder_control_message.hpp>
 #include <autosail_message/msg/gnss_message.hpp>
-#include <autosail_message/msg/next_position_message.hpp>
+#include <autosail_message/msg/position_message.hpp>
 #include <autosail_message/msg/pose_message.hpp>
 
 #include "rclcpp/rclcpp.hpp"
