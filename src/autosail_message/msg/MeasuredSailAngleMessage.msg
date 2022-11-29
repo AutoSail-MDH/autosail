@@ -1,0 +1,1 @@
+float32 measured_sail_angle
