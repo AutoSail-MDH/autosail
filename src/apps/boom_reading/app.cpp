@@ -9,7 +9,10 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "INA219.h"
+//#include "INA219.h"
+#include "components/INA219/include/INA219.h"
+#include "components/INA219/INA219.cpp"
+
 
 #ifdef ESP_PLATFORM
 #include "driver/i2c.h"

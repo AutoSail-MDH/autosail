@@ -51,7 +51,7 @@
 #include "driver/gpio.h"
 #include "driver/i2c.h"
 
-#include "INA219.h"
+#include "include/INA219.h"
 
 static const char *TAG = "INA219";
 
