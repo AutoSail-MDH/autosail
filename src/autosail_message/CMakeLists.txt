@@ -37,6 +37,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/PoseMessage.msg"
   "msg/SailAngleMessage.msg"
   "msg/SailFurlMessage.msg"
+  "msg/MeasuredSailAngleMessage.msg"
 )
 
 ament_package()
