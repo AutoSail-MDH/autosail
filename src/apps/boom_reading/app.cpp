@@ -10,8 +10,10 @@
 #include <math.h>
 
 //#include "INA219.h"
-#include "components/INA219/include/INA219.h"
+#include "components/INA219/INA219.h"
 #include "components/INA219/INA219.cpp"
+#include "components/INA219/INA219interfaceC.h"
+#include "components/INA219/INA219interfaceC.cpp"
 
 
 #ifdef ESP_PLATFORM
@@ -49,9 +51,8 @@
 rcl_publisher_t publisher_boom_angle;
 autosail_message__msg__MeasuredSailAngleMessage msg_boomangle;
 
-INA219 ina;
-float angle_current_mA;
-float measured_boom_angle;
+//INA219 ina;
+INA219Handle ina;
 
 extern "C" {
 void appMain(void* arg);
@@ -59,29 +60,36 @@ void InitBoomReading();
 }
 
 void InitBoomReading() {
-    ina.begin(I2C_NUM_1,GPIO_NUM_21,GPIO_NUM_22);
-    
+    //ina.begin(I2C_NUM_1,GPIO_NUM_21,GPIO_NUM_22);
+    ina = create_INA219();
+    beginINA219(ina, I2C_NUM_1,GPIO_NUM_21,GPIO_NUM_22);
+
     vTaskDelay(500 / portTICK_PERIOD_MS);
 }
 
+float getTrueSailAngle(){
+    //measure the voltage from the angle sensor and convert to current(mA)
+    float angle_current_mA = shuntVoltageINA219(ina)*10000;//convert to current
+    angle_current_mA = abs(angle_current_mA);
+
+    //boom angle can simply be described with a linear formula. 4mA = 0/360deg. 8mA = 90deg 
+    float measured_boom_angle = 22.5*angle_current_mA-90;
+    
+    //offset depending on how the sensor is positioned
+    measured_boom_angle -= 90;
+
+    //rewrite angle to be in the span of +-180 degrees
+    if(measured_boom_angle > 180)
+        measured_boom_angle-=360;
+
+    return measured_boom_angle;
+}
 
 void BoomCallback(rcl_timer_t * timer, int64_t last_call_time) {
     (void) last_call_time;
     if (timer != NULL) {
         
-        //measure the voltage from the angle sensor and convert to current(mA)
-        angle_current_mA = ina.shuntVoltage()*10000;//convert to current
-        angle_current_mA = abs(angle_current_mA);
-
-        //boom angle can simply be described with a linear formula. 4mA = 0/360deg. 8mA = 90deg 
-        measured_boom_angle = 22.5*angle_current_mA-90;
-        
-        //offset depending on how the sensor is positioned
-        measured_boom_angle -= 90;
-
-        //rewrite angle to be in the span of +-180 degrees
-        if(measured_boom_angle > 180)
-            measured_boom_angle-=360;
+        float measured_boom_angle = getTrueSailAngle();
 
         msg_boomangle.measured_sail_angle = measured_boom_angle;
 

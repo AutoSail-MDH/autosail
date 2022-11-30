@@ -124,9 +124,6 @@ void INA219::calibrate(float shunt_val, float v_shunt_max, float v_bus_max, floa
     uint16_t digits;
     float i_max_possible, min_lsb, max_lsb, swap;
 
-#if (INA219_DEBUG == 1)
-     float max_current,max_before_overflow,max_shunt_v,max_shunt_v_before_overflow,max_power;
-#endif
     r_shunt = shunt_val;
 
     i_max_possible = v_shunt_max / r_shunt;
@@ -156,40 +153,14 @@ void INA219::calibrate(float shunt_val, float v_shunt_max, float v_bus_max, floa
     cal = (uint16_t)swap;
     power_lsb = current_lsb * 20;
 
-#if (INA219_DEBUG == 1)
-      max_current = current_lsb*32767;
-      max_before_overflow =  max_current > i_max_possible?i_max_possible:max_current;
-
-      max_shunt_v = max_before_overflow*r_shunt;
-      max_shunt_v_before_overflow = max_shunt_v > v_shunt_max?v_shunt_max:max_shunt_v;
-
-      max_power = v_bus_max * max_before_overflow;
-      Serial.print("v_bus_max:     "); Serial.println(v_bus_max, 8);
-      Serial.print("v_shunt_max:   "); Serial.println(v_shunt_max, 8);
-      Serial.print("i_max_possible:        "); Serial.println(i_max_possible, 8);
-      Serial.print("i_max_expected: "); Serial.println(i_max_expected, 8);
-      Serial.print("min_lsb:       "); Serial.println(min_lsb, 12);
-      Serial.print("max_lsb:       "); Serial.println(max_lsb, 12);
-      Serial.print("current_lsb:   "); Serial.println(current_lsb, 12);
-      Serial.print("power_lsb:     "); Serial.println(power_lsb, 8);
-      Serial.println("  ");
-      Serial.print("cal:           "); Serial.println(cal);
-      Serial.print("r_shunt:       "); Serial.println(r_shunt, 6);
-      Serial.print("max_before_overflow:       "); Serial.println(max_before_overflow,8);
-      Serial.print("max_shunt_v_before_overflow:       "); Serial.println(max_shunt_v_before_overflow,8);
-      Serial.print("max_power:       "); Serial.println(max_power,8);
-      Serial.println("  ");
-#endif
-      write16(CAL_R, cal);
+    write16(CAL_R, cal);
 }
 
 void INA219::configure(  t_range range,  t_gain gain,  t_adc  bus_adc,  t_adc shunt_adc,  t_mode mode) {
   config = 0;
 
   config |= (range << BRNG | gain << PG0 | bus_adc << BADC1 | shunt_adc << SADC1 | mode);
-#if (INA219_DEBUG == 1)
-  Serial.print("Config: 0x"); Serial.println(config,HEX);
-#endif
+
   write16(CONFIG_R, config);
 }
 
@@ -242,9 +213,6 @@ float INA219::busPower() const {
 */
 /**************************************************************************/
 void INA219::reconfig() const {
-#if (INA219_DEBUG == 1)
-  Serial.print("Reconfigure with Config: 0x"); Serial.println(config,HEX);
-#endif
   write16(CONFIG_R, config);
 }
 
@@ -254,9 +222,6 @@ void INA219::reconfig() const {
 */
 /**************************************************************************/
 void INA219::recalibrate() const {
-#if (INA219_DEBUG == 1)
-  Serial.print("Recalibrate with cal: "); Serial.println(cal);
-#endif
   write16(CAL_R, cal);
 }
 
