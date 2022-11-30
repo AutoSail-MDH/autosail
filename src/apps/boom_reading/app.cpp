@@ -10,9 +10,9 @@
 #include <math.h>
 
 //#include "INA219.h"
-#include "components/INA219/INA219.h"
+#include "components/INA219/include/INA219.h"
 #include "components/INA219/INA219.cpp"
-#include "components/INA219/INA219interfaceC.h"
+#include "components/INA219/include/INA219interfaceC.h"
 #include "components/INA219/INA219interfaceC.cpp"
 
 
