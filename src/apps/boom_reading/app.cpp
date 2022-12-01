@@ -8,13 +8,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
-
-//#include "INA219.h"
 #include "components/INA219/include/INA219.h"
 #include "components/INA219/INA219.cpp"
-#include "components/INA219/include/INA219interfaceC.h"
-#include "components/INA219/INA219interfaceC.cpp"
-
 
 #ifdef ESP_PLATFORM
 #include "driver/i2c.h"
@@ -24,9 +19,6 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #endif
-
-#define PIN_SDA 21
-#define PIN_CLK 22
 
 #define FATAL -1000
 #define rec 2      // How often data is sent to topic
@@ -51,8 +43,7 @@
 rcl_publisher_t publisher_boom_angle;
 autosail_message__msg__MeasuredSailAngleMessage msg_boomangle;
 
-//INA219 ina;
-INA219Handle ina;
+INA219 ina;
 
 extern "C" {
 void appMain(void* arg);
@@ -60,16 +51,14 @@ void InitBoomReading();
 }
 
 void InitBoomReading() {
-    //ina.begin(I2C_NUM_1,GPIO_NUM_21,GPIO_NUM_22);
-    ina = create_INA219();
-    beginINA219(ina, I2C_NUM_1,GPIO_NUM_21,GPIO_NUM_22);
+    ina.begin(I2C_NUM_1,GPIO_NUM_21,GPIO_NUM_22);
 
     vTaskDelay(500 / portTICK_PERIOD_MS);
 }
 
 float getTrueSailAngle(){
     //measure the voltage from the angle sensor and convert to current(mA)
-    float angle_current_mA = shuntVoltageINA219(ina)*10000;//convert to current
+    float angle_current_mA = ina.shuntVoltage()*10000;//convert to current
     angle_current_mA = abs(angle_current_mA);
 
     //boom angle can simply be described with a linear formula. 4mA = 0/360deg. 8mA = 90deg 
