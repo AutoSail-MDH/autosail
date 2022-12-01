@@ -11,11 +11,13 @@
 #include <sys/time.h>
 #include <unistd.h> 
 
+#include "components/INA219/INA219.cpp"
+#include "components/INA219/include/INA219.h"
+
 #ifdef ESP_PLATFORM
 #include "driver/i2c.h"
 #include "driver/timer.h"
 #include "driver/dac.h"
-#include "driver/mcpwm.h"
 #include "driver/ledc.h"
 #include "esp_log.h"
 #include "esp_system.h"
@@ -58,7 +60,14 @@
 #define STEP_FREQ 200 // Step Frequency
 #define DIR_PIN GPIO_NUM_18 // Direction pin
 
-    
+// C++ code
+INA219 ina;
+void InitBoomReading();
+float getTrueSailAngle();
+
+// C code
+extern "C"{
+
 rcl_subscription_t sub_sail;
 rcl_subscription_t sub_rudder;
 rcl_subscription_t sub_furl;
@@ -76,26 +85,28 @@ int32_t true_sail_angle = 0;
 int32_t angle = 0;
 
 ledc_timer_config_t ledc_timer = {
-    .timer_num = LEDC_TIMER_0,
     .speed_mode = LEDC_HIGH_SPEED_MODE,
-    .clk_cfg = LEDC_AUTO_CLK,
-
-    .freq_hz = 1000,
     .duty_resolution = LEDC_TIMER_8_BIT,
+    .timer_num = LEDC_TIMER_0,
+    .freq_hz = 1000,
+    .clk_cfg = LEDC_AUTO_CLK,
 };
 
 ledc_channel_config_t ledc_channel = {
-    .timer_sel  = LEDC_TIMER_0,
-    .speed_mode = LEDC_HIGH_SPEED_MODE,
+    .gpio_num   = SERVO_PULSE_GPIO_SAIL,
 
+    .speed_mode = LEDC_HIGH_SPEED_MODE,
     .channel    = LEDC_CHANNEL_0,
+
+    .timer_sel  = LEDC_TIMER_0,
+
     .duty       = 0, // Start out stopped (0% duty cycle)
     .hpoint     = 0,
-    .gpio_num   = SERVO_PULSE_GPIO_SAIL,
 };
 
 
 int32_t sail_angle_set(int32_t sail_angle) {
+    true_sail_angle = (int32_t)getTrueSailAngle();
     int32_t freq = DEFAULT_FREQ;
     int32_t sail_angle_diff = sail_angle - true_sail_angle;
     int32_t max_speed = abs(sail_angle_diff*STEP_FREQ);
@@ -120,7 +131,9 @@ int32_t sail_angle_set(int32_t sail_angle) {
 }
 
 
-void sail_velocity_control() {
+void sail_velocity_control(rcl_timer_t * timer, int64_t last_call_time) {
+    (void) last_call_time;
+    if (timer != NULL) {
     ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, 127);
     ledc_update_duty(ledc_channel.speed_mode, ledc_channel.channel);
     sail_angle_set(angle);
@@ -138,6 +151,7 @@ void sail_velocity_control() {
     ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, 0);
     ledc_update_duty(ledc_channel.speed_mode, ledc_channel.channel);
     vTaskDelay(pdMS_TO_TICKS(1000));
+    }
 }
 
 void sail_callback(const void *msgin) {
@@ -181,6 +195,8 @@ void furl_callback(const void *msgin) {
 void appMain(void* arg) {
 
     while (RMW_RET_OK != rmw_uros_ping_agent(1000, 1));
+
+    InitBoomReading();
 
     gettimeofday(&startTime, NULL);
     prevTimeSail = startTime;
@@ -262,4 +278,30 @@ void appMain(void* arg) {
     RCCHECK(rclc_executor_fini(&executor_timer));
 
     dac_output_disable(DACpin);
+}
+
+}
+
+void InitBoomReading() {
+    ina.begin(I2C_NUM_1,GPIO_NUM_21,GPIO_NUM_22);
+
+    vTaskDelay(500 / portTICK_PERIOD_MS);
+}
+
+float getTrueSailAngle(){
+    //measure the voltage from the angle sensor and convert to current(mA)
+    float angle_current_mA = ina.shuntCurrent()*10000;//convert to current
+    angle_current_mA = abs(angle_current_mA);
+
+    //boom angle can simply be described with a linear formula. 4mA = 0/360deg. 8mA = 90deg 
+    float measured_boom_angle = 22.5*angle_current_mA-90;
+    
+    //offset depending on how the sensor is positioned
+    measured_boom_angle -= 90;
+
+    //rewrite angle to be in the span of +-180 degrees
+    if(measured_boom_angle > 180)
+        measured_boom_angle-=360;
+
+    return measured_boom_angle;
 }
