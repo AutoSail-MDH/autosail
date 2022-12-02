@@ -229,8 +229,8 @@ void appMain(void* arg) {
 
     vTaskDelay(500 / portTICK_PERIOD_MS);
     rcl_timer_t timer;
-    RCCHECK(rclc_timer_init_default(&timer, &support, RCL_MS_TO_NS(1), sail_velocity_control));
-    //xTaskCreate(sail_velocity_control, "Sail velocity control", configMINIMAL_STACK_SIZE, NULL, 1, &sail_velocity_handle);
+    RCCHECK(rclc_timer_init_default(&timer, &support, 0, sail_velocity_control));
+    // xTaskCreate(sail_velocity_control, "Sail velocity control", configMINIMAL_STACK_SIZE, NULL, 1, &sail_velocity_handle);
 
     // create executor
     rclc_executor_t executor = rclc_executor_get_zero_initialized_executor();
@@ -242,7 +242,7 @@ void appMain(void* arg) {
     RCCHECK(rclc_executor_add_timer(&executor_timer, &timer));
     RCCHECK(rclc_executor_add_subscription(&executor, &sub_sail, &angle_msg, &sail_callback, ON_NEW_DATA));
     RCCHECK(rclc_executor_add_subscription(&executor, &sub_rudder, &rudder_msg, &rudder_callback, ON_NEW_DATA));
-    //RCCHECK(rclc_executor_add_subscription(&executor, &sub_furl, &furl_msg, &furl_callback, ON_NEW_DATA));
+    // RCCHECK(rclc_executor_add_subscription(&executor, &sub_furl, &furl_msg, &furl_callback, ON_NEW_DATA));
     
     ledc_timer_config(&ledc_timer);
     ledc_channel_config(&ledc_channel);
@@ -289,17 +289,17 @@ void InitBoomReading() {
 }
 
 float getTrueSailAngle(){
-    //measure the voltage from the angle sensor and convert to current(mA)
+    // measure the voltage from the angle sensor and convert to current(mA)
     float angle_current_mA = ina.shuntCurrent()*10000;//convert to current
     angle_current_mA = abs(angle_current_mA);
 
-    //boom angle can simply be described with a linear formula. 4mA = 0/360deg. 8mA = 90deg 
+    // boom angle can simply be described with a linear formula. 4mA = 0/360deg. 8mA = 90deg 
     float measured_boom_angle = 22.5*angle_current_mA-90;
     
-    //offset depending on how the sensor is positioned
+    // offset depending on how the sensor is positioned
     measured_boom_angle -= 90;
 
-    //rewrite angle to be in the span of +-180 degrees
+    // rewrite angle to be in the span of +-180 degrees
     if(measured_boom_angle > 180)
         measured_boom_angle-=360;
 
