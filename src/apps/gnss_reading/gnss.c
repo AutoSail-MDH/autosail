@@ -51,6 +51,10 @@ int i;
 float time_stamp = 0.0;
 float longitude = 0.0;
 float latitude = 0.0;
+int longitude_deg = 0;
+int latitude_deg = 0;
+float longitude_minute = 0.0;
+float latitude_minute = 0.0;
 int gps_fix = 0.0;
 char* message;
 uint8_t* data;
@@ -76,20 +80,20 @@ void gnss_callback(rcl_timer_t * timer, int64_t last_call_time)
         }
 
         get_position(message, &time_stamp, &latitude, &longitude, &gps_fix);
+
+        latitude_deg = (int)(latitude/100);
+        longitude_deg = (int)(longitude/100);
+
+        latitude_minute = (latitude-latitude_deg*100)/60;
+        longitude_minute = (longitude-longitude_deg*100)/60;
+
         gnss_msg.time_stamp = time_stamp;
-        gnss_msg.position.latitude = latitude;
-        gnss_msg.position.longitude = longitude;
+        gnss_msg.position.latitude = (float)latitude_deg + latitude_minute;
+        gnss_msg.position.longitude = (float)longitude_deg + longitude_minute;
         gnss_msg.gps_fix = gps_fix;
         
         /*
-        gps_fix = rget_position(message, &timestamp, &latitude, &longitude);
-        gnss_msg.time_stamp = timestamp;
-        gnss_msg.position.latitude = latitude;
-        gnss_msg.position.longitude = longitude;
-        gnss_msg.gps_fix = gps_fix;
-        */
-        
-        /*
+        // NMEA.msg is used to debug nmea messages from GNSS module
         nmea_msg.one = message[0];
         nmea_msg.two = message[1];
         nmea_msg.three = message[2];
@@ -138,6 +142,7 @@ void init_gnss() {
     gnss_msg.gps_fix = gps_fix;
     
     /*
+    // NMEA.msg is used to debug nmea messages from GNSS module
     nmea_msg.one = 0;
     nmea_msg.two = 0;
     nmea_msg.three = 0;
