@@ -56,7 +56,7 @@
 #define SAIL_MOTOR_DELAY 40  // Callback delay
 #define ZERO_FREQ 0 // Stop Frequency
 #define DEFAULT_FREQ 1000 // Start Frequency
-#define MAX_FREQ 6000 // Max Frequency
+#define MAX_FREQ 1200 // Max Frequency
 #define STEP_FREQ 200 // Step Frequency
 #define DIR_PIN GPIO_NUM_18 // Direction pin
 
@@ -82,7 +82,8 @@ struct timeval prevTimeRudder;
 struct timeval prevTimeFurl;
 
 int32_t true_sail_angle = 0;
-int32_t angle = 0;
+int32_t sail_angle = 0;
+int32_t freq = DEFAULT_FREQ;
 
 ledc_timer_config_t ledc_timer = {
     .speed_mode = LEDC_HIGH_SPEED_MODE,
@@ -105,63 +106,55 @@ ledc_channel_config_t ledc_channel = {
 };
 
 
-int32_t sail_angle_set(int32_t sail_angle) {
-    true_sail_angle = (int32_t)getTrueSailAngle();
-    int32_t freq = DEFAULT_FREQ;
-    int32_t sail_angle_diff = sail_angle - true_sail_angle;
-    int32_t max_speed = abs(sail_angle_diff*STEP_FREQ);
-    if (sail_angle > true_sail_angle) {
-        gpio_set_level(DIR_PIN, 1);
-    }
-    else if (sail_angle < true_sail_angle) {
-        gpio_set_level(DIR_PIN, 0);
-    }
-    while ((true_sail_angle < sail_angle - 2) || (true_sail_angle > sail_angle + 2)) {
-        freq = freq + STEP_FREQ;
-        if (freq > max_speed || freq > MAX_FREQ) {
-            freq = max_speed;
-            break;
-        }
-        ledc_set_freq(ledc_timer.speed_mode, ledc_timer.timer_num, abs(freq));
-        vTaskDelay(pdMS_TO_TICKS(SAIL_MOTOR_DELAY));
-    }
-    // ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, 0);
-    // ledc_update_duty(ledc_channel.speed_mode, ledc_channel.channel);
-    return 1;
-}
-
-
 void sail_velocity_control(rcl_timer_t * timer, int64_t last_call_time) {
     (void) last_call_time;
     if (timer != NULL) {
-    ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, 127);
-    ledc_update_duty(ledc_channel.speed_mode, ledc_channel.channel);
-    sail_angle_set(angle);
-    vTaskDelay(pdMS_TO_TICKS(1000));
-    angle = -angle;
-    ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, 0);
-    ledc_update_duty(ledc_channel.speed_mode, ledc_channel.channel);
-    vTaskDelay(pdMS_TO_TICKS(1000));
+        if((true_sail_angle > sail_angle - 4) && (true_sail_angle < sail_angle + 4))
+        {   
+            if(ledc_get_duty(ledc_channel.speed_mode, ledc_channel.channel) != 0)
+            {
+                ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, 0);
+                ledc_update_duty(ledc_channel.speed_mode, ledc_channel.channel);
+            }
+            freq = DEFAULT_FREQ;
+        }
+        else
+        {
+            if(true_sail_angle < sail_angle) 
+                gpio_set_level(DIR_PIN, 1);
+            else 
+                gpio_set_level(DIR_PIN, 0);
 
-    ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, 127);
-    ledc_update_duty(ledc_channel.speed_mode, ledc_channel.channel);
-    sail_angle_set(angle);
-    vTaskDelay(pdMS_TO_TICKS(1000));
-    angle = -angle;
-    ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, 0);
-    ledc_update_duty(ledc_channel.speed_mode, ledc_channel.channel);
-    vTaskDelay(pdMS_TO_TICKS(1000));
+            ledc_set_freq(ledc_timer.speed_mode, ledc_timer.timer_num, abs(freq));
+            if(ledc_get_duty(ledc_channel.speed_mode, ledc_channel.channel) == 0)
+            
+            {
+                ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, 127);
+                ledc_update_duty(ledc_channel.speed_mode, ledc_channel.channel);
+            }
+            freq = freq + STEP_FREQ;
+            if (freq > MAX_FREQ) {
+                freq = MAX_FREQ;
+            }
+            
+            vTaskDelay(pdMS_TO_TICKS(SAIL_MOTOR_DELAY));
+        }
+
+        // Read current sail angle from sensor
+        true_sail_angle = (int32_t)getTrueSailAngle();
     }
 }
 
 void sail_callback(const void *msgin) {
     const autosail_message__msg__SailAngleMessage *msg = (const autosail_message__msg__SailAngleMessage *)msgin;
 
-    // Use angle to calculate PMW
+    // Read desired sail angle from /actuator/sail_angle
+    sail_angle = msg->sail_angle;  // Data sent in degrees
+    if(sail_angle > 90) sail_angle = 90;
+    else if(sail_angle < -90) sail_angle = -90;
 
-    angle = msg->sail_angle;  // Data sent in degrees
-
-    gettimeofday(&prevTimeSail, NULL);
+    // Read current sail angle from sensor
+    // true_sail_angle = (int32_t)getTrueSailAngle();
 }
 
 void rudder_callback(const void *msgin) {
@@ -183,7 +176,7 @@ void rudder_callback(const void *msgin) {
     dac_output_voltage(DACpin, dac_value);
     vTaskDelay(pdMS_TO_TICKS(MS_DELAY)); 
 
-    gettimeofday(&prevTimeRudder, NULL);
+    // gettimeofday(&prevTimeRudder, NULL);
 }
 
 /*
@@ -229,7 +222,7 @@ void appMain(void* arg) {
 
     vTaskDelay(500 / portTICK_PERIOD_MS);
     rcl_timer_t timer;
-    RCCHECK(rclc_timer_init_default(&timer, &support, 0, sail_velocity_control));
+    RCCHECK(rclc_timer_init_default(&timer, &support, RCL_MS_TO_NS(100), sail_velocity_control));
     // xTaskCreate(sail_velocity_control, "Sail velocity control", configMINIMAL_STACK_SIZE, NULL, 1, &sail_velocity_handle);
 
     // create executor
@@ -284,13 +277,14 @@ void appMain(void* arg) {
 
 void InitBoomReading() {
     ina.begin(I2C_NUM_1,GPIO_NUM_21,GPIO_NUM_22);
-
+    vTaskDelay(500 / portTICK_PERIOD_MS);
+    ina.calibrate(0.1, 0.04, 16, 0.4);
     vTaskDelay(500 / portTICK_PERIOD_MS);
 }
 
 float getTrueSailAngle(){
     // measure the voltage from the angle sensor and convert to current(mA)
-    float angle_current_mA = ina.shuntCurrent()*10000;//convert to current
+    float angle_current_mA = ina.shuntVoltage()*10000;//convert to current
     angle_current_mA = abs(angle_current_mA);
 
     // boom angle can simply be described with a linear formula. 4mA = 0/360deg. 8mA = 90deg 
