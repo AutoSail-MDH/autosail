@@ -8,7 +8,6 @@ from autosail_message.msg import RudderControlMessage
 from autosail_message.msg import WindMessage
 from autosail_message.msg import PositionMessage
 
-import math
 import numpy as np
 
 class PathTraverser(Node):
@@ -36,15 +35,15 @@ class PathTraverser(Node):
 
         # Create varibles
         self.current_position = np.array([59.637171 , 16.584125])#longitude/latitude
-        #self.current_position = np.array([59.637020 , 16.584150]) #second boat position test point
-        self.previous_waypoint = np.array([0 , 0])#longitude/latitude
-        self.next_waypoint = np.array([0 , 0])#longitude/latitude
+        #self.current_position = np.array([59.637053 , 16.583962])#TEST POINT SAME AS POINT A
 
         self.path = [np.array([59.637053 , 16.583962]), np.array([59.637212 , 16.584512])]
         self.new_path = True
         self.count = 0
         self.count_point_0 = 0
         self.count_point_1 = 0
+
+        self.waypoint_radii = 2
 
 
         self.prev_time = self.get_clock().now().nanoseconds*0.000000001#get current time
@@ -63,20 +62,28 @@ class PathTraverser(Node):
             self.next_waypoint = self.path[self.count_point_1]
             self.new_path = False
             
-        #check if one has gotten close enough to next waypoint
-        #count_point_0 += 1
+        
+        #every 2 seconds move forward to the next point(as if the boats moving)
         time_now = self.get_clock().now().nanoseconds*0.000000001#get current time
         if time_now - self.prev_time > 2:
             self.prev_time = time_now#for testing
-            #self.count_point_0 = (self.count_point_0 + 1) % (len(self.path))
-            #self.count_point_1 = (self.count_point_1 + 1) % (len(self.path))
-            self.increment_point_counter()
-            #self.get_logger().info('count_point_0: %f ' % (self.count_point_0)) #push message to console
-            #self.get_logger().info('count_point_1: %f ' % (self.count_point_1)) #push message to console
+            self.current_position = self.next_waypoint
+
+        #if current_position is within radii of next wapoint 
+        point_north = new_point_from_distance(self.next_waypoint, 0, self.waypoint_radii)
+        point_east =  new_point_from_distance(self.next_waypoint, 90, self.waypoint_radii)
+        point_south =  new_point_from_distance(self.next_waypoint, 180, self.waypoint_radii)
+        point_west =  new_point_from_distance(self.next_waypoint, 270, self.waypoint_radii)
+        
+        # Check if one has gotten close enough to next waypoint. First check latitude - then longitude(the coordinates are in (lat,long)).
+        if(self.current_position[0] < point_north[0] and self.current_position[0] > point_south[0] 
+        and self.current_position[1] < point_east[1] and self.current_position[1] > point_west[1]):
+            self.increment_waypoint_counter()
             self.previous_waypoint = self.path[self.count_point_0]
             self.next_waypoint = self.path[self.count_point_1]
 
-        
+            self.get_logger().info('INSIDE square of point') #push message to console
+
         #Publish waypoints
         message_next_point = PositionMessage()
         message_prev_point = PositionMessage()
@@ -106,17 +113,29 @@ class PathTraverser(Node):
         self.get_logger().info('Next waypoint: %f , %f' % (self.next_waypoint[0], self.next_waypoint[1]) ) #push message to console        #self.get_logger().info('Rudder angle:%f' % self.rudderAngle) #push message to console
         #self.get_logger().info('True wind angle:%f' % self.twa) #push message to console
 
-    def increment_point_counter(self):
+    def increment_waypoint_counter(self):
         self.count_point_0 = (self.count_point_0 + 1) % (len(self.path))
         self.count_point_1 = (self.count_point_1 + 1) % (len(self.path))
 
 
-
-#Returns the desired boat heading angle in radians determined using a LOS-algorithm 
-def los_algorithm(current_position:float, previous_waypoint:float, next_waypoint:float, lookahead_distance:float):
-    o = current_position #boats actual position in lat/long
     
+# Get new latitude/longitude point using another point, distance and bearing.
+def new_point_from_distance(point,bearing,distance):# bearing must be in radians
+    r = 6378.1 # radii of Earth
+    bear = bearing
+    d = distance/1000 # remake distance to km 
+    lat1 = np.deg2rad(point[0])#latidude in radians
+    lon1 = np.deg2rad(point[1])#longitude in radians
 
+    # Haversine formula
+    lat2 = np.arcsin( np.sin(lat1)*np.cos(d/r) + np.cos(lat1)*np.sin(d/r)*np.cos(bearing) )
+    lon2 = lon1 + np.arctan2( np.sin(bearing)*np.sin(d/r)*np.cos(lat1), np.cos(d/r)-np.sin(lat1)*np.sin(lat2) )
+
+    #convert lat/long back to degrees
+    lat2 = np.rad2deg(lat2)
+    lon2 = np.rad2deg(lon2)
+
+    return lat2,lon2
 
         
 
