@@ -6,7 +6,7 @@ from autosail_message.msg import IMUMessage
 from autosail_message.msg import PoseMessage
 from autosail_message.msg import RudderControlMessage
 from autosail_message.msg import WindMessage
-#from autosail_message.msg import PositionMessage
+from autosail_message.msg import PositionMessage
 
 
 import math
@@ -23,6 +23,10 @@ class PathFollower(Node):
         self.subscriberTWA_ = self.create_subscription(WindMessage, '/sensor/wind', self.wind_callback, 10) #ONLY FOR DEVELOPMENT! subscription for wind angle
         self.subscriberTWA_ # prevent unused variable warning
         #subscription for path. previous_waypoint and next_waypoint
+        self.subscriberNextPos_ = self.create_subscription(PositionMessage, '/path/next_waypoint', self.next_waypoint_callback, 10)
+        self.subscriberNextPos_
+        self.subscriberPreviousPos_ = self.create_subscription(PositionMessage, '/path/prev_waypoint', self.prev_waypoint_callback, 10)
+        self.subscriberPreviousPos_
 
         self.subscriberHeading_ = self.create_subscription(IMUMessage, '/sensor/imu', self.heading_callback, 10)
         self.subscriberHeading_  # prevent unused variable warning
@@ -127,6 +131,12 @@ class PathFollower(Node):
     def twa_callback(self,msg):
         self.twa = msg.twa
 
+    def next_waypoint_callback(self,msg):
+        self.next_waypoint = np.array([msg.latitude,msg.longitude])
+
+    def prev_waypoint_callback(self,msg):
+        self.previous_waypoint = np.array([msg.latitude,msg.longitude])
+
 
 
     #ONLY TO BE USED FOR DEVELOPMENT
@@ -150,6 +160,10 @@ def los_algorithm(current_position:float, previous_waypoint:float, next_waypoint
     b = next_waypoint#next waypoint
 
     oN = np.array([99,0])# lat,long vector pointing north(length does not matter)
+
+    #ADD CODE IN CASE POINT A IS THE EXACT SAME AS POINT B. SIMPLY RETURN CCangle TO THAT POINT
+    #if a == b:
+    # return get_cc_angle(oN,oa)
 
     #get the lateral_distance_point s. 
     lateral_distance_point = get_lateral_distance_point(o, a, b)
