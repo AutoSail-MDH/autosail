@@ -4,20 +4,24 @@
 #include <rclc/rclc.h>
 #include <rmw_microros/rmw_microros.h>
 #include <rmw_microxrcedds_c/config.h>
-//#include <autosail_message/msg/sail_angle_message.h>
+#include <autosail_message/msg/sail_angle_message.h>
 //#include <autosail_message/msg/sail_furl_message.h>
 #include <autosail_message/msg/rudder_control_message.h>
 #include <stdio.h>
 #include <sys/time.h>
-#include <unistd.h>
+#include <unistd.h> 
+
+#include "components/INA219/INA219.cpp"
+#include "components/INA219/include/INA219.h"
 
 #ifdef ESP_PLATFORM
 #include "driver/i2c.h"
 #include "driver/timer.h"
 #include "driver/dac.h"
-#include "driver/mcpwm.h"
+#include "driver/ledc.h"
 #include "esp_log.h"
 #include "esp_system.h"
+#include "esp_err.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #endif
@@ -44,17 +48,35 @@
 #define SERVO_MAX_PULSEWIDTH_US 2200    // Maximum pulse width in microsecond
 #define SERVO_MAX_DEGREE 90             // Maximum angle in degree upto which servo can rotate
 #define SERVO_MIN_DEGREE 0            // Minimum angle
-#define SERVO_PULSE_GPIO_SAIL 19        // GPIO connects to the PWM signal line
-#define SERVO_PULSE_GPIO_RUDDER 18      // GPIO connects to the PWM signal line
-
-#define MS_DELAY (10)  // Callback delay
-
+#define SERVO_PULSE_GPIO_SAIL GPIO_NUM_19        // GPIO connects to the PWM signal line
+//#define SERVO_PULSE_GPIO_RUDDER GPIO_NUM_18      // GPIO connects to the PWM signal line
 #define DACpin DAC_CHANNEL_1 // PIN 25
+#define R_SHUNT 0.1
+#define V_SHUNT_MAX 0.04
+#define V_BUS_MAX 16
+#define I_MAX_EXPECTED 0.4
+
+
+#define MS_DELAY 50  // Callback delay
+#define SAIL_MOTOR_DELAY 100  // Callback delay
+#define ZERO_FREQ 0 // Stop Frequency
+#define DEFAULT_FREQ 1200 // Start Frequency
+#define MAX_FREQ 3000 // Max Frequency
+#define STEP_FREQ 25 // Step Frequency
+#define DIR_PIN GPIO_NUM_18 // Direction pin
+
+// C++ code
+INA219 ina;
+void InitBoomReading();
+float getTrueSailAngle();
+
+// C code
+extern "C"{
 
 rcl_subscription_t sub_sail;
 rcl_subscription_t sub_rudder;
 rcl_subscription_t sub_furl;
-//autosail_message__msg__SailAngleMessage angle_msg;
+autosail_message__msg__SailAngleMessage angle_msg;
 autosail_message__msg__RudderControlMessage rudder_msg;
 //autosail_message__msg__SailFurlMessage furl_msg;
 
@@ -64,28 +86,80 @@ struct timeval prevTimeSail;
 struct timeval prevTimeRudder;
 struct timeval prevTimeFurl;
 
-/*
+int32_t freq = DEFAULT_FREQ;
+
+ledc_timer_config_t ledc_timer = {
+    .speed_mode = LEDC_HIGH_SPEED_MODE,
+    .duty_resolution = LEDC_TIMER_8_BIT,
+    .timer_num = LEDC_TIMER_0,
+    .freq_hz = 1000,
+    .clk_cfg = LEDC_AUTO_CLK,
+};
+
+ledc_channel_config_t ledc_channel = {
+    .gpio_num   = SERVO_PULSE_GPIO_SAIL,
+
+    .speed_mode = LEDC_HIGH_SPEED_MODE,
+    .channel    = LEDC_CHANNEL_0,
+
+    .timer_sel  = LEDC_TIMER_0,
+
+    .duty       = 0, // Start out stopped (0% duty cycle)
+    .hpoint     = 0,
+};
+
+
+void sail_velocity_control(int32_t true_sail_angle, int32_t sail_angle) {
+
+    if((true_sail_angle > sail_angle - 4) && (true_sail_angle < sail_angle + 4))
+    {   
+        if(ledc_get_duty(ledc_channel.speed_mode, ledc_channel.channel) != 0)
+        {
+            ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, 0);
+            ledc_update_duty(ledc_channel.speed_mode, ledc_channel.channel);
+        }
+        freq = DEFAULT_FREQ;
+    }
+    else
+    {
+        if(true_sail_angle < sail_angle) 
+            gpio_set_level(DIR_PIN, 1);
+        else 
+            gpio_set_level(DIR_PIN, 0);
+
+        ledc_set_freq(ledc_timer.speed_mode, ledc_timer.timer_num, abs(freq));
+
+        if(ledc_get_duty(ledc_channel.speed_mode, ledc_channel.channel) == 0)
+        {
+            ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, 127);
+            ledc_update_duty(ledc_channel.speed_mode, ledc_channel.channel);
+        }
+        // freq = freq + STEP_FREQ;
+        // if (freq > MAX_FREQ) {
+        //     freq = MAX_FREQ;
+        // }
+    }
+
+    // Read current sail angle from sensor
+    // true_sail_angle = (int32_t)getTrueSailAngle();
+
+}
+
 void sail_callback(const void *msgin) {
     const autosail_message__msg__SailAngleMessage *msg = (const autosail_message__msg__SailAngleMessage *)msgin;
 
-    // Use angle to calculate PMW
+    // Read desired sail angle from /actuator/sail_angle
+    int32_t sail_angle = msg->sail_angle;  // Data sent in degrees
+    if(sail_angle > 90) sail_angle = 90;
+    else if(sail_angle < -90) sail_angle = -90;
 
-    int32_t angle = msg->sail_angle;  // Data sent in degrees
-    printf("Sail angle received: %d\r\n", angle);
+    // Read current sail angle from sensor
+    int32_t true_sail_angle = (int32_t)getTrueSailAngle();
 
-    uint32_t duty_us =
-        (angle + SERVO_MAX_DEGREE) * (SERVO_MAX_PULSEWIDTH_US - SERVO_MIN_PULSEWIDTH_US) / (2 * SERVO_MAX_DEGREE) +
-        SERVO_MIN_PULSEWIDTH_US;
-
-    ESP_ERROR_CHECK(mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, duty_us));
-    vTaskDelay(pdMS_TO_TICKS(MS_DELAY));  // Add delay, since it takes time for servo to rotate, generally
-                                          // 100ms/60degree rotation under 5V power supply
-
-    printf("Sail duty cycle set to: %f\r\n", (float)duty_us);
-
-    gettimeofday(&prevTimeSail, NULL);
+    sail_velocity_control(true_sail_angle, sail_angle);
+    
+    vTaskDelay(pdMS_TO_TICKS(SAIL_MOTOR_DELAY));
 }
-*/
 
 void rudder_callback(const void *msgin) {
     const autosail_message__msg__RudderControlMessage *msg = (const autosail_message__msg__RudderControlMessage *)msgin;
@@ -106,7 +180,7 @@ void rudder_callback(const void *msgin) {
     dac_output_voltage(DACpin, dac_value);
     vTaskDelay(pdMS_TO_TICKS(MS_DELAY)); 
 
-    gettimeofday(&prevTimeRudder, NULL);
+    // gettimeofday(&prevTimeRudder, NULL);
 }
 
 /*
@@ -118,6 +192,8 @@ void furl_callback(const void *msgin) {
 void appMain(void* arg) {
 
     while (RMW_RET_OK != rmw_uros_ping_agent(1000, 1));
+
+    InitBoomReading();
 
     gettimeofday(&startTime, NULL);
     prevTimeSail = startTime;
@@ -134,10 +210,10 @@ void appMain(void* arg) {
     rcl_node_t node;
     RCCHECK(rclc_node_init_default(&node, "motor_node", "", &support));
 
-    /*
+    
     RCCHECK(rclc_subscription_init_default(&sub_sail, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, SailAngleMessage),
                                            "/actuator/sail"));
-    */
+    
     vTaskDelay(500 / portTICK_PERIOD_MS);
     RCCHECK(rclc_subscription_init_default(&sub_rudder, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(autosail_message, msg, RudderControlMessage),
                                            "/actuator/rudder"));
@@ -148,32 +224,27 @@ void appMain(void* arg) {
                                            "/actuator/furl"));
     */
 
+    vTaskDelay(500 / portTICK_PERIOD_MS);
+    // xTaskCreate(sail_velocity_control, "Sail velocity control", configMINIMAL_STACK_SIZE, NULL, 1, &sail_velocity_handle);
+
     // create executor
     rclc_executor_t executor = rclc_executor_get_zero_initialized_executor();
     RCCHECK(rclc_executor_init(&executor, &support.context, 2, &allocator));
 
-    //RCCHECK(rclc_executor_add_subscription(&executor, &sub_sail, &angle_msg, &sail_callback, ON_NEW_DATA));
+    RCCHECK(rclc_executor_add_subscription(&executor, &sub_sail, &angle_msg, &sail_callback, ON_NEW_DATA));
     RCCHECK(rclc_executor_add_subscription(&executor, &sub_rudder, &rudder_msg, &rudder_callback, ON_NEW_DATA));
-    //RCCHECK(rclc_executor_add_subscription(&executor, &sub_furl, &furl_msg, &furl_callback, ON_NEW_DATA));
-
-    // configure motor control pulse width modulator (MCPWM)
-    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A,
-                    SERVO_PULSE_GPIO_SAIL);  // To drive a RC servo, one MCPWM generator is enough
-
-    mcpwm_config_t pwm_config = {
-        .frequency = 50,  // frequency = 50Hz, i.e. for every servo motor time period should be 20ms
-        .cmpr_a = 0,      // duty cycle of PWMxA = 0
-        .counter_mode = MCPWM_UP_COUNTER,
-        .duty_mode = MCPWM_DUTY_MODE_0,
-    };
-
-    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &pwm_config);
-
+    // RCCHECK(rclc_executor_add_subscription(&executor, &sub_furl, &furl_msg, &furl_callback, ON_NEW_DATA));
+    
+    ledc_timer_config(&ledc_timer);
+    ledc_channel_config(&ledc_channel);
+    
     // Initialize DAC
     dac_i2s_enable();
     dac_i2s_disable();
     dac_output_enable(DACpin);
 
+    // Initialize GPIO for motor direction
+    gpio_set_direction(DIR_PIN, GPIO_MODE_OUTPUT);
 
     while (1) {
         rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
@@ -195,4 +266,31 @@ void appMain(void* arg) {
     RCCHECK(rclc_support_fini(&support));
 
     dac_output_disable(DACpin);
+}
+
+}
+
+void InitBoomReading() {
+    ina.begin(I2C_NUM_1,GPIO_NUM_21,GPIO_NUM_22);
+    vTaskDelay(500 / portTICK_PERIOD_MS);
+    ina.calibrate(R_SHUNT, V_SHUNT_MAX, V_BUS_MAX, I_MAX_EXPECTED);
+    vTaskDelay(500 / portTICK_PERIOD_MS);
+}
+
+float getTrueSailAngle(){
+    // measure the voltage from the angle sensor and convert to current(mA)
+    float angle_current_mA = ina.shuntVoltage()*10000;//convert to current
+    angle_current_mA = abs(angle_current_mA);
+
+    // boom angle can simply be described with a linear formula. 4mA = 0/360deg. 8mA = 90deg 
+    float measured_boom_angle = 22.5*angle_current_mA-90;
+    
+    // offset depending on how the sensor is positioned
+    measured_boom_angle -= 90;
+
+    // rewrite angle to be in the span of +-180 degrees
+    if(measured_boom_angle > 180)
+        measured_boom_angle-=360;
+
+    return measured_boom_angle;
 }
