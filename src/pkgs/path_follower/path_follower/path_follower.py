@@ -17,19 +17,19 @@ class PathFollower(Node):
         super().__init__('path_follower_node')
 
         # Create subscriptions
-        #self.subscriberPOSE_ = self.create_subscription(PoseMessage, '/position/pose', self.pose_callback, 10)
-        #self.subscriberPOSE_  # prevent unused variable warning
-        #self.subscriberTWA_ = self.create_subscription(WindMessage, '/sensor/true_wind', self.twa_callback, 10) #subscription for true wind angle
-        self.subscriberTWA_ = self.create_subscription(WindMessage, '/sensor/wind', self.wind_callback, 10) #ONLY FOR DEVELOPMENT! subscription for wind angle
+        self.subscriberPOSE_ = self.create_subscription(PoseMessage, '/position/pose', self.pose_callback, 10)
+        self.subscriberPOSE_  # prevent unused variable warning
+        self.subscriberTWA_ = self.create_subscription(WindMessage, '/sensor/true_wind', self.twa_callback, 10) #subscription for true wind angle
+        self.subscriberTWA_ = self.create_subscription(WindMessage, '/sensor/wind', self.wind_callback, 10) #subscription for true wind angle
         self.subscriberTWA_ # prevent unused variable warning
-        #subscription for path. previous_waypoint and next_waypoint
         self.subscriberNextPos_ = self.create_subscription(PositionMessage, '/path/next_waypoint', self.next_waypoint_callback, 10)
         self.subscriberNextPos_
         self.subscriberPreviousPos_ = self.create_subscription(PositionMessage, '/path/prev_waypoint', self.prev_waypoint_callback, 10)
         self.subscriberPreviousPos_
 
-        self.subscriberHeading_ = self.create_subscription(IMUMessage, '/sensor/imu', self.heading_callback, 10)
-        self.subscriberHeading_  # prevent unused variable warning
+        #only for development
+        #self.subscriberHeading_ = self.create_subscription(IMUMessage, '/sensor/imu', self.heading_callback, 10)
+        #self.subscriberHeading_  # prevent unused variable warning
 
         # Create publishers
         self.publisherRudderAngle_ = self.create_publisher(RudderControlMessage, '/actuator/rudder', 10)
@@ -42,11 +42,13 @@ class PathFollower(Node):
         self.debugcallback = self.create_timer(period, self.debug_callback)
 
         # Create varibles
-        self.current_position = np.array([59.637171 , 16.584125])#longitude/latitude
+        #self.current_position = np.array([59.637171 , 16.584125])#longitude/latitude
         #self.current_position = np.array([59.637020 , 16.584150]) #second boat position test point
+        self.current_position = np.array([59.59827, 16.55583])#longitude/latitude
         self.yaw = 0.0
         self.velocity = 0.0
         self.twa = 0.0
+        self.awa = 0.0
         self.desired_heading_angle = 0.0
         self.previous_waypoint = np.array([59.637053 , 16.583962])#longitude/latitude
         self.next_waypoint = np.array([59.637212 , 16.584512])#longitude/latitude
@@ -69,22 +71,16 @@ class PathFollower(Node):
         # Get desired boat heading angle from los-algorithm. 
         desired_angle, los_point, s, sb_angle, sb = los_algorithm(o,a,b,lookahead_distance)
         desired_angle = np.rad2deg(desired_angle)   #Convert angle from radians to degrees
+        
+        ####ONLY FOR DEMO
+        adjusted_angle = np.rad2deg(get_cc_angle(np.array([99,0]), b-o))
+        ####ONLY FOR DEMO
 
         # Adjust the desired heading angle so that it is not in the "no go zone"
-        adjusted_angle = adjust_angle_to_wind(self.twa,desired_angle,no_go_zone)
+        #adjusted_angle = adjust_angle_to_wind(self.twa,desired_angle,no_go_zone)
 
         # Set desired angle to be used by rudder_control_callback
         self.desired_heading_angle = adjusted_angle
-
-        #DEBUG outputs
-        #self.get_logger().info('----------------------------------------') #push message to console
-        #self.get_logger().info('Desired lateral-point is: (%f , %f)' % (s[0], s[1])) #push message to console
-        #self.get_logger().info('Desired los-point is: (%f , %f)' % (los_point[0], los_point[1])) #push message to console
-        #self.get_logger().info('Desired SB is: (%f , %f)' % (sb[0], sb[1])) #push message to console
-        #self.get_logger().info('Angle SB in deg: \t %f' % (np.rad2deg(sb_angle))) #push message to console
-        #self.get_logger().info('Desired angle is: \t %f' % (desired_angle)) #push message to console
-        #self.get_logger().info('Adjusted angle is:\t %f' % (adjusted_angle)) #push message to console
-        #self.get_logger().info('True wind angle is:    \t %f)' % (self.twa)) #push message to console
 
 
     ## Rudder control callback. Triggered by timer and publishes rudder angle to be set
@@ -94,6 +90,10 @@ class PathFollower(Node):
         desired_angle = self.desired_heading_angle
         current_angle = self.yaw
 
+        #convert to +-180
+        desired_angle = (desired_angle+180)%360-180
+        current_angle = (current_angle+180)%360-180
+
         message.rudder_angle = 0.0 
         
         time_now = self.get_clock().now()#get current time
@@ -101,6 +101,9 @@ class PathFollower(Node):
 
         #use PID which outputs wanted rudder angle
         rudder_angle = self.pid_controller.send([desired_angle,current_angle,time_sec])
+
+        #FLIP value to whats wanted by the rudder motor
+        rudder_angle = rudder_angle*(-1)
 
         maxangle = 45.0#rudder max angle +-
 
@@ -115,33 +118,28 @@ class PathFollower(Node):
 
         self.rudderAngle = rudder_angle
 
-        #DEBUG outputs
-        #self.get_logger().info('%f' % message.rudder_angle) #push message to console
-        #self.get_logger().info('Rudder Control says:%f' % message.rudder_angle) #push message to console
-        #self.get_logger().info('Rudder Control says:%f' % message.rudder_angle) #push message to console
-
     #Pose subscriber used for getting pose and velocity of boat
     def pose_callback(self, msg):
-        self.current_latitude = msg.position.latitude
-        self.current_longitude = msg.position.longitude 
+        self.current_position[0] = msg.position.latitude
+        self.current_position[1] = msg.position.longitude 
         self.yaw = msg.yaw
         self.velocity = msg.velocity
 
     #TWA subsriber callback used for getting the True Wind Angle
     def twa_callback(self,msg):
-        self.twa = msg.twa
+        self.twa = msg.wind_angle
 
+    #Subrscribers that take new waypoints
     def next_waypoint_callback(self,msg):
         self.next_waypoint = np.array([msg.latitude,msg.longitude])
-
     def prev_waypoint_callback(self,msg):
         self.previous_waypoint = np.array([msg.latitude,msg.longitude])
 
-
+    def wind_callback(self,msg):
+        self.awa = msg.wind_angle
 
     #ONLY TO BE USED FOR DEVELOPMENT
-    def wind_callback(self,msg):
-        self.twa = msg.wind_angle
+    
     def heading_callback(self,msg):#heading
         self.yaw = msg.yaw
     def debug_callback(self):
@@ -162,8 +160,8 @@ def los_algorithm(current_position:float, previous_waypoint:float, next_waypoint
     oN = np.array([99,0])# lat,long vector pointing north(length does not matter)
 
     #ADD CODE IN CASE POINT A IS THE EXACT SAME AS POINT B. SIMPLY RETURN CCangle TO THAT POINT
-    #if a == b:
-    # return get_cc_angle(oN,oa)
+    if (a == b).all():
+     return get_cc_angle(oN,a-o)#get angle between desired point and currens position
 
     #get the lateral_distance_point s. 
     lateral_distance_point = get_lateral_distance_point(o, a, b)
