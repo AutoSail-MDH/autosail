@@ -1,10 +1,7 @@
 import rclpy
 from rclpy.node import Node
 
-from autosail_message.msg import GNSSMessage
-from autosail_message.msg import IMUMessage
 from autosail_message.msg import PoseMessage
-from autosail_message.msg import RudderControlMessage
 from autosail_message.msg import WindMessage
 from autosail_message.msg import PositionMessage
 
@@ -14,13 +11,9 @@ class PathTraverser(Node):
     def __init__(self):
         super().__init__('path_traversal_node')
 
-        # Create subscriptions
+        # Create subscriptions. NOT NEEDED FOR DEMO
         #self.subscriberPOSE_ = self.create_subscription(PoseMessage, '/position/pose', self.pose_callback, 10)
         #self.subscriberPOSE_  # prevent unused variable warning
-        #self.subscriberTWA_ = self.create_subscription(WindMessage, '/sensor/true_wind', self.twa_callback, 10) #subscription for true wind angle
-        #self.subscriberTWA_ = self.create_subscription(WindMessage, '/sensor/wind', self.wind_callback, 10) #ONLY FOR DEVELOPMENT! subscription for wind angle
-        #self.subscriberTWA_ # prevent unused variable warning
-        #subscription for path. previous_waypoint and next_waypoint
 
         # Create publishers
         self.publisherNextWaypoint_ = self.create_publisher(PositionMessage, '/path/next_waypoint', 10)
@@ -77,7 +70,7 @@ class PathTraverser(Node):
 
             #for demo bearing output
             self.set_bearing_to_next_pos()
-            self.get_logger().info('WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOP') #push message to console
+            self.get_logger().info('NEW PATH!') #push message to console
 
             
 

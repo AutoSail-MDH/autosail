@@ -21,7 +21,6 @@ setup(
     entry_points={
         'console_scripts': [
             'path_follower = path_follower.path_follower:main',
-            'path_traversal = path_follower.path_traversal:main',
             'demo_path_traversal = path_follower.demo_path_traversal:main',
         ],
     },

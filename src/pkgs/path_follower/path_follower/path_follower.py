@@ -1,8 +1,6 @@
 import rclpy
 from rclpy.node import Node
 
-from autosail_message.msg import GNSSMessage
-from autosail_message.msg import IMUMessage
 from autosail_message.msg import PoseMessage
 from autosail_message.msg import RudderControlMessage
 from autosail_message.msg import WindMessage
@@ -27,10 +25,6 @@ class PathFollower(Node):
         self.subscriberPreviousPos_ = self.create_subscription(PositionMessage, '/path/prev_waypoint', self.prev_waypoint_callback, 10)
         self.subscriberPreviousPos_
 
-        #only for development
-        #self.subscriberHeading_ = self.create_subscription(IMUMessage, '/sensor/imu', self.heading_callback, 10)
-        #self.subscriberHeading_  # prevent unused variable warning
-
         # Create publishers
         self.publisherRudderAngle_ = self.create_publisher(RudderControlMessage, '/actuator/rudder', 10)
 
@@ -42,8 +36,6 @@ class PathFollower(Node):
         self.debugcallback = self.create_timer(period, self.debug_callback)
 
         # Create varibles
-        #self.current_position = np.array([59.637171 , 16.584125])#longitude/latitude
-        #self.current_position = np.array([59.637020 , 16.584150]) #second boat position test point
         self.current_position = np.array([59.59827, 16.55583])#longitude/latitude
         self.yaw = 0.0
         self.velocity = 0.0
@@ -57,7 +49,7 @@ class PathFollower(Node):
         self.rudderAngle = 0
         
         # Init PID
-        self.pid_controller = PID(0.3, 0.0, 0.1)#PID(0.3, 0.00000000001, 0)#PID(0.00000000001, 0.00000000001, 0.00000000001)
+        self.pid_controller = PID(0.3, 0.0, 0.1)
         self.pid_controller.send(None)
 
     def navigation_callback(self):
@@ -71,13 +63,13 @@ class PathFollower(Node):
         # Get desired boat heading angle from los-algorithm. 
         desired_angle, los_point, s, sb_angle, sb = los_algorithm(o,a,b,lookahead_distance)
         desired_angle = np.rad2deg(desired_angle)   #Convert angle from radians to degrees
-        
+
+        # Adjust the desired heading angle so that it is not in the "no go zone"
+        adjusted_angle = adjust_angle_to_wind(self.twa,desired_angle,no_go_zone)
+
         ####ONLY FOR DEMO
         adjusted_angle = np.rad2deg(get_cc_angle(np.array([99,0]), b-o))
         ####ONLY FOR DEMO
-
-        # Adjust the desired heading angle so that it is not in the "no go zone"
-        #adjusted_angle = adjust_angle_to_wind(self.twa,desired_angle,no_go_zone)
 
         # Set desired angle to be used by rudder_control_callback
         self.desired_heading_angle = adjusted_angle
@@ -283,9 +275,6 @@ def main(args=None):
     #destroy node and stop rclpy
     path_follower_node.destroy_node()
     rclpy.shutdown()
-
-
-
 
 if __name__ == '__main__':
     main()
