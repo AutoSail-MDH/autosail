@@ -11,7 +11,7 @@ class PathTraverser(Node):
     def __init__(self):
         super().__init__('path_traversal_node')
 
-        # Create subscriptions. NOT NEEDED FOR DEMO
+        # Create subscriptions. NOT NEEDED FOR DEMO.
         #self.subscriberPOSE_ = self.create_subscription(PoseMessage, '/position/pose', self.pose_callback, 10)
         #self.subscriberPOSE_  # prevent unused variable warning
 
