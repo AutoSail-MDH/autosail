@@ -8,7 +8,6 @@ The monitor nodes will read publisher count from user specified topics and send 
 Run the following commands to start the application:
 ```
 cd ~/ros2_ws/autosail
-rosdep install -i --from-path src --rosdistro humble -y
 colcon build --packages-select sensor_malfunction
 . install/local_setup.bash
 ros2 launch sensor_malfunction malfunction_launch.py

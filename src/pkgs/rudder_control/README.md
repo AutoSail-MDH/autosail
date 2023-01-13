@@ -1,9 +1,11 @@
 # Information
+This package is no longer used, see path_follower instead.
+
 
 This application sends the angle for which to set the rudder, so it can steer towards a goal position. There are three inputs to this application:
 
-Next position in Lat/Long coordinates, which is the coordinates for which the boat should steer towards. This data is aquired from set_next_position.cpp via the topic `/path/next_position`.
 
+Next position in Lat/Long coordinates, which is the coordinates for which the boat should steer towards. This data is aquired from set_next_position.cpp via the topic `/path/next_position`.
 Current position in Lat/Long coordinates, which is the current coordinates for the boat. This data is aquired from via the topic `/sensor/gnss`.
 
 Current heading in degrees, which is the current heading of the boat. This data is aquired via the topic `/sensor/imu`.
@@ -32,7 +34,7 @@ cd ~/ros2_ws/autosail
 
 ros2 run rudder_control set_next_position
 ```
-The set_next_position executable publishes the next position, which is the Latitude/Longitude values of where the next position is. You can change this in real time. In a new terminal:
+The set_next_position executable publishes the next position, which is the Latitude/Longitude values of where the next position is. You can change this in real time. I`/path/next_position`n a new terminal:
 
 ```bash
 cd ~/ros2_ws/autosail

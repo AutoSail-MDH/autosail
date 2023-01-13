@@ -16,18 +16,4 @@ colcon build --packages-select pose_estimation
 ros2 run pose_estimation pose_estimation
 ```
 
-
 For this to function it needs to receive IMU and GPS data.
-
-#### ROSBag for testing
-WIP
-
-Download and play this bag for testing:
-
-Put the bag folder in the source of your workspace.
-
-Run the following commands at the source of your workspace with your ROS2 version sourced:
-```
-. install/local_setup.bash
-ros2 bag play [BAG_FOLDER_NAME]
-```
